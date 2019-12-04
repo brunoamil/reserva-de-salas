@@ -1,12 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Hello from './components/app'
+import './index.css';
+import Agenda from './agenda/agenda'
+import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(
-    <Hello/>
-, document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-
+ReactDOM.render(<Agenda/>, document.getElementById('root'));
+registerServiceWorker();
