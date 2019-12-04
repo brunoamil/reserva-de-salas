@@ -76,8 +76,6 @@ export default class Agenda extends Component {
     }
     this.handleRangeSelection = this.handleRangeSelection.bind(this)
     this.handleItemEdit = this.handleItemEdit.bind(this)
-    this.zoomIn = this.zoomIn.bind(this)
-    this.zoomOut = this.zoomOut.bind(this)
     this._openModal = this._openModal.bind(this)
     this._closeModal = this._closeModal.bind(this)
     this.addNewEvent = this.addNewEvent.bind(this)
@@ -189,7 +187,7 @@ export default class Agenda extends Component {
 
   render() {
 
-    var AgendaItem = function (props) {
+    var AgendaItem = props => {
       console.log(' item component props', props)
       return <div style={{ display: 'block', position: 'absolute', background: '#FFF' }}>{props.item.name} <button onClick={() => props.edit(props.item)}>Edit </button></div>
     }
@@ -197,9 +195,7 @@ export default class Agenda extends Component {
 
       <div className="content-expanded ">
 
-        <div className="control-buttons">
-          <button className="button-control" onClick={this.zoomIn}> <i className="zoom-plus-icon"></i> </button>
-          <button className="button-control" onClick={this.zoomOut}> <i className="zoom-minus-icon"></i> </button>
+        <div className="control-buttons">         
           <button className="button-control" onClick={this._openModal}> <i className="schedule-icon"></i> </button>
           <button className="button-control" onClick={this.changeView.bind(null, 7)}> {moment.duration(7, "days").humanize()}  </button>
           <button className="button-control" onClick={this.changeView.bind(null, 4)}> {moment.duration(4, "days").humanize()}  </button>
@@ -212,9 +208,9 @@ export default class Agenda extends Component {
           maxDate={new Date(now.getFullYear(), now.getMonth() + 3)}
           startDate={this.state.startDate}
           startAtTime={8}
-          endAtTime={23}
+          endAtTime={19}
           cellHeight={this.state.cellHeight}
-          locale="fr"
+          locale="pt"
           items={this.state.items}
           numberOfDays={this.state.numberOfDays}
           headFormat={"ddd DD MMM"}
@@ -236,7 +232,6 @@ export default class Agenda extends Component {
           this.state.showModal ? <Modal clickOutside={this._closeModal} >
             <div className="modal-content">
               <ReactAgendaCtrl items={this.state.items} itemColors={colors} selectedCells={this.state.selected} Addnew={this.addNewEvent} edit={this.editEvent} />
-
             </div>
           </Modal> : ''
         }
