@@ -1,0 +1,46 @@
+
+
+.App {
+  text-align: center;
+}
+
+
+.content-expanded {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.schedule-icon{
+  background:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4IiB3aWR0aD0iNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGg0OHY0OGgtNDh6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTE1Ljc2IDYuNzhsLTIuNTctMy4wNi05LjE5IDcuNzEgMi41NyAzLjA2IDkuMTktNy43MXptMjguMjQgNC42NmwtOS4xOS03LjcxLTIuNTcgMy4wNiA5LjE5IDcuNzEgMi41Ny0zLjA2em0tMjAuMDEtMy40NGMtOS45NSAwLTE3Ljk5IDguMDYtMTcuOTkgMThzOC4wNCAxOCAxNy45OSAxOCAxOC4wMS04LjA2IDE4LjAxLTE4LTguMDYtMTgtMTguMDEtMTh6bS4wMSAzMmMtNy43MyAwLTE0LTYuMjctMTQtMTRzNi4yNy0xNCAxNC0xNCAxNCA2LjI3IDE0IDE0LTYuMjYgMTQtMTQgMTR6bTItMjJoLTR2NmgtNnY0aDZ2Nmg0di02aDZ2LTRoLTZ2LTZ6Ii8+PC9zdmc+) no-repeat ;
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+}
+
+.button-control{
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border: none;
+    background: none;
+    padding: 6px;
+    border-left: 1px solid #ccc;
+    
+}
+
+
+.control-buttons{
+  display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+}
+
+
+.control-buttons button{
+
+  width: 17%;
+}
