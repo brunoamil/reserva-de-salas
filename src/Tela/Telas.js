@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
 
-import Styled from 'styled-components'
+import Styled from 'styled-components';
 
 const Bloco = Styled.div`
   background-color: #2ecc71;
