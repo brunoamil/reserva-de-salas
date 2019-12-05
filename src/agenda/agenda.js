@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { ReactAgenda, ReactAgendaCtrl, Modal } from 'react-agenda';
+import Tela from '../Tela/Telas';
 
 var now = new Date();
 
@@ -127,7 +128,7 @@ export default class Agenda extends Component {
 
       <div className="content-expanded ">
 
-        {/* <div className="control-buttons">         
+        {/* <div className="control-buttons">
           <button className="button-control" onClick={this._openModal}> <i className="schedule-icon"></i> </button>
         </div> */}
 
