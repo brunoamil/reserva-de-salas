@@ -1,0 +1,23 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin: 7px;
+}
+
+.header h1{
+    color: #484848;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 2rem;
+    margin-bottom: 5px;
+    font-family: 'PT Sans', sans-serif;
+    text-align: center;
+}
+
+
+
+.lgoceuma{
+    width: 100px;
+    height: 100px;
+}

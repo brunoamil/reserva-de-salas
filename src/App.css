@@ -5,7 +5,7 @@
 }
 
 
-.content-expanded {
+/* .content-expanded {
     height: 100vh;
     overflow: hidden;
 }
@@ -37,7 +37,7 @@
     justify-content: center;
     width: 100%;
     border-bottom: 1px solid #ccc;
-}
+} */
 
 
 .control-buttons button{

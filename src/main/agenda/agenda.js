@@ -4,7 +4,7 @@ import { ReactAgenda, ReactAgendaCtrl, Modal } from 'react-agenda';
 
 var now = new Date();
 
-require('moment/locale/pt-br');
+require('moment/locale/pt-br.js');
 
 var colors = {
   "color-3": "rgba(235, 85, 59, 1)",
@@ -17,10 +17,10 @@ export default class Agenda extends Component {
     this.state = {
       items: [],
       selected: [],
-      cellHeight: (60 / 4),
+      cellHeight: (50 / 1),
       showModal: false,
       locale: "pt",
-      rowsPerHour: 4,
+      rowsPerHour: 1,
       numberOfDays: 5,
       startDate: new Date()
     }
@@ -136,7 +136,7 @@ export default class Agenda extends Component {
           maxDate={new Date(now.getFullYear(), now.getMonth() + 3)}
           startDate={this.state.startDate}
           startAtTime={8}
-          endAtTime={19}
+          endAtTime={18}
           cellHeight={this.state.cellHeight}
           locale="pt"
           items={this.state.items}
@@ -159,7 +159,12 @@ export default class Agenda extends Component {
         {
           this.state.showModal ? <Modal clickOutside={this._closeModal} >
             <div className="modal-content">
-              <ReactAgendaCtrl items={this.state.items} itemColors={colors} selectedCells={this.state.selected} Addnew={this.addNewEvent} edit={this.editEvent} />
+              <ReactAgendaCtrl 
+                items={this.state.items} 
+                itemColors={colors} 
+                selectedCells={this.state.selected} 
+                Addnew={this.addNewEvent} 
+                edit={this.editEvent} />
             </div>
           </Modal> : ''
         }
