@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import {Link} from 'react-router-dom';
 
 import Header from "./components/Header";
 import Main from "./components/Main";
@@ -39,9 +40,9 @@ const Telas = props => {
               <h1>Selecionar Tipo de Reserva</h1>
             </Modal.Body>
             <Modal.Footer align="center">
-              <Button variant="primary" onClick={handleClose}>
-                Reservar por Data
-              </Button>
+            <Link to='/Principal'>
+              <Button variant="primary" onClick={handleClose}>Reservar por Data</Button>
+              </Link>
               <Button variant="primary" onClick={handleClose}>
                 Reservar por Sala
               </Button>
