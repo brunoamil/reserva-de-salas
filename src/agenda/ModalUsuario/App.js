@@ -18,7 +18,7 @@ const App = () => {
         <Modal
           show={show}
           onHide={handleClose}
-          size="xl"
+          size="lg"
           aria-labelledby="example-modal-sizes-title-lg"
           centered="true"
         >
@@ -42,9 +42,6 @@ const App = () => {
                   aria-describedby="emailHelp"
                   placeholder="Seu email"
                 />
-                <small id="emailHelp" className="form-text text-muted">
-                  Nunca vamos compartilhar seu email, com ninguém.
-                </small>
               </div>
               <div className="form-group">
                 <label for="exampleInputPassword1">Senha</label>
@@ -54,15 +51,62 @@ const App = () => {
                   id="inputmodal1"
                   placeholder="Senha"
                 />
-              </div>  
+              </div>
 
               <button type="submit" className="btn btn-primary">
-                Cadastrar-se
+                Login
               </button>
             </form>
           </Modal.Body>
         </Modal>
-        <Button className="ml-3">Cadastro</Button>
+
+
+        {/*cadastro*/}
+        <Button className="ml-3" onClick={handleShow}>Cadastro</Button>
+        <Modal
+          show={show}
+          onHide={handleClose}
+          size="lg"
+          aria-labelledby="example-modal-sizes-title-lg"
+          centered="true"
+        >
+          <Modal.Header closeButton>
+            <Modal.Title
+              align="center"
+              className="row col-xs-12 col-sm-12 col-md-12 col-lg-12"
+            >
+              <img src={img} width="43" height="43" alt="Header Ceuma" />
+              <h2 className="text-muted">- Ceuma Reservas</h2>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body align="center">
+            <form className="sing-form">
+              <div className="form-group">
+                <label for="exampleInputEmail1">Endereço de email</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="inputmodal1"
+                  aria-describedby="emailHelp"
+                  placeholder="Seu email"
+                />
+              </div>
+              <div className="form-group">
+                <label for="exampleInputPassword1">Senha</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="inputmodal1"
+                  placeholder="Senha"
+                />
+              </div>
+
+              <button type="submit" className="btn btn-primary">
+                Login
+              </button>
+            </form>
+          </Modal.Body>
+        </Modal>
       </div>
     </>
   );

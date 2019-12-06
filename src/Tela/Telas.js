@@ -15,12 +15,6 @@ const Bloco = Styled.div`
   width: 100vw;
 `;
 
-const Line = Styled.hr`
-  background-color: #fff;
-  height: 1px;
-  margin-top: 100px;
-`;
-
 const Telas = props => {
   const [show, setShow] = useState(false);
 
