@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
-import { ReactAgenda, ReactAgendaCtrl} from 'react-agenda';
+import {ReactAgenda} from 'react-agenda';
+import ReactAgendaCtrl from './ArquivosDaAgenda/reactAgendaCtrl'
 import Modal from '../Modal/Modal'
 
 var now = new Date();

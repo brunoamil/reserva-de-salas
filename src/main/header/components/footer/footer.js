@@ -3,6 +3,9 @@ import './footer.css'
 
 export default props =>{
     return (
-        <h3>footer</h3>
+        <div className="bloco">
+            <div className="bloco1"></div>
+            <div className="bloco2"></div>
+        </div>
     )
 }
