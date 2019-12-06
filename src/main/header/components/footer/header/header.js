@@ -1,7 +1,6 @@
 import React from 'react'
-import Img from './lgceuma.png'
+import Img from '../../../lgceuma.png'
 import './header.css'
-import Dropdown from '../header/components/dropdown'
 
 export default props => {
     return(

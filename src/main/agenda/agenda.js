@@ -1,7 +1,6 @@
 // @flow
 import React, { Component } from 'react';
 import { ReactAgenda, ReactAgendaCtrl, Modal } from 'react-agenda';
-import Tela from '../../Tela/Telas';
 
 var now = new Date();
 
