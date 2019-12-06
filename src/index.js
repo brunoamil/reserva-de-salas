@@ -4,8 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 //import Agenda from './agenda/agenda'
-import App from './agenda/ModalUsuario/App'
-//import Telas from './Tela/Telas'
+//import App from './agenda/ModalUsuario/App'
+import Telas from './Tela/Telas'
 
-ReactDOM.render(<App/>, document.getElementById('root'))
+ReactDOM.render(<Telas/>, document.getElementById('root'))
 
