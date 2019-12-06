@@ -18,7 +18,7 @@ const Bloco = Styled.div`
 const Line = Styled.hr`
   background-color: #fff;
   height: 1px;
-  width: 70vw;
+  margin-top: 100px;
 `;
 
 const Telas = props => {
@@ -35,7 +35,7 @@ const Telas = props => {
         <div align="center" width="100">
           <Button
             variant="btn btn-outline-light btn-lg"
-            className="mb-5"
+            className="mb-3"
             onClick={handleShow}
           >
             Reservar
@@ -44,7 +44,7 @@ const Telas = props => {
         aria-labelledby="example-modal-sizes-title-lg" centered="true">
             <Modal.Header closeButton >
               <Modal.Title align="center" className="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <img src={img} width='43' height="43"/>
+                <img src={img}  width='43' height="43" alt="Header Ceuma"/>
                 <h2 className="text-muted">- Ceuma Reservas</h2>
               </Modal.Title>
             </Modal.Header>

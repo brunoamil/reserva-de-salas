@@ -1,11 +1,20 @@
 import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Styled from 'styled-components'
+
+const Title = Styled.h1`
+  font-size: 150px;
+`
+
+const Bloco = Styled.div`
+  margin-top: 120px;
+`
 
 const Main = props => {
   return (
-    <div className="align-items-center justify-content-center text-center">
-      <h1 className="text-white mt-5 mb-5 display-1">Disponível</h1>
-    </div>
+    <Bloco className="align-items-center justify-content-center text-center">
+      <Title className="text-white mt-5 mb-5 display-1">Disponível</Title>
+    </Bloco>
   )
 }
 
