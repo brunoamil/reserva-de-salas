@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import {ReactAgenda} from 'react-agenda';
+import ReactAgenda from './ArquivosDaAgenda/reactAgenda';
 import ReactAgendaCtrl from './ArquivosDaAgenda/reactAgendaCtrl'
 import Modal from '../Modal/Modal'
 
