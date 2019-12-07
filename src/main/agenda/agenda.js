@@ -12,7 +12,6 @@ var colors = {
   "color-3": "rgba(235, 85, 59, 1)",
 }
 
-
 export default class Agenda extends Component {
   constructor(props) {
     super(props);
