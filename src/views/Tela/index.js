@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
-import img from "../assets/ceuma.png";
+import img from "../../assets/ceuma.png";
 
 import Styled from "styled-components";
 

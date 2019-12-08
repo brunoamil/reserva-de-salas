@@ -2,14 +2,16 @@ import React from 'react';
 import {BrowserRouter as Router, Route } from 'react-router-dom';
 
 // paginas
-import Principal from './main/principal'
-import Telas from './Tela/Telas'
+import AgendaDias from './views/main/index';
+import Status from './views/Tela/index';
+import Login from './agenda/ModalUsuario/App'
 
 function App() {
   return(
       <Router>
-        <Route exact path = '/' component={Telas}/>
-        <Route exact path = '/Principal' component={Principal}/>
+        <Route exact path = '/' component={Status}/>
+        <Route exact path = '/Principal' component={AgendaDias}/>
+        <Route exact path = '/Login' component={Login}/>
       </Router>
   )
 }
