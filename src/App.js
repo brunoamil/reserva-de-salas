@@ -3,8 +3,8 @@ import {BrowserRouter as Router, Route } from 'react-router-dom';
 
 // paginas
 import AgendaDias from './views/main/index';
-import Status from './views/Tela/index';
-import Login from './agenda/ModalUsuario/App'
+import Status from './views/Status/index';
+import Login from './views/ModalUsuario/App'
 
 function App() {
   return(
