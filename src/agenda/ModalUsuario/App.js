@@ -3,7 +3,6 @@ import firebase from '../../config/firebase';
 import 'firebase/auth';
 import { Button, Modal } from "react-bootstrap";
 import "../ModalUsuario/App2.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import img from "../../assets/ceuma.png";
 
 

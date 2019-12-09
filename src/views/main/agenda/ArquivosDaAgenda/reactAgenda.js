@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment'
 import ReactAgendaItem from './reactAgendaItem';
 import classNames from 'classnames';
-import {guid, getUnique, getLast, getFirst , mapItems} from './helpers';
+import {guid, getLast, getFirst , mapItems} from './helpers';
 import './reactAgenda.css'
 
 var startSelect

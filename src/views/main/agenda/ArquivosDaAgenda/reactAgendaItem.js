@@ -1,7 +1,6 @@
 import moment from 'moment'
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {getLast, getFirst} from './helpers.js';
 import './reactAgendaItem.css';
 
 export default class ReactAgendaItem extends Component {
