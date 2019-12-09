@@ -1,14 +1,18 @@
 import React from "react";
-import "../../../../node_modules/bootstrap/dist/css/bootstrap.css";
-// import PropTypes from 'prop-types'
+import "bootstrap/dist/css/bootstrap.css";
+
 import Styled from "styled-components";
 
 const Rodape = Styled.footer`
-  background-color: #D3D3D3;
+  background-color: #e6e8fa;
   padding-top: 10px;
   bottom: 0;
   position: absolute;
-  width: 100%;
+  width: 50%;
+  margin: 0px 0px 20px 20px;
+  border-radius: 8px;
+  box-shadow: 4px 5px 5px black;
+
 `;
 
 const Footer = props => (
@@ -18,8 +22,5 @@ const Footer = props => (
   </Rodape>
 );
 
-// Footer.propTypes = {
-
-// }
 
 export default Footer;
