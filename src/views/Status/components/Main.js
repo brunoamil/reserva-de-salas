@@ -1,5 +1,5 @@
 import React from "react";
-import "../../../../node_modules/bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/css/bootstrap.css";
 import Styled from "styled-components";
 
 const Title = Styled.h1`
