@@ -40,13 +40,7 @@
      user-select: none;
      pointer-events: none;
   }
-  
-  
-  .agenda__cell.\--head {
-    border-right: none;
-  
-  }
-  
+
   .agenda__table.\--header .agenda__cell {
       height: 45px;
       padding: 0;
@@ -67,7 +61,8 @@
     border-left: none !important;
     border-top: none !important;
     border-right: none !important;
-  
+    background-color: #0d4b81;
+    color: #fff;
   
   }
   
@@ -153,8 +148,16 @@
   
   
   .agenda__cell{
-    border-left: 1px solid rgba(167, 162, 162, 0.4);
-    border-bottom: 1px solid rgba(167, 162, 162, 0.4);
+    border-left: 1px solid rgba(128, 123, 123, 0.4);
+    border-bottom: 1px solid rgba(128, 123, 123, 0.4);
+  
+  }
+  
+  .agenda__cell.\--head {
+    background-color: #0d4b81;
+    color: rgba(255,255,255,.9);
+    border-right: none;
+    font-size: large;
   
   }
   
@@ -164,7 +167,7 @@
   }
   
   .agenda__cell.\--time:hover, .agenda__cell.\--time-now:hover , .agenda__cell.\--head:hover{
-    background: none;
+    background: #0d4b81;
   }
   
   
