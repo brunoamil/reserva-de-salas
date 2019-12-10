@@ -1,86 +1,54 @@
-import React, { useState } from "react";
-import firebase from '../../config/firebase';
-import 'firebase/auth';
-import { Button, Modal } from "react-bootstrap";
-import "../ModalUsuario/App2.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React from "react";
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import "firebase/auth";
+
+import "bootstrap/dist/css/bootstrap.css";
+
+import "./styles/style.css";
 import img from "../../assets/ceuma.png";
 
-
 const App = () => {
-  const [show, setShow] = useState(false);
-  const [email, setEmail] = useState();
-  const [senha, setSenha] = useState();
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  function Logar() {
-    firebase.auth().signInWithEmailAndPassword(email,senha).then(resultado=>{
-      alert('Sucesso');
-    }).catch(erro=>{
-      alert('erro ao logar');
-    })
-  }
-
-  function Cadastrar() {
-    firebase.auth().createUserWithEmailAndPassword(email,senha).then(resultado=>{
-      handleClose()
-    })
-  }
-
   return (
     <>
-      <div align="center" className="mt-5">
-        <Button onClick={handleShow}>Login</Button>
-        <Modal show={show} onHide={handleClose} size="lg" aria-labelledby="example-modal-sizes-title-lg" centered="true" >
-          <Modal.Header closeButton>
-            <Modal.Title align="center" className="row col-xs-12 col-sm-12 col-md-12 col-lg-12" >
-              <img src={img} width="43" height="43" alt="Header Ceuma" />
-              <h2 className="text-muted">- Ceuma Reservas</h2>
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body align="center">
-            <form className="sing-form">
-              <div className="form-group">
-                <label for="exampleInputEmail1">Endereço de email</label>
-                <input onChange={(e)=> setEmail(e.target.value)} type="email" className="form-control" id="inputmodal1" aria-describedby="emailHelp" placeholder="Seu email"/>
-              </div>
-              <div className="form-group">
-                <label for="exampleInputPassword1">Senha</label>
-                <input onChange={(e)=> setSenha(e.target.value)} type="password" className="form-control" id="inputmodal1" placeholder="Senha"/>
-              </div>
-
-              <button onClick={Logar} type="button" className="btn btn-primary"> Login </button>
-            </form>
-          </Modal.Body>
-        </Modal>
-
-
-        {/*cadastro*/}
-        <Button className="ml-3" onClick={handleShow}>Cadastro</Button>
-        <Modal show={show} onHide={handleClose} size="lg" aria-labelledby="example-modal-sizes-title-lg" centered="true" >
-          <Modal.Header closeButton>
-            <Modal.Title align="center" className="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <img src={img} width="43" height="43" alt="Header Ceuma" />
-              <h2 className="text-muted">- Ceuma Reservas</h2>
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body align="center">
-            <form className="sing-form">
-              <div className="form-group">
-                <label for="exampleInputEmail1">Endereço de email</label>
-                <input onChange={(e)=> setEmail(e.target.value)} type="email" className="form-control" id="inputmodal1" aria-describedby="emailHelp" placeholder="Seu email"/>
-              </div>
-              <div className="form-group">
-                <label for="exampleInputPassword1">Senha</label>
-                <input onChange={(e)=> setSenha(e.target.value)} type="password" className="form-control" id="inputmodal1" placeholder="Senha" />
-              </div>
-
-              <button onClick={Cadastrar} type="button" className="btn btn-primary"> Cadastrar </button>
-            </form>
-          </Modal.Body>
-        </Modal>
+      <div className="bg-modal">
+        <div className="modal-content">
+          <div className="header-modal">
+            <img src={img} alt="logo Ceuma" width="60" />
+            <h4 className="title-ceuma"> - Ceuma Reservas</h4>
+          </div>
+          <hr className="modal-line" />
+          <div className="main-modal">
+          <div className="login-title">
+            <h1>Login</h1>
+          </div>
+          <Form className="form-modal">
+            <FormGroup>
+              <Label for="exampleEmail"><span id="span-label">Email:</span> </Label>
+              <Input
+                type="email"
+                name="email"
+                id="input-email"
+                placeholder="Email"
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="examplePassword"><span id="span-label">Senha:</span> </Label>
+              <Input
+                type="password"
+                name="password"
+                id="input-pass"
+                placeholder="Senha"
+              />
+            </FormGroup>
+            <div className="btn-modalLogin">
+              <Button color="primary" size="lg">Login</Button>
+            </div>
+          </Form>
+          </div>
+          <footer>
+              <p className="msg-footer-modal">Ainda não tem conta? Cadastre-se</p>
+          </footer>
+        </div>
       </div>
     </>
   );

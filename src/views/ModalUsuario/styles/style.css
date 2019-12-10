@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+
+.bg-modal {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  width: 500px;
+  height: 600px;
+  background-color: #fff;
+  opacity: 0.9;
+  border-radius: 5px;
+}
+
+/* header modal */
+.header-modal {
+  padding: 10px;
+  display: flex;
+}
+
+.title-ceuma {
+  color: rgba(0, 0, 0, 0.7);
+  margin: 12px 0px 0px 10px;
+}
+
+/* main modal */
+.form-modal {
+  width: 70%;
+}
+
+.main-modal {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-line {
+  color: rgb(0, 0, 0);
+  height: 1px;
+  margin: 10px 0px 20px 0px;
+}
+
+#input-email {
+  margin-bottom: 20px;
+}
+
+#input-email,
+#input-pass {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+}
+
+#span-label {
+  font-size: 1.6em;
+}
+.btn-modalLogin {
+  display: flex;
+  align-items: center;
+}
+
+.login-title {
+  color: rgba(0, 0, 0, 0.7);
+  border-bottom: 2px solid rgb(16, 141, 243);
+}
+
+.login-title {
+  margin-bottom: 30px;
+}
+
+.modal-content footer {
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+  background: #007bff;
+}
+
+.modal-content footer p {
+  margin-top: 13px;
+  color: #fff;
+  text-align: center;
+  font-size: 1.4em;
+  font-weight: bold;
+}
