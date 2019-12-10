@@ -160,7 +160,7 @@
   
   .agenda__cell.\--time-now {
       font-weight: bold;
-      border-right: 5px solid rgb(102, 195, 131);
+      border-right: 3px solid rgb(100, 105, 102);
   }
   
   .agenda__cell.\--time:hover, .agenda__cell.\--time-now:hover , .agenda__cell.\--head:hover{

@@ -1,38 +1,9 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import ModalView from './modalView'
 import PropTypes from 'prop-types';
 import './Modal.css';
 
-class ModalView extends Component {
-  render() {
-    if(this.props.frameless){
-      return <div className="modal-nude  box-card">
-              <a onClick={this.props.closeFunc} className="modal-close">X</a>
-                <div className="modal-title"> {this.props.title}</div>
-         {this.props.children}
-        </div>
-    }
-
-    return <div className="modal  box-card">
-      <a onClick={this.props.closeFunc} className="modal-close">X</a>
-              <div className="modal-title"> {this.props.title}</div>
-       {this.props.children}
-      </div>
-  }
-}
-
-ModalView.propTypes = {
-  title: PropTypes.string,
-  frameless: PropTypes.bool,
-  children: PropTypes.element,
-  closeFunc: PropTypes.func,
-
-};
-
-ModalView.defaultProps = {
-  title: '',
-  frameless: false
-}
 
 export default class Modal extends Component {
 
