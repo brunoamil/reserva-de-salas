@@ -9,15 +9,17 @@
     color: #484848;
     font-size: 2.4rem;
     font-weight: 700;
-    line-height: 1.5rem;
+    line-height: 3.9rem;
     margin-bottom: 5px;
     font-family: 'PT Sans', sans-serif;
     text-align: center;
+    margin-left: 2%;
 }
 
 
 
 .lgoceuma{
+    margin-left: 0.3%;
     width: 80px;
     height: 80px;
 }
