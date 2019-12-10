@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactAgenda from './ArquivosDaAgenda/reactAgenda';
-import ReactAgendaCtrl from './ArquivosDaAgenda/reactAgendaCtrl';
-import Modal from '../Modal/Modal';
+import ReactAgendaCtrl from './ArquivosDaAgenda/reactAgendaCtrl'
+import Modal from '../Modal/Modal'
 
 var now = new Date();
 
@@ -10,7 +10,6 @@ require('moment/locale/pt-br.js');
 var colors = {
   "color-3": "rgba(235, 85, 59, 1)",
 }
-
 
 export default class Agenda extends Component {
   constructor(props) {
@@ -160,11 +159,11 @@ export default class Agenda extends Component {
         {
           this.state.showModal ? <Modal clickOutside={this._closeModal} >
             <div className="modal-content">
-              <ReactAgendaCtrl 
-                items={this.state.items} 
-                itemColors={colors} 
-                selectedCells={this.state.selected} 
-                Addnew={this.addNewEvent} 
+              <ReactAgendaCtrl
+                items={this.state.items}
+                itemColors={colors}
+                selectedCells={this.state.selected}
+                Addnew={this.addNewEvent}
                 edit={this.editEvent} />
             </div>
           </Modal> : ''

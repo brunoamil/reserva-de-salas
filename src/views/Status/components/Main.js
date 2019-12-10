@@ -1,8 +1,9 @@
 import React from "react";
+import "bootstrap/dist/css/bootstrap.css";
 import Styled from "styled-components";
 
 const Title = Styled.h1`
-  font-size: 15em;
+  font-size: 10em;
 `;
 
 const Bloco = Styled.div`
