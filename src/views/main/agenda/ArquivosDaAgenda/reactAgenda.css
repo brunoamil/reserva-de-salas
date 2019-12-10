@@ -151,7 +151,7 @@
   
   
   .agenda__cell{
-    border-left: 1px solid rgba(128, 123, 123, 0.4);
+    border-left: 1px solid rgba(214, 214, 214, 0.726);
     border-bottom: 1px solid rgba(128, 123, 123, 0.4);
   
   }
@@ -165,8 +165,11 @@
   }
   
   .agenda__cell.\--time-now {
-      font-weight: bold;
-      border-right: 5px solid rgb(102, 195, 131);
+      font-size: large;
+      font-weight: normal;
+      background: #0d4b81;
+      color: rgba(255,255,255,.9);
+      border: none;
   }
   
   .agenda__cell.\--time:hover, .agenda__cell.\--time-now:hover , .agenda__cell.\--head:hover{
