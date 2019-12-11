@@ -1,87 +1,76 @@
-import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
+import React, {useEffect} from 'react'
+import ReactDOM from 'react-dom'
 import ModalView from './modalView'
-import PropTypes from 'prop-types';
-import './Modal.css';
+import PropTypes from 'prop-types'
+import './Modal.css'
 
+export default function Modal(props) {
+    const modalWrapperTarget = document.createElement('div')
 
-export default class Modal extends Component {
+    useEffect(() => {
+        modalWrapperTarget.className = "modal-wrapper"
 
-constructor(props){
-  super(props);
-  this.clickedOutside = this.clickedOutside.bind(this)
-  this.closeFunc = this.closeFunc.bind(this)
+        modalWrapperTarget.addEventListener('click', clickedOutside);
+        modalWrapperTarget.addEventListener('click', clickedOutside);
+        modalWrapperTarget.addEventListener('keydown', clickedOutside, true);
 
-}
+        document.body.appendChild(modalWrapperTarget)
+        _render()
 
-  componentDidMount(){
-  this.modalWrapperTarget = document.createElement('div')
+        return () => {
+            modalWrapperTarget.removeEventListener('click', clickedOutside);
+            modalWrapperTarget.removeEventListener('keydown', clickedOutside);
+            ReactDOM.unmountComponentAtNode(modalWrapperTarget);
+            document.body.removeChild(modalWrapperTarget);
+        }
+    })
 
-  this.modalWrapperTarget.className= "modal-wrapper";
+    const clickedOutside = (e) => {
 
-  this.modalWrapperTarget.addEventListener('click' , this.clickedOutside);
-  this.modalWrapperTarget.addEventListener('click' , this.clickedOutside);
-  this.modalWrapperTarget.addEventListener('keydown', this.clickedOutside, true);
+        if ((e.key == 'Escape' || e.key == 'Esc' || e.keyCode == 27)) {
+            e.preventDefault();
+            props.clickOutside(e)
+            return false;
+        }
 
-  document.body.appendChild(this.modalWrapperTarget)
-  this._render();
-  }
+        if (props.clickOutside && e.target.classList.contains('modal-wrapper')) {
+            props.clickOutside(e)
+        }
 
+    }
 
-clickedOutside(e){
+    const closeFunc = (e) => {
+        if (props.clickOutside) {
+            props.clickOutside(e)
+        }
+    }
 
-  if((e.key=='Escape'||e.key=='Esc'||e.keyCode==27)){
-      e.preventDefault();
-      this.props.clickOutside(e)
-      return false;
-  }
+    const _render = () => {
 
-  if(this.props.clickOutside && e.target.classList.contains('modal-wrapper')){
-    this.props.clickOutside(e)
-  }
+        ReactDOM.render(<ModalView children={props.children} closeFunc={closeFunc} title={props.title} frameless={props.frameless} />
+            , modalWrapperTarget)
+    }
 
-}
+    useEffect(()=>{
+        _render()
+    },[])
+ 
+    return (
+        <noscript />
+    )
 
-closeFunc(e){
-  if(this.props.clickOutside ){
-    this.props.clickOutside(e)
-  }
-}
-
-
-  _render(){
-
-    ReactDOM.render( <ModalView children={this.props.children} closeFunc={this.closeFunc} title={this.props.title} frameless={this.props.frameless}/>
-                      , this.modalWrapperTarget )
-  }
-
-
-componentDidUpdate(){
-  this._render()
-}
-
-  componentWillUnmount(){
-
-   this.modalWrapperTarget.removeEventListener('click' , this.clickedOutside);
-   this.modalWrapperTarget.removeEventListener('keydown' , this.clickedOutside);
-    ReactDOM.unmountComponentAtNode(this.modalWrapperTarget);
-    document.body.removeChild(this.modalWrapperTarget);
-  }
-
-  render() {
-    return <noscript/>
-  }
 }
 
 Modal.propTypes = {
-  title: PropTypes.string,
-  frameless: PropTypes.bool,
-  children: PropTypes.element,
-  closeFunc: PropTypes.func,
+    title: PropTypes.string,
+    frameless: PropTypes.bool,
+    children: PropTypes.element,
+    closeFunc: PropTypes.func,
 
 };
 
 Modal.defaultProps = {
-  title: '',
-  frameless: false
+    title: '',
+    frameless: false
 }
+

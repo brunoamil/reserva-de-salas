@@ -1,5 +1,6 @@
 :root {
-  --selection:rgba(141, 134, 131, 0.7);;
+  overflow: hidden;
+  --selection:rgba(141, 134, 131, 0.7);
   }
   
   
@@ -16,8 +17,9 @@
   
   .agenda__table.\--body {
     height: calc(73vh - 6px);
-    overflow: overlay;
+    overflow: hidden;
     -webkit-transform: translate3d(0,0,0);
+    font-size: xx-large;
   }
   
   /**
@@ -40,13 +42,7 @@
      user-select: none;
      pointer-events: none;
   }
-  
-  
-  .agenda__cell.\--head {
-    border-right: none;
-  
-  }
-  
+
   .agenda__table.\--header .agenda__cell {
       height: 45px;
       padding: 0;
@@ -62,12 +58,14 @@
     width: 100px;
     vertical-align: middle;
     text-align: center;
-    font-size: 16px;
+    font-size: large;
     text-align: center;
     border-left: none !important;
     border-top: none !important;
     border-right: none !important;
-  
+
+    background-color: #0d4b81;
+    color: #fff;
   
   }
   
@@ -153,18 +151,29 @@
   
   
   .agenda__cell{
-    border-left: 1px solid rgba(167, 162, 162, 0.4);
-    border-bottom: 1px solid rgba(167, 162, 162, 0.4);
+    border-left: 1px solid rgba(214, 214, 214, 0.726);
+    border-bottom: 1px solid rgba(128, 123, 123, 0.4);
+  
+  }
+  
+  .agenda__cell.\--head {
+    background-color: #0d4b81;
+    color: rgba(255,255,255,.9);
+    border-right: none;
+    font-size: large;
   
   }
   
   .agenda__cell.\--time-now {
-      font-weight: bold;
-      border-right: 3px solid rgb(100, 105, 102);
+      font-size: large;
+      font-weight: normal;
+      background: #0d4b81;
+      color: rgba(255,255,255,.9);
+      border: none;
   }
   
   .agenda__cell.\--time:hover, .agenda__cell.\--time-now:hover , .agenda__cell.\--head:hover{
-    background: none;
+    background: #0d4b81;
   }
   
   

@@ -1,5 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
+
+
 
 export default function ModalView (props) {
     if (props.frameless) {
@@ -10,7 +12,8 @@ export default function ModalView (props) {
         </div>)
     }
 
-    return (<div className="modal  box-card">
+    return (
+    <div className="modal  box-card">
         <a onClick={props.closeFunc} className="modal-close">X</a>
         <div className="modal-title"> {props.title}</div>
         {props.children}
