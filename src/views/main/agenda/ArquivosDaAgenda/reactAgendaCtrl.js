@@ -105,7 +105,7 @@ dispatchEvent(obj) {
     var array = obj['multiple']
     Object.keys(array).forEach(function(key) {
       var newAr = array[key].filter(function(val, ind) {
-        return array[key].indexOf(val) == ind;
+        return array[key].indexOf(val) === ind;
       })
       var start = newAr[0];
       var endT = newAr[newAr.length - 1] || now;
@@ -118,7 +118,7 @@ dispatchEvent(obj) {
       }
       items.push(lasobj)
       newAdded.push(lasobj)
-    }.bind(this));
+    });
     return this.props.Addnew(items, newAdded)
   }
 
@@ -134,7 +134,7 @@ addEvent(e) {
 
   if(this.props.selectedCells && this.props.selectedCells.length > 0){
 
-    var obj = this.props.selectedCells.reduce((r, v, i, a, k = v.substring(0, 10)) => ((r[k] = r[k] || []).push(v), r), {});
+    var obj = this.props.selectedCells.reduce((r, v, k = v.substring(0, 10)) => ((r[k] = r[k] || []).push(v), r), {});
 
     if (Object.values(obj).length > 1) {
       var newObj = {
@@ -210,7 +210,6 @@ render() {
 
   if (this.state.editMode) {
 
-    var select = this.props.selectedCells[0];
 
     return (
       <div className="agendCtrls-wrapper" style={divStyle}>

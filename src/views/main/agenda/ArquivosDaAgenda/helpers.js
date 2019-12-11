@@ -39,7 +39,7 @@ export function isMouseBeyond(mousePos, elementPos, elementSize, moveInMiddle) {
 
 
 export function getUnique(array){
-  var newAr = array.filter(function(val,ind) { return array.indexOf(val) == ind; })
+  var newAr = array.filter(function(val,ind) { return array.indexOf(val) === ind; })
   return newAr
 }
 export function getLast(array){
