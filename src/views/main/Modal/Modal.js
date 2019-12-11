@@ -53,9 +53,7 @@ constructor(props){
   this.modalWrapperTarget.addEventListener('keydown', this.clickedOutside, true);
 
   document.body.appendChild(this.modalWrapperTarget)
-  this._render();
-  }
-
+  this._render();FormLogin
 
 clickedOutside(e){
 
