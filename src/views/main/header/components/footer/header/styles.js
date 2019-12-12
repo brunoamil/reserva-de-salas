@@ -10,7 +10,6 @@ export const Container = styled.div`
 export const View = styled.div`
     width:100%;
     display:flex;
-    flex-direction:row;
     align-items:center;
 
 `
@@ -36,14 +35,14 @@ export const Logo = styled.img`
 
 export const UserAling = styled.div`
     display:flex;
+    width: 57%;
     justify-content:flex-end;
-    flex-direction:end;
     flex-flow: row wrap;
-    margin: 0px 0px 30px 400px;
+    margin: 0px 0px 30px 0px;
 
 `
 export const Button = styled.button`
-    margin: 10px 15px 0px 15px;
+    margin: 10px 0px 0px 15px;
     background-color: #0d4b81;
     color:white;
     border:none;
@@ -93,8 +92,8 @@ export const CircleAling = styled.div`
 export const Circle = styled.div`
     width:20px;
     height:20px;
-    margin:0px 10px;
-    border:1px solid black;
+    margin:0px 5px;
+    border:1px solid rgba(37, 37, 37, 0.473);
     border-radius:100%;
     background-color: brown;
 
@@ -104,7 +103,7 @@ export const Circle2 = styled.div`
     height:20px;
     margin:0px 5px;
     border-radius:100%;
-    border:1px solid black;
+    border:1px solid rgba(37, 37, 37, 0.473);
     background-color: #e2e2e279;
 
 `
@@ -112,7 +111,7 @@ export const Circle2 = styled.div`
 export const Legenda = styled.p`
     font-family: "Open Sans",sans-serif,arial;
     font-size: 1.1rem;
-    margin: 0px 5px;
+    margin: 0px 15px 0px 2px;
 
 `
 

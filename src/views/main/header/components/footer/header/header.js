@@ -13,7 +13,7 @@ export default props => {
             <Container>
                 <View>
                     <Logo src={Img}></Logo>
-                    <Title>Universidade CEUMA - Reserva de Sala</Title>
+                    <Title>Reserva de Salas - Universidade Ceuma</Title>
                     <UserAling>
                         <Title>Usuário : Marcus</Title>
                         <Button type="submit">Sair</Button>
@@ -24,9 +24,9 @@ export default props => {
 
                     <CircleAling>
                         <Circle></Circle>
-                        <Legenda>Disponível</Legenda>
-                        <Circle2></Circle2>
                         <Legenda>Indisponível</Legenda>
+                        <Circle2></Circle2>
+                        <Legenda>Disponível</Legenda>
                     </CircleAling>
                     
                     <SelectAling>
