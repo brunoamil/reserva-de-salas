@@ -27,7 +27,7 @@ export default function Modal(props) {
 
     const clickedOutside = (e) => {
 
-        if ((e.key == 'Escape' || e.key == 'Esc' || e.keyCode == 27)) {
+        if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27)) {
             e.preventDefault();
             props.clickOutside(e)
             return false;

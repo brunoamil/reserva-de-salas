@@ -137,7 +137,7 @@ addEvent(e) {
     var obj = this.props.selectedCells.reduce((r, v, k = v.substring(0, 10)) => ((r[k] = r[k] || []).push(v), r), {});
 
     if (Object.values(obj).length > 1) {
-      var newObj = {
+      const newObj = {
         name: this.state.name,
         startDateTime: new Date(this.state.startDateTime),
         endDateTime: new Date(this.state.endDateTime),

@@ -79,7 +79,7 @@ export default class ReactAgenda extends Component {
       window.removeEventListener("resize", this.updateDimensions);
 
     }
-    if(this.props.locale && this.props.locale != "en" ){
+    if(this.props.locale && this.props.locale !== "en" ){
       moment.locale(this.props.locale);
     }
 
@@ -124,7 +124,7 @@ export default class ReactAgenda extends Component {
    
     if(this.props.startAtTime && typeof this.props.startAtTime === "number" ){
          for (var i = 0; i < 19 * this.props.rowsPerHour; i++) {
-          if(this.props.endAtTime != 0 && (this.props.endAtTime - this.props.startAtTime) * this.props.rowsPerHour  >=  i ){
+          if(this.props.endAtTime !== 0 && (this.props.endAtTime - this.props.startAtTime) * this.props.rowsPerHour  >=  i ){
            rows.push(moment(this.state.date).hours(this.props.startAtTime).minutes(0).seconds(0).milliseconds(0).add(Math.floor(i * interval), 'minutes'));  
           }
      
@@ -133,7 +133,7 @@ export default class ReactAgenda extends Component {
 
     }
     
-    for (var i = 0; i < 19 * this.props.rowsPerHour; i++) {
+    for (i = 0; i < 19 * this.props.rowsPerHour; i++) {
       rows.push(moment(this.state.date).hours(7).minutes(0).seconds(0).milliseconds(0).add(Math.floor(i * interval), 'minutes'));
     }
     return rows;
@@ -303,7 +303,7 @@ export default class ReactAgenda extends Component {
     isMouseDown = true;
    
     this.removeSelection()
-    if (e.target.classList.contains("--time") ||e.target.classList.contains("--time-now")  && !isDragging) {
+    if (e.target.classList.contains("--time") || e.target.classList.contains("--time-now") && !isDragging) {
 
       return this.handleMouseClick(e.target)
     }
@@ -351,7 +351,7 @@ export default class ReactAgenda extends Component {
       }
     }
 
-       for (var i = old2.length - 1; i >= 0; --i) {
+       for (i = old2.length - 1; i >= 0; --i) {
       if (old2[i]) {
         old2[i].remove();
       }
@@ -360,7 +360,7 @@ export default class ReactAgenda extends Component {
         helper = null
 
 
-    if (startSelect && endSelect && startSelect != endSelect) {
+    if (startSelect && endSelect && startSelect !== endSelect) {
 
       return this.getSelection(startSelect , endSelect)
   }
@@ -462,7 +462,6 @@ export default class ReactAgenda extends Component {
   duplicateEvent(id, d) {
     var date = d;
     var itm;
-    var oldItm;
     if (!this.refs[d]) {
       return;
     }
@@ -513,7 +512,7 @@ export default class ReactAgenda extends Component {
             let newdate = moment(date)
             items[i].endDateTime = new Date(newdate)
             return this.props.onChangeDuration(items, items[i])
-            break;
+           
           }
 
         }
@@ -672,7 +671,6 @@ export default class ReactAgenda extends Component {
       }
     };
 
-    var itmName
 
     var Colors = this.props.itemColors
 
@@ -806,7 +804,7 @@ export default class ReactAgenda extends Component {
         }
       }
 
-      if (splt.length == 1) {
+      if (splt.length === 1) {
         styles = {
           "background": nwsplt[0],
           height: this.props.cellHeight + 'px'
