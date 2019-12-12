@@ -8,7 +8,7 @@ import {
   Form,
   FormGroup,
   Label,
-  Input
+  Input,
 } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import img from "../../assets/ceuma.png";
@@ -23,34 +23,52 @@ import {
   FormModal,
   ButtonModal,
   FooterModal,
-  H1Cadastro
+  H1Cadastro,
+  ContainerOk,
+  H1Conf,
+  ModalConf,
+  ModalHeaderConf
 } from "./styles";
 
 const ModalLC = props => {
   const { className } = props;
 
-  const [modal, setModal] = useState(false);
-  const [nestedModal, setNestedModal] = useState(false);
-  const [closeAll, setCloseAll] = useState(false);
+  const [ modal, setModal ] = useState(false);
+
+  const [ nestedModal, setNestedModal ] = useState(false);
+
+  const [ modalConf, setModalConf ] = useState(false);
+
 
   const toggle = () => {
     setModal(!modal);
-  };
+    setNestedModal(false);
+  }
 
   const toggleNested = () => {
     setNestedModal(!nestedModal);
     setModal(false);
-    setCloseAll(false);
-  };
+  }
+
   const toggleAll = () => {
-    setNestedModal(!nestedModal);
-    setCloseAll(true);
-  };
+    setNestedModal(false);
+    setModal(false);
+    setModalConf(false);
+  }
+
+  const toggleModalConf = () => {
+    setModalConf(!modalConf);
+    setNestedModal(false);
+    setModal(false);
+  }
+
+
 
   return (
     <>
       <Container>
-        {/*Login*/}
+
+        {/*Modal Login*/}
         <Button color="primary" size="lg" onClick={toggle}>
           Login
         </Button>
@@ -91,13 +109,13 @@ const ModalLC = props => {
             </ModalBody>
             <FooterModal>
               <p>
-                Ainda não tem conta? <span onClick={toggleNested}>Clique Aqui!</span>
+                Ainda não tem conta? <button onClick={toggleNested}>Clique Aqui!</button>
               </p>
             </FooterModal>
           </Modal>
         </div>
 
-        {/*Cadastrar*/}
+        {/* Modal Cadastrar-se*/}
         <Modal isOpen={nestedModal} centered>
           <ModalHeader toggle={toggleNested}>
             <ContainerHeader>
@@ -116,17 +134,29 @@ const ModalLC = props => {
                 <LabelModal for="senhaCadastro">Senha:</LabelModal>
                 <InputModal type="password" name="password" placeholder="Informe seu email" />
               </FormGroup>
-              <ButtonModal color="primary" size="lg" onClick={toggleAll}>
+              <ButtonModal color="primary" size="lg" onClick={toggleModalConf}>
                 Cadastrar
               </ButtonModal>
             </FormModal>
           </ModalBody>
           <FooterModal>
             <p>
-              Já possui uma conta? <span onClick={toggle}>Clique Aqui!</span>
+              Já possui uma conta? <button onClick={toggle}>Clique Aqui!</button>
             </p>
           </FooterModal>
         </Modal>
+
+        {/*Modal Confirmação*/}
+        <ModalConf isOpen={modalConf} centered>
+          <ModalHeaderConf toggle={toggleAll}>
+          </ModalHeaderConf>
+          <ModalBody>
+            <ContainerOk>
+              <img src={img} alt="Logo Ceuma" width="100" height="100"/>
+              <H1Conf>Cadastro Confirmado</H1Conf>
+            </ContainerOk>
+          </ModalBody>
+        </ModalConf>
       </Container>
     </>
   );
