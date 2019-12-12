@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import moment from 'moment';
 import {guid , getLast , getFirst } from './helpers';
 import Rdate from 'react-datetime';
@@ -274,19 +273,3 @@ render() {
   );
 }
 }
-
-
-ReactAgendaCtrl.propTypes = {
-  items: PropTypes.array,
-  itemColors: PropTypes.object,
-  selectedCells: PropTypes.array,
-  edit: PropTypes.func,
-  Addnew: PropTypes.func
-
-};
-
-ReactAgendaCtrl.defaultProps = {
-  items: [],
-  itemColors: {},
-  selectedCells: []
-  }

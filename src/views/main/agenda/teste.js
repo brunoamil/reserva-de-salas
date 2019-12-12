@@ -12,7 +12,7 @@ const colors = {
 }
 
 export default function Agenda(props) {
-    const [item, setComponentWillReceive] = useState([])
+    const [items, setComponentWillReceive] = useState([])
     const [selected, setHandleItemEdit] = useState([])
     const [cellHeight,] = useState((50 / 1))
     const [showModal, set_openModal] = useState(false)
@@ -21,9 +21,9 @@ export default function Agenda(props) {
     const [numberOfDays, setChangeView] = useState(5)
     const [startDate, setHandleDateRangeChange] = useState(new Date())
 
-    function componentWillReceiveProps(next, last) {
+    function setComponentWillReceive(next, last) {
         if (next.items) {
-            setState({ items: next.items })
+            ({ items: next.items })
         }
     }
 

@@ -7,6 +7,7 @@ import Main from "./components/Main";
 import Footer from "./components/Footer";
 import img from "../../assets/ceuma.png";
 
+
 import Styled from "styled-components";
 
 const Bloco = Styled.div`
