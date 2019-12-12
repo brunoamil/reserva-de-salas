@@ -17,7 +17,7 @@ export default class Agenda extends Component {
     this.state = {
       items: [],
       selected: [],
-      cellHeight: (47 / 1),
+      cellHeight: (41.7 / 1),
       showModal: false,
       locale: "pt",
       rowsPerHour: 1,
