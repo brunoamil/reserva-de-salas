@@ -1,5 +1,9 @@
 import React from 'react'
-import {Logo,Header,Title,Select,SelectAling,Texto,Container,Circle,ContainerAlert} from './styles'
+
+import {
+    Logo,Header,Title,Select,SelectAling,Texto,Container,CircleAling,Circle,Circle2,Legenda,View,ViewSelect,UserAling,Button
+} from './styles'
+
 import Img from '../../../lgceuma.png'
 
 export default props => {
@@ -7,28 +11,42 @@ export default props => {
     <div>
         <Header>
             <Container>
-                <Logo src={Img}></Logo>
-                <Title>Universidade CEUMA - Reserva de Sala</Title>
+                <View>
+                    <Logo src={Img}></Logo>
+                    <Title>Universidade CEUMA - Reserva de Sala</Title>
+                    <UserAling>
+                        <Title>Usuário : Marcus</Title>
+                        <Button type="submit">Sair</Button>
+                    </UserAling>
+                </View>
 
-                <ContainerAlert>
-                    <Circle></Circle>
-                    <p>Indisponivel</p>
-                </ContainerAlert>
-                <SelectAling>
-                    <Select>
-                        <option value="sala1">Sala 1</option>
-                        <option value="sala2">Sala 2</option>
-                        <option value="sala3">Sala 3</option>
-                        <option value="sala4">Sala 4</option>
-                    </Select>
-                    <Texto>Semana</Texto>
-                    <Select>
-                        <option value="sala1">2 a 6, Novembro</option>
-                        <option value="sala2">9 a 13, Novembro</option>
-                        <option value="sala3">16 a 20, Novembro</option>
-                        <option value="sala4">23 a 27, Novembro</option>
-                    </Select>
-                </SelectAling>
+                <ViewSelect>
+
+                    <CircleAling>
+                        <Circle></Circle>
+                        <Legenda>Disponível</Legenda>
+                        <Circle2></Circle2>
+                        <Legenda>Indisponível</Legenda>
+                    </CircleAling>
+                    
+                    <SelectAling>
+
+
+                        <Select>
+                            <option value="sala1">Sala 1</option>
+                            <option value="sala2">Sala 2</option>
+                            <option value="sala3">Sala 3</option>
+                            <option value="sala4">Sala 4</option>
+                        </Select>
+                        <Texto>Semana</Texto>
+                        <Select>
+                            <option value="sala1">2 a 6, Novembro</option>
+                            <option value="sala2">9 a 13, Novembro</option>
+                            <option value="sala3">16 a 20, Novembro</option>
+                            <option value="sala4">23 a 27, Novembro</option>
+                        </Select>
+                    </SelectAling>
+                </ViewSelect>   
                 
             </Container>
         </Header>

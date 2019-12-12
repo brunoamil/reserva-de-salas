@@ -3,7 +3,19 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
     display: flex;
+    flex-direction: column;
     width:100%;
+
+`
+export const View = styled.div`
+    width:100%;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+
+`
+export const LogoView = styled.div`
+    display:flex;
 
 `
 
@@ -19,24 +31,43 @@ export const Header = styled.div`
 
 export const Logo = styled.img`
     width: 70px;
-    margin: 0.3%;
-`
-export const ContainerAlert = styled.div`
-    display: flex;
-    flex-direction:row;
-    height:10px;
-
-
+    margin: 8px 15px;
 `
 
-
-export const Circle = styled.div`
-    width:10px;
-    height:10px;
-    border-radius:15px;
-    background-color: brown;
+export const UserAling = styled.div`
+    display:flex;
+    justify-content:flex-end;
+    flex-direction:end;
+    flex-flow: row wrap;
+    margin: 0px 0px 30px 400px;
 
 `
+export const Button = styled.button`
+    margin: 10px 15px 0px 15px;
+    background-color: #0d4b81;
+    color:white;
+    border:none;
+
+    width: 60px;
+    height: 1.7rem;
+
+    font-family: "Open Sans",sans-serif,arial;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-align:center;
+    
+
+
+`
+
+
+// export const ContainerAlert = styled.div`
+//     display: flex;
+//     flex-direction:row;
+//     height:10px;
+
+
+// `
 
 export const Title = styled.h1`
     color: #0d4b81;
@@ -45,17 +76,53 @@ export const Title = styled.h1`
     font-weight: 700;
     margin-top: 0.5rem;
 `
-export const SelectAling = styled.div`
-    margin-left: 12em;
-    /* width:50%; */
+export const ViewSelect = styled.div`
     display:flex;
-    justify-content: flex-end;
-    /* flex-direction:row-reverse; */
-    flex-flow: row nowrap;
-    align-items:center;
-    margin-top: 0.9rem;
-    
+    width:100%;
+    justify-content:flex-end;
+    margin-top:-30px;
+    margin-bottom: 2px;
+`
+export const CircleAling = styled.div`
+    display:flex;
+    align-items:flex-end;
 
+
+`
+
+export const Circle = styled.div`
+    width:20px;
+    height:20px;
+    margin:0px 10px;
+    border:1px solid black;
+    border-radius:100%;
+    background-color: brown;
+
+`
+export const Circle2 = styled.div`
+    width:20px;
+    height:20px;
+    margin:0px 5px;
+    border-radius:100%;
+    border:1px solid black;
+    background-color: #e2e2e279;
+
+`
+
+export const Legenda = styled.p`
+    font-family: "Open Sans",sans-serif,arial;
+    font-size: 1.1rem;
+    margin: 0px 5px;
+
+`
+
+
+export const SelectAling = styled.div`
+    width: auto;
+    display:flex;
+    flex-flow: row nowrap;
+    justify-content:flex-end;
+    align-items:flex-end;
 
 `
 
@@ -64,6 +131,7 @@ export const Select = styled.select`
     text-align:center;
     border: 1px solid rgba(0, 0, 0, 0.541);
     /* margin-right: 1.2rem; */
+    height:20px;
 
     background-color:white;
     color:#0d4b81;
@@ -74,7 +142,7 @@ export const Texto = styled.p`
     font-family: "PT Sans",sans-serif;
     font-size: 1.2rem;
     font-weight: 700;
-    margin-right: 5px;
+    margin:0px 5px;
 
 `
 
