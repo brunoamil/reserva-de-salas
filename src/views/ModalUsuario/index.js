@@ -1,20 +1,13 @@
 import React, { useState } from "react";
 import {
-  Button,
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter,
-  Form,
   FormGroup,
-  Label,
-  Input,
 } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import img from "../../assets/ceuma.png";
 import {
-  ButtonM,
-  Container,
   H2Header,
   H1Header,
   ContainerHeader,
@@ -31,50 +24,13 @@ import {
 } from "./styles";
 
 const ModalLC = props => {
-  const { className } = props;
-
-  const [ modal, setModal ] = useState(false);
-
-  const [ nestedModal, setNestedModal ] = useState(false);
-
-  const [ modalConf, setModalConf ] = useState(false);
-
-
-  const toggle = () => {
-    setModal(!modal);
-    setNestedModal(false);
-  }
-
-  const toggleNested = () => {
-    setNestedModal(!nestedModal);
-    setModal(false);
-  }
-
-  const toggleAll = () => {
-    setNestedModal(false);
-    setModal(false);
-    setModalConf(false);
-  }
-
-  const toggleModalConf = () => {
-    setModalConf(!modalConf);
-    setNestedModal(false);
-    setModal(false);
-  }
-
-
 
   return (
     <>
-      <Container>
-
         {/*Modal Login*/}
-        <Button color="primary" size="lg" onClick={toggle}>
-          Login
-        </Button>
         <div>
-          <Modal isOpen={modal} toggle={toggle} className={className} centered>
-            <ModalHeader toggle={toggle}>
+          <Modal isOpen={props.modal} toggle={props.toggle} className={props.className} centered>
+            <ModalHeader toggle={props.toggle}>
               <ContainerHeader>
                 <img src={img} alt="Logo Ceuma" width="30" height="30" />
                 <H2Header className="text-muted"> - Ceuma Reservas</H2Header>
@@ -109,15 +65,15 @@ const ModalLC = props => {
             </ModalBody>
             <FooterModal>
               <p>
-                Ainda não tem conta? <button onClick={toggleNested}>Clique Aqui!</button>
+                Ainda não tem conta? <button onClick={props.toggleNested}>Clique Aqui!</button>
               </p>
             </FooterModal>
           </Modal>
         </div>
 
         {/* Modal Cadastrar-se*/}
-        <Modal isOpen={nestedModal} centered>
-          <ModalHeader toggle={toggleNested}>
+        <Modal isOpen={props.nestedModal} centered>
+          <ModalHeader toggle={props.toggleNested}>
             <ContainerHeader>
               <img src={img} alt="Logo Ceuma" width="30" height="30" />
               <H2Header className="text-muted"> - Ceuma Reservas</H2Header>
@@ -134,21 +90,21 @@ const ModalLC = props => {
                 <LabelModal for="senhaCadastro">Senha:</LabelModal>
                 <InputModal type="password" name="password" placeholder="Informe seu email" />
               </FormGroup>
-              <ButtonModal color="primary" size="lg" onClick={toggleModalConf}>
+              <ButtonModal color="primary" size="lg" onClick={props.toggleModalConf}>
                 Cadastrar
               </ButtonModal>
             </FormModal>
           </ModalBody>
           <FooterModal>
             <p>
-              Já possui uma conta? <button onClick={toggle}>Clique Aqui!</button>
+              Já possui uma conta? <button onClick={props.toggle}>Clique Aqui!</button>
             </p>
           </FooterModal>
         </Modal>
 
         {/*Modal Confirmação*/}
-        <ModalConf isOpen={modalConf} centered>
-          <ModalHeaderConf toggle={toggleAll}>
+        <ModalConf isOpen={props.modalConf} centered>
+          <ModalHeaderConf toggle={props.toggleAll}>
           </ModalHeaderConf>
           <ModalBody>
             <ContainerOk>
@@ -157,7 +113,6 @@ const ModalLC = props => {
             </ContainerOk>
           </ModalBody>
         </ModalConf>
-      </Container>
     </>
   );
 };

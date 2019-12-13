@@ -3,24 +3,12 @@ import {
   Button,
   Modal,
   ModalHeader,
-  ModalBody,
   ModalFooter,
   Form,
   Label,
   Input
 } from "reactstrap";
 
-export const ButtonM = styled(Button)`
-  margin-left: 15px;
-`;
-
-export const Container = styled.div`
-  width: 100%;
-  height: 50em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
 
 export const H2Header = styled.h2`
   font-size: 1.2em;
