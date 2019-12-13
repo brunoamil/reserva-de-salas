@@ -1,5 +1,5 @@
 import React from 'react'
-import Img from '../../../lgceuma.png'
+import Img from './lgceuma.png'
 import './header.css'
 
 export default props => {
