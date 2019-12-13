@@ -5,7 +5,6 @@ import {
   ModalBody,
   FormGroup,
 } from "reactstrap";
-import "bootstrap/dist/css/bootstrap.css";
 import img from "../../assets/ceuma.png";
 import {
   H2Header,

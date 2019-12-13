@@ -36,8 +36,8 @@ export default props => {
                         <Select>
                             <option value="sala1">Sala 1</option>
                             <option value="sala2">Sala 2</option>
-                            <option value="sala3">Sala 3</option>
-                            <option value="sala4">Sala 4</option>
+                            <option value="sala3">Reset</option>
+                            <option value="sala4">Auditório</option>
                         </Select>
                         <Texto>Semana</Texto>
                         <Select>

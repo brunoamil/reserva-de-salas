@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.css";
 import Styled from "styled-components";
 import { ButtonToggle } from "reactstrap";
 import { Link } from "react-router-dom";

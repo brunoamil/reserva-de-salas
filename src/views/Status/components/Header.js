@@ -1,5 +1,5 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.css";
+
 import styled from "styled-components";
 
 const Span = styled.span`
