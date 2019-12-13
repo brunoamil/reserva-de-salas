@@ -38,7 +38,6 @@ export default class Agenda extends Component {
 
   componentWillReceiveProps(next, last) {
     if (next.items) {
-
       this.setState({ items: next.items })
     }
   }
@@ -48,9 +47,6 @@ export default class Agenda extends Component {
       this.setState({ selected: [item] })
       return this._openModal();
     }
-
-
-
   }
   handleCellSelection(item, openModal) {
 

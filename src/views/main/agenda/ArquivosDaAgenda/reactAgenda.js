@@ -11,7 +11,8 @@ var endSelect
 var isDragging = false;
 var isMouseDown = false;
 var draggedElement;
-var timeNow = moment();
+var data = new Date();
+var timeNow = data.getHours();
 var draggedItem;
 var ctrlKey = false;
 
@@ -42,7 +43,7 @@ export default class ReactAgenda extends Component {
       items: {},
       itemOverlayStyles: {},
       highlightedCells: [],
-      numberOfDays:4,
+      numberOfDays:5,
       autoScaleNumber:0,
       focusedCell: null
     };
@@ -78,7 +79,7 @@ export default class ReactAgenda extends Component {
       window.removeEventListener("resize", this.updateDimensions);
 
     }
-    if(this.props.locale && this.props.locale != "en" ){
+    if(this.props.locale && this.props.locale !== "en" ){
       moment.locale(this.props.locale);
     }
 
@@ -122,8 +123,8 @@ export default class ReactAgenda extends Component {
     var interval = (60 / this.props.rowsPerHour);
    
     if(this.props.startAtTime && typeof this.props.startAtTime === "number" ){
-         for (var i = 0; i < 24 * this.props.rowsPerHour; i++) {
-          if(this.props.endAtTime != 0 && (this.props.endAtTime - this.props.startAtTime) * this.props.rowsPerHour  >=  i ){
+         for (var i = 0; i < 19 * this.props.rowsPerHour; i++) {
+          if(this.props.endAtTime !== 0 && (this.props.endAtTime - this.props.startAtTime) * this.props.rowsPerHour  >=  i ){
            rows.push(moment(this.state.date).hours(this.props.startAtTime).minutes(0).seconds(0).milliseconds(0).add(Math.floor(i * interval), 'minutes'));  
           }
      
@@ -132,7 +133,7 @@ export default class ReactAgenda extends Component {
 
     }
     
-    for (var i = 0; i < 24 * this.props.rowsPerHour; i++) {
+    for (i = 0; i < 19 * this.props.rowsPerHour; i++) {
       rows.push(moment(this.state.date).hours(7).minutes(0).seconds(0).milliseconds(0).add(Math.floor(i * interval), 'minutes'));
     }
     return rows;
@@ -302,7 +303,7 @@ export default class ReactAgenda extends Component {
     isMouseDown = true;
    
     this.removeSelection()
-    if (e.target.classList.contains("--time") ||e.target.classList.contains("--time-now")  && !isDragging) {
+    if (e.target.classList.contains("--time") || e.target.classList.contains("--time-now") && !isDragging) {
 
       return this.handleMouseClick(e.target)
     }
@@ -350,7 +351,7 @@ export default class ReactAgenda extends Component {
       }
     }
 
-       for (var i = old2.length - 1; i >= 0; --i) {
+       for (i = old2.length - 1; i >= 0; --i) {
       if (old2[i]) {
         old2[i].remove();
       }
@@ -359,7 +360,7 @@ export default class ReactAgenda extends Component {
         helper = null
 
 
-    if (startSelect && endSelect && startSelect != endSelect) {
+    if (startSelect && endSelect && startSelect !== endSelect) {
 
       return this.getSelection(startSelect , endSelect)
   }
@@ -461,7 +462,6 @@ export default class ReactAgenda extends Component {
   duplicateEvent(id, d) {
     var date = d;
     var itm;
-    var oldItm;
     if (!this.refs[d]) {
       return;
     }
@@ -505,14 +505,14 @@ export default class ReactAgenda extends Component {
           var difference = new Date(date) - new Date(items[i].startDateTime)
           if (difference < 1) {
             let strt = new Date(items[i].startDateTime)
-            items[i].endDateTime = new Date(strt.getFullYear(), strt.getMonth(), strt.getDate(), strt.getHours(), strt.getMinutes() + 15, 0);
+            items[i].endDateTime = new Date(strt.getFullYear(), strt.getMonth(), strt.getDate(), strt.getHours(), strt.getMinutes() + 30, 0);
             this.setState({items: items})
               return this.props.onChangeDuration(items, items[i])
           }
             let newdate = moment(date)
             items[i].endDateTime = new Date(newdate)
             return this.props.onChangeDuration(items, items[i])
-            break;
+           
           }
 
         }
@@ -671,7 +671,6 @@ export default class ReactAgenda extends Component {
       }
     };
 
-    var itmName
 
     var Colors = this.props.itemColors
 
@@ -805,7 +804,7 @@ export default class ReactAgenda extends Component {
         }
       }
 
-      if (splt.length == 1) {
+      if (splt.length === 1) {
         styles = {
           "background": nwsplt[0],
           height: this.props.cellHeight + 'px'
@@ -924,21 +923,18 @@ ReactAgenda.defaultProps = {
   startDate: new Date(),
   startAtTime: 0,
   endAtTime: 0,
-  cellHeight: 15,
+  cellHeight: 30,
   view:"agenda",
   locale: "en",
   helper:true,
   items: [],
   autoScale:false,
   itemComponent: ReactAgendaItem,
-  numberOfDays: 4,
+  numberOfDays: 5,
   headFormat: "ddd DD MMM",
   rowsPerHour: 4,
   itemColors: {
-    'color-1': "rgba(102, 195, 131 , 1)",
-    "color-2": "rgba(242, 177, 52, 1)",
-    "color-3": "rgba(235, 85, 59, 1)",
-    "color-4": "rgba(70, 159, 213, 1)"
+    "color-3": "rgba(235, 85, 59, 1)"
   },
   fixedHeader: true
 }

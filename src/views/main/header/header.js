@@ -4,7 +4,8 @@ import {
     Logo,Header,Title,Select,SelectAling,Texto,Container,CircleAling,Circle,Circle2,Legenda,View,ViewSelect,UserAling,Button
 } from './styles'
 
-import Img from '../../../lgceuma.png'
+import Img from './lgceuma.png'
+import './header.css'
 
 export default props => {
     return(
