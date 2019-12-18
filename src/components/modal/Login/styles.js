@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import { Form } from "semantic-ui-react";
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: left;
-  margin: 40px 30px 15px 30px;
+  margin: 20px 30px 15px 30px;
   border-radius: 7px;
   font-family: Arial, Helvetica, sans-serif;
 `;
@@ -21,5 +20,5 @@ export const TitleForgot = styled.a`
   &:hover{
     text-decoration: underline;
   }
-  margin: 10px 0px;
+  margin: 50px 0px 10px 0px;
 `;

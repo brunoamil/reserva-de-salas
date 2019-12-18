@@ -22,10 +22,6 @@ const Footer = props => {
     setRegisterForm(false);
     setSuccess(false);
   };
-  // const CloseLoginForm = () => {
-  //   setLoginForm(false);
-  //   setRegisterForm(true);
-  // };
 
   // Register Form
   const [registerForm, setRegisterForm] = useState(false);
@@ -33,10 +29,6 @@ const Footer = props => {
     setRegisterForm(true);
     setLoginForm(false);
   };
-  // const CloseRegisterForm = () => {
-  //   setRegisterForm(false);
-  //   setLoginForm(true);
-  // };
 
   // Success Form
   const [success, setSuccess] = useState(false);
@@ -45,12 +37,7 @@ const Footer = props => {
     setRegisterForm(false);
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      close();
-      showLoginForm();
-    }, 2000);
-  }, [success])
+  useEffect(() => showLoginForm(), [modal]);
 
   return (
     <>

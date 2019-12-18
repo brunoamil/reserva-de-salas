@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: left;
-  margin: 40px 30px 15px 30px;
+  margin: 20px 30px 15px 30px;
   border-radius: 7px;
   font-family: Arial, Helvetica, sans-serif;
 `;

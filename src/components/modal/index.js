@@ -9,7 +9,9 @@ import {
   TitleContainerMC,
   FooterModal,
   ContainerForm,
-  ModalHeader
+  ModalHeader,
+  CustomModalContent,
+  CustomButton
 } from "./styles";
 import LoginForm from "./Login";
 import RegisterForm from "./Cadastro";
@@ -27,11 +29,11 @@ const ModalUser = props => {
             <TitleH1Header> - Ceuma Reservas</TitleH1Header>
           </ContainerHeader>
         </ModalHeader>
-        <Modal.Content>
+        <CustomModalContent>
           <ContainerModalContent>
-            {props.loginForm && <TitleContainerMC>Login</TitleContainerMC>}
+            {props.loginForm && <TitleContainerMC>LOGIN</TitleContainerMC>}
             {props.registerForm && (
-              <TitleContainerMC>Cadastra-se</TitleContainerMC>
+              <TitleContainerMC>CADASTRO</TitleContainerMC>
             )}
           </ContainerModalContent>
 
@@ -40,9 +42,9 @@ const ModalUser = props => {
           {props.success && <Success />}
 
           <ContainerForm>
-            {props.loginForm && <Button size="large" primary content="Login" />}
+            {props.loginForm && <CustomButton size="large" primary content="Login" />}
             {props.registerForm && (
-              <Button
+              <CustomButton
                 size="large"
                 primary
                 content="Cadastrar-se"
@@ -50,7 +52,7 @@ const ModalUser = props => {
               />
             )}
           </ContainerForm>
-        </Modal.Content>
+        </CustomModalContent>
         {props.loginForm && (
           <FooterModal>
             <p>

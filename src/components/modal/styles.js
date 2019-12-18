@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Modal } from 'semantic-ui-react';
+import { Modal, Button } from 'semantic-ui-react';
 
 export const Global = styled(Modal)`
   padding : 0 !important;
@@ -23,14 +23,13 @@ export const TitleH1Header = styled.h1`
 export const ContainerModalContent = styled.div`
   width: 100%;
   display: flex;
-  justify-content: right;
-  margin: 5px 0px 5px 30px;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const TitleContainerMC = styled.h1`
   font-weight: bold;
   font-size: 2em;
-  margin-right: 20px;
   border-bottom: 3px solid #0080ff;
   color: #000;
 `;
@@ -62,5 +61,13 @@ export const FooterModal = styled.div`
 export const ContainerForm = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 15px 30px 0px 30px;
+  margin: 15px 0px 0px 0px;
+`;
+
+export const CustomModalContent = styled(Modal.Content)`
+  padding: 12px !important;
+`;
+
+export const CustomButton = styled(Button)`
+  margin: 15px 30px !important;
 `;
