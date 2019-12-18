@@ -23,7 +23,7 @@ function ModalView(props) {
       <div className="title"> {props.title}</div>
       {props.children}
     </div>
-  );
+  )
 }
 
 export default function Modal(props) {
@@ -43,7 +43,7 @@ export default function Modal(props) {
       ReactDOM.unmountComponentAtNode(modalWrapperTarget);
       document.body.removeChild(modalWrapperTarget);
     };
-  });
+  })
 
   const clickedOutside = e => {
     if (e.key === "Escape" || e.key === "Esc" || e.keyCode === 27) {

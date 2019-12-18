@@ -79,6 +79,7 @@ export default class ReactAgendaCtrl extends Component {
 
     var data = this.state;
     data[event.target.name] = event.target.value;
+    
 
     this.setState(data);
   }
