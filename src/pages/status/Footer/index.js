@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from 'semantic-ui-react';
 import { Link } from "react-router-dom";
-import Modal from "../../../Modal/ModalPrincipal";
+import Modal from "../../../components/modal";
 
 
 import { Rodape, ContainerTitle, ContainerButton, TitleH1, TitleH2 } from './styles';

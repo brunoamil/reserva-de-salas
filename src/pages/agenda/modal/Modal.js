@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import ReactDOM from "react-dom";
+import { Icon } from 'semantic-ui-react';
 import "./Modal.css";
 
 function ModalView(props) {
@@ -7,7 +8,7 @@ function ModalView(props) {
     return (
       <div className="nude">
         <a onClick={props.closeFunc} className="close">
-          X
+          <Icon name='close' size='large' />
         </a>
         <div className="title"> {props.title}</div>
         {props.children}
@@ -18,7 +19,7 @@ function ModalView(props) {
   return (
     <div className="modal">
       <a onClick={props.closeFunc} className="close">
-        X
+        <Icon name='close' size='large' />
       </a>
       <div className="title"> {props.title}</div>
       {props.children}
@@ -63,7 +64,7 @@ export default function Modal(props) {
     }
   };
 
-  const _render = () => {
+  const _render = useCallback(() => {
     ReactDOM.render(
       <ModalView
         children={props.children}
@@ -72,11 +73,11 @@ export default function Modal(props) {
       />,
       modalWrapperTarget
     );
-  };
+  });
 
   useEffect(() => {
     _render();
-  }, []);
+  }, [_render]);
 
   return <noscript />;
 }

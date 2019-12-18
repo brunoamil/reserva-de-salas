@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import moment from 'moment';
-import {guid , getLast , getFirst } from './helpers';
+import {guid , getLast , getFirst } from '../helper';
 import Rdate from 'react-datetime';
 import { Button } from 'semantic-ui-react';
 import './reactAgendaCtrl.css';
@@ -236,7 +236,7 @@ render() {
             </div>
           </div>
 
-          <Button primary >Salvar</Button>
+          <Button primary >Confirmar Reserva</Button>
         </form>
       </div>
     );
@@ -268,7 +268,7 @@ render() {
           </div>
         </div>
 
-        <Button primary >Salvar</Button>
+        <Button primary >Confirmar Reserva</Button>
       </form>
     </div>
   );

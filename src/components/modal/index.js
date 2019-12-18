@@ -11,11 +11,11 @@ import {
   ContainerForm,
   ModalHeader
 } from "./styles";
-import LoginForm from "../Login";
-import RegisterForm from "../Cadastro";
-import Success from '../Success';
+import LoginForm from "./Login";
+import RegisterForm from "./Cadastro";
+import Success from "./Success";
 
-import img from "../../../assets/ceuma.png";
+import img from "../../assets/img/ceuma.png";
 
 const ModalUser = props => {
   return (
@@ -30,7 +30,9 @@ const ModalUser = props => {
         <Modal.Content>
           <ContainerModalContent>
             {props.loginForm && <TitleContainerMC>Login</TitleContainerMC>}
-            {props.registerForm && <TitleContainerMC>Cadastra-se</TitleContainerMC>}
+            {props.registerForm && (
+              <TitleContainerMC>Cadastra-se</TitleContainerMC>
+            )}
           </ContainerModalContent>
 
           {props.loginForm && <LoginForm />}
@@ -40,7 +42,12 @@ const ModalUser = props => {
           <ContainerForm>
             {props.loginForm && <Button size="large" primary content="Login" />}
             {props.registerForm && (
-              <Button size="large" primary content="Cadastrar-se" onClick={props.showSuccess}/>
+              <Button
+                size="large"
+                primary
+                content="Cadastrar-se"
+                onClick={props.showSuccess}
+              />
             )}
           </ContainerForm>
         </Modal.Content>

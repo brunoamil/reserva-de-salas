@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import ReactAgenda from './ArquivosDaAgenda/reactAgenda';
-import ReactAgendaCtrl from './ArquivosDaAgenda/reactAgendaCtrl';
-import Modal from './Modal/Modal';
+import ReactAgenda from './reactAgenda/reactAgenda';
+import ReactAgendaCtrl from './controller/reactAgendaCtrl';
+import Modal from './modal/Modal';
+import Header from './header';
 
 var now = new Date();
 
@@ -122,6 +123,7 @@ export default class Agenda extends Component {
     return (
 
       <div className="content-expanded ">
+        <Header />
 
         {/* <div className="control-buttons">
           <button className="button-control" onClick={this._openModal}> <i className="schedule-icon"></i> </button>

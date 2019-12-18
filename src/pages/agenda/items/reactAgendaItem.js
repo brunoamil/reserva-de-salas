@@ -1,5 +1,4 @@
-import moment from 'moment'
-import PropTypes from 'prop-types';
+import moment from 'moment';
 import React, {Component} from 'react';
 import './reactAgendaItem.css';
 
@@ -117,19 +116,4 @@ if(elem){
     </div>
 
   }
-}
-
-ReactAgendaItem.propTypes = {
-  parent: PropTypes.string,
-  item: PropTypes.object,
-  padder: PropTypes.number,
-  edit: PropTypes.func,
-  remove: PropTypes.func
-
-};
-
-ReactAgendaItem.defaultProps = {
-  parent: 'body',
-  item: {},
-  padder: 0
 }

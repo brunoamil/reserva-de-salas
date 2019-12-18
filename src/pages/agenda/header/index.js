@@ -18,7 +18,7 @@ import {
   Button
 } from "./styles";
 
-import Img from "./lgceuma.png";
+import Img from "../../../assets/img/ceuma.png";
 
 export default props => {
   return (
@@ -28,10 +28,10 @@ export default props => {
           <View>
             <Logo src={Img}></Logo>
             <Title>Reserva de Salas - Universidade Ceuma</Title>
-            <UserAling>
+            {/* <UserAling>
               <Title>Usuário : Marcus</Title>
               <Button type="submit">Sair</Button>
-            </UserAling>
+            </UserAling> */}
           </View>
 
           <ViewSelect>
@@ -46,8 +46,8 @@ export default props => {
               <Select>
                 <option value="sala1">Sala 1</option>
                 <option value="sala2">Sala 2</option>
-                <option value="sala3">Sala 3</option>
-                <option value="sala4">Sala 4</option>
+                <option value="sala3">Reset</option>
+                <option value="sala4">Auditório</option>
               </Select>
               <Texto>Semana</Texto>
               <Select>
@@ -63,12 +63,3 @@ export default props => {
     </div>
   );
 };
-
-{
-  /* <div className="header mt-2 ml-2">
-            <img src={Img} className="lgoceuma"></img>
-            <h1>Reserva de Sala</h1>
-
-
-        </div> */
-}
