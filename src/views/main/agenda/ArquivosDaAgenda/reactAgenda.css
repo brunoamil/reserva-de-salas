@@ -1,6 +1,7 @@
 :root {
-  overflow: hidden;
+  /* margin-top: 5.5em; */
   --selection:rgba(141, 134, 131, 0.7);
+  overflow: hidden;
   }
   
   
@@ -16,7 +17,7 @@
   
   
   .agenda__table.\--body {
-    height: calc(73vh - 6px);
+    height: calc(90vh - 6px);
     overflow: hidden;
     -webkit-transform: translate3d(0,0,0);
     font-size: xx-large;

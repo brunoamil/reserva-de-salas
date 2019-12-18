@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import moment from 'moment'
 import ReactAgendaItem from './reactAgendaItem';
 import classNames from 'classnames';
@@ -11,10 +10,10 @@ var endSelect
 var isDragging = false;
 var isMouseDown = false;
 var draggedElement;
-var data = new Date();
-var timeNow = data.getHours();
+const data = new Date();
+const timeNow = data.getHours();
 var draggedItem;
-var ctrlKey = false;
+const ctrlKey = false;
 
 var DEFAULT_ITEM = {
   name: '',
@@ -897,44 +896,3 @@ export default class ReactAgenda extends Component {
 
 };
 
-ReactAgenda.propTypes = {
-  minDate: PropTypes.instanceOf(Date),
-  maxDate: PropTypes.instanceOf(Date),
-  startDate: PropTypes.instanceOf(Date),
-  startAtTime: PropTypes.number,
-  endAtTime: PropTypes.number,
-  cellHeight: PropTypes.number,
-  view: PropTypes.string,
-  locale: PropTypes.string,
-  items: PropTypes.array,
-  helper:PropTypes.bool,
-  itemComponent: PropTypes.element,
-  numberOfDays:PropTypes.number,
-  headFormat: PropTypes.string,
-  rowsPerHour: PropTypes.number,
-  itemColors: PropTypes.object,
-  fixedHeader: PropTypes.bool,
-  autoScaleNumber: PropTypes.bool
-};
-
-ReactAgenda.defaultProps = {
-  minDate: new Date(),
-  maxDate: new Date(new Date().getFullYear(), new Date().getMonth() + 3),
-  startDate: new Date(),
-  startAtTime: 0,
-  endAtTime: 0,
-  cellHeight: 30,
-  view:"agenda",
-  locale: "en",
-  helper:true,
-  items: [],
-  autoScale:false,
-  itemComponent: ReactAgendaItem,
-  numberOfDays: 5,
-  headFormat: "ddd DD MMM",
-  rowsPerHour: 4,
-  itemColors: {
-    "color-3": "rgba(235, 85, 59, 1)"
-  },
-  fixedHeader: true
-}

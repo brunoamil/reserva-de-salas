@@ -12,14 +12,13 @@ var colors = {
   "color-3": "rgba(235, 85, 59, 1)",
 }
 
-
 export default class Agenda extends Component {
   constructor(props) {
     super(props);
     this.state = {
       items: [],
       selected: [],
-      cellHeight: (47 / 1),
+      cellHeight: (41.7 / 1),
       showModal: false,
       locale: "pt",
       rowsPerHour: 1,
@@ -157,11 +156,11 @@ export default class Agenda extends Component {
         {
           this.state.showModal ? <Modal clickOutside={this._closeModal} >
             <div className="modal-content">
-              <ReactAgendaCtrl 
-                items={this.state.items} 
-                itemColors={colors} 
-                selectedCells={this.state.selected} 
-                Addnew={this.addNewEvent} 
+              <ReactAgendaCtrl
+                items={this.state.items}
+                itemColors={colors}
+                selectedCells={this.state.selected}
+                Addnew={this.addNewEvent}
                 edit={this.editEvent} />
             </div>
           </Modal> : ''
