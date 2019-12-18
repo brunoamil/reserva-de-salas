@@ -54,7 +54,7 @@ export const Button = styled.button`
     font-size: 0.75rem;
     font-weight: 500;
     text-align:center;
-    
+
 
 
 `
@@ -126,7 +126,7 @@ export const SelectAling = styled.div`
 `
 
 export const Select = styled.select`
-    padding: 2px 20px;
+    padding: 0px 20px;
     text-align:center;
     border: 1px solid rgba(0, 0, 0, 0.541);
     /* margin-right: 1.2rem; */

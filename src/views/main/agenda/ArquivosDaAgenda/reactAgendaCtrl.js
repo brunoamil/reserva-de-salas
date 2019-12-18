@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import {guid , getLast , getFirst } from './helpers';
 import Rdate from 'react-datetime';
+import { Button } from 'semantic-ui-react';
 import './reactAgendaCtrl.css';
 
 var now = new Date();
@@ -216,7 +217,7 @@ render() {
           <div className="agendCtrls-label-wrapper">
             <div className="agendCtrls-label-inline">
               <label>Evento</label>
-              <input type="text" name="name" autoFocus ref="eventName" className="agendCtrls-event-input" value={this.state.name} onChange={this.handleChange.bind(this)} placeholder="Nome do evento"/>
+              <input type="text" name="name" ref="eventName" className="agendCtrls-event-input" value={this.state.name} onChange={this.handleChange.bind(this)} placeholder="Nome do evento"/>
             </div>
             <div className="agendCtrls-label-inline ">
               <label>Cor</label>
@@ -235,7 +236,7 @@ render() {
             </div>
           </div>
 
-          <input type="submit" value="Save"/>
+          <Button primary >Salvar</Button>
         </form>
       </div>
     );
@@ -248,7 +249,7 @@ render() {
         <div className="agendCtrls-label-wrapper">
           <div className="agendCtrls-label-inline">
             <label>Evento</label>
-            <input type="text" ref="eventName" autoFocus name="name" className="agendCtrls-event-input" value={this.state.name} onChange={this.handleChange.bind(this)} placeholder="Nome do evento"/>
+            <input type="text" ref="eventName" name="name" className="agendCtrls-event-input" value={this.state.name} onChange={this.handleChange.bind(this)} placeholder="Nome do evento"/>
           </div>
           <div className="agendCtrls-label-inline">
             <label>Cor</label>
@@ -267,7 +268,7 @@ render() {
           </div>
         </div>
 
-        <input type="submit" value="Salvar"/>
+        <Button primary >Salvar</Button>
       </form>
     </div>
   );
