@@ -203,7 +203,6 @@ export default class ReactAgendaCtrl extends Component {
       return <div style={{
         background: this.props.itemColors[item]
       }} className="agendCtrls-radio-buttons" key={item}>
-        <button name="classes" value={item} className={this.state.classes === item ? 'agendCtrls-radio-button--checked' : 'agendCtrls-radio-button'} onClick={this.handleChange.bind(this)} />
       </div>
     }.bind(this))
 
@@ -221,7 +220,7 @@ export default class ReactAgendaCtrl extends Component {
                 <input type="text" name="name" ref="eventName" className="agendCtrls-event-input" value={this.state.name} onChange={this.handleChange.bind(this)} placeholder="Nome do evento" />
               </div>
               <div className="agendCtrls-label-inline ">
-                <label>Cor</label>
+                {/* <label>Cor</label> */}
                 <div className="agendCtrls-radio-wrapper">
                   {colors}</div>
               </div>
@@ -237,7 +236,7 @@ export default class ReactAgendaCtrl extends Component {
               </div>
             </div>
 
-            <Button primary >Confirmar Reserva</Button>
+            <Button primary oc>Confirmar Reserva</Button>
           </form>
         </div>
       );
@@ -253,7 +252,7 @@ export default class ReactAgendaCtrl extends Component {
               <input type="text" ref="eventName" name="name" className="agendCtrls-event-input" value={this.state.name} onChange={this.handleChange.bind(this)} placeholder="Nome do evento" />
             </div>
             <div className="agendCtrls-label-inline">
-              <label>Cor</label>
+              {/* <label>Cor</label> */}
               <div className="agendCtrls-radio-wrapper">
                 {colors}</div>
             </div>

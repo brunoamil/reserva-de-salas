@@ -22,7 +22,7 @@ import Img from "../../../assets/img/ceuma.png";
 
 export default props => {
   return (
-    <div>
+    <>
       <Header>
         <Container>
           <View>
@@ -60,6 +60,6 @@ export default props => {
           </ViewSelect>
         </Container>
       </Header>
-    </div>
+    </>
   );
 };

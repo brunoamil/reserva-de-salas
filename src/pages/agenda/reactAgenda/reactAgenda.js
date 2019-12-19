@@ -728,9 +728,6 @@ export default class ReactAgenda extends Component {
           return <div id={item._id} ref={cell.cellRef} key={idx} className="dragDiv" onDragStart={this.onDragStart} onDragEnd={this.onDragEnd} draggable="true">
 
             {first1 === cell.cellRef
-              ? <i className="drag-handle-icon" aria-hidden="true"></i>
-              : ''}
-            {first1 === cell.cellRef
               ? <ItemComponent item={item}
                 parent={cell.cellRef}
                 itemColors={Colors}
@@ -747,7 +744,7 @@ export default class ReactAgenda extends Component {
           return <div className="handler" style={{
             marginLeft: 8 *(idx + 1) + 'px'
           }} id={item._id} key={item._id} onDragStart={this.onDragHandlerStart} onDragEnd={this.onDragHandlerEnd} draggable="true">
-            <i className="resize-handle-icon"></i>
+            {/* <i className="resize-handle-icon"></i> */}
           </div>
         }
 
@@ -816,9 +813,6 @@ export default class ReactAgenda extends Component {
           {first === cell.cellRef
             ? <div id={cell.item._id} ref={cell.item._id} className="dragDiv" onDragStart={this.onDragStart} onDragEnd={this.onDragEnd} draggable="true">
 
-                {first === cell.cellRef && this.props.onChangeEvent
-                  ? <i className="drag-handle-icon" aria-hidden="true"></i>
-                  : ''}
                 {first === cell.cellRef
                   ? <ItemComponent item={cell.item}
                     parent={cell.cellRef}
@@ -829,13 +823,6 @@ export default class ReactAgenda extends Component {
                   : ''}
 
               </div>
-            : ''}
-
-          {last === cell.cellRef && this.props.onChangeDuration
-            ? <div className="handler" id={cell.item._id} onDragStart={this.onDragHandlerStart} onDragEnd={this.onDragHandlerEnd} draggable="true">
-                <i className="resize-handle-icon"></i>
-              </div>
-
             : ''}
 
         </td>
