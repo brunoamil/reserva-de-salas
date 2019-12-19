@@ -25,5 +25,6 @@ export const TitleForgot = styled.a`
 `;
 
 export const CustomButton = styled(Button)`
-  margin: 15px 30px !important;
+  margin: 30px 0 -2px !important;
+  width: 100%
 `;
