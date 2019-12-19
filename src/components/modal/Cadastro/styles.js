@@ -18,3 +18,27 @@ export const CustomButton = styled(Button)`
   margin: 30px 0 -2px !important;
   width: 100%
 `;
+
+export const FooterModal = styled.div`
+  height: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0080ff;
+
+  p {
+    color: #ffffff;
+    font-size: 1em;
+  }
+
+  a {
+    text-decoration: none;
+    color: #ffffff;
+
+    &:hover {
+      text-decoration: underline;
+      color: #ffffff;
+    }
+  }
+`;

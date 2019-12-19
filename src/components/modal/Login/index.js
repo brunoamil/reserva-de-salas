@@ -1,20 +1,22 @@
 import React,{useState} from "react";
-import {Redirect} from 'react-router-dom';
+import {Redirect, withRouter} from 'react-router-dom';
 import { Form } from "semantic-ui-react";
 import firebase from '../../../services/firebase';
+import 'firebase/auth';
 
 import { Container, LabelReg, TitleForgot, CustomButton } from "./styles";
 
-function LoginForm() {
+function LoginForm({history}) {
 
   const [email, setEmail] = useState();
   const [senha, setSenha]  = useState();
 
   function Logar() {
     firebase.auth().signInWithEmailAndPassword(email, senha).then(sucesso =>{
-      return <Redirect to='/Principal'/>;
+      history.push('/Principal')
     }).catch(erro => {
-      alert('OPS. Algo deu errado!')});
+      
+    });
   }
 
   return(
@@ -36,4 +38,4 @@ function LoginForm() {
   </>)
 };
 
-export default LoginForm;
+export default withRouter(LoginForm);
