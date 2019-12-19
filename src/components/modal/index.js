@@ -1,5 +1,4 @@
 import React from "react";
-import { Button, Modal } from "semantic-ui-react";
 
 import {
   Global,
@@ -8,10 +7,8 @@ import {
   ContainerModalContent,
   TitleContainerMC,
   FooterModal,
-  ContainerForm,
   ModalHeader,
-  CustomModalContent,
-  CustomButton
+  CustomModalContent
 } from "./styles";
 import LoginForm from "./Login";
 import RegisterForm from "./Cadastro";
