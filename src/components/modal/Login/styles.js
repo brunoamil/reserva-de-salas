@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from 'semantic-ui-react';
 
 export const Container = styled.div`
   display: flex;
@@ -21,4 +22,8 @@ export const TitleForgot = styled.a`
     text-decoration: underline;
   }
   margin: 50px 0px 10px 0px;
+`;
+
+export const CustomButton = styled(Button)`
+  margin: 15px 30px !important;
 `;

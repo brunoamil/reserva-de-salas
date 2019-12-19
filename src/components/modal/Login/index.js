@@ -1,32 +1,39 @@
 import React,{useState} from "react";
+import {Redirect} from 'react-router-dom';
 import { Form } from "semantic-ui-react";
+import firebase from '../../../services/firebase';
 
-import { Container, LabelReg, TitleForgot } from "./styles";
+import { Container, LabelReg, TitleForgot, CustomButton } from "./styles";
 
-const [email, setEmail] = useState();
-const [senha, setSenha]  = useState();
+function LoginForm() {
 
-const LoginForm = () => (
-  <>
-  {
-    function Logar() {
-      console.log(email,senha);      
-    }
+  const [email, setEmail] = useState();
+  const [senha, setSenha]  = useState();
+
+  function Logar() {
+    firebase.auth().signInWithEmailAndPassword(email, senha).then(sucesso =>{
+      return <Redirect to='/Principal'/>;
+    }).catch(erro => {
+      alert('OPS. Algo deu errado!')});
   }
+
+  return(
+  <>
     <Container>
       <Form size="tiny" key="tiny" method="POST">
         <Form.Field>
           <LabelReg>Email:</LabelReg>
-          <input onChange = {(e)=> e.target.value(setEmail)} type="email" placeholder="Email" />
+          <input onChange = {(e)=> setEmail(e.target.value)} type="email" placeholder="Email" />
         </Form.Field>
         <Form.Field>
           <LabelReg>Senha:</LabelReg>
-          <input onChange = {(e)=> e.target.value(setSenha)} type="password" placeholder="Senha" />
+          <input onChange = {(e)=> setSenha(e.target.value)} type="password" placeholder="Senha" />
         </Form.Field>
         <TitleForgot>Esqueci minha senha!</TitleForgot>
       </Form>
+      <CustomButton onClick={Logar} size="large" primary content="Login" />
     </Container>
-  </>
-);
+  </>)
+};
 
 export default LoginForm;

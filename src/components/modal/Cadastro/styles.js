@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from 'semantic-ui-react';
 
 export const Container = styled.div`
   display: flex;
@@ -11,4 +12,8 @@ export const Container = styled.div`
 
 export const LabelReg = styled.h1`
   font-size: 2em;
+`;
+
+export const CustomButton = styled(Button)`
+  margin: 15px 30px !important;
 `;
