@@ -1,4 +1,5 @@
 import React from "react";
+import { Button, Modal } from "semantic-ui-react";
 
 import {
   Global,
@@ -7,13 +8,14 @@ import {
   ContainerModalContent,
   TitleContainerMC,
   FooterModal,
+  ContainerForm,
   ModalHeader,
-  CustomModalContent
+  CustomModalContent,
+  CustomButton
 } from "./styles";
 import LoginForm from "./Login";
 import RegisterForm from "./Cadastro";
 import Success from "./Success";
-import RedefinirSenha from './Recuperar-Senha'
 
 import img from "../../assets/img/ceuma.png";
 
@@ -38,7 +40,6 @@ const ModalUser = props => {
           {props.loginForm && <LoginForm />}
           {props.registerForm && <RegisterForm />}
           {props.success && <Success />}
-          {props.redefinirSenha && <RedefinirSenha/>}
 
           {/* <ContainerForm>
             {props.loginForm && <CustomButton size="large" primary content="Login" />}

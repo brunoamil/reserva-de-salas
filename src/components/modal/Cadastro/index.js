@@ -60,7 +60,7 @@ function RegisterForm (){
     {
       carregando?
       <Dimmer active >
-        <Loader size='medium'>Loading</Loader>
+        <Loader size='medium'>Carregando</Loader>
       </Dimmer>
 
       :
