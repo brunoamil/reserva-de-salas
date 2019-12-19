@@ -20,16 +20,21 @@ function RedefinirSenha (){
       }).catch(erro => {
         setCarregando(false)
         setErro(true)
-        // setMsgErro(erro)
-        // switch(erro.message) 
-        //       {
-        //       case 'Password should be at least 6 characters':
-        //           setMsgErro('A senha deve ter pelo menos 6 caracteres!');  
-        //           break;
-        //        default:
-        //           setMsgErro('Não foi possível cadastrar. Tente novamente mais tarde!');
-        //           break; 
-        //       }
+        console.log(erro);
+        
+        setMsgErro(erro)
+        switch(erro.message)
+          { 
+            case 'The email address is badly formatted.':
+                setMsgErro('O formato do seu email é inválido!'); 
+                break;
+            case "There is no user record corresponding to this identifier. The user may have been deleted.":
+                setMsgErro(' Este email não foi cadastrado!');
+                break
+             default:
+                setMsgErro('Não foi possível enviar o email. Tente novamente mais tarde!');
+                break; 
+          }
       })
     }
   
@@ -51,7 +56,7 @@ function RedefinirSenha (){
         :
         <CustomButton size="large" primary content="Enviar email" onClick={EnviarEmail}/>
       }
-      {erro ? <Message header='Este email não está cadastrado!' color='red' icon='dont'/>
+      {erro ? <Message header={msgErro} color='red' icon='dont'/>
         : <div/>}
       </Container>
       

@@ -15,7 +15,7 @@ function LoginForm({history}) {
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState(false)
 
-  function TrocarTelar(){
+  function TrocarTela(){
     setLogin(false)
   }
   function Logar() {
@@ -41,7 +41,7 @@ function LoginForm({history}) {
           <LabelReg>Senha:</LabelReg>
           <input onChange = {(e)=> setSenha(e.target.value)} type="password" placeholder="Senha" />
         </Form.Field>
-        <TitleForgot onClick={TrocarTelar} >Esqueci minha senha!</TitleForgot>
+        <TitleForgot onClick={TrocarTela} >Esqueci minha senha!</TitleForgot>
       </Form>
       {
       carregando ?
