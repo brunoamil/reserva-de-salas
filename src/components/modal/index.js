@@ -13,6 +13,7 @@ import {
 import LoginForm from "./Login";
 import RegisterForm from "./Cadastro";
 import Success from "./Success";
+import RedefinirSenha from './Recuperar-Senha'
 
 import img from "../../assets/img/ceuma.png";
 
@@ -37,6 +38,7 @@ const ModalUser = props => {
           {props.loginForm && <LoginForm />}
           {props.registerForm && <RegisterForm />}
           {props.success && <Success />}
+          {props.redefinirSenha && <RedefinirSenha/>}
 
           {/* <ContainerForm>
             {props.loginForm && <CustomButton size="large" primary content="Login" />}
