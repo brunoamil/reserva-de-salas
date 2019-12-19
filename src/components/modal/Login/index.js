@@ -1,6 +1,6 @@
 import React,{useState} from "react";
-import {Redirect, withRouter} from 'react-router-dom';
-import { Form } from "semantic-ui-react";
+import { withRouter} from 'react-router-dom';
+import { Form, Dimmer, Segment, Loader, Image } from "semantic-ui-react";
 import firebase from '../../../services/firebase';
 import 'firebase/auth';
 
@@ -10,12 +10,15 @@ function LoginForm({history}) {
 
   const [email, setEmail] = useState();
   const [senha, setSenha]  = useState();
+  const [carregando, setCarregando] = useState(false);
 
   function Logar() {
+    setCarregando(true)
     firebase.auth().signInWithEmailAndPassword(email, senha).then(sucesso =>{
       history.push('/Principal')
     }).catch(erro => {
-      
+      alert(erro)
+      setCarregando(false)
     });
   }
 
@@ -33,7 +36,14 @@ function LoginForm({history}) {
         </Form.Field>
         <TitleForgot>Esqueci minha senha!</TitleForgot>
       </Form>
-      <CustomButton onClick={Logar} size="large" primary content="Login" />
+      {
+      carregando ?
+      <Dimmer active >
+        <Loader size='medium'>Loading</Loader>
+      </Dimmer>
+      : 
+        <CustomButton onClick={Logar} size="large" primary content="Login" />
+      }
     </Container>
   </>)
 };
