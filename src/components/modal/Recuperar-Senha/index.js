@@ -6,13 +6,19 @@ import firebase from '../../../services/firebase';
 import { Container, LabelReg, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC } from "./styles";
 
 function RedefinirSenha() {
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState('');
   const [success, setSuccess] = useState(false);
   const [carregando, setCarregando] = useState(false)
   const [erro, setErro] = useState(false)
   const [msgErro, setMsgErro] = useState('');
 
   function EnviarEmail() {
+    if(email === '' ){
+      console.log('campos invalidos');
+      setErro(true)
+      setMsgErro('Informe o email!')
+    }
+    else{
     setCarregando(true);
     firebase.auth().sendPasswordResetEmail(email).then(sucesso => {
       setCarregando(false)
@@ -34,7 +40,7 @@ function RedefinirSenha() {
           setMsgErro('Não foi possível enviar o email. Tente novamente mais tarde!');
           break;
       }
-    })
+    })}
   }
 
   return (

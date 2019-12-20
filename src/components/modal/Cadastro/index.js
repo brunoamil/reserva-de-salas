@@ -6,36 +6,43 @@ import firebase from '../../../services/firebase';
 import { Container, LabelReg, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC } from "./styles";
 
 function RegisterForm() {
-  const [email, setEmail] = useState();
-  const [senha, setSenha] = useState();
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
   const [success, setSuccess] = useState(false);
   const [carregando, setCarregando] = useState(false)
   const [erro, setErro] = useState(false)
   const [msgErro, setMsgErro] = useState('');
 
   function Cadastrar() {
-    setCarregando(true);
-    firebase.auth().createUserWithEmailAndPassword(email, senha).then(sucesso => {
-      setCarregando(false)
-      setSuccess(true)
-    }).catch(erro => {
-      setCarregando(false)
+    if ((email === '') || (senha === '')) {
+      console.log('campos invalidos');
       setErro(true)
-      switch (erro.message) {
-        case 'Password should be at least 6 characters':
-          setMsgErro('A senha deve ter pelo menos 6 caracteres!');
-          break;
-        case 'The email address is already in use by another account.':
-          setMsgErro('Este email já está sendo utilizado por outro usuário!');
-          break;
-        case 'The email address is badly formatted.':
-          setMsgErro('O formato do seu email é inválido!');
-          break;
-        default:
-          setMsgErro('Não foi possível cadastrar. Tente novamente mais tarde!');
-          break;
-      }
-    })
+      setMsgErro('Informe email e/ou senha!')
+    }
+    else {
+      setCarregando(true);
+      firebase.auth().createUserWithEmailAndPassword(email, senha).then(sucesso => {
+        setCarregando(false)
+        setSuccess(true)
+      }).catch(erro => {
+        setCarregando(false)
+        setErro(true)
+        switch (erro.message) {
+          case 'Password should be at least 6 characters':
+            setMsgErro('A senha deve ter pelo menos 6 caracteres!');
+            break;
+          case 'The email address is already in use by another account.':
+            setMsgErro('Este email já está sendo utilizado por outro usuário!');
+            break;
+          case 'The email address is badly formatted.':
+            setMsgErro('O formato do seu email é inválido!');
+            break;
+          default:
+            setMsgErro('Não foi possível cadastrar. Tente novamente mais tarde!');
+            break;
+        }
+      })
+    }
   }
 
   return (
