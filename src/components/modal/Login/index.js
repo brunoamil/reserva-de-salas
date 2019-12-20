@@ -21,7 +21,6 @@ function LoginForm({ history }) {
 
   function Logar() {
     if((email === '' ) || (senha === '' )){
-      console.log('campos invalidos');
       setErro(true)
       setMsgErro('Informe email e/ou senha!')
     }

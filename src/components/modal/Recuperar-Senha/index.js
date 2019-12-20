@@ -14,7 +14,6 @@ function RedefinirSenha() {
 
   function EnviarEmail() {
     if(email === '' ){
-      console.log('campos invalidos');
       setErro(true)
       setMsgErro('Informe o email!')
     }

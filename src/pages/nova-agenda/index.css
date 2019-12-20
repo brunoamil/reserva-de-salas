@@ -1,0 +1,26 @@
+#allPage{
+    margin-top:-10px;
+}
+#table{
+    margin: 0 !important;
+}
+.ui.table td{
+    text-align: center;
+    border-left: 1px solid rgb(206, 202, 202);
+}
+.ui.table th{
+    text-align: center !important;
+    background-color: #0d4b81 !important;
+    border-left: 1px solid rgb(228, 225, 225) !important;
+    color: white !important;
+}
+.ui.table thead tr>th:first-child{
+    background-color: white !important;
+}
+.ui.table td.one.wide, .ui.table th.one.wide{
+    background-color: #0d4b81 !important;
+    color: white !important;
+}
+.busy{
+    background-color: red !important;
+}
