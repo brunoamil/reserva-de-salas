@@ -20,7 +20,8 @@
 .ui.table td.one.wide, .ui.table th.one.wide{
     background-color: #0d4b81 !important;
     color: white !important;
+    padding: 10px 0 10px;
 }
 .busy{
-    background-color: red !important;
+    background-color: #A52A2A !important;
 }
