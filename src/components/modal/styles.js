@@ -8,6 +8,7 @@ export const Global = styled(Modal)`
 export const ContainerHeader = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 `;
 
 export const ModalHeader = styled(Modal.Header)`
@@ -71,3 +72,12 @@ export const CustomModalContent = styled(Modal.Content)`
 export const CustomButton = styled(Button)`
   margin: 15px 30px !important;
 `;
+
+export const ContainerLogo = styled.div`
+  display:flex;
+  flex-direction:row;
+`
+
+export const IconExit = styled.span`
+  
+`
