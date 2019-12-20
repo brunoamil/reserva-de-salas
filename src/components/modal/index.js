@@ -30,12 +30,12 @@ const ModalUser = props => {
           </ContainerHeader>
         </ModalHeader>
         <CustomModalContent>
-          <ContainerModalContent>
+          {/* <ContainerModalContent>
             {props.loginForm && <TitleContainerMC>LOGIN</TitleContainerMC>}
             {props.registerForm && (
               <TitleContainerMC>CADASTRO</TitleContainerMC>
             )}
-          </ContainerModalContent>
+          </ContainerModalContent> */}
 
           {props.loginForm && <LoginForm />}
           {props.registerForm && <RegisterForm />}
