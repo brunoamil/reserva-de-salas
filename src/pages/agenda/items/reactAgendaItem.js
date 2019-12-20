@@ -109,7 +109,7 @@ if(elem){
             <div className="agenda-item-description">
               <section>{this.props.item.name}</section>
               <small>
-                {duratL} - {duratE} , {duratH}
+                {duratL} - {duratE}
               </small>
           </div>
 
