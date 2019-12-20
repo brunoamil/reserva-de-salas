@@ -1,24 +1,68 @@
-import React from "react";
-import { Form } from "semantic-ui-react";
+import React, { useState } from "react";
+import { withRouter } from 'react-router-dom';
+import { Form, Dimmer, Loader, Message } from "semantic-ui-react";
+import firebase from '../../../services/firebase';
+import 'firebase/auth';
+import RedefinirSenha from '../Recuperar-Senha';
+import Success from "../Success";
 
-import { Container, LabelReg, TitleForgot } from "./styles";
+import { Container, LabelReg, TitleForgot, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC } from "./styles";
 
-const LoginForm = () => (
-  <>
-    <Container>
-      <Form size="tiny" key="tiny" method="POST">
-        <Form.Field>
-          <LabelReg>Email:</LabelReg>
-          <input type="email" placeholder="Email" />
-        </Form.Field>
-        <Form.Field>
-          <LabelReg>Senha:</LabelReg>
-          <input type="password" placeholder="Senha" />
-        </Form.Field>
-        <TitleForgot>Esqueci minha senha!</TitleForgot>
-      </Form>
-    </Container>
-  </>
-);
+function LoginForm({ history }) {
 
-export default LoginForm;
+  const [login, setLogin] = useState(true);
+  const [email, setEmail] = useState();
+  const [senha, setSenha] = useState();
+  const [carregando, setCarregando] = useState(false);
+  const [erro, setErro] = useState(false)
+
+  function TrocarTela() {
+    setLogin(false)
+  }
+  function Logar() {
+    setCarregando(true)
+    firebase.auth().signInWithEmailAndPassword(email, senha).then(sucesso => {
+      history.push('/Principal')
+    }).catch(erro => {
+      setCarregando(false)
+      setErro(true)
+    });
+  }
+
+  return (
+    <>
+      {login ?
+        <CustomModalContent>
+          <ContainerModalContent>
+            <TitleContainerMC>LOGIN</TitleContainerMC>
+          </ContainerModalContent>
+          <Container>
+            <Form size="tiny" key="tiny" method="POST">
+              <Form.Field>
+                <LabelReg>Email:</LabelReg>
+                <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
+              </Form.Field>
+              <Form.Field>
+                <LabelReg>Senha:</LabelReg>
+                <input onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" />
+              </Form.Field>
+              <TitleForgot onClick={TrocarTela} >Esqueci minha senha!</TitleForgot>
+            </Form>
+            {
+              carregando ?
+                <Dimmer active >
+                  <Loader size='medium'>Carregando</Loader>
+                </Dimmer>
+                :
+                <CustomButton onClick={Logar} size="large" primary content="Login" />
+            }
+            {erro ? <Message header='Usuario ou senha invalidos.' color='red' icon='dont' />
+              : <div />}
+          </Container>
+        </CustomModalContent>
+        : <RedefinirSenha />
+      }
+    </>)
+};
+
+export default withRouter(LoginForm);

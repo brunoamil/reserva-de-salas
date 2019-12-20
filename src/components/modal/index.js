@@ -30,18 +30,18 @@ const ModalUser = props => {
           </ContainerHeader>
         </ModalHeader>
         <CustomModalContent>
-          <ContainerModalContent>
+          {/* <ContainerModalContent>
             {props.loginForm && <TitleContainerMC>LOGIN</TitleContainerMC>}
             {props.registerForm && (
               <TitleContainerMC>CADASTRO</TitleContainerMC>
             )}
-          </ContainerModalContent>
+          </ContainerModalContent> */}
 
           {props.loginForm && <LoginForm />}
           {props.registerForm && <RegisterForm />}
           {props.success && <Success />}
 
-          <ContainerForm>
+          {/* <ContainerForm>
             {props.loginForm && <CustomButton size="large" primary content="Login" />}
             {props.registerForm && (
               <CustomButton
@@ -51,7 +51,7 @@ const ModalUser = props => {
                 onClick={props.showSuccess}
               />
             )}
-          </ContainerForm>
+          </ContainerForm> */}
         </CustomModalContent>
         {props.loginForm && (
           <FooterModal>
