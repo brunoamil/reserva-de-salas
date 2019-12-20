@@ -39,6 +39,9 @@ function RedefinirSenha() {
 
   return (
     <>
+    {
+      success ? <Success>Email Enviado!</Success>
+      :
       <CustomModalContent>
         <ContainerModalContent>
           <TitleContainerMC>REDEFINIR SENHA</TitleContainerMC>
@@ -63,9 +66,7 @@ function RedefinirSenha() {
             : <div />}
         </Container>
       </CustomModalContent>
-
-
-
+    }
     </>
   );
 }

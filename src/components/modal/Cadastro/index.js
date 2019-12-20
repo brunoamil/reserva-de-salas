@@ -42,7 +42,7 @@ function RegisterForm() {
     <>
       {
         success ?
-          <Success />
+          <Success>Cadastro Concluído!</Success>
 
           :
           <CustomModalContent>
