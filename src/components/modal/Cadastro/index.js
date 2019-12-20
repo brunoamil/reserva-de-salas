@@ -7,26 +7,36 @@ import { Container, LabelReg, CustomButton, CustomModalContent, ContainerModalCo
 
 function RegisterForm() {
   const [email, setEmail] = useState('');
+  const [nome, setNome] = useState('');
   const [senha, setSenha] = useState('');
   const [success, setSuccess] = useState(false);
   const [carregando, setCarregando] = useState(false)
   const [erro, setErro] = useState(false)
   const [msgErro, setMsgErro] = useState('');
 
+  const db = firebase.firestore();
+
   function Cadastrar() {
-    if ((email === '') || (senha === '')) {
-      console.log('campos invalidos');
+    if ((email === '') || (senha === '') || (nome === '')) {
       setErro(true)
-      setMsgErro('Informe email e/ou senha!')
+      setMsgErro('Verifique se todos os campos estão preenchidos!')
     }
     else {
       setCarregando(true);
+
       firebase.auth().createUserWithEmailAndPassword(email, senha).then(sucesso => {
         setCarregando(false)
         setSuccess(true)
+
+        firebase.firestore().collection('usuarios').add({
+          email: email,
+          nome: nome
+        }).then().catch()
+
       }).catch(erro => {
         setCarregando(false)
         setErro(true)
+
         switch (erro.message) {
           case 'Password should be at least 6 characters':
             setMsgErro('A senha deve ter pelo menos 6 caracteres!');
@@ -42,6 +52,8 @@ function RegisterForm() {
             break;
         }
       })
+
+
     }
   }
 
@@ -62,10 +74,18 @@ function RegisterForm() {
                   <LabelReg>Email:</LabelReg>
                   <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
                 </Form.Field>
-                <Form.Field>
-                  <LabelReg>Senha:</LabelReg>
-                  <input onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" />
-                </Form.Field>
+
+                <Form.Group widths='equal'>
+                  <Form.Field>
+                    <LabelReg>Nome:</LabelReg>
+                    <input onChange={(e) => setNome(e.target.value)} placeholder="Nome" />
+                  </Form.Field>
+
+                  <Form.Field>
+                    <LabelReg>Senha:</LabelReg>
+                    <input onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" />
+                  </Form.Field>
+                </Form.Group>
               </Form>
               {
                 carregando ?
