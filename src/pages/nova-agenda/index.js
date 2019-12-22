@@ -7,15 +7,19 @@ function NovaAgenda() {
     var date = new Date;
     var data = date.getDate()
     var dia = date.getDay()
-    var mes = date.getMonth()
-    
+    var mes = date.getMonth() + 1
 
-    while (dia > 1){
+
+    while (dia > 1) {
         dia = dia - 1;
-        data = data - 1; 
+        data = data - 1;
     }
 
-    const dias = [`SEG ${data}`,`TER ${data+1}`, `QUA ${data+2}`, `QUI ${data+3}`, `SEX ${data+4}`]
+    function tdClick() {
+        console.log('clicado');
+    }
+
+    const dias = [`SEG ${data}/${mes}`, `TER ${data + 1}/${mes}`, `QUA ${data + 2}/${mes}`, `QUI ${data + 3}/${mes}`, `SEX ${data + 4}/${mes}`]
     const horas = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00']
     return (
         <>
@@ -37,11 +41,11 @@ function NovaAgenda() {
                             horas.map((hora, index) => (
                                 <Table.Row key={index}>
                                     <Table.HeaderCell width='1'><strong> {hora} </strong></Table.HeaderCell>
-                                    <Table.Cell id = {String(index) +' '+ hora}></Table.Cell>
-                                    <Table.Cell id = {String(index +1) +' '+ hora}></Table.Cell>
-                                    <Table.Cell id = {String(index +2) +' '+ hora}></Table.Cell>
-                                    <Table.Cell id = {String(index +3) +' '+ hora}></Table.Cell>
-                                    <Table.Cell id = {String(index +4) +' '+ hora}></Table.Cell>
+                                    {
+                                        dias.map((cell, index) => (
+                                            <Table.Cell onClick={tdClick} id={`${data + index}/${mes} ${hora}`}></Table.Cell>
+                                        ))
+                                    }
                                 </Table.Row>
                             ))
                         }
