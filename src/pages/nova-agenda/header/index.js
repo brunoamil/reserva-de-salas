@@ -1,5 +1,5 @@
 import React from "react";
-
+import firebase from '../../../services/firebase'
 import {
   Logo,
   Header,
@@ -44,6 +44,22 @@ export default props => {
 
             <SelectAling>
               <Select>
+                {/* {
+                  firebase.firestore().collection('salas').where('existe', '==', true).get()
+                    .then(sucesso => {
+                      if (sucesso.empty) {
+                        console.log('Não existem salas.');
+                        return;
+                      }
+
+                      sucesso.forEach(doc => {
+                        console.log(doc.data());
+                      });
+                    })
+                    .catch(erro => {
+                      console.log('Erro ao pegar salas', erro);
+                    })
+                } */}
                 <option value="sala1">Sala 1</option>
                 <option value="sala2">Sala 2</option>
                 <option value="sala3">Reset</option>

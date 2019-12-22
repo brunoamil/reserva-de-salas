@@ -9,7 +9,14 @@ function NovaAgenda() {
     var dia = date.getDay()
     var mes = date.getMonth() + 1
 
-
+    if (dia == 0){
+        data += 1;
+        dia += 1
+    }
+    if (dia == 6){
+        data +=2;
+        dia = 1
+    }
     while (dia > 1) {
         dia = dia - 1;
         data = data - 1;
