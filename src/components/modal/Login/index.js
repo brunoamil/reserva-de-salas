@@ -27,7 +27,7 @@ function LoginForm({ history }) {
     else{
     setCarregando(true)
     firebase.auth().signInWithEmailAndPassword(email, senha).then(sucesso => {
-      history.push('/Principal')
+      history.push('/NovaAgenda')
     }).catch(erro => {
       setCarregando(false)
       setErro(true)

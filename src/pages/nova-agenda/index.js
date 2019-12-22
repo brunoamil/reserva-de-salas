@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Table } from 'semantic-ui-react'
 import './index.css';
-import Header from '../agenda/header'
+import Header from './header'
 
 function NovaAgenda() {
     var date = new Date;
     var data = date.getDate()
     var dia = date.getDay()
+    var mes = date.getMonth()
+    
 
     while (dia > 1){
         dia = dia - 1;
@@ -35,11 +37,11 @@ function NovaAgenda() {
                             horas.map((hora, index) => (
                                 <Table.Row key={index}>
                                     <Table.HeaderCell width='1'><strong> {hora} </strong></Table.HeaderCell>
-                                    <Table.Cell></Table.Cell>
-                                    <Table.Cell></Table.Cell>
-                                    <Table.Cell></Table.Cell>
-                                    <Table.Cell></Table.Cell>
-                                    <Table.Cell></Table.Cell>
+                                    <Table.Cell id = {String(index) +' '+ hora}></Table.Cell>
+                                    <Table.Cell id = {String(index +1) +' '+ hora}></Table.Cell>
+                                    <Table.Cell id = {String(index +2) +' '+ hora}></Table.Cell>
+                                    <Table.Cell id = {String(index +3) +' '+ hora}></Table.Cell>
+                                    <Table.Cell id = {String(index +4) +' '+ hora}></Table.Cell>
                                 </Table.Row>
                             ))
                         }
