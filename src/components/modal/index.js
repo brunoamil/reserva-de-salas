@@ -40,14 +40,14 @@ const ModalUser = props => {
           <FooterModal>
             <p>
               Ainda não possui conta?{" "}
-              <a onClick={props.showRegisterForm}>Clique Aqui!</a>
+              <span onClick={props.showRegisterForm}>Clique Aqui!</span>
             </p>
           </FooterModal>
         )}
         {props.registerForm && (
           <FooterModal>
             <p>
-              Já possui conta? <a onClick={props.showLoginForm}>Clique Aqui!</a>
+              Já possui conta? <span onClick={props.showLoginForm}>Clique Aqui!</span>
             </p>
           </FooterModal>
         )}

@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export const Rodape = styled.footer`
   background-color: #e6e8fa;
-  margin-top: 100px;
   bottom: 0;
-  position: absolute;
+  left: 0;
+  position: fixed;
   width: 100%;
   height: 17vh;
   display: flex;

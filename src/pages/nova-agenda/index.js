@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Table } from 'semantic-ui-react'
 import './index.css';
 import Header from './components/header'
-import Modal from './components/modal'
+import Modal from '../../components/modal'
 
 function NovaAgenda() {
     var date = new Date();
@@ -24,18 +24,19 @@ function NovaAgenda() {
         data = data - 1;
     }
 
-    function tdClick() {
-        setEnableModal(true)
-    }
-
-    const [enableModal, setEnableModal] = useState(false)
+    //modal
+    const [modal, setModal] = useState({ open: false });
+    const show = () => setModal({ open: true });
+    const close = () => setModal({ open: false });
+    const { open } = modal;
 
     const dias = [`SEG ${data}/${mes}`, `TER ${data + 1}/${mes}`, `QUA ${data + 2}/${mes}`, `QUI ${data + 3}/${mes}`, `SEX ${data + 4}/${mes}`]
     const horas = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00']
     return (
         <>
             <div id='allPage'>
-                <Modal enableModal={enableModal} setEnableModal={setEnableModal}></Modal>
+                <Modal size='tiny' open={open} close={close}></Modal>
+                
                 <Header id='header' />
                 <Table id='table' definition>
                     <Table.Header>
@@ -55,7 +56,7 @@ function NovaAgenda() {
                                     <Table.HeaderCell width='1'><strong> {hora} </strong></Table.HeaderCell>
                                     {
                                         dias.map((cell, index) => (
-                                            <Table.Cell onClick={tdClick} id={`${data + index}/${mes} ${hora}`}></Table.Cell>
+                                            <Table.Cell onClick={show} id={`${data + index}/${mes} ${hora}`}></Table.Cell>
                                         ))
                                     }
                                 </Table.Row>
