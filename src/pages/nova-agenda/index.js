@@ -3,6 +3,7 @@ import { Table } from 'semantic-ui-react'
 import './index.css';
 import Header from './components/header'
 import Modal from './components/modal'
+import $ from 'jquery'
 
 function NovaAgenda() {
     var date = new Date();
@@ -24,8 +25,13 @@ function NovaAgenda() {
         data = data - 1;
     }
 
+    $('.td').on('click',function (event) {
+        console.log($(this).attr('id'));
+        
+    })
     function tdClick() {
         setEnableModal(true)
+        
     }
 
     const [enableModal, setEnableModal] = useState(false)
