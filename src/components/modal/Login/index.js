@@ -4,7 +4,6 @@ import { Form, Dimmer, Loader, Message } from "semantic-ui-react";
 import firebase from '../../../services/firebase';
 import 'firebase/auth';
 import RedefinirSenha from '../Recuperar-Senha';
-import Success from "../Success";
 
 import { Container, LabelReg, TitleForgot, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC } from "./styles";
 

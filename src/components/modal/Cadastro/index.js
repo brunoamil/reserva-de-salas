@@ -14,8 +14,6 @@ function RegisterForm() {
   const [erro, setErro] = useState(false)
   const [msgErro, setMsgErro] = useState('');
 
-  const db = firebase.firestore();
-
   function Cadastrar() {
     if ((email === '') || (senha === '') || (nome === '')) {
       setErro(true)
