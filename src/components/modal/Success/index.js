@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Container } from './styles';
 
-const Success = () => (
+const Success = props => (
   <>
     <Container>
-      <p>Cadastro Concluído!</p>
+      <p>{props.children}</p>
     </Container>
   </>
 );
