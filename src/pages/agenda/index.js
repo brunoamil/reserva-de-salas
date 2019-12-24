@@ -10,7 +10,7 @@ var now = new Date();
 require('moment/locale/pt-br.js');
 
 var colors = {
-  "color-3": "rgba(235, 85, 59, 1)",
+  "color-3": "rgb(175, 41, 41)",
 }
 
 export default class Agenda extends Component {

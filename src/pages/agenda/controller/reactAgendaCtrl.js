@@ -46,7 +46,7 @@ export default class ReactAgendaCtrl extends Component {
 
     if (!this.props.selectedCells) {
       let start = now
-      let endT = moment(now).add(15, 'Minutes');
+      let endT = moment(now).add(1, 'hours');
       return this.setState({ editMode: false, name: '', startDateTime: start, endDateTime: endT });
     }
 
@@ -61,7 +61,7 @@ export default class ReactAgendaCtrl extends Component {
 
     if (this.props.selectedCells && this.props.selectedCells.length === 1) {
       let start = moment(getFirst(this.props.selectedCells));
-      let endT = moment(getLast(this.props.selectedCells)).add(15, 'Minutes');
+      let endT = moment(getLast(this.props.selectedCells)).add(1, 'hours');
       return this.setState({ editMode: false, name: '', startDateTime: start, endDateTime: endT });
     }
 
@@ -91,7 +91,7 @@ export default class ReactAgendaCtrl extends Component {
     data[ev] = date;
 
     if (ev === 'startDateTime' && endD.diff(date) < 0) {
-      data['endDateTime'] = moment(date).add(15, 'minutes');
+      data['endDateTime'] = moment(date).add(1, 'hours');
     }
 
     this.setState(data);
