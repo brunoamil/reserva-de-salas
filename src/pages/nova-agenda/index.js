@@ -29,13 +29,20 @@ function NovaAgenda() {
     const show = () => setModal({ open: true });
     const close = () => setModal({ open: false });
     const { open } = modal;
+    const [confirmModal, setConfirmModal] = useState(false);
+    const showConfirmModal = () => setConfirmModal(true);
 
     const dias = [`SEG ${data}/${mes}`, `TER ${data + 1}/${mes}`, `QUA ${data + 2}/${mes}`, `QUI ${data + 3}/${mes}`, `SEX ${data + 4}/${mes}`]
     const horas = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00']
     return (
         <>
             <div id='allPage'>
-                <Modal size='tiny' open={open} close={close}></Modal>
+                <Modal size='mini' 
+                  open={open} 
+                  close={close} 
+                  CofirmModal={showConfirmModal}
+                >
+                </Modal> 
                 
                 <Header id='header' />
                 <Table id='table' definition>

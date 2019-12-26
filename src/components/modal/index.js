@@ -15,39 +15,51 @@ import {
 import LoginForm from "./Login";
 import RegisterForm from "./Cadastro";
 import Success from "./Success";
+import CofirmModalContent from './../../pages/nova-agenda/components/corfirmModalContent';
 
 import img from "../../assets/img/ceuma.png";
 
-const ModalUser = props => {
+const ModalUser = ({
+  size,
+  open,
+  close,
+  loginForm,
+  registerForm,
+  success,
+  CofirmModal,
+  showRegisterForm,
+  showLoginForm
+}) => {
   return (
     <>
-      <Global size={props.size} open={props.open} onClose={props.close}>
+      <Global size={size} open={open} onClose={close}>
         <ModalHeader>
           <ContainerHeader>
             <ContainerLogo>
               <img src={img} alt="Logo Ceuma" width="40" height="38" />
               <TitleH1Header> - Ceuma Reservas</TitleH1Header>
             </ContainerLogo>
-            <IconExit onClick={props.close}><Icon name='times' /></IconExit>
+            <IconExit onClick={close}><Icon name='times' /></IconExit>
           </ContainerHeader>
         </ModalHeader>
         <CustomModalContent>
-          {props.loginForm && <LoginForm />}
-          {props.registerForm && <RegisterForm />}
-          {props.success && <Success />}
+          {loginForm && <LoginForm />}
+          {registerForm && <RegisterForm />}
+          {success && <Success />}
+          {CofirmModal && <CofirmModalContent />}
         </CustomModalContent>
-        {props.loginForm && (
+        {loginForm && (
           <FooterModal>
             <p>
               Ainda não possui conta?{" "}
-              <span onClick={props.showRegisterForm}>Clique Aqui!</span>
+              <span onClick={showRegisterForm}>Clique Aqui!</span>
             </p>
           </FooterModal>
         )}
-        {props.registerForm && (
+        {registerForm && (
           <FooterModal>
             <p>
-              Já possui conta? <span onClick={props.showLoginForm}>Clique Aqui!</span>
+              Já possui conta? <span onClick={showLoginForm}>Clique Aqui!</span>
             </p>
           </FooterModal>
         )}
