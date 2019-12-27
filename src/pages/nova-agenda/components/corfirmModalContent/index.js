@@ -1,0 +1,63 @@
+import React, { useState } from "react";
+import { Button } from "semantic-ui-react";
+
+import {
+  Container,
+  HeaderModalContent,
+  Title,
+  ContainerMain,
+  ContainerTitle,
+  DescContent,
+  HourContent,
+  CustomIcon,
+  PointHourContent,
+  ZeroHourContent,
+  ContainerButton
+} from "./styles";
+
+const ConfirmModalContent = () => {
+  const [countHour, setCountHour] = useState(8);
+  const sumCountHour = () => {
+    if (countHour < 18) setCountHour(countHour + 1);
+    if (countHour === 18) setCountHour(8);
+  };
+  const subCountHour = () => {
+    if (countHour > 8) setCountHour(countHour - 1);
+    if (countHour === 8) setCountHour(18);
+  };
+
+  return (
+    <Container>
+      <ContainerMain>
+        <HourContent>
+          <p>De: 00:00</p>
+          <div>
+            <p>Até: {" "}</p>
+            <div>
+              <CustomIcon name="caret up" size="big" onClick={sumCountHour} />
+              <div>{countHour}</div>
+              <CustomIcon name="caret down" size="big" onClick={subCountHour} />
+            </div>
+            <PointHourContent>:</PointHourContent>
+            <ZeroHourContent>00</ZeroHourContent>
+          </div>
+        </HourContent>
+        <HeaderModalContent>
+          <DescContent>
+            <form method="post">
+              <label htmlFor="Event">Evento</label>
+              <input type="text" name="inputEvent" id="inputEvent" />
+            </form>
+          </DescContent>
+        </HeaderModalContent>
+        <ContainerButton>
+          <Button size="tiny" primary>
+            Confirmar Reserva
+          </Button>
+        </ContainerButton>
+      </ContainerMain>
+    </Container>
+  );
+};
+
+export default ConfirmModalContent;
