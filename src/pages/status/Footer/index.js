@@ -47,7 +47,7 @@ const Footer = props => {
           <TitleH2>NTI - BRUNO - 9:00 - 11:00</TitleH2>
         </ContainerTitle>
         <ContainerButton>
-          <Link to="/Principal">
+          <Link to="/NovaAgenda">
             <Button size='big' primary>
               Horários
             </Button>

@@ -1,0 +1,34 @@
+#allPage{
+    margin-top:-10px;
+}
+#table{
+    margin: 0 !important;   
+    border: none;
+}
+.ui.table td{
+    text-align: center;
+    border-left: 1px solid rgb(206, 202, 202);
+}
+.ui.table th{
+    text-align: center !important;
+    background-color: #0d4b81 !important;
+    border-left: 1px solid rgb(228, 225, 225) !important;
+    color: white !important;
+
+    border-radius: 0px !important;
+}
+.ui.table thead tr>th:first-child{
+    background-color: white !important;
+}
+.ui.table td.one.wide, .ui.table th.one.wide{
+    background-color: #0d4b81 !important;
+    color: white !important;
+    padding: 13px 0 10px;
+}
+#none{
+    border: none !important;
+}
+
+.busy{
+    background-color: #A52A2A !important;
+}

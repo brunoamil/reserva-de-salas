@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   Logo,
   Header,
@@ -13,14 +12,38 @@ import {
   Circle2,
   Legenda,
   View,
-  ViewSelect,
-  UserAling,
-  Button
+  ViewSelect
 } from "./styles";
 
-import Img from "../../../assets/img/ceuma.png";
+import Img from "../../../../assets/img/ceuma.png";
 
 export default props => {
+  // var salas = []
+
+  // async function popularSelectSalas(){
+  //   salas = await firebase.firestore().collection('salas').where('existe', '==', true).get()
+  //     .then(sucesso => {
+  //       if (sucesso.empty) {
+  //         console.log('Não existem salas.');
+  //         return;
+  //       }
+  //       sucesso.forEach(doc=>{
+  //         var a = doc.data()
+  //         salas.push(a.nome)
+  //       })
+  //       return salas;
+  //     })
+  //     .catch(erro => {
+  //       console.log('Erro ao pegar salas', erro);
+  //     })
+
+  //   }
+    
+  //   useEffect(() => {
+  //     popularSelectSalas()
+  //     console.log(salas)
+  // }, [])
+
   return (
     <>
       <Header>
@@ -44,10 +67,8 @@ export default props => {
 
             <SelectAling>
               <Select>
-                <option value="sala1">Sala 1</option>
-                <option value="sala2">Sala 2</option>
-                <option value="sala3">Reset</option>
-                <option value="sala4">Auditório</option>
+                <option value='Reset'>Reset</option>
+                <option value='Auditório'>Auditório</option>
               </Select>
               <Texto>Semana</Texto>
               <Select>

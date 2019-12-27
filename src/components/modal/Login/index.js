@@ -4,30 +4,35 @@ import { Form, Dimmer, Loader, Message } from "semantic-ui-react";
 import firebase from '../../../services/firebase';
 import 'firebase/auth';
 import RedefinirSenha from '../Recuperar-Senha';
-import Success from "../Success";
 
 import { Container, LabelReg, TitleForgot, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC } from "./styles";
 
 function LoginForm({ history }) {
 
   const [login, setLogin] = useState(true);
-  const [email, setEmail] = useState();
-  const [senha, setSenha] = useState();
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState(false)
+  const [msgErro, setMsgErro] = useState()
 
-  function TrocarTela() {
-    setLogin(false)
-  }
+  function TrocarTela() { setLogin(false) };
+
   function Logar() {
+    if((email === '' ) || (senha === '' )){
+      setErro(true)
+      setMsgErro('Informe email e/ou senha!')
+    }
+    else{
     setCarregando(true)
     firebase.auth().signInWithEmailAndPassword(email, senha).then(sucesso => {
-      history.push('/Principal')
+      history.push('/NovaAgenda')
     }).catch(erro => {
       setCarregando(false)
       setErro(true)
+      setMsgErro('Usuário ou senha inválidos!')
     });
-  }
+    }}
 
   return (
     <>
@@ -56,7 +61,7 @@ function LoginForm({ history }) {
                 :
                 <CustomButton onClick={Logar} size="large" primary content="Login" />
             }
-            {erro ? <Message header='Usuario ou senha invalidos.' color='red' icon='dont' />
+            {erro ? <Message header={msgErro} color='red' icon='dont' />
               : <div />}
           </Container>
         </CustomModalContent>

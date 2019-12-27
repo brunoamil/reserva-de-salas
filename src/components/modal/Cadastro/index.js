@@ -6,36 +6,53 @@ import firebase from '../../../services/firebase';
 import { Container, LabelReg, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC } from "./styles";
 
 function RegisterForm() {
-  const [email, setEmail] = useState();
-  const [senha, setSenha] = useState();
+  const [email, setEmail] = useState('');
+  const [nome, setNome] = useState('');
+  const [senha, setSenha] = useState('');
   const [success, setSuccess] = useState(false);
   const [carregando, setCarregando] = useState(false)
   const [erro, setErro] = useState(false)
   const [msgErro, setMsgErro] = useState('');
 
   function Cadastrar() {
-    setCarregando(true);
-    firebase.auth().createUserWithEmailAndPassword(email, senha).then(sucesso => {
-      setCarregando(false)
-      setSuccess(true)
-    }).catch(erro => {
-      setCarregando(false)
+    if ((email === '') || (senha === '') || (nome === '')) {
       setErro(true)
-      switch (erro.message) {
-        case 'Password should be at least 6 characters':
-          setMsgErro('A senha deve ter pelo menos 6 caracteres!');
-          break;
-        case 'The email address is already in use by another account.':
-          setMsgErro('Este email já está sendo utilizado por outro usuário!');
-          break;
-        case 'The email address is badly formatted.':
-          setMsgErro('O formato do seu email é inválido!');
-          break;
-        default:
-          setMsgErro('Não foi possível cadastrar. Tente novamente mais tarde!');
-          break;
-      }
-    })
+      setMsgErro('Verifique se todos os campos estão preenchidos!')
+    }
+    else {
+      setCarregando(true);
+
+      firebase.auth().createUserWithEmailAndPassword(email, senha).then(sucesso => {
+        setCarregando(false)
+        setSuccess(true)
+
+        firebase.firestore().collection('usuarios').add({
+          email: email,
+          nome: nome
+        }).then().catch()
+
+      }).catch(erro => {
+        setCarregando(false)
+        setErro(true)
+
+        switch (erro.message) {
+          case 'Password should be at least 6 characters':
+            setMsgErro('A senha deve ter pelo menos 6 caracteres!');
+            break;
+          case 'The email address is already in use by another account.':
+            setMsgErro('Este email já está sendo utilizado por outro usuário!');
+            break;
+          case 'The email address is badly formatted.':
+            setMsgErro('O formato do seu email é inválido!');
+            break;
+          default:
+            setMsgErro('Não foi possível cadastrar. Tente novamente mais tarde!');
+            break;
+        }
+      })
+
+
+    }
   }
 
   return (
@@ -55,10 +72,18 @@ function RegisterForm() {
                   <LabelReg>Email:</LabelReg>
                   <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
                 </Form.Field>
-                <Form.Field>
-                  <LabelReg>Senha:</LabelReg>
-                  <input onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" />
-                </Form.Field>
+
+                <Form.Group widths='equal'>
+                  <Form.Field>
+                    <LabelReg>Nome:</LabelReg>
+                    <input onChange={(e) => setNome(e.target.value)} placeholder="Nome" />
+                  </Form.Field>
+
+                  <Form.Field>
+                    <LabelReg>Senha:</LabelReg>
+                    <input onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" />
+                  </Form.Field>
+                </Form.Group>
               </Form>
               {
                 carregando ?

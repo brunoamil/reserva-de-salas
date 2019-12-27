@@ -30,7 +30,7 @@ export const Header = styled.div`
 
 export const Logo = styled.img`
     width: 70px;
-    margin: 8px 15px;
+    margin: 15px 5px 5px 1px;
 `
 
 export const UserAling = styled.div`
@@ -144,5 +144,3 @@ export const Texto = styled.p`
     margin:0px 5px;
 
 `
-
-

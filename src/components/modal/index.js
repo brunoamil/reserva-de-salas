@@ -1,17 +1,16 @@
 import React from "react";
-import { Button, Modal } from "semantic-ui-react";
+import { Icon } from "semantic-ui-react";
 
 import {
   Global,
   ContainerHeader,
   TitleH1Header,
-  ContainerModalContent,
-  TitleContainerMC,
   FooterModal,
-  ContainerForm,
   ModalHeader,
   CustomModalContent,
-  CustomButton
+  IconExit,
+  ContainerLogo
+
 } from "./styles";
 import LoginForm from "./Login";
 import RegisterForm from "./Cadastro";
@@ -25,33 +24,17 @@ const ModalUser = props => {
       <Global size={props.size} open={props.open} onClose={props.close}>
         <ModalHeader>
           <ContainerHeader>
-            <img src={img} alt="Logo Ceuma" width="40" height="38" />
-            <TitleH1Header> - Ceuma Reservas</TitleH1Header>
+            <ContainerLogo>
+              <img src={img} alt="Logo Ceuma" width="40" height="38" />
+              <TitleH1Header> - Ceuma Reservas</TitleH1Header>
+            </ContainerLogo>
+            <IconExit onClick={props.close}><Icon name='times' /></IconExit>
           </ContainerHeader>
         </ModalHeader>
         <CustomModalContent>
-          {/* <ContainerModalContent>
-            {props.loginForm && <TitleContainerMC>LOGIN</TitleContainerMC>}
-            {props.registerForm && (
-              <TitleContainerMC>CADASTRO</TitleContainerMC>
-            )}
-          </ContainerModalContent> */}
-
           {props.loginForm && <LoginForm />}
           {props.registerForm && <RegisterForm />}
           {props.success && <Success />}
-
-          {/* <ContainerForm>
-            {props.loginForm && <CustomButton size="large" primary content="Login" />}
-            {props.registerForm && (
-              <CustomButton
-                size="large"
-                primary
-                content="Cadastrar-se"
-                onClick={props.showSuccess}
-              />
-            )}
-          </ContainerForm> */}
         </CustomModalContent>
         {props.loginForm && (
           <FooterModal>
