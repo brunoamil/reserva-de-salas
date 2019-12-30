@@ -23,6 +23,18 @@ function NovaAgenda() {
         dia = dia - 1;
         data = data - 1;
     }
+    
+    function changeBgColor(element) {
+        if(element.className === 'row-clicked') {
+            element.className = '';
+        } else {
+            element.className = 'row-clicked';
+        }
+        console.log('oi');
+        
+    }
+
+
 
     //modal
     const [modal, setModal] = useState({ open: false });
@@ -43,7 +55,7 @@ function NovaAgenda() {
                         <Table.Row >
                             <Table.HeaderCell id='none' />
                             {
-                                dias.map(dia => <Table.HeaderCell><strong> {dia} </strong></Table.HeaderCell>)
+                                dias.map(dia => <Table.HeaderCell onClick={changeBgColor}><strong> {dia} </strong></Table.HeaderCell>)
                             }
 
                         </Table.Row>
