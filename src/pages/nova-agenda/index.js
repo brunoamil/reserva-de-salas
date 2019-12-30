@@ -9,6 +9,7 @@ function NovaAgenda() {
     var data = date.getDate()
     var dia = date.getDay()
     var mes = date.getMonth() + 1
+    let number = 0
     
 
     if (dia === 0){
@@ -24,16 +25,16 @@ function NovaAgenda() {
         data = data - 1;
     }
     
-    function changeBgColor(element) {
-        if(element.className === 'row-clicked') {
-            element.className = '';
-        } else {
-            element.className = 'row-clicked';
+    function selecionar() {
+        for(let i = 1 ; i <= number ; i += 1){
+            var id = i
         }
-        console.log('oi');
+        document.getElementById(`${id}`).style.background="#00ff00";
         
     }
-
+    // function infoCel(x, y){
+    //     alert('Você clicou na linha '+ x +', coluna '+ y +'.');	
+    // }
 
 
     //modal
@@ -55,7 +56,7 @@ function NovaAgenda() {
                         <Table.Row >
                             <Table.HeaderCell id='none' />
                             {
-                                dias.map(dia => <Table.HeaderCell onClick={changeBgColor}><strong> {dia} </strong></Table.HeaderCell>)
+                                dias.map(dia => <Table.HeaderCell ><strong> {dia} </strong></Table.HeaderCell>)
                             }
 
                         </Table.Row>
@@ -67,8 +68,8 @@ function NovaAgenda() {
                                 <Table.Row>
                                     <Table.HeaderCell width='1'><strong> {hora} </strong></Table.HeaderCell>
                                     {
-                                        dias.map((cell, index) => (
-                                            <Table.Cell onClick={show} id={`${data + index}/${mes} ${hora}`}></Table.Cell>
+                                        dias.map((cell, index) => (                                           
+                                            <Table.Cell onClick= {selecionar} id={ `${hora = number += 1}`}></Table.Cell>
                                         ))
                                     }
                                 </Table.Row>
