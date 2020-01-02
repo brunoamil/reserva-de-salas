@@ -25,3 +25,6 @@
 .busy{
     background-color: #A52A2A !important;
 }
+.row-clicked{
+    background-color: brown;
+}
