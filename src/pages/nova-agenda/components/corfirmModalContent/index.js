@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "semantic-ui-react";
+import { Button, Input } from "semantic-ui-react";
 
 import {
   Container,
@@ -46,7 +46,7 @@ const ConfirmModalContent = () => {
           <DescContent>
             <form method="post">
               <label htmlFor="Event">Evento</label>
-              <input type="text" name="inputEvent" id="inputEvent" />
+              <Input size="big" placeholder="Evento" type="text" name="inputEvent" id="inputEvent" />
             </form>
           </DescContent>
         </HeaderModalContent>
