@@ -4,12 +4,15 @@ import "./index.css";
 import Header from "./components/header";
 import Modal from "../../components/modal";
 
+import { Container } from './styles';
+
 function NovaAgenda() {
   var date = new Date();
   var data = date.getDate()
   var dia = date.getDay()
   var mes = date.getMonth() + 1
   let number = 0
+
 
 
   if (dia === 0) {
@@ -25,17 +28,18 @@ function NovaAgenda() {
     data = data - 1;
   }
 
-  function selecionar() {
-    for (let i = 1; i <= number; i += 1) {
-      var id = i
-    }
-    document.getElementById(`${id}`).style.background = "#00ff00";
+  // function selecionar() {
+  //   for (let i = 1; i <= number; i += 1) {
+  //     var id = i
+  //   }
+  //   document.getElementById(`${id}`).style.background = "#00ff00";
 
-  }
+  // }
   // function infoCel(x, y){
   //     alert('Você clicou na linha '+ x +', coluna '+ y +'.');	
   // }
 
+  //Create Element
 
   //modal {
   const [modal, setModal] = useState({ open: false });
@@ -45,6 +49,16 @@ function NovaAgenda() {
   const [confirmModal, setConfirmModal] = useState(false);
   const showConfirmModal = () => setConfirmModal(true);
   //}
+
+  //Cor da Celula {
+
+    const toggleDiv = (event) => {
+  
+      let idCell = event.target.getAttribute('id')
+      document.getElementById(`${ idCell }`).style.backgroundColor = '#000';
+    };
+
+  //} 
 
   const dias = [`SEG ${data}/${mes}`, `TER ${data + 1}/${mes}`, `QUA ${data + 2}/${mes}`, `QUI ${data + 3}/${mes}`, `SEX ${data + 4}/${mes}`]
   const horas = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00']
@@ -72,7 +86,11 @@ function NovaAgenda() {
                   <Table.HeaderCell width='1'><strong> {hora} </strong></Table.HeaderCell>
                   {
                     dias.map((cell, index) => (
-                      <Table.Cell onClick={selecionar} id={`${hora = number += 1}`}></Table.Cell>
+                      <Table.Cell >
+                        <Container id={`${ number += 1}`} onClick = {toggleDiv}>
+
+                        </Container>
+                      </Table.Cell>
                     ))
                   }
                 </Table.Row>
