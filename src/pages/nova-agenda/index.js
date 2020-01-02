@@ -86,7 +86,7 @@ function NovaAgenda() {
                   <Table.HeaderCell width='1'><strong> {hora} </strong></Table.HeaderCell>
                   {
                     dias.map((cell, index) => (
-                      <Table.Cell >
+                      <Table.Cell>
                         <Container id={`${ number += 1}`} onClick = {toggleDiv}>
 
                         </Container>
