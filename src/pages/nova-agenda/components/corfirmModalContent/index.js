@@ -4,9 +4,7 @@ import { Button, Input } from "semantic-ui-react";
 import {
   Container,
   HeaderModalContent,
-  Title,
   ContainerMain,
-  ContainerTitle,
   DescContent,
   HourContent,
   CustomIcon,
