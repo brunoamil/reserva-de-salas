@@ -9,6 +9,7 @@ function NovaAgenda() {
   var data = date.getDate();
   var dia = date.getDay();
   var mes = date.getMonth() + 1;
+  let number = 0;
 
   if (dia === 0) {
     data += 1;
@@ -22,6 +23,16 @@ function NovaAgenda() {
     dia = dia - 1;
     data = data - 1;
   }
+
+  function selecionar() {
+    for (let i = 1; i <= number; i += 1) {
+      var id = i;
+    }
+    document.getElementById(`${id}`).style.background = "#00ff00";
+  }
+  // function infoCel(x, y){
+  //     alert('Você clicou na linha '+ x +', coluna '+ y +'.');
+  // }
 
   //modal {
   const [modal, setModal] = useState({ open: false });
@@ -83,8 +94,8 @@ function NovaAgenda() {
                 </Table.HeaderCell>
                 {dias.map((cell, index) => (
                   <Table.Cell
-                    onClick={show}
-                    id={`${data + index}/${mes} ${hora}`}
+                    onClick={selecionar}
+                    id={`${(hora = number += 1)}`}
                   ></Table.Cell>
                 ))}
               </Table.Row>
