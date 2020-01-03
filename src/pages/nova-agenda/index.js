@@ -9,7 +9,8 @@ function NovaAgenda() {
     var data = date.getDate()
     var dia = date.getDay()
     var mes = date.getMonth() + 1
-    var contador = 0
+    var contadorId = 0
+    let contadorOpen = 0
     
 
     if (dia === 0){
@@ -31,12 +32,12 @@ function NovaAgenda() {
     const close = () => setModal({ open: false });
     const { open } = modal;
 
-    const o = () =>  {
-        let id = document.getElementById('2')
+    const openCelula = (oo) =>  {
+        let id = document.getElementById(`${oo = contadorOpen += 1}`)
         id.onclick = function (){
-           return setModal({ open: true });
+           return this.style.background= 'red'//    return setModal({ open: true });
         }
-        console.log('ta no caminho')
+        console.log(id)
         
     }
 
@@ -59,14 +60,14 @@ function NovaAgenda() {
                         </Table.Row>
                     </Table.Header >
 
-                    <Table.Body >
+                    <Table.Body id= "o">
                         {
                             horas.map((hora, index) => (
                                 <Table.Row>
                                     <Table.HeaderCell  width='1'><strong> {hora} </strong></Table.HeaderCell>
                                     {
                                         dias.map((cell, index) => (
-                                            <Table.Cell onClick={o} id={hora= contador += 1}></Table.Cell>
+                                            <Table.Cell onClick={openCelula} id={hora = contadorId += 1}></Table.Cell>
                                         ))
                                     }
                                 </Table.Row>
