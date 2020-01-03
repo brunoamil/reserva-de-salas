@@ -1,8 +1,11 @@
 import React from "react";
+
 import {
   Logo,
   Header,
   Title,
+  UserAling,
+  Button,
   Select,
   SelectAling,
   Texto,
@@ -12,10 +15,13 @@ import {
   Circle2,
   Legenda,
   View,
-  ViewSelect
+  ViewSelect,
+  CustomLink
 } from "./styles";
 
 import Img from "../../../../assets/img/ceuma.png";
+
+import { useSelector, useDispatch } from 'react-redux';
 
 export default props => {
   // var salas = []
@@ -49,12 +55,24 @@ export default props => {
       <Header>
         <Container>
           <View>
-            <Logo src={Img}></Logo>
-            <Title>Reserva de Salas - Universidade Ceuma</Title>
-            {/* <UserAling>
-              <Title>Usuário : Marcus</Title>
-              <Button type="submit">Sair</Button>
-            </UserAling> */}
+            <div>
+              <Logo src={Img}></Logo>
+              <Title>Reserva de Salas - Universidade Ceuma</Title>
+            </div>
+            <UserAling>
+                <h1>Usuário : Marcus</h1>
+                <Button type="button"><CustomLink to="/">Sair</CustomLink></Button>
+            </UserAling>
+            
+            {/* {
+              useSelector( state => state.usuarioLogin) > 0 ?
+              <UserAling>
+                <Title>Usuário : Marcus</Title>
+                <Button type="button"><Link to="/">Sair</Link></Button>
+              </UserAling>
+              : ''
+            } */}
+
           </View>
 
           <ViewSelect>

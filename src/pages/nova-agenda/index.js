@@ -4,7 +4,7 @@ import "./index.css";
 import Header from "./components/header";
 import Modal from "../../components/modal";
 
-import { Container,CellColor } from './styles';
+import { Container } from './styles';
 
 function NovaAgenda() {
   var date = new Date();
@@ -55,7 +55,7 @@ function NovaAgenda() {
     const toggleDiv = (event) => {
   
       let idCell = event.target.getAttribute('id')
-      document.getElementById(`${idCell} CellColor`).style.backgroundColor = 'brown';
+      document.getElementById(`${idCell}`).style.backgroundColor = 'brown';
     };
 
   //} 
@@ -88,8 +88,7 @@ function NovaAgenda() {
                     dias.map((cell, index) => (
                       <Table.Cell>
                         <Container id={`${ number += 1}`} onClick = {toggleDiv}>
-                          NTI
-                        <CellColor id={`${ number += 1} CellColor`}></CellColor>
+
                         </Container>
                       </Table.Cell>
                     ))
