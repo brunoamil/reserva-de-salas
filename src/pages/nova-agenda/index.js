@@ -89,7 +89,7 @@ function NovaAgenda() {
                       <Table.Cell>
                         <Container id={`${ number += 1}`} onClick = {toggleDiv}>
                           NTI
-                          <CellColor id={`${ number += 1} CellColor`}></CellColor>
+                        <CellColor id={`${ number += 1} CellColor`}></CellColor>
                         </Container>
                       </Table.Cell>
                     ))
