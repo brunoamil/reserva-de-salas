@@ -24,7 +24,7 @@ function NovaAgenda() {
         dia = dia - 1;
         data = data - 1;
     }
-   
+
     //modal
     const [modal, setModal] = useState({ open: false });
     const show = () => setModal({ open: true });
@@ -53,7 +53,7 @@ function NovaAgenda() {
                         <Table.Row >
                             <Table.HeaderCell id='none' />
                             {
-                                dias.map(dia => <Table.HeaderCell><strong> {dia} </strong></Table.HeaderCell>)
+                                dias.map(dia => <Table.HeaderCell ><strong> {dia} </strong></Table.HeaderCell>)
                             }
 
                         </Table.Row>
