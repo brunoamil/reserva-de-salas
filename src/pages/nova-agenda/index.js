@@ -3,6 +3,9 @@ import { Table } from "semantic-ui-react";
 import "./index.css";
 import Header from "./components/header";
 import Modal from "../../components/modal";
+import ConfirmModalContent from "./components/corfirmModalContent";
+
+import { Container, CellColor } from "./styles";
 
 function NovaAgenda() {
   var date = new Date();
@@ -24,23 +27,18 @@ function NovaAgenda() {
     data = data - 1;
   }
 
-  function selecionar() {
-    for (let i = 1; i <= number; i += 1) {
-      var id = i;
-    }
-    document.getElementById(`${id}`).style.background = "#00ff00";
-  }
-  // function infoCel(x, y){
-  //     alert('Você clicou na linha '+ x +', coluna '+ y +'.');
-  // }
-
   //modal {
   const [modal, setModal] = useState({ open: false });
   const show = () => setModal({ open: true });
   const close = () => setModal({ open: false });
   const { open } = modal;
-  const [confirmModal, setConfirmModal] = useState(false);
-  const showConfirmModal = () => setConfirmModal(true);
+  //}
+
+  //Cor da Celula {
+  const toggleDiv = event => {
+    let idCell = event.target.getAttribute("id");
+    document.getElementById(`${idCell}`).style.backgroundColor = "brown";
+  };
   //}
 
   const dias = [
@@ -70,9 +68,8 @@ function NovaAgenda() {
           size="mini"
           open={open}
           close={close}
-          CofirmModal={showConfirmModal}
+          CofirmModal={ConfirmModalContent}
         ></Modal>
-
         <Header id="header" />
         <Table id="table" definition>
           <Table.Header>
@@ -85,7 +82,6 @@ function NovaAgenda() {
               ))}
             </Table.Row>
           </Table.Header>
-
           <Table.Body>
             {horas.map((hora, index) => (
               <Table.Row>
@@ -93,10 +89,11 @@ function NovaAgenda() {
                   <strong> {hora} </strong>
                 </Table.HeaderCell>
                 {dias.map((cell, index) => (
-                  <Table.Cell
-                    onClick={selecionar}
-                    id={`${(hora = number += 1)}`}
-                  ></Table.Cell>
+                  <Table.Cell>
+                    <Container id={`${(number += 1)}`} onClick={toggleDiv}>
+                      NTI
+                    </Container>
+                  </Table.Cell>
                 ))}
               </Table.Row>
             ))}

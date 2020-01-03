@@ -45,7 +45,7 @@ export default props => {
   // }, [])
 
   return (
-    <div>
+    <>
       <Header>
         <Container>
           <View>
@@ -81,6 +81,6 @@ export default props => {
           </ViewSelect>
         </Container>
       </Header>
-    </div>
+    </>
   );
 };

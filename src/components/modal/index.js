@@ -28,7 +28,7 @@ const ModalUser = ({
   success,
   CofirmModal,
   showRegisterForm,
-  showLoginForm
+  showLoginForm,
 }) => {
   return (
     <>
