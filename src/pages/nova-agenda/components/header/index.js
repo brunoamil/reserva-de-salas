@@ -59,19 +59,15 @@ export default props => {
               <Logo src={Img}></Logo>
               <Title>Reserva de Salas - Universidade Ceuma</Title>
             </div>
-            <UserAling>
-                <h1>Usuário : Marcus</h1>
-                <Button type="button"><CustomLink to="/">Sair</CustomLink></Button>
-            </UserAling>
             
-            {/* {
+            {
               useSelector( state => state.usuarioLogin) > 0 ?
               <UserAling>
-                <Title>Usuário : Marcus</Title>
-                <Button type="button"><Link to="/">Sair</Link></Button>
+                  <h1>Usuário : Marcus</h1>
+                  <Button type="button"><CustomLink to="/">Sair</CustomLink></Button>
               </UserAling>
               : ''
-            } */}
+            }
 
           </View>
 
