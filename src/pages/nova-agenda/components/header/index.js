@@ -50,6 +50,8 @@ export default props => {
   //     console.log(salas)
   // }, [])
 
+  const dispatch = useDispatch();
+
   return (
     <>
       <Header>
@@ -64,7 +66,7 @@ export default props => {
               useSelector( state => state.usuarioLogin) > 0 ?
               <UserAling>
                   <h1>Usuário : Marcus</h1>
-                  <Button type="button"><CustomLink to="/">Sair</CustomLink></Button>
+                  <Button type="button"><CustomLink onClick={ () => dispatch( {type: 'LOG_OUT'} )} to="/" >Sair</CustomLink></Button>
               </UserAling>
               : ''
             }

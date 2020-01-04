@@ -52,11 +52,11 @@ function NovaAgenda() {
 
   //Cor da Celula {
 
-    const toggleDiv = (event) => {
-  
-      let idCell = event.target.getAttribute('id')
-      document.getElementById(`${idCell}`).style.backgroundColor = 'brown';
-    };
+  const toggleDiv = (event) => {
+
+    let idCell = event.target.getAttribute('id')
+    document.getElementById(`${idCell}`).style.backgroundColor = 'brown';
+  };
 
   //} 
 
