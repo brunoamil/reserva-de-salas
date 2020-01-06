@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   Logo,
@@ -22,8 +22,31 @@ import {
 import Img from "../../../../assets/img/ceuma.png";
 
 import { useSelector, useDispatch } from 'react-redux';
+import firebase from '../../../../services/firebase';
 
 export default props => {
+
+  const email = useSelector(state => state.usuarioEmail);
+  const [nome ,setNome] = useState();
+
+  //Verifica o email e pega o nome
+  firebase.firestore().collection('usuarios').get()
+  .then((snapshot) => {
+    snapshot.forEach((doc) => {
+      
+      if ( doc.data().email === email ) { 
+        setNome( doc.data().nome )
+        
+      }
+    });
+  })
+  .catch((err) => {
+    console.log('Error getting documents', err);
+  });
+  
+  
+
+  
   // var salas = []
 
   // async function popularSelectSalas(){
@@ -65,7 +88,7 @@ export default props => {
             {
               useSelector( state => state.usuarioLogin) > 0 ?
               <UserAling>
-                  <h1>Usuário : Marcus</h1>
+                  <h1>Usuário : { nome }</h1>
                   <Button type="button"><CustomLink onClick={ () => dispatch( {type: 'LOG_OUT'} )} to="/" >Sair</CustomLink></Button>
               </UserAling>
               : ''
