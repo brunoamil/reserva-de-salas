@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Dimmer, Loader } from "semantic-ui-react";
 
 import {
   Logo,
@@ -26,10 +27,14 @@ import firebase from '../../../../services/firebase';
 
 export default props => {
 
-  const email = useSelector(state => state.usuarioEmail);
+  
   const [nome ,setNome] = useState();
+  const [loader ,setLoader] = useState(false);
 
   //Verifica o email e pega o nome
+
+  const email = useSelector(state => state.usuarioEmail);
+
   firebase.firestore().collection('usuarios').get()
   .then((snapshot) => {
     snapshot.forEach((doc) => {
@@ -74,6 +79,10 @@ export default props => {
   // }, [])
 
   const dispatch = useDispatch();
+  const actionLogout = () => { 
+    dispatch( {type: 'LOG_OUT'} )
+    setLoader(true); 
+  }
 
   return (
     <>
@@ -88,8 +97,19 @@ export default props => {
             {
               useSelector( state => state.usuarioLogin) > 0 ?
               <UserAling>
+                
                   <h1>Usuário : { nome }</h1>
-                  <Button type="button"><CustomLink onClick={ () => dispatch( {type: 'LOG_OUT'} )} to="/" >Sair</CustomLink></Button>
+                  
+                  <Button type="button">
+                    <CustomLink onClick={ actionLogout } to="/" >Sair</CustomLink>
+                  </Button>
+
+                  { loader && 
+                  <Dimmer active>
+                    <Loader size="big">Carregando</Loader>
+                  </Dimmer>
+                  }
+
               </UserAling>
               : ''
             }
