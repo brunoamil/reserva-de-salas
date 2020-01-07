@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Dimmer, Loader } from "semantic-ui-react";
+import { withRouter, useHistory } from "react-router-dom";
 
 import {
   Logo,
@@ -17,7 +18,6 @@ import {
   Legenda,
   View,
   ViewSelect,
-  CustomLink
 } from "./styles";
 
 import Img from "../../../../assets/img/ceuma.png";
@@ -25,8 +25,9 @@ import Img from "../../../../assets/img/ceuma.png";
 import { useSelector, useDispatch } from 'react-redux';
 import firebase from '../../../../services/firebase';
 
-export default props => {
+export const HeaderAgenda = () => {
 
+  const history = useHistory()
   
   const [nome ,setNome] = useState();
   const [loader ,setLoader] = useState(false);
@@ -79,9 +80,17 @@ export default props => {
   // }, [])
 
   const dispatch = useDispatch();
-  const actionLogout = () => { 
-    dispatch( {type: 'LOG_OUT'} )
+  const actionLogout = () => {
+
     setLoader(true); 
+    
+
+    setTimeout( () => {
+      
+      history.push("/")
+      dispatch( {type: 'LOG_OUT'} )
+    },1000) 
+
   }
 
   return (
@@ -100,8 +109,8 @@ export default props => {
                 
                   <h1>Usuário : { nome }</h1>
                   
-                  <Button type="button">
-                    <CustomLink onClick={ actionLogout } to="/" >Sair</CustomLink>
+                  <Button type="button" onClick={ actionLogout }>
+                    Sair
                   </Button>
 
                   { loader && 
@@ -143,3 +152,5 @@ export default props => {
     </>
   );
 };
+
+export default withRouter(HeaderAgenda);

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Table } from "semantic-ui-react";
 import "./index.css";
-import Header from "./components/header";
+import { HeaderAgenda } from "./components/header";
 import Modal from "../../components/modal";
 
 import { Container } from './styles';
 
-function NovaAgenda() {
+function NovaAgenda( {history} ) {
   var date = new Date();
   var data = date.getDate()
   var dia = date.getDay()
@@ -66,7 +66,7 @@ function NovaAgenda() {
     <>
       <div id='allPage'>
         <Modal size='tiny' open={open} close={close}></Modal>
-        <Header id="header" />
+        <HeaderAgenda id="header" />
         <Table id="table" definition>
           <Table.Header>
             <Table.Row>
