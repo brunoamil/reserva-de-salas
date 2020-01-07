@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import { Dimmer, Loader } from "semantic-ui-react";
+
 import {
   Logo,
   Header,
   Title,
+  UserAling,
+  Button,
   Select,
   SelectAling,
   Texto,
@@ -12,12 +16,42 @@ import {
   Circle2,
   Legenda,
   View,
-  ViewSelect
+  ViewSelect,
+  CustomLink
 } from "./styles";
 
 import Img from "../../../../assets/img/ceuma.png";
 
+import { useSelector, useDispatch } from 'react-redux';
+import firebase from '../../../../services/firebase';
+
 export default props => {
+
+  
+  const [nome ,setNome] = useState();
+  const [loader ,setLoader] = useState(false);
+
+  //Verifica o email e pega o nome
+
+  const email = useSelector(state => state.usuarioEmail);
+
+  firebase.firestore().collection('usuarios').get()
+  .then((snapshot) => {
+    snapshot.forEach((doc) => {
+      
+      if ( doc.data().email === email ) { 
+        setNome( doc.data().nome )
+        
+      }
+    });
+  })
+  .catch((err) => {
+    console.log('Error getting documents', err);
+  });
+  
+  
+
+  
   // var salas = []
 
   // async function popularSelectSalas(){
@@ -44,17 +78,42 @@ export default props => {
   //     console.log(salas)
   // }, [])
 
+  const dispatch = useDispatch();
+  const actionLogout = () => { 
+    dispatch( {type: 'LOG_OUT'} )
+    setLoader(true); 
+  }
+
   return (
     <>
       <Header>
         <Container>
           <View>
-            <Logo src={Img}></Logo>
-            <Title>Reserva de Salas - Universidade Ceuma</Title>
-            {/* <UserAling>
-              <Title>Usuário : Marcus</Title>
-              <Button type="submit">Sair</Button>
-            </UserAling> */}
+            <div>
+              <Logo src={Img}></Logo>
+              <Title>Reserva de Salas - Universidade Ceuma</Title>
+            </div>
+            
+            {
+              useSelector( state => state.usuarioLogin) > 0 ?
+              <UserAling>
+                
+                  <h1>Usuário : { nome }</h1>
+                  
+                  <Button type="button">
+                    <CustomLink onClick={ actionLogout } to="/" >Sair</CustomLink>
+                  </Button>
+
+                  { loader && 
+                  <Dimmer active>
+                    <Loader size="big">Carregando</Loader>
+                  </Dimmer>
+                  }
+
+              </UserAling>
+              : ''
+            }
+
           </View>
 
           <ViewSelect>

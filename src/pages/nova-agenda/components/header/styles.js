@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom';
 
 
 export const Container = styled.div`
@@ -11,6 +12,15 @@ export const View = styled.div`
     width:100%;
     display:flex;
     align-items:center;
+    justify-content: space-between;
+
+    div{
+      display:flex;
+      flex-flow : row nowrap;
+      align-items : center;
+      text-align : center;
+    }
+   
 
 `
 export const LogoView = styled.div`
@@ -35,14 +45,21 @@ export const Logo = styled.img`
 
 export const UserAling = styled.div`
     display:flex;
-    width: 57%;
-    justify-content:flex-end;
-    flex-flow: row wrap;
-    margin: 0px 0px 30px 0px;
+    /* justify-content:flex-end; */
+    flex-flow: row nowrap;
+    margin: 5px 0px 30px 0px;
+
+    h1 {
+      color: #0d4b81;
+      font-family: "PT Sans",sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin : 0px;
+    }
 
 `
 export const Button = styled.button`
-    margin: 10px 0px 0px 15px;
+    margin: 0px 5px 0px 5px;
     background-color: #0d4b81;
     color:white;
     border:none;
@@ -54,11 +71,11 @@ export const Button = styled.button`
     font-size: 0.75rem;
     font-weight: 500;
     text-align:center;
-
-
-
 `
 
+export const CustomLink = styled(Link)`
+  color : white;
+`;
 
 // export const ContainerAlert = styled.div`
 //     display: flex;

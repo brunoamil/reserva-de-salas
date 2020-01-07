@@ -5,6 +5,9 @@ import firebase from "../../../services/firebase";
 import "firebase/auth";
 import RedefinirSenha from "../Recuperar-Senha";
 
+//Redux
+import { useDispatch } from 'react-redux';
+
 import {
   Container,
   LabelReg,
@@ -23,6 +26,8 @@ function LoginForm({ history }) {
   const [erro, setErro] = useState(false);
   const [msgErro, setMsgErro] = useState();
 
+  const dispatch = useDispatch();
+
   function TrocarTela() {
     setLogin(false);
   }
@@ -38,6 +43,8 @@ function LoginForm({ history }) {
         .signInWithEmailAndPassword(email, senha)
         .then(sucesso => {
           history.push("/NovaAgenda");
+          
+          dispatch( {type: 'LOG_IN', usuarioEmail : email} );
         })
         .catch(erro => {
           setCarregando(false);
