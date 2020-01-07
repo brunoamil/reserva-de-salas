@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Dimmer, Loader } from "semantic-ui-react";
 
 import {
@@ -26,64 +26,55 @@ import { useSelector, useDispatch } from 'react-redux';
 import firebase from '../../../../services/firebase';
 
 export default props => {
-
-  
   const [nome ,setNome] = useState();
   const [loader ,setLoader] = useState(false);
+  
+
+  const dispatch = useDispatch();
 
   //Verifica o email e pega o nome
-
   const email = useSelector(state => state.usuarioEmail);
-
   firebase.firestore().collection('usuarios').get()
   .then((snapshot) => {
     snapshot.forEach((doc) => {
-      
       if ( doc.data().email === email ) { 
         setNome( doc.data().nome )
-        
       }
     });
   })
   .catch((err) => {
     console.log('Error getting documents', err);
   });
-  
-  
 
   
-  // var salas = []
+  const arrSalas = [];
+  
+  useEffect(() => {
+    const getSalas = async () => {
+      await firebase.firestore().collection('salas').get()
+        .then(sucesso => {
+          sucesso.forEach(doc => {
+            arrSalas.push(doc.data().nome);
+          })
+        })
+        .catch(erro => {
+          console.log('Erro ao pegar salas', erro);
+        })
+        console.log(arrSalas)
+    }
 
-  // async function popularSelectSalas(){
-  //   salas = await firebase.firestore().collection('salas').where('existe', '==', true).get()
-  //     .then(sucesso => {
-  //       if (sucesso.empty) {
-  //         console.log('Não existem salas.');
-  //         return;
-  //       }
-  //       sucesso.forEach(doc=>{
-  //         var a = doc.data()
-  //         salas.push(a.nome)
-  //       })
-  //       return salas;
-  //     })
-  //     .catch(erro => {
-  //       console.log('Erro ao pegar salas', erro);
-  //     })
+    getSalas();
+  }, [arrSalas])
 
-  //   }
-    
-  //   useEffect(() => {
-  //     popularSelectSalas()
-  //     console.log(salas)
-  // }, [])
+  dispatch({ type: 'REG_SALAS', arrSalas });
 
-  const dispatch = useDispatch();
+
   const actionLogout = () => { 
     dispatch( {type: 'LOG_OUT'} )
     setLoader(true); 
   }
 
+  const [ salas, setSalas ] = useState([useSelector(state => state.user.salasReserva)]);
   return (
     <>
       <Header>
@@ -126,8 +117,7 @@ export default props => {
 
             <SelectAling>
               <Select>
-                <option value='Reset'>Reset</option>
-                <option value='Auditório'>Auditório</option>
+                {salas[0].map(sala => ( console.log(sala) ))}
               </Select>
               <Texto>Semana</Texto>
               <Select>

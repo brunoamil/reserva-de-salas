@@ -44,7 +44,7 @@ function LoginForm({ history }) {
         .then(sucesso => {
           history.push("/NovaAgenda");
           
-          dispatch( {type: 'LOG_IN', usuarioEmail : email} );
+          dispatch( {type: 'LOG_IN', usuarioEmail: email} );
         })
         .catch(erro => {
           setCarregando(false);
