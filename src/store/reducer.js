@@ -1,8 +1,4 @@
-const INITIAL_STATE = {
-  usuarioEmail : '',
-  usuarioLogin : 0,
-  salasReserva: [],
-}
+import {  INITIAL_STATE, MODAL } from './store';
 
 
 export function usuarioReducer(state = INITIAL_STATE, action){
@@ -22,3 +18,20 @@ export function usuarioReducer(state = INITIAL_STATE, action){
       return state
 };
 };
+
+export function setModal(state = MODAL, action) {
+  let valueLogin = action.valueLogin;
+  let valueRegister = action.valueRegister;
+  let valueConfirm = action.valueConfirm;
+
+  switch(action.type) {
+    case 'SET_MODAL_LOGIN':
+      return { ...state, loginForm: valueLogin, registerForm: false, confirmForm: false };
+    case 'SET_MODAL_REGISTER':
+      return { ...state, registerForm: valueRegister, loginForm: false, confirmForm: false };
+    case 'SET_MODAL_CONFIRM':
+      return { ...state, confirmForm: valueConfirm, registerForm: false, loginForm: false};
+    default:
+      return state;
+  }
+}

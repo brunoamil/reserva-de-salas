@@ -16,10 +16,7 @@ import {
 
 const ConfirmModalContent = () => {
 
- 
   const [countHour, setCountHour] = useState(8);
-
- 
 
   const sumCountHour = () => {
     if (countHour < 18) setCountHour(countHour + 1);

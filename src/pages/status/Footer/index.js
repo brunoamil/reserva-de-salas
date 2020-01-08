@@ -15,30 +15,6 @@ const Footer = props => {
 
   const { open, size } = modal;
 
-  // Login Form
-  const [loginForm, setLoginForm] = useState(true);
-  const showLoginForm = () => {
-    setLoginForm(true);
-    setRegisterForm(false);
-    setSuccess(false);
-  };
-
-  // Register Form
-  const [registerForm, setRegisterForm] = useState(false);
-  const showRegisterForm = () => {
-    setRegisterForm(true);
-    setLoginForm(false);
-  };
-
-  // Success Form
-  const [success, setSuccess] = useState(false);
-  const showSuccess = () => {
-    setSuccess(true);
-    setRegisterForm(false);
-  };
-
-  useEffect(() => showLoginForm(), [modal]);
-
   return (
     <>
       <Rodape>
@@ -59,12 +35,7 @@ const Footer = props => {
             size={size}
             open={open}
             close={close}
-            loginForm={loginForm}
-            registerForm={registerForm}
-            success={success}
-            showSuccess={showSuccess}
-            showLoginForm={showLoginForm}
-            showRegisterForm={showRegisterForm}
+            modal={modal}
           />
         </ContainerButton>
       </Rodape>

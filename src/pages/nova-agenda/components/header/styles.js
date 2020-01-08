@@ -134,20 +134,23 @@ export const SelectAling = styled.div`
 `
 
 export const Select = styled.select`
-    padding: 0px 20px;
-    text-align:center;
+    display: flex;
+    align-items: center !important;
+    justify-content: center;
+    text-align: center !important;
+
+    padding: 0px 5px;
+    
     border: 1px solid rgba(0, 0, 0, 0.541);
-    /* margin-right: 1.2rem; */
-    height:20px;
+    height: 20px;
 
     background-color:white;
     color:#0d4b81;
 
     option {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+      white-space : none !important;
+      width : 10px !important;
+      padding: 0 auto !important;
     }
 `
 

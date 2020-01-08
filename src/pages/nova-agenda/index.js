@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Table } from "semantic-ui-react";
 import "./index.css";
 import { HeaderAgenda } from "./components/header";
 import Modal from "../../components/modal";
+import { Container } from './styles';
 // import ConfirmModalContent from "./components/corfirmModalContent";
+
+import { useSelector, useDispatch } from 'react-redux';
 
 function NovaAgenda( {history} ) {
   var date = new Date();
@@ -11,6 +14,8 @@ function NovaAgenda( {history} ) {
   var dia = date.getDay();
   var mes = date.getMonth() + 1;
   let number = 0;
+
+  const dispatch = useDispatch();
 
   if (dia === 0) {
     data += 1;
@@ -25,9 +30,11 @@ function NovaAgenda( {history} ) {
     data = data - 1;
   }
 
+  useEffect(() => dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true}), [])
+
   //modal {
   const [modal, setModal] = useState({ open: false });
-  // const show = () => setModal({ open: true });
+  const show = () => setModal({ open: true });
   const close = () => setModal({ open: false });
   const { open } = modal;
   //}
@@ -35,9 +42,22 @@ function NovaAgenda( {history} ) {
   //Cor da Celula {
   const toggleDiv = event => {
     let idCell = event.target.getAttribute("id");
-    document.getElementById(`${idCell}`).style.backgroundColor = "brown";
+    document.getElementById(`${idCell}`)
+    show();
   };
   //}
+
+  // const CheckLogin = useSelector(state => state.user.usuarioLogin)
+  
+  // useEffect(() => {
+  //   if (CheckLogin === 1) {
+  //     ;
+  //   }
+  // }, [CheckLogin])
+
+  console.log(useSelector(state => state.modal.confirmForm))
+  console.log(useSelector(state => state.modal.loginForm))
+  console.log(useSelector(state => state.modal.registerForm))
 
   const dias = [
     `SEG ${data}/${mes}`,
@@ -62,7 +82,7 @@ function NovaAgenda( {history} ) {
   return (
     <>
       <div id='allPage'>
-        <Modal size='tiny' open={open} close={close}></Modal>
+        <Modal size='tiny' open={open} close={close} modal={modal}></Modal>
         <HeaderAgenda id="header" />
         <Table id="table" definition>
           <Table.Header>
@@ -83,8 +103,8 @@ function NovaAgenda( {history} ) {
                   {
                     dias.map((cell, index) => (
                       <Table.Cell>
-                        <div id={`${ number += 1}`} onClick = {toggleDiv}>
-                        </div>
+                        <Container id={`${ number += 1}`} onClick = {show}>
+                        </Container>
                       </Table.Cell>
                     ))
                   }
