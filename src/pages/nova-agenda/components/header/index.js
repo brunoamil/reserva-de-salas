@@ -89,7 +89,7 @@ export const HeaderAgenda = () => {
       
       history.push("/")
       dispatch( {type: 'LOG_OUT'} )
-    },1000) 
+    },1500) 
 
   }
 

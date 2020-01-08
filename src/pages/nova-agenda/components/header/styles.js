@@ -23,10 +23,6 @@ export const View = styled.div`
    
 
 `
-export const LogoView = styled.div`
-    display:flex;
-
-`
 
 export const Header = styled.div`
     display: flex;
@@ -39,7 +35,7 @@ export const Header = styled.div`
 
 
 export const Logo = styled.img`
-    width: 70px;
+    width: 60px;
     margin: 15px 5px 5px 1px;
 `
 
