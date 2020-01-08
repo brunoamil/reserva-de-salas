@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Dimmer, Loader } from "semantic-ui-react";
+import { withRouter, useHistory } from "react-router-dom";
 
 import {
   Logo,
@@ -17,7 +18,6 @@ import {
   Legenda,
   View,
   ViewSelect,
-  CustomLink
 } from "./styles";
 
 import Img from "../../../../assets/img/ceuma.png";
@@ -25,8 +25,15 @@ import Img from "../../../../assets/img/ceuma.png";
 import { useSelector, useDispatch } from 'react-redux';
 import firebase from '../../../../services/firebase';
 
+<<<<<<< HEAD
 export default props => {
   const [ salas, setSalas ] = useState([]);
+=======
+export const HeaderAgenda = () => {
+
+  const history = useHistory()
+  
+>>>>>>> origin/marcus-nova-agenda
   const [nome ,setNome] = useState();
   const [loader ,setLoader] = useState(false);
   
@@ -69,9 +76,23 @@ export default props => {
   // mandando as salas para o redux
   // dispatch({ type: 'REG_SALAS', arrSalas });
 
+<<<<<<< HEAD
   const actionLogout = () => { 
     dispatch( {type: 'LOG_OUT'} )
+=======
+  const dispatch = useDispatch();
+  const actionLogout = () => {
+
+>>>>>>> origin/marcus-nova-agenda
     setLoader(true); 
+    
+
+    setTimeout( () => {
+      
+      history.push("/")
+      dispatch( {type: 'LOG_OUT'} )
+    },1000) 
+
   }
 
   return (
@@ -87,8 +108,14 @@ export default props => {
               useSelector( state => state.usuarioLogin) > 0 ?
               <UserAling>
                   <h1>Usuário : { nome }</h1>
+<<<<<<< HEAD
                   <Button type="button">
                     <CustomLink onClick={ actionLogout } to="/" >Sair</CustomLink>
+=======
+                  
+                  <Button type="button" onClick={ actionLogout }>
+                    Sair
+>>>>>>> origin/marcus-nova-agenda
                   </Button>
                   { loader && 
                   <Dimmer active>
@@ -127,3 +154,5 @@ export default props => {
     </>
   );
 };
+
+export default withRouter(HeaderAgenda);

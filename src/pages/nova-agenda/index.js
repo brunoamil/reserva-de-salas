@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { Table } from "semantic-ui-react";
 import "./index.css";
+<<<<<<< HEAD
 import { Container, CellColor } from "./styles";
 
 import Header from "./components/header";
+=======
+import { HeaderAgenda } from "./components/header";
+>>>>>>> origin/marcus-nova-agenda
 import Modal from "../../components/modal";
 import ConfirmModalContent from "./components/corfirmModalContent";
 
-function NovaAgenda() {
+function NovaAgenda( {history} ) {
   var date = new Date();
   var data = date.getDate();
   var dia = date.getDay();
@@ -63,6 +67,7 @@ function NovaAgenda() {
   ];
   return (
     <>
+<<<<<<< HEAD
       <div id="allPage">
         <Modal
           size="mini"
@@ -71,6 +76,11 @@ function NovaAgenda() {
           CofirmModal={ConfirmModalContent}
         ></Modal>
         <Header id="header" />
+=======
+      <div id='allPage'>
+        <Modal size='tiny' open={open} close={close}></Modal>
+        <HeaderAgenda id="header" />
+>>>>>>> origin/marcus-nova-agenda
         <Table id="table" definition>
           <Table.Header>
             <Table.Row>
