@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 import { Table } from "semantic-ui-react";
 import "./index.css";
-<<<<<<< HEAD
-import { Container, CellColor } from "./styles";
-
-import Header from "./components/header";
-=======
 import { HeaderAgenda } from "./components/header";
->>>>>>> origin/marcus-nova-agenda
 import Modal from "../../components/modal";
-import ConfirmModalContent from "./components/corfirmModalContent";
+// import ConfirmModalContent from "./components/corfirmModalContent";
 
 function NovaAgenda( {history} ) {
   var date = new Date();
@@ -33,7 +27,7 @@ function NovaAgenda( {history} ) {
 
   //modal {
   const [modal, setModal] = useState({ open: false });
-  const show = () => setModal({ open: true });
+  // const show = () => setModal({ open: true });
   const close = () => setModal({ open: false });
   const { open } = modal;
   //}
@@ -67,20 +61,9 @@ function NovaAgenda( {history} ) {
   ];
   return (
     <>
-<<<<<<< HEAD
-      <div id="allPage">
-        <Modal
-          size="mini"
-          open={open}
-          close={close}
-          CofirmModal={ConfirmModalContent}
-        ></Modal>
-        <Header id="header" />
-=======
       <div id='allPage'>
         <Modal size='tiny' open={open} close={close}></Modal>
         <HeaderAgenda id="header" />
->>>>>>> origin/marcus-nova-agenda
         <Table id="table" definition>
           <Table.Header>
             <Table.Row>
@@ -100,8 +83,8 @@ function NovaAgenda( {history} ) {
                   {
                     dias.map((cell, index) => (
                       <Table.Cell>
-                        <Container id={`${ number += 1}`} onClick = {toggleDiv}>
-                        </Container>
+                        <div id={`${ number += 1}`} onClick = {toggleDiv}>
+                        </div>
                       </Table.Cell>
                     ))
                   }
