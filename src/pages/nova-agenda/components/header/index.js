@@ -77,26 +77,12 @@ export const HeaderAgenda = () => {
   // dispatch({ type: 'REG_SALAS', arrSalas });
 
   const actionLogout = () => {
-<<<<<<< HEAD
     setLoader(true);
     setTimeout(() => {
       history.push("/");
       dispatch({ type: "LOG_OUT" });
     }, 1000);
   };
-=======
-
-    setLoader(true); 
-    
-
-    setTimeout( () => {
-      
-      history.push("/")
-      dispatch( {type: 'LOG_OUT'} )
-    },1500) 
-
-  }
->>>>>>> a4cc8c7c5ca554e51b2d102b3915c38db638327d
 
   return (
     <>
