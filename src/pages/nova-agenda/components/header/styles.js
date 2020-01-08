@@ -151,6 +151,13 @@ export const Select = styled.select`
 
     background-color:white;
     color:#0d4b81;
+
+    option {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
 `
 
 export const Texto = styled.p`

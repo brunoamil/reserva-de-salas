@@ -26,6 +26,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import firebase from '../../../../services/firebase';
 
 export default props => {
+  const [ salas, setSalas ] = useState([]);
   const [nome ,setNome] = useState();
   const [loader ,setLoader] = useState(false);
   
@@ -46,10 +47,9 @@ export default props => {
     console.log('Error getting documents', err);
   });
 
-  
-  const arrSalas = [];
-  
   useEffect(() => {
+    const arrSalas = [];
+
     const getSalas = async () => {
       await firebase.firestore().collection('salas').get()
         .then(sucesso => {
@@ -60,21 +60,20 @@ export default props => {
         .catch(erro => {
           console.log('Erro ao pegar salas', erro);
         })
-        console.log(arrSalas)
+        setSalas(arrSalas);
     }
-
     getSalas();
-  }, [arrSalas])
 
-  dispatch({ type: 'REG_SALAS', arrSalas });
+  }, []);
 
+  // mandando as salas para o redux
+  // dispatch({ type: 'REG_SALAS', arrSalas });
 
   const actionLogout = () => { 
     dispatch( {type: 'LOG_OUT'} )
     setLoader(true); 
   }
 
-  const [ salas, setSalas ] = useState([useSelector(state => state.user.salasReserva)]);
   return (
     <>
       <Header>
@@ -84,29 +83,22 @@ export default props => {
               <Logo src={Img}></Logo>
               <Title>Reserva de Salas - Universidade Ceuma</Title>
             </div>
-            
             {
               useSelector( state => state.usuarioLogin) > 0 ?
               <UserAling>
-                
                   <h1>Usuário : { nome }</h1>
-                  
                   <Button type="button">
                     <CustomLink onClick={ actionLogout } to="/" >Sair</CustomLink>
                   </Button>
-
                   { loader && 
                   <Dimmer active>
                     <Loader size="big">Carregando</Loader>
                   </Dimmer>
                   }
-
               </UserAling>
               : ''
-            }
-
+                }
           </View>
-
           <ViewSelect>
             <CircleAling>
               <Circle></Circle>
@@ -117,7 +109,9 @@ export default props => {
 
             <SelectAling>
               <Select>
-                {salas[0].map(sala => ( console.log(sala) ))}
+                {salas.map(sala => ( 
+                  <option value={sala}>{sala}</option>
+                ))}
               </Select>
               <Texto>Semana</Texto>
               <Select>
