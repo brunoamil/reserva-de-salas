@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Input } from "semantic-ui-react";
-// import firebase from "../../../../services/firebase"
+import firebase from "../../../../services/firebase";
+import { useSelector } from 'react-redux';
 
 import {
   Container,
@@ -27,31 +28,37 @@ const ConfirmModalContent = () => {
     if (countHour === 8) setCountHour(18);
   };
 
-  /* Firebase Firestore
-
+  
+  const userName = useSelector(state => state.user.usuarioNome);
   const [nomeEvento, setNomeEvento] = useState();
-  const [hora, setHora] = useState();
-  const [data ,setData] = useState();
+  const [horaInicio, setHoraInicio] = useState();
+  const [horaTermino ,setHoraTermino] = useState();
 
   const db = firebase.firestore();
 
-  const cadastrarEvento = () => {
+  const cadastrarEvento = (e) => {
+    e.preventDefault();
 
     db.collection('reserva de salas').add( {
+      userName: userName,
       nomeEvento: nomeEvento,
-      hora: hora,
-      data: data,
-    } ).then().catch()
+      inicio: horaInicio,
+      termino: horaTermino
+    } ).then( () => {
+      alert('Sucesso')
+    }).catch( () => {
+      alert('Erro')
+    } )
 
-  }; */
+  };
 
   return (
     <Container>
       <ContainerMain>
         <HourContent>
-          <p>De: 00:00</p>
+          <p onChange = {(e) => setHoraInicio(e.target.value)}>De: 00:00</p>
           <div>
-            <p>Até: {" "}</p>
+            <p onChange = {(e) => setHoraTermino(e.target.value)}>Até: {" "}</p>
             <div>
               <CustomIcon name="caret up" size="big" onClick={sumCountHour} />
               <div>{countHour}</div>
@@ -65,12 +72,12 @@ const ConfirmModalContent = () => {
           <DescContent>
             <form method="post">
               <label htmlFor="Event">Evento</label>
-              <Input size="big" placeholder="Evento" type="text" name="inputEvent" id="inputEvent" />
+              <Input onChange = {(e) => setNomeEvento(e.target.value)} size="big" placeholder="Evento" type="text" name="inputEvent" id="inputEvent" />
             </form>
           </DescContent>
         </HeaderModalContent>
         <ContainerButton>
-          <Button size="tiny" primary>
+          <Button onClick = {cadastrarEvento} size="tiny" primary>
             Confirmar Reserva
           </Button>
         </ContainerButton>

@@ -3,7 +3,10 @@ import {  INITIAL_STATE, MODAL } from './store';
 
 export function usuarioReducer(state = INITIAL_STATE, action){
   let arrSalas = action.arrSalas;
+
   switch(action.type){
+    case 'USER_NAME':
+      return {...state, usuarioNome : action.usuarioNome } 
     case 'LOG_IN':
       return {...state, usuarioLogin: 1, usuarioEmail: action.usuarioEmail }
     case 'LOG_OUT':
@@ -13,7 +16,7 @@ export function usuarioReducer(state = INITIAL_STATE, action){
     case 'REG_SALAS':
       return {...state, salasReserva: arrSalas}
     //}
-    
+
     default:
       return state
 };

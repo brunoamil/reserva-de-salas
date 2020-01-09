@@ -1,7 +1,8 @@
 export const INITIAL_STATE = {
+  usuarioNome : '',
   usuarioEmail : '',
   usuarioLogin : 0,
-  salasReserva: [],
+  salasReserva: []
 }
 
 export const MODAL = {

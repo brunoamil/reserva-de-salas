@@ -28,6 +28,7 @@ import firebase from "../../../../services/firebase";
 export const HeaderAgenda = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  
 
   const [nome, setNome] = useState();
   const [loader, setLoader] = useState(false);
@@ -43,6 +44,7 @@ export const HeaderAgenda = () => {
       snapshot.forEach(doc => {
         if (doc.data().email === email) {
           setNome(doc.data().nome);
+          dispatch( { type: 'USER_NAME',usuarioNome : nome } ) 
         }
       });
     })
