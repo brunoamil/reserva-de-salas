@@ -17,19 +17,24 @@ import {
 
 const ConfirmModalContent = () => {
   const dispatch = useDispatch();
+  const horaInicial = useSelector(state => state.dados.hora) + 1
+  const horaInicialSelecionada = useSelector(state => state.dados.hora)
 
-  const horaInicio = useSelector(state => state.dados.hora); 
-
-  const [countHour, setCountHour] = useState(horaInicio);
+  const [countHour, setCountHour] = useState(useSelector(state => state.dados.hora));
   const [nomeEvento, setNomeEvento] = useState();
 
   const sumCountHour = () => {
-    if (countHour < 18) setCountHour(countHour + 1);
-    // if (countHour === 18) setCountHour(horaInicio);
+    if (countHour < 18) {
+      setCountHour(countHour + 1)
+      if (countHour === 18) setCountHour(horaInicialSelecionada);
+    };
   };
   const subCountHour = () => {
-    if (countHour >= horaInicio) setCountHour(countHour - 1);
-    // if (countHour === horaInicio) setCountHour(18);
+    if (countHour > 8) {
+      setCountHour(countHour - 1)
+      if (countHour === horaInicial) setCountHour(18);
+
+    };
   };
 
   
@@ -70,6 +75,7 @@ const ConfirmModalContent = () => {
               <div>{countHour}</div>
               <CustomIcon name="caret down" size="big" onClick={subCountHour} />
             </div>
+            
           </div>
         </HourContent>
         <HeaderModalContent>
