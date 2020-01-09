@@ -7,8 +7,10 @@ import { Container } from './styles';
 // import ConfirmModalContent from "./components/corfirmModalContent";
 
 import { useSelector, useDispatch } from 'react-redux';
+import firebase from '../../services/firebase';
 
 function NovaAgenda( {history} ) {
+
   var date = new Date();
   var data = date.getDate();
   var dia = date.getDay();
@@ -16,6 +18,9 @@ function NovaAgenda( {history} ) {
   let number = 0;
 
   const dispatch = useDispatch();
+
+  // const [eventos ,setEventos] = useState([]);
+  // let listaEventos = [];
 
   if (dia === 0) {
     data += 1;
@@ -31,6 +36,19 @@ function NovaAgenda( {history} ) {
   }
 
   useEffect(() => dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true}), [])
+
+  // useEffect( () => {
+  //   firebase.firestore().collection('reserva de salas').get().then( async (resultado) => {
+  //     await resultado.docs.forEach( doc => {
+  //       listaEventos.push({
+  //         id: doc.id,
+  //         ...doc.data()
+  //       })
+  //     })
+
+  //     setEventos(listaEventos);
+  //   })
+  // })
 
   //modal {
   const [modal, setModal] = useState({ open: false });
@@ -103,8 +121,10 @@ function NovaAgenda( {history} ) {
                   {
                     dias.map((cell, index) => (
                       <Table.Cell>
-                        <Container id={`${ number += 1}`} onClick = {show}>
-                        </Container>
+
+                        <Container id={`${ number += 1}`} onClick = {show} />
+                        {/* {eventos.map(<Container id={`${ number += 1}`} onClick = {show} />)} */}
+
                       </Table.Cell>
                     ))
                   }

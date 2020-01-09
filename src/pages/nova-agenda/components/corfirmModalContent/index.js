@@ -31,8 +31,8 @@ const ConfirmModalContent = () => {
   
   const userName = useSelector(state => state.user.usuarioNome);
   const [nomeEvento, setNomeEvento] = useState();
-  const [horaInicio, setHoraInicio] = useState();
-  const [horaTermino ,setHoraTermino] = useState();
+  // const [horaInicio, setHoraInicio] = useState();
+  // const [horaTermino ,setHoraTermino] = useState();
 
   const db = firebase.firestore();
 
@@ -42,8 +42,8 @@ const ConfirmModalContent = () => {
     db.collection('reserva de salas').add( {
       userName: userName,
       nomeEvento: nomeEvento,
-      inicio: horaInicio,
-      termino: horaTermino
+      // inicio: horaInicio,
+      // termino: horaTermino
     } ).then( () => {
       alert('Sucesso')
     }).catch( () => {
@@ -56,9 +56,9 @@ const ConfirmModalContent = () => {
     <Container>
       <ContainerMain>
         <HourContent>
-          <p onChange = {(e) => setHoraInicio(e.target.value)}>De: 00:00</p>
+          <p>De: 00:00</p>
           <div>
-            <p onChange = {(e) => setHoraTermino(e.target.value)}>Até: {" "}</p>
+            <p>Até: {" "}</p>
             <div>
               <CustomIcon name="caret up" size="big" onClick={sumCountHour} />
               <div>{countHour}</div>
