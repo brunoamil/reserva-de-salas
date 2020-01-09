@@ -20,7 +20,7 @@
   ],
   "start_url": "/",
   "display": "fullscreen",
-  "orientation": "portrait",
+  "orientation": "landscape",
   "background_color": "#f0f2f5",
   "theme_color": "#96f2d7"
 }

@@ -43,7 +43,7 @@ export const UserAling = styled.div`
     display:flex;
     /* justify-content:flex-end; */
     flex-flow: row nowrap;
-    margin: 5px 0px 30px 0px;
+    margin: 15px 0px 30px 0px;
 
     h1 {
       color: #0d4b81;
