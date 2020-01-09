@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Button, Input } from "semantic-ui-react";
 import firebase from "../../../../services/firebase";
 import { useSelector, useDispatch } from 'react-redux';
