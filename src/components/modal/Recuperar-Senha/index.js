@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { Form, Dimmer, Loader, Message } from "semantic-ui-react";
-import Success from "../Success";
 import firebase from '../../../services/firebase';
 
 import { Container, LabelReg, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC } from "./styles";
 
 function RedefinirSenha() {
   const [email, setEmail] = useState('');
-  const [success, setSuccess] = useState(false);
   const [carregando, setCarregando] = useState(false)
   const [erro, setErro] = useState(false)
   const [msgErro, setMsgErro] = useState('');
@@ -21,7 +19,6 @@ function RedefinirSenha() {
     setCarregando(true);
     firebase.auth().sendPasswordResetEmail(email).then(sucesso => {
       setCarregando(false)
-      setSuccess(true)
     }).catch(erro => {
       setCarregando(false)
       setErro(true)
@@ -44,9 +41,6 @@ function RedefinirSenha() {
 
   return (
     <>
-    {
-      success ? <Success>Email Enviado!</Success>
-      :
       <CustomModalContent>
         <ContainerModalContent>
           <TitleContainerMC>REDEFINIR SENHA</TitleContainerMC>
@@ -71,7 +65,6 @@ function RedefinirSenha() {
             : <div />}
         </Container>
       </CustomModalContent>
-    }
     </>
   );
 }

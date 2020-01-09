@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Dimmer, Loader } from "semantic-ui-react";
-import { withRouter, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import firebase from "../../../../services/firebase";
+
+import Img from "../../../../assets/img/ceuma.png";
 
 import {
   Logo,
@@ -20,13 +23,9 @@ import {
   ViewSelect
 } from "./styles";
 
-import Img from "../../../../assets/img/ceuma.png";
-
-import { useSelector, useDispatch } from "react-redux";
-import firebase from "../../../../services/firebase";
 
 export const HeaderAgenda = () => {
-  const history = useHistory();
+
   const dispatch = useDispatch();
 
   const [nome, setNome] = useState();
@@ -74,13 +73,13 @@ export const HeaderAgenda = () => {
   }, []);
 
   // mandando as salas para o redux
-  // dispatch({ type: 'REG_SALAS', arrSalas });
+  dispatch({ type: 'REG_SALAS', arrSalas: salas });
 
   const actionLogout = () => {
     setLoader(true);
     setTimeout(() => {
-      history.push("/");
       dispatch({ type: "LOG_OUT" });
+      setLoader(false);
     }, 1000);
   };
 
@@ -137,4 +136,4 @@ export const HeaderAgenda = () => {
   );
 };
 
-export default withRouter(HeaderAgenda);
+export default HeaderAgenda;

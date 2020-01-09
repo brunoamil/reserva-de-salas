@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { withRouter } from "react-router-dom";
 import { Form, Dimmer, Loader, Message } from "semantic-ui-react";
 import firebase from "../../../services/firebase";
 import "firebase/auth";
@@ -18,7 +17,7 @@ import {
   TitleContainerMC
 } from "./styles";
 
-function LoginForm({ history }) {
+function LoginForm() {
   const [login, setLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -42,9 +41,10 @@ function LoginForm({ history }) {
         .auth()
         .signInWithEmailAndPassword(email, senha)
         .then(sucesso => {
-          history.push("/NovaAgenda");
           
           dispatch( {type: 'LOG_IN', usuarioEmail: email} );
+          dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true})
+          
         })
         .catch(erro => {
           setCarregando(false);
@@ -109,4 +109,4 @@ function LoginForm({ history }) {
   );
 }
 
-export default withRouter(LoginForm);
+export default LoginForm;

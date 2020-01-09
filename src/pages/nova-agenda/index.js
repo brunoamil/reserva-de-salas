@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Table } from "semantic-ui-react";
+import { useDispatch, useSelector } from "react-redux";
+
 import "./index.css";
+import { Container } from "./styles";
+ 
 import { HeaderAgenda } from "./components/header";
 import Modal from "../../components/modal";
-// import ConfirmModalContent from "./components/corfirmModalContent";
 
-function NovaAgenda( {history} ) {
+function NovaAgenda() {
+
+  const dispatch = useDispatch();
+
   var date = new Date();
   var data = date.getDate();
   var dia = date.getDay();
@@ -27,16 +33,10 @@ function NovaAgenda( {history} ) {
 
   //modal {
   const [modal, setModal] = useState({ open: false });
-  // const show = () => setModal({ open: true });
+  const show = () => setModal({ open: true });
   const close = () => setModal({ open: false });
   const { open } = modal;
-  //}
 
-  //Cor da Celula {
-  const toggleDiv = event => {
-    let idCell = event.target.getAttribute("id");
-    document.getElementById(`${idCell}`).style.backgroundColor = "brown";
-  };
   //}
 
   const dias = [
@@ -59,6 +59,13 @@ function NovaAgenda( {history} ) {
     "17:00",
     "18:00"
   ];
+
+  // Teste {
+  console.log(useSelector(state => state.modal.loginForm));
+  console.log(useSelector(state => state.modal.registerForm));
+  console.log(useSelector(state => state.modal.confirmForm));
+  //}
+
   return (
     <>
       <div id='allPage'>
@@ -83,8 +90,11 @@ function NovaAgenda( {history} ) {
                   {
                     dias.map((cell, index) => (
                       <Table.Cell>
-                        <div id={`${ number += 1}`} onClick = {toggleDiv}>
-                        </div>
+                        <Container id={`${ number += 1}`} onClick={() => {
+                          dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true})
+                          show();
+                        }}>
+                        </Container>
                       </Table.Cell>
                     ))
                   }
