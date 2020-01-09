@@ -97,7 +97,7 @@ export const HeaderAgenda = () => {
             </div>
             {useSelector(state => state.user.usuarioLogin) > 0 ? (
               <UserAling>
-                <h1>Usuário : {nome}</h1>
+                <h1>Usuário : {nome}</h1> 
                 <Button type="button" onClick={actionLogout}>
                   Sair
                 </Button>

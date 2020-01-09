@@ -57,7 +57,7 @@ function NovaAgenda( {history} ) {
   const { open } = modal;
   //}
 
-  //Cor da Celula {
+  //chamar modal na celula {
   const toggleDiv = event => {
     let idCell = event.target.getAttribute("id");
     document.getElementById(`${idCell}`)
