@@ -1,4 +1,4 @@
-import {  INITIAL_STATE, MODAL } from './store';
+import {  INITIAL_STATE, MODAL, DADOS_RESERVA } from './store';
 
 
 export function usuarioReducer(state = INITIAL_STATE, action){
@@ -35,6 +35,21 @@ export function setModal(state = MODAL, action) {
     case 'SET_MODAL_CONFIRM':
       return { ...state, confirmForm: valueConfirm, registerForm: false, loginForm: false};
     default:
+      return state;
+  }
+}
+
+export function setDadosReserva(state = DADOS_RESERVA, action) {
+  switch(action.type) {
+    case "SET_EVENTO":
+      return { ...state, evento: action.evento }
+    case "SET_ID":
+      return { ...state, id: action.id }
+    case "SET_HORA":
+      return { ...state, hora: action.hora }
+    case "SET_HORA_FINAL":
+      return { ...state, horaFinal: action.horaFinal }
+    default: 
       return state;
   }
 }

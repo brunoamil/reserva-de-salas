@@ -10,3 +10,10 @@ export const MODAL = {
   registerForm: false,
   confirmForm: false
 }
+
+export const DADOS_RESERVA = {
+  hora: '',
+  horaFinal: '',
+  evento: '',
+  id: '',
+};

@@ -35,7 +35,7 @@ function NovaAgenda( {history} ) {
     data = data - 1;
   }
 
-  useEffect(() => dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true}), [])
+  
 
   // useEffect( () => {
   //   firebase.firestore().collection('reserva de salas').get().then( async (resultado) => {
@@ -49,6 +49,36 @@ function NovaAgenda( {history} ) {
   //     setEventos(listaEventos);
   //   })
   // })
+  const checkName = useSelector(state => state.user.usuarioNome);
+  const CheckLogin = useSelector(state => state.user.usuarioLogin);
+  const checkSala = useSelector(state => state.dados.evento);
+
+  const getSalas = async () => {
+    await firebase
+      .firestore()
+      .collection("reserva de salas")
+      .get()
+      .then(sucesso => {
+        sucesso.forEach(doc => {
+          if (doc.data().userName === checkName) {
+            dispatch({ type: "SET_EVENTO", evento: doc.data().nomeEvento })
+          }
+        });
+      })
+      .catch(erro => {
+        console.log("Erro ao pegar salas", erro);
+      });
+  };
+
+  useEffect(() => {
+    if (CheckLogin === 1) {
+      if ( checkSala === '' ) {
+        getSalas();
+      }
+    }
+  })
+
+  
 
   //modal {
   const [modal, setModal] = useState({ open: false });
@@ -56,16 +86,6 @@ function NovaAgenda( {history} ) {
   const close = () => setModal({ open: false });
   const { open } = modal;
   //}
-
-  //chamar modal na celula {
-  const toggleDiv = event => {
-    let idCell = event.target.getAttribute("id");
-    document.getElementById(`${idCell}`)
-    show();
-  };
-  //}
-
-  // const CheckLogin = useSelector(state => state.user.usuarioLogin)
   
   // useEffect(() => {
   //   if (CheckLogin === 1) {
@@ -97,6 +117,12 @@ function NovaAgenda( {history} ) {
     "17:00",
     "18:00"
   ];
+
+  console.log(useSelector(state => state.dados.id))
+  console.log(useSelector(state => state.dados.hora))
+  console.log(useSelector(state => state.dados.horaFinal))
+  console.log(useSelector(state => state.dados.evento))
+
   return (
     <>
       <div id='allPage'>
@@ -118,11 +144,22 @@ function NovaAgenda( {history} ) {
               horas.map((hora, index) => (
                 <Table.Row>
                   <Table.HeaderCell width='1'><strong> {hora} </strong></Table.HeaderCell>
+                  
                   {
                     dias.map((cell, index) => (
                       <Table.Cell>
-
-                        <Container id={`${ number += 1}`} onClick = {show} />
+                        
+                        <Container id={`${ number += 1 }`} onClick = {(event) => {
+                          let idCell = event.target.getAttribute("id");
+                          dispatch({ type: "SET_ID", id: idCell });
+                          if (CheckLogin === 0) {
+                            dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true});
+                          } else {
+                            dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
+                          }
+                          show();
+                          dispatch({ type: "SET_HORA", hora })
+                        }} />
                         {/* {eventos.map(<Container id={`${ number += 1}`} onClick = {show} />)} */}
 
                       </Table.Cell>
