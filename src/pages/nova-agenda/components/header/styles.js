@@ -23,10 +23,6 @@ export const View = styled.div`
    
 
 `
-export const LogoView = styled.div`
-    display:flex;
-
-`
 
 export const Header = styled.div`
     display: flex;
@@ -39,7 +35,7 @@ export const Header = styled.div`
 
 
 export const Logo = styled.img`
-    width: 70px;
+    width: 60px;
     margin: 15px 5px 5px 1px;
 `
 
@@ -72,11 +68,6 @@ export const Button = styled.button`
     font-weight: 500;
     text-align:center;
 `
-
-export const CustomLink = styled(Link)`
-  color : white;
-`;
-
 // export const ContainerAlert = styled.div`
 //     display: flex;
 //     flex-direction:row;
@@ -143,14 +134,24 @@ export const SelectAling = styled.div`
 `
 
 export const Select = styled.select`
-    padding: 0px 20px;
-    text-align:center;
+    display: flex;
+    align-items: center !important;
+    justify-content: center;
+    text-align: center !important;
+
+    padding: 0px 5px;
+    
     border: 1px solid rgba(0, 0, 0, 0.541);
-    /* margin-right: 1.2rem; */
-    height:20px;
+    height: 20px;
 
     background-color:white;
     color:#0d4b81;
+
+    option {
+      white-space : none !important;
+      width : 10px !important;
+      padding: 0 auto !important;
+    }
 `
 
 export const Texto = styled.p`

@@ -1,6 +1,9 @@
-import { createStore } from 'redux';
-import usuarioReducer from './reducer';
+import { createStore, combineReducers } from 'redux';
+import { usuarioReducer, setModal } from './reducer';
 
-const store = createStore(usuarioReducer);
+const store = createStore(combineReducers({
+  user: usuarioReducer,
+  modal: setModal,
+}));
 
 export default store;

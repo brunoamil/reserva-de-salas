@@ -1,5 +1,6 @@
 #allPage{
-    margin-top:-10px;
+    overflow: hidden !important;
+    margin-top:-15px;
 }
 #table{
     margin: 0 !important;   
