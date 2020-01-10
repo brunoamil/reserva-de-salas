@@ -16,6 +16,7 @@ import {
 import LoginForm from "./Login";
 import RegisterForm from "./Cadastro";
 import CofirmModalContent from './../../pages/nova-agenda/components/corfirmModalContent';
+import InfoModal from './../../pages/nova-agenda/components/InfoModal';
 
 import img from "../../assets/img/ceuma.png";
 
@@ -23,13 +24,13 @@ const ModalUser = ({
   size,
   open,
   close,
-  modal
 }) => {
   const dispatch = useDispatch();
 
   const loginForm = useSelector(state => state.modal.loginForm);
   const registerForm = useSelector(state => state.modal.registerForm);
   const confirmForm = useSelector(state => state.modal.confirmForm);
+  const infoModal = useSelector(state => state.modal.infoModal);
 
   return (
     <>
@@ -47,6 +48,7 @@ const ModalUser = ({
           {loginForm && <LoginForm />}
           {registerForm && <RegisterForm />}
           {confirmForm && <CofirmModalContent />}
+          {infoModal && <InfoModal />}
         </CustomModalContent>
         {loginForm && (
           <FooterModal>

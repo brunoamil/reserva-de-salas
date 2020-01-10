@@ -28,6 +28,7 @@ export const CustomButton = styled(Button)`
   margin: 30px 0 -2px !important;
   width: 100%
 `;
+
 export const ContainerModalContent = styled.div`
   width: 100%;
   display: flex;

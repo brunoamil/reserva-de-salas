@@ -17,6 +17,8 @@ function NovaAgenda( ) {
   let number = 0;
 
   const dispatch = useDispatch();
+
+  const [id, setId] = useState();
   
   const checkName = useSelector(state => state.user.usuarioNome);
   const CheckLogin = useSelector(state => state.user.usuarioLogin);
@@ -51,6 +53,8 @@ function NovaAgenda( ) {
         console.log("Erro ao pegar salas", erro);
       });
   };
+  
+  const iD = useSelector(state => state.dados.id);
 
   useEffect(() => {
     if (CheckLogin === 1) {
@@ -70,10 +74,9 @@ function NovaAgenda( ) {
   }
 
   //modal {
-  const [modal, setModal] = useState({ open: false });
-  const show = () => setModal({ open: true });
-  const close = () => setModal({ open: false });
-  const { open } = modal;
+  const [modal, setModal] = useState(false);
+  const show = () => setModal(true);
+  const close = () => setModal(false);
   //}
 
   console.log(useSelector(state => state.modal.confirmForm))
@@ -104,7 +107,7 @@ function NovaAgenda( ) {
   return (
     <>
       <div id='allPage'>
-        <Modal size='tiny' open={open} close={close} modal={modal}></Modal>
+        <Modal size='tiny' open={modal} close={close}></Modal>
         <HeaderAgenda id="header" />
         <Table id="table" definition>
           <Table.Header>

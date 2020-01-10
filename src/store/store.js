@@ -8,7 +8,8 @@ export const INITIAL_STATE = {
 export const MODAL = {
   loginForm: false,
   registerForm: false,
-  confirmForm: false
+  confirmForm: false,
+  infoModal: false,
 }
 
 export const DADOS_RESERVA = {
