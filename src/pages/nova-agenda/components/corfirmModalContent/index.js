@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { Button, Input } from "semantic-ui-react";
 import firebase from "../../../../services/firebase";
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,57 +9,48 @@ import {
   ContainerMain,
   DescContent,
   HourContent,
-  CustomIcon,
-  PointHourContent,
-  ZeroHourContent,
   ContainerButton
 } from "./styles";
 
 const ConfirmModalContent = () => {
   const dispatch = useDispatch();
-  const horaInicial = useSelector(state => state.dados.hora) + 1
-  const horaInicialSelecionada = useSelector(state => state.dados.hora)
+  const horaInicial = useSelector(state => state.dados.hora);
 
-  const [countHour, setCountHour] = useState(useSelector(state => state.dados.hora));
+  const horas = [
+    "08:00",
+    "09:00",
+    "10:00",
+    "11:00",
+    "12:00",
+    "13:00",
+    "14:00",
+    "15:00",
+    "16:00",
+    "17:00",
+    "18:00"
+  ];
+
+  
+  const [horaFinal, setHoraFinal] = useState(horaInicial);
   const [nomeEvento, setNomeEvento] = useState();
-
-  const sumCountHour = () => {
-    if (countHour < 18) {
-      setCountHour(countHour + 1)
-      if (countHour === 18) setCountHour(horaInicialSelecionada);
-    };
-  };
-  const subCountHour = () => {
-    if (countHour > 8) {
-      setCountHour(countHour - 1)
-      if (countHour === horaInicial) setCountHour(18);
-
-    };
-  };
 
   
   const userName = useSelector(state => state.user.usuarioNome);
-  // const [horaInicio, setHoraInicio] = useState();
-  // const [horaTermino ,setHoraTermino] = useState();
   
-  // mandado evendo pro redux
-  
-
-  
-  // const db = firebase.firestore();
+  const db = firebase.firestore();
   
   const cadastrarEvento = () => {
     
-    // db.collection('reserva de salas').add( {
-    //   userName: userName,
-    //   nomeEvento: nomeEvento,
-    //   // inicio: horaInicio,
-    //   // termino: horaTermino
-    // } ).then( () => {
-    //   alert('Sucesso')
-    // }).catch( () => {
-    //   alert('Erro')
-    // } )
+    db.collection('reserva de salas').add( {
+      userName: userName,
+      nomeEvento: nomeEvento,
+      inicio: horaInicial,
+      termino: horaFinal
+    } ).then( () => {
+      console.log('MANDEI!!');
+    }).catch( erro => {
+      console.log(erro);
+    } )
     
   };
 
@@ -67,15 +58,16 @@ const ConfirmModalContent = () => {
     <Container>
       <ContainerMain>
         <HourContent>
-          <p>De: {useSelector(state => state.dados.hora)}</p>
-          <div>
+          <p>De: {horaInicial}</p>
+           <div>
             <p>Até: {" "}</p>
-            <div>
-              <CustomIcon name="caret up" size="big" onClick={sumCountHour} />
-              <div>{countHour}</div>
-              <CustomIcon name="caret down" size="big" onClick={subCountHour} />
-            </div>
-            
+
+            <select onChange={e => setHoraFinal(e.target.value)}>
+              {horas.filter(item => item > horaInicial).map(hora => (
+                <option>{hora}</option>
+              ))}
+            </select>
+
           </div>
         </HourContent>
         <HeaderModalContent>
@@ -91,7 +83,7 @@ const ConfirmModalContent = () => {
         <ContainerButton>
           <Button onClick = {() => {
             cadastrarEvento();
-            dispatch({ type: "SET_HORA_FINAL", horaFinal: countHour })
+            dispatch({ type: "SET_HORA_FINAL", horaFinal })
           }} size="tiny" primary>
             Confirmar Reserva
           </Button>
