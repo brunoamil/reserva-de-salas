@@ -16,7 +16,7 @@ import {
 import LoginForm from "./Login";
 import RegisterForm from "./Cadastro";
 import CofirmModalContent from './../../pages/nova-agenda/components/corfirmModalContent';
-import InfoModal from './../../pages/nova-agenda/components/InfoModal';
+// import InfoModal from './../../pages/nova-agenda/components/InfoModal';
 
 import img from "../../assets/img/ceuma.png";
 
@@ -48,7 +48,7 @@ const ModalUser = ({
           {loginForm && <LoginForm />}
           {registerForm && <RegisterForm />}
           {confirmForm && <CofirmModalContent />}
-          {infoModal && <InfoModal />}
+          {/* {infoModal && <InfoModal />} */}
         </CustomModalContent>
         {loginForm && (
           <FooterModal>
