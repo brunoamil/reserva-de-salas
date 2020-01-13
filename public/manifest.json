@@ -3,7 +3,7 @@
   "short_name": "Reserva de salas",
   "icons": [
       {
-          "src": "img/logo.png",
+          "src": "./logo192.png",
           "sizes": "92x92",
           "type": "image/png"
       },
