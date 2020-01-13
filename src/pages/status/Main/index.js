@@ -4,7 +4,7 @@ import { Bloco, Title } from './styles';
 const Main = props => {
   return (
     <Bloco>
-      <Title>Disponível</Title>
+      <Title>Faça sua reserva!</Title>
     </Bloco>
   );
 };
