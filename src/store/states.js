@@ -12,6 +12,7 @@ export const SALAS = {
 
 
 export const MODAL = {
+  modal: false,
   loginForm: false,
   registerForm: false,
   confirmForm: false,

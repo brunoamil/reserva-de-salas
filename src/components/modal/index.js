@@ -21,8 +21,8 @@ import img from "../../assets/img/ceuma.png";
 
 const ModalUser = ({
   size,
-  open,
   close,
+  open
 }) => {
   const dispatch = useDispatch();
 
@@ -30,10 +30,12 @@ const ModalUser = ({
   const registerForm = useSelector(state => state.modal.registerForm);
   const confirmForm = useSelector(state => state.modal.confirmForm);
   const infoModal = useSelector(state => state.modal.infoModal);
+  // const open = useSelector(state => state.modal.modal);
 
   return (
     <>
-      <Global size={size} open={open} onClose={close}>
+      <Global size={size} open={open} closeOnEscape={false}
+          closeOnDimmerClick={false}>
         <ModalHeader>
           <ContainerHeader>
             <ContainerLogo>

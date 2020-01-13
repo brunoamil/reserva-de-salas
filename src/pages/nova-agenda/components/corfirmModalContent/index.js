@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Input } from "semantic-ui-react";
+import { Button, Input, Message } from "semantic-ui-react";
 import firebase from "../../../../services/firebase";
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -32,10 +32,11 @@ const ConfirmModalContent = () => {
   
   const [horaFinal, setHoraFinal] = useState(horaInicial);
   const [nomeEvento, setNomeEvento] = useState();
+  const [msg, setMsg] = useState(false);
   
   const userName = useSelector(state => state.user.usuarioNome);
   const id = useSelector(state => state.dados.id);
-  const sala = useSelector(state => state.salas.salaAtual);
+  const sala = useSelector(state => state.salas.salaAtual) || "Auditório";
   
   const db = firebase.firestore();
   
@@ -48,6 +49,7 @@ const ConfirmModalContent = () => {
       id
     }).then( () => {
       console.log('MANDEI!!');
+      setMsg(true)
     }).catch( erro => {
       console.log(erro);
     });
@@ -90,6 +92,7 @@ const ConfirmModalContent = () => {
               Confirmar Reserva
             </Button>
           </ContainerButton>
+          {msg && <Message header="Cadastro Concluído com SUCESSO!" color="green" icon="check" />}
         </ContainerMain>
       </Container>
     </>

@@ -43,7 +43,9 @@ export function setModal(state = MODAL, action) {
       return { ...state, confirmForm: valueConfirm, registerForm: false, loginForm: false, infoModal: false};
     case "SET_MODAL_INFO":
       return { ...state, infoModal: valueInfo, confirmForm: false, registerForm: false, loginForm: false }
-    default:
+    case "SET_MODAL":
+      return { ...state, modal: false }
+    default: 
       return state;
   }
 }

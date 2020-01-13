@@ -28,14 +28,14 @@ const Footer = props => {
               Horários
             </Button>
           </Link>
-          <Button onClick={show('tiny')} size='big' primary>
+          {/* <Button onClick={show('tiny')} size='big' primary>
             Reservar
           </Button>
           <Modal
             size={size}
             open={open}
             close={close}
-          />
+          /> */}
         </ContainerButton>
       </Rodape>
     </>

@@ -20,7 +20,7 @@ function NovaAgenda( ) {
 
   const dispatch = useDispatch();
   
-  const [loader, setLoader] = useState(true);
+  const [loader, setLoader] = useState(false);
   
   const CheckLogin = useSelector(state => state.user.usuarioLogin);
   const sala = useSelector(state => state.salas.salaAtual) || "Auditorio";
@@ -39,6 +39,7 @@ function NovaAgenda( ) {
   }
 
   useEffect(() => {
+    dispatch({ type: "SET_MODAL", modal: true});
     const getEventos = async () => {
       let eventId = [];
   
