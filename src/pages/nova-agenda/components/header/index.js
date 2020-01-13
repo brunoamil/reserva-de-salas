@@ -13,7 +13,6 @@ import {
   Button,
   Select,
   SelectAling,
-  Texto,
   Container,
   CircleAling,
   Circle,
@@ -120,13 +119,6 @@ export const HeaderAgenda = () => {
                 {salas.map(sala => (
                   <option value={sala}>{sala}</option>
                 ))}
-              </Select>
-              <Texto>Semana</Texto>
-              <Select>
-                <option value="sala1">2 a 6, Novembro</option>
-                <option value="sala2">9 a 13, Novembro</option>
-                <option value="sala3">16 a 20, Novembro</option>
-                <option value="sala4">23 a 27, Novembro</option>
               </Select>
             </SelectAling>
           </ViewSelect>

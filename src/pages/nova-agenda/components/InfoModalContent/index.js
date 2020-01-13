@@ -7,10 +7,10 @@ import {  } from './styles';
 const InfoModal = () => {
   const sala = useSelector(state => state.salas.salaAtual) || "Auditorio";
 
-  let userName = '';
-  let eventName = '';
-  let inicialHour = '';
-  let finishHour = '';
+  // let userName = '';
+  // let eventName = '';
+  // let inicialHour = '';
+  // let finishHour = '';
 
   const getEventos = async () => {
 

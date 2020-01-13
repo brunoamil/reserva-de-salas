@@ -126,7 +126,7 @@ function NovaAgenda( ) {
                   {loader ? (
                     <Dimmer active>
                       <Loader size="big">Carregando Eventos...</Loader>
-                   </Dimmer>
+                    </Dimmer>
                   ) : (
                     dias.map((cell, index) => (
                       <Table.Cell>
