@@ -41,10 +41,11 @@ function LoginForm() {
         .auth()
         .signInWithEmailAndPassword(email, senha)
         .then(sucesso => {
-          
+          // history.push("/NovaAgenda");
+          setCarregando(false);
+
           dispatch( {type: 'LOG_IN', usuarioEmail: email} );
-          dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true})
-          
+          dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true});
         })
         .catch(erro => {
           setCarregando(false);

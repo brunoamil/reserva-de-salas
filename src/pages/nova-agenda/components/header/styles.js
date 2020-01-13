@@ -23,10 +23,6 @@ export const View = styled.div`
    
 
 `
-export const LogoView = styled.div`
-    display:flex;
-
-`
 
 export const Header = styled.div`
     display: flex;
@@ -39,7 +35,7 @@ export const Header = styled.div`
 
 
 export const Logo = styled.img`
-    width: 70px;
+    width: 60px;
     margin: 15px 5px 5px 1px;
 `
 
@@ -47,7 +43,7 @@ export const UserAling = styled.div`
     display:flex;
     /* justify-content:flex-end; */
     flex-flow: row nowrap;
-    margin: 5px 0px 30px 0px;
+    margin: 15px 0px 30px 0px;
 
     h1 {
       color: #0d4b81;
@@ -138,20 +134,23 @@ export const SelectAling = styled.div`
 `
 
 export const Select = styled.select`
-    padding: 0px 20px;
-    text-align:center;
+    display: flex;
+    align-items: center !important;
+    justify-content: center;
+    text-align: center !important;
+
+    padding: 0px 5px;
+    
     border: 1px solid rgba(0, 0, 0, 0.541);
-    /* margin-right: 1.2rem; */
-    height:20px;
+    height: 20px;
 
     background-color:white;
     color:#0d4b81;
 
     option {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+      white-space : none !important;
+      width : 10px !important;
+      padding: 0 auto !important;
     }
 `
 

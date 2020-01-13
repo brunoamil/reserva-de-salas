@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { withRouter, useHistory } from 'react-router-dom';
 import { Form, Dimmer, Loader, Message } from "semantic-ui-react";
 import firebase from '../../../services/firebase';
 import { useDispatch } from 'react-redux';
@@ -14,6 +15,8 @@ function RegisterForm() {
   const [carregando, setCarregando] = useState(false)
   const [erro, setErro] = useState(false)
   const [msgErro, setMsgErro] = useState('');
+
+  const history = useHistory();
 
   function Cadastrar() {
     if ((email === '') || (senha === '') || (nome === '')) {
@@ -96,4 +99,4 @@ function RegisterForm() {
     </>
   );
 }
-export default RegisterForm;
+export default withRouter(RegisterForm);

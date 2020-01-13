@@ -11,11 +11,11 @@ import {
   CustomModalContent,
   IconExit,
   ContainerLogo
-
 } from "./styles";
 import LoginForm from "./Login";
 import RegisterForm from "./Cadastro";
 import CofirmModalContent from './../../pages/nova-agenda/components/corfirmModalContent';
+import InfoModal from './../../pages/nova-agenda/components/InfoModalContent';
 
 import img from "../../assets/img/ceuma.png";
 
@@ -24,12 +24,12 @@ const ModalUser = ({
   open,
   close,
 }) => {
-
   const dispatch = useDispatch();
 
   const loginForm = useSelector(state => state.modal.loginForm);
   const registerForm = useSelector(state => state.modal.registerForm);
   const confirmForm = useSelector(state => state.modal.confirmForm);
+  const infoModal = useSelector(state => state.modal.infoModal);
 
   return (
     <>
@@ -47,6 +47,7 @@ const ModalUser = ({
           {loginForm && <LoginForm />}
           {registerForm && <RegisterForm />}
           {confirmForm && <CofirmModalContent />}
+          {infoModal && <InfoModal />}
         </CustomModalContent>
         {loginForm && (
           <FooterModal>
@@ -59,7 +60,7 @@ const ModalUser = ({
         {registerForm && (
           <FooterModal>
             <p>
-            Já possui conta? <span onClick={() => dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true })}>Clique Aqui!</span>
+              Já possui conta? <span onClick={() => dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true })}>Clique Aqui!</span>
             </p>
           </FooterModal>
         )}

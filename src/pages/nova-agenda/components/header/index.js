@@ -42,14 +42,14 @@ export const HeaderAgenda = () => {
       snapshot.forEach(doc => {
         if (doc.data().email === email) {
           setNome(doc.data().nome);
+          dispatch( { type: 'USER_NAME',usuarioNome : nome } ) 
         }
       });
     })
     .catch(err => {
-      console.log("Error getting documents", err);
+      console.log("Erro ao obter o nome! ", err);
     });
 
-    console.log(useSelector(state => state.user.usuarioLogin))
 
   useEffect(() => {
     const arrSalas = [];
@@ -94,7 +94,7 @@ export const HeaderAgenda = () => {
             </div>
             {useSelector(state => state.user.usuarioLogin) > 0 ? (
               <UserAling>
-                <h1>Usuário : {nome}</h1>
+                <h1>Usuário : {nome}</h1> 
                 <Button type="button" onClick={actionLogout}>
                   Sair
                 </Button>
@@ -116,7 +116,7 @@ export const HeaderAgenda = () => {
               <Legenda>Disponível</Legenda>
             </CircleAling>
             <SelectAling>
-              <Select>
+              <Select onChange={e => dispatch({ type: "GET_SALA", sala: (e.target.value)})}>
                 {salas.map(sala => (
                   <option value={sala}>{sala}</option>
                 ))}
