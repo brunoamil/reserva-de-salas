@@ -8,6 +8,8 @@
 #table{
     margin: 0 !important;   
     border: none;
+    border-radius: 0;
+    height: 91.5vh;
 }
 .ui.table td{
     text-align: center;
