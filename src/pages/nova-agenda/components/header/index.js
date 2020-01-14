@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Dimmer, Loader } from "semantic-ui-react";
+import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import firebase from "../../../../services/firebase";
 
@@ -13,7 +13,6 @@ import {
   Button,
   Select,
   SelectAling,
-  Texto,
   Container,
   CircleAling,
   Circle,
@@ -42,12 +41,12 @@ export const HeaderAgenda = () => {
       snapshot.forEach(doc => {
         if (doc.data().email === email) {
           setNome(doc.data().nome);
-          dispatch( { type: 'USER_NAME',usuarioNome : nome } ) 
+          dispatch({ type: 'USER_NAME', usuarioNome: nome })
         }
       });
     })
     .catch(err => {
-      console.log("Erro ao obter o nome! ", err);
+      console.log("Erro ao obter o nome do usuario! ", err);
     });
 
 
@@ -92,21 +91,17 @@ export const HeaderAgenda = () => {
               <Logo src={Img}></Logo>
               <Title>Reserva de Salas - Universidade Ceuma</Title>
             </div>
-            {useSelector(state => state.user.usuarioLogin) > 0 ? (
-              <UserAling>
-                <h1>Usuário : {nome}</h1> 
+            <UserAling>
+              {useSelector(state => state.user.usuarioLogin) > 0 ? (
+                <h1>Usuário: {nome}</h1>
+              )
+                : ''}
+              <Link to='/'>
                 <Button type="button" onClick={actionLogout}>
-                  Sair
+                  Voltar
                 </Button>
-                {loader && (
-                  <Dimmer active>
-                    <Loader size="big">Carregando</Loader>
-                  </Dimmer>
-                )}
-              </UserAling>
-            ) : (
-              ""
-            )}
+              </Link>
+            </UserAling>
           </View>
           <ViewSelect>
             <CircleAling>
@@ -116,17 +111,10 @@ export const HeaderAgenda = () => {
               <Legenda>Disponível</Legenda>
             </CircleAling>
             <SelectAling>
-              <Select onChange={e => dispatch({ type: "GET_SALA", sala: (e.target.value)})}>
+              <Select onChange={e => dispatch({ type: "GET_SALA", sala: (e.target.value) })}>
                 {salas.map(sala => (
                   <option value={sala}>{sala}</option>
                 ))}
-              </Select>
-              <Texto>Semana</Texto>
-              <Select>
-                <option value="sala1">2 a 6, Novembro</option>
-                <option value="sala2">9 a 13, Novembro</option>
-                <option value="sala3">16 a 20, Novembro</option>
-                <option value="sala4">23 a 27, Novembro</option>
               </Select>
             </SelectAling>
           </ViewSelect>

@@ -19,11 +19,7 @@ import InfoModal from './../../pages/nova-agenda/components/InfoModalContent';
 
 import img from "../../assets/img/ceuma.png";
 
-const ModalUser = ({
-  size,
-  open,
-  close,
-}) => {
+const ModalUser = () => {
   const dispatch = useDispatch();
 
   const loginForm = useSelector(state => state.modal.loginForm);
@@ -31,9 +27,14 @@ const ModalUser = ({
   const confirmForm = useSelector(state => state.modal.confirmForm);
   const infoModal = useSelector(state => state.modal.infoModal);
 
+  const close = () => {
+    dispatch({ type: "SET_MODAL", valueModal: false })
+  }
+
   return (
     <>
-      <Global size={size} open={open} onClose={close}>
+      <Global size="tiny" open={useSelector(state => state.modal.modal)} closeOnEscape={false}
+          closeOnDimmerClick={false} >
         <ModalHeader>
           <ContainerHeader>
             <ContainerLogo>

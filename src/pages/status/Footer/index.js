@@ -18,14 +18,10 @@ const Footer = props => {
   return (
     <>
       <Rodape>
-        <ContainerTitle>
-          <TitleH1>Próximo Evento:</TitleH1>
-          <TitleH2>NTI - BRUNO - 9:00 - 11:00</TitleH2>
-        </ContainerTitle>
         <ContainerButton>
           <Link to="/NovaAgenda">
             <Button size='big' primary>
-              Horários
+              Reservar
             </Button>
           </Link>
           {/* <Button onClick={show('tiny')} size='big' primary>
