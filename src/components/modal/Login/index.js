@@ -11,6 +11,7 @@ import {
   Container,
   LabelReg,
   TitleForgot,
+  CustomForm,
   CustomButton,
   CustomModalContent,
   ContainerModalContent,
@@ -63,9 +64,9 @@ function LoginForm() {
             <TitleContainerMC>LOGIN</TitleContainerMC>
           </ContainerModalContent>
           <Container>
-            <Form size="tiny" key="tiny" method="POST">
+            <Form size="large" key="tiny" method="POST">
               <Form.Field>
-                <LabelReg>Email:</LabelReg>
+                <LabelReg>Email</LabelReg>
                 <input
                   onChange={e => setEmail(e.target.value)}
                   type="email"
@@ -73,7 +74,7 @@ function LoginForm() {
                 />
               </Form.Field>
               <Form.Field>
-                <LabelReg>Senha:</LabelReg>
+                <LabelReg>Senha</LabelReg>
                 <input
                   onChange={e => setSenha(e.target.value)}
                   type="password"
@@ -92,7 +93,6 @@ function LoginForm() {
               <CustomButton
                 onClick={Logar}
                 size="large"
-                primary
                 content="Login"
               />
             )}

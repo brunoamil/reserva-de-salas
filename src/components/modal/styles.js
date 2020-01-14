@@ -13,12 +13,13 @@ export const ContainerHeader = styled.div`
 
 export const ModalHeader = styled(Modal.Header)`
   /* height: 40px; */
+  border : none !important;
 `;
 
 export const TitleH1Header = styled.h1`
   margin: 6px 0px 0px 3px !important;
   font-size: 0.9em;
-  color: #848484;
+  color: #0d4b81;
 `;
 
 export const ContainerModalContent = styled.div`
@@ -31,7 +32,7 @@ export const ContainerModalContent = styled.div`
 export const TitleContainerMC = styled.h1`
   font-weight: bold;
   font-size: 2em;
-  border-bottom: 3px solid #0080ff;
+  border-bottom: 3px solid #0d4b81;
   color: #000;
 `;
 
@@ -41,7 +42,7 @@ export const FooterModal = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #0080ff;
+  background: #0d4b81;
 
   p {
     color: #ffffff;

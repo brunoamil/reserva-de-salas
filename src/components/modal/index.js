@@ -59,13 +59,6 @@ const ModalUser = ({
             </p>
           </FooterModal>
         )}
-        {registerForm && (
-          <FooterModal>
-            <p>
-              Já possui conta? <span onClick={() => dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true })}>Clique Aqui!</span>
-            </p>
-          </FooterModal>
-        )}
       </Global>
     </>
   );

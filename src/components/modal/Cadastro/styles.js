@@ -11,37 +11,16 @@ export const Container = styled.div`
 `;
 
 export const LabelReg = styled.h1`
-  font-size: 2em;
+  font-size: 1.5em;
 `;
 
 export const CustomButton = styled(Button)`
   margin: 30px 0 -2px !important;
-  width: 100%
-`;
-
-export const FooterModal = styled.div`
-  height: 40px;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #0080ff;
-
-  p {
-    color: #ffffff;
-    font-size: 1em;
-  }
-
-  a {
-    text-decoration: none;
-    color: #ffffff;
-
-    &:hover {
-      text-decoration: underline;
-      color: #ffffff;
-    }
-  }
+  background-color: #0d4b81 !important;
+  color: #fff !important;
 `;
+
 export const ContainerModalContent = styled.div`
   width: 100%;
   display: flex;
@@ -52,7 +31,7 @@ export const ContainerModalContent = styled.div`
 export const TitleContainerMC = styled.h1`
   font-weight: bold;
   font-size: 2em;
-  border-bottom: 3px solid #0080ff;
+  border-bottom: 3px solid #0d4b81;
   color: #000;
 `;
 export const CustomModalContent = styled(Modal.Content)`

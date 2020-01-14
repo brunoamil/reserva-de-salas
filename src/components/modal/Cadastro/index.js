@@ -65,20 +65,20 @@ function RegisterForm() {
           <TitleContainerMC>CADASTRO</TitleContainerMC>
         </ContainerModalContent>
         <Container>
-          <Form size="tiny" key="tiny" method="POST">
+          <Form size="large" key="tiny" method="POST">
             <Form.Field>
-              <LabelReg>Email:</LabelReg>
+              <LabelReg>Email</LabelReg>
               <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
             </Form.Field>
 
             <Form.Group widths='equal'>
               <Form.Field>
-                <LabelReg>Nome:</LabelReg>
+                <LabelReg>Nome</LabelReg>
                 <input onChange={(e) => setNome(e.target.value)} placeholder="Nome" />
               </Form.Field>
 
               <Form.Field>
-                <LabelReg>Senha:</LabelReg>
+                <LabelReg>Senha</LabelReg>
                 <input onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" />
               </Form.Field>
             </Form.Group>
@@ -90,7 +90,7 @@ function RegisterForm() {
               </Dimmer>
 
               :
-              <CustomButton size="large" primary content="Cadastrar-se" onClick={Cadastrar} />
+              <CustomButton size="large" content="Cadastrar-se" onClick={Cadastrar} />
           }
           {erro ? <Message header={msgErro} color='red' icon='dont' />
             : <div />}
