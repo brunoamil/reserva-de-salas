@@ -12,7 +12,7 @@ import {
   ContainerButton
 } from "./styles";
 
-const ConfirmModalContent = () => {
+const ConfirmModalContent = ({closeModal}) => {
   const dispatch = useDispatch();
   const horaInicial = useSelector(state => state.dados.hora);
 
@@ -29,17 +29,18 @@ const ConfirmModalContent = () => {
     "17:00",
     "18:00"
   ];
-  
+
   const [horaFinal, setHoraFinal] = useState(horaInicial);
   const [nomeEvento, setNomeEvento] = useState();
-  const [msg, setMsg] = useState(false);
-  
+  const [msgSucesso, setMsgSucesso] = useState(false);
+
+
   const userName = useSelector(state => state.user.usuarioNome);
   const id = useSelector(state => state.dados.id);
   const sala = useSelector(state => state.salas.salaAtual) || "Auditório";
-  
+
   const db = firebase.firestore();
-  
+
   const cadastrarEvento = () => {
     db.collection("salas").doc(`${sala}`).collection("Eventos").add({
       userName: userName,
@@ -49,11 +50,13 @@ const ConfirmModalContent = () => {
       id
     }).then( () => {
       console.log('MANDEI!!');
-      setMsg(true)
+      setMsgSucesso(true)
     }).catch( erro => {
       console.log(erro);
     });
-    
+    setTimeout(function () { closeModal() }, 3000);
+
+
   };
 
   return (
@@ -77,22 +80,27 @@ const ConfirmModalContent = () => {
             <DescContent>
               <form method="post">
                 <label htmlFor="Event">Evento</label>
-                <Input onChange = {(e) => {
+                <Input onChange={(e) => {
                   setNomeEvento(e.target.value)
                 }} size="big" placeholder="Evento" type="text" name="inputEvent" id="inputEvent" />
               </form>
             </DescContent>
           </HeaderModalContent>
-          <ContainerButton>
-            <Button onClick = {() => {
-              cadastrarEvento();
-              dispatch({ type: "SET_HORA_FINAL", horaFinal });
-              document.getElementById(id).style.background = 'red';
-            }} size="tiny" primary>
-              Confirmar Reserva
-            </Button>
-          </ContainerButton>
-          {msg && <Message header="Cadastro Concluído com SUCESSO!" color="green" icon="check" />}
+          {
+            msgSucesso ?
+              <Message header="Reserva Concluída!" color="green" icon="check" />
+              :
+              <ContainerButton>
+                <Button onClick={() => {
+                  cadastrarEvento();
+                  dispatch({ type: "SET_HORA_FINAL", horaFinal });
+                  document.getElementById(id).style.background = 'red';
+                }} size="tiny" primary>
+                  Confirmar Reserva
+                </Button>
+              </ContainerButton>
+
+          }
         </ContainerMain>
       </Container>
     </>

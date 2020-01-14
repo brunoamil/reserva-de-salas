@@ -30,7 +30,6 @@ const ModalUser = ({
   const registerForm = useSelector(state => state.modal.registerForm);
   const confirmForm = useSelector(state => state.modal.confirmForm);
   const infoModal = useSelector(state => state.modal.infoModal);
-  // const open = useSelector(state => state.modal.modal);
 
   return (
     <>
@@ -48,7 +47,7 @@ const ModalUser = ({
         <CustomModalContent>
           {loginForm && <LoginForm />}
           {registerForm && <RegisterForm />}
-          {confirmForm && <CofirmModalContent />}
+          {confirmForm && <CofirmModalContent closeModal={close} />}
           {infoModal && <InfoModal />}
         </CustomModalContent>
         {loginForm && (

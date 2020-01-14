@@ -46,7 +46,7 @@ export const HeaderAgenda = () => {
       });
     })
     .catch(err => {
-      console.log("Erro ao obter o nome! ", err);
+      console.log("Erro ao obter o nome do usuario! ", err);
     });
 
 
