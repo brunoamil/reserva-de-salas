@@ -85,8 +85,7 @@ export const ViewSelect = styled.div`
     display:flex;
     width:100%;
     justify-content:flex-end;
-    margin-top:-30px;
-    margin-bottom: 2px;
+    margin : -30px 0px 2px 0px;
 `
 export const CircleAling = styled.div`
     display:flex;
@@ -128,6 +127,8 @@ export const SelectAling = styled.div`
     flex-flow: row nowrap;
     justify-content:flex-end;
     align-items:flex-end;
+    
+    margin-right: 4px;
 
 `
 
