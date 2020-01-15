@@ -20,10 +20,12 @@ export const TitleContainerMC = styled.h1`
 
 export const CustomForm = styled(Form.Field)`
 
+  margin-top: 10px !important;
   input{
+    font-size: 1.1em !important;
     border: 1px solid #0000004b !important;
     ::placeholder{
-      font-size: 1.3em;
+      font-size: 1.1em;
       font-family: 'Source Sans Pro', sans-serif;
       color: #00000094 !important;
     }
@@ -45,12 +47,17 @@ export const LabelReg = styled.h1`
 
 // Esqueci minha senha
 export const TitleForgot = styled.a`
+  display: flex;
+  text-align: end;
+  justify-content: flex-end;
+  align-items: flex-end;
+  
   font-size: 1em;
   color: #0d4b81;
   &:hover{
     text-decoration: underline;
   }
-  margin: 50px 0px 0px 0px;
+  
 `;
 
 

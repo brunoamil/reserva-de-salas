@@ -19,10 +19,12 @@ export const LabelReg = styled.h1`
 
 export const CustomForm = styled(Form.Field)`
 
+  margin-top: 10px !important;
   input{
+    font-size: 1.1em !important;
     border: 1px solid #0000004b !important;
     ::placeholder{
-      font-size: 1.3em;
+      font-size: 1.1em;
       font-family: 'Source Sans Pro', sans-serif;
       color: #00000094 !important;
     }
@@ -31,6 +33,7 @@ export const CustomForm = styled(Form.Field)`
     color: papayawhip;
     } */
   }
+
 `;
 
 export const CustomButton = styled(Button)`
