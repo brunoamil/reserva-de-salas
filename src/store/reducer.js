@@ -33,6 +33,7 @@ export function setModal(state = MODAL, action) {
   let valueRegister = action.valueRegister;
   let valueConfirm = action.valueConfirm;
   let valueInfo = action.valueInfo;
+  let valueModal = action.valueModal;
 
   switch(action.type) {
     case 'SET_MODAL_LOGIN':
@@ -44,7 +45,7 @@ export function setModal(state = MODAL, action) {
     case "SET_MODAL_INFO":
       return { ...state, infoModal: valueInfo, confirmForm: false, registerForm: false, loginForm: false }
     case "SET_MODAL":
-      return { ...state, modal: false }
+      return { ...state, modal: valueModal }
     default: 
       return state;
   }

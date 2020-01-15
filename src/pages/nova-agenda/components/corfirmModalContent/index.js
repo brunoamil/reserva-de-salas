@@ -12,7 +12,7 @@ import {
   ContainerButton
 } from "./styles";
 
-const ConfirmModalContent = ({closeModal}) => {
+const ConfirmModalContent = () => {
   const dispatch = useDispatch();
   const horaInicial = useSelector(state => state.dados.hora);
 
@@ -37,7 +37,7 @@ const ConfirmModalContent = ({closeModal}) => {
 
   const userName = useSelector(state => state.user.usuarioNome);
   const id = useSelector(state => state.dados.id);
-  const sala = useSelector(state => state.salas.salaAtual) || "Auditório";
+  const sala = useSelector(state => state.salas.salaAtual) || "Reset";
 
   const db = firebase.firestore();
 
@@ -54,9 +54,7 @@ const ConfirmModalContent = ({closeModal}) => {
     }).catch( erro => {
       console.log(erro);
     });
-    setTimeout(function () { closeModal() }, 3000);
-
-
+    setTimeout(function () { dispatch({ type: "SET_MODAL", valueModal: false}) }, 3000);
   };
 
   return (

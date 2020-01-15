@@ -33,7 +33,8 @@ function RegisterForm() {
           email: email,
           nome: nome
         }).then().catch()
-
+        
+        dispatch( {type: 'LOG_IN', usuarioEmail: email} );
         dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true})
 
       }).catch(erro => {

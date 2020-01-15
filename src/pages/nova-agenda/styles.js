@@ -8,7 +8,7 @@ export const Container = styled.div`
   justify-content: center;
 `; 
 
-export const CellColor = styled.div`
+export const CantReserve = styled.span`
   width : 100%;
   height : 12.77px;
   background-color: brown;
