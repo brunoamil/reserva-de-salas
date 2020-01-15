@@ -1,5 +1,6 @@
 import React from "react";
-import { Bloco, Title, CustomButton } from './styles';
+import { Bloco, Title } from './styles';
+import {Button} from 'semantic-ui-react'
 import { Link } from "react-router-dom";
 
 const Main = props => {
@@ -7,9 +8,9 @@ const Main = props => {
     <Bloco>
       <Title>Faça sua reserva!</Title>
       <Link to = '/NovaAgenda'>
-        <CustomButton size='massive' color='white'>
+        <Button size='massive' color='white'>
           Reservar
-      </CustomButton>
+      </Button>
       </Link>
     </Bloco>
   );
