@@ -4,7 +4,7 @@ import { Form, Dimmer, Loader, Message,Input } from "semantic-ui-react";
 import firebase from '../../../services/firebase';
 import { useDispatch } from 'react-redux';
 
-import { Container, LabelReg, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC,CustomForm } from "./styles";
+import { Container, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC,CustomForm } from "./styles";
 
 function RegisterForm() {
   const dispatch = useDispatch(); 
@@ -16,7 +16,6 @@ function RegisterForm() {
   const [erro, setErro] = useState(false)
   const [msgErro, setMsgErro] = useState('');
 
-  const history = useHistory();
 
   function Cadastrar() {
     if ((email === '') || (senha === '') || (nome === '')) {
