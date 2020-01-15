@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, Children } from "react";
 import { Table, Dimmer, Loader } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
 import firebase from '../../services/firebase';
@@ -10,7 +10,7 @@ import { HeaderAgenda } from "./components/header";
 import Modal from "../../components/modal";
 
 
-function NovaAgenda( ) {
+function NovaAgenda() {
 
   var date = new Date();
   var data = date.getDate();
@@ -61,9 +61,10 @@ function NovaAgenda( ) {
     if (eventId) {
       eventId.map(id => {
         let divCell = document.getElementById(`${id}`);
+
         return (
-          divCell.style.setProperty('background', 'brown')
-        )
+          divCell.style.background = 'red' 
+        ) 
       })
     }
   };
@@ -128,11 +129,15 @@ function NovaAgenda( ) {
                     {dias.map((cell, index) => (
                       <Table.Cell>
                         <Container id={`${ number += 1 }`} onClick = {e => {
-                          let idCell = e.target.getAttribute("id");
-                          dispatch({ type: "SET_ID", id: idCell });
-                          dispatch({ type: "SET_HORA", hora });
-                          everyAction();
-                        }}  />
+                          if (e.target.style.background === 'red') {
+                            dispatch({ type: "SET_MODAL", valueModal: true});
+                            dispatch({ type: "SET_MODAL_INFO", valueInfo: true});
+                          } else {
+                            dispatch({ type: "SET_ID", id: e.target.getAttribute('id') });
+                            dispatch({ type: "SET_HORA", hora });
+                            everyAction();
+                          }
+                        }} />
                       </Table.Cell>
                     ))
                     }

@@ -37,7 +37,7 @@ const ConfirmModalContent = () => {
 
   const userName = useSelector(state => state.user.usuarioNome);
   const id = useSelector(state => state.dados.id);
-  const sala = useSelector(state => state.salas.salaAtual) || "Auditório";
+  const sala = useSelector(state => state.salas.salaAtual) || "Reset";
 
   const db = firebase.firestore();
 
