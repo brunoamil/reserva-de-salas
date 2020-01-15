@@ -53,13 +53,13 @@ export const UserAling = styled.div`
 
 `
 export const Button = styled.button`
-    margin: 0px 5px 0px 5px;
+    margin: 0px 5px 5px 5px;
     background-color: #0d4b81;
     color:white;
     border:none;
 
     width: 60px;
-    height: 1.7rem;
+    height: 2.2rem;
 
     font-family: "Open Sans",sans-serif,arial;
     font-size: 0.75rem;
