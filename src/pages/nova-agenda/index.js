@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef, Children } from "react";
+import React, {useState} from "react";
 import { Table, Dimmer, Loader } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
 import firebase from '../../services/firebase';
 
 import "./index.css";
-import { Container, CantReserve } from "./styles";
+import { Container} from "./styles";
  
 import { HeaderAgenda } from "./components/header";
 import Modal from "../../components/modal";

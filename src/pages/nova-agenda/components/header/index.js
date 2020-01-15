@@ -28,7 +28,7 @@ export const HeaderAgenda = () => {
   const dispatch = useDispatch();
 
   const [nome, setNome] = useState();
-  const [loader, setLoader] = useState(false);
+  const [/*loader*/, setLoader] = useState(false);
   const [salas, setSalas] = useState([]);
 
   //Verifica o email e pega o nome

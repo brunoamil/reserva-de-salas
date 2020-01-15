@@ -9,7 +9,6 @@ import { useDispatch } from 'react-redux';
 
 import {
   Container,
-  LabelReg,
   TitleForgot,
   CustomButton,
   CustomForm,
