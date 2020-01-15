@@ -11,6 +11,7 @@ export const Container = styled.div`
 `;
 
 export const TitleContainerMC = styled.h1`
+
   margin-top: 1px;
   font-weight: bold;
   font-size: 2em;
@@ -51,6 +52,8 @@ export const TitleForgot = styled.a`
   text-align: end;
   justify-content: flex-end;
   align-items: flex-end;
+  font-weight: bold;
+  cursor: pointer;
   
   font-size: 1em;
   color: #0d4b81;
