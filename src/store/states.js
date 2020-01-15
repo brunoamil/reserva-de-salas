@@ -1,11 +1,18 @@
-export const INITIAL_STATE = {
+export const USER = {
   usuarioNome : '',
   usuarioEmail : '',
   usuarioLogin : 0,
   salasReserva: []
-}
+};
+
+export const SALAS = {
+  salasReserva: [],
+  salaAtual: '',
+};
+
 
 export const MODAL = {
+  modal: false,
   loginForm: false,
   registerForm: false,
   confirmForm: false,

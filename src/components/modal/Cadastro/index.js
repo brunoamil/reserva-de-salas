@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { withRouter, useHistory } from 'react-router-dom';
-import { Form, Dimmer, Loader, Message } from "semantic-ui-react";
+import { Form, Dimmer, Loader, Message,Input } from "semantic-ui-react";
 import firebase from '../../../services/firebase';
+import { useDispatch } from 'react-redux';
 
-import { Container, LabelReg, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC } from "./styles";
+import { Container, LabelReg, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC,CustomForm } from "./styles";
 
 function RegisterForm() {
+  const dispatch = useDispatch(); 
+
   const [email, setEmail] = useState('');
   const [nome, setNome] = useState('');
   const [senha, setSenha] = useState('');
@@ -24,13 +27,15 @@ function RegisterForm() {
       setCarregando(true);
 
       firebase.auth().createUserWithEmailAndPassword(email, senha).then(sucesso => {
-        setCarregando(false);
-        history.push('/NovaAgenda');
+        setCarregando(false)
 
         firebase.firestore().collection('usuarios').add({
           email: email,
           nome: nome
         }).then().catch()
+        
+        dispatch( {type: 'LOG_IN', usuarioEmail: email} );
+        dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true})
 
       }).catch(erro => {
         setCarregando(false)
@@ -51,8 +56,6 @@ function RegisterForm() {
             break;
         }
       })
-
-
     }
   }
 
@@ -60,25 +63,22 @@ function RegisterForm() {
     <>
       <CustomModalContent>
         <ContainerModalContent>
-          <TitleContainerMC>CADASTRO</TitleContainerMC>
+          <TitleContainerMC>Cadastro</TitleContainerMC>
         </ContainerModalContent>
         <Container>
-          <Form size="tiny" key="tiny" method="POST">
-            <Form.Field>
-              <LabelReg>Email:</LabelReg>
-              <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
-            </Form.Field>
+          <Form size="large" key="tiny" method="POST">
+            <CustomForm>
+              <Input icon='fas fa-envelope' iconPosition='left'onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
+            </CustomForm>
 
             <Form.Group widths='equal'>
-              <Form.Field>
-                <LabelReg>Nome:</LabelReg>
-                <input onChange={(e) => setNome(e.target.value)} placeholder="Nome" />
-              </Form.Field>
+              <CustomForm>
+                <Input icon='fas fa-user' iconPosition='left' onChange={(e) => setNome(e.target.value)} placeholder="Nome" />
+              </CustomForm>
 
-              <Form.Field>
-                <LabelReg>Senha:</LabelReg>
-                <input onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" />
-              </Form.Field>
+              <CustomForm>
+                <Input icon='fas fa-lock' iconPosition='left' onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" />
+              </CustomForm>
             </Form.Group>
           </Form>
           {
@@ -88,7 +88,7 @@ function RegisterForm() {
               </Dimmer>
 
               :
-              <CustomButton size="large" primary content="Cadastrar-se" onClick={Cadastrar} />
+              <CustomButton size="large" content="Cadastrar-se" onClick={Cadastrar} />
           }
           {erro ? <Message header={msgErro} color='red' icon='dont' />
             : <div />}

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Dimmer, Loader } from "semantic-ui-react";
-import { withRouter, useHistory } from "react-router-dom";
+import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from "react-redux";
+import firebase from "../../../../services/firebase";
+
+import Img from "../../../../assets/img/ceuma.png";
 
 import {
   Logo,
@@ -10,7 +13,6 @@ import {
   Button,
   Select,
   SelectAling,
-  Texto,
   Container,
   CircleAling,
   Circle,
@@ -20,15 +22,10 @@ import {
   ViewSelect
 } from "./styles";
 
-import Img from "../../../../assets/img/ceuma.png";
-
-import { useSelector, useDispatch } from "react-redux";
-import firebase from "../../../../services/firebase";
 
 export const HeaderAgenda = () => {
-  const history = useHistory();
+
   const dispatch = useDispatch();
-  
 
   const [nome, setNome] = useState();
   const [loader, setLoader] = useState(false);
@@ -44,15 +41,14 @@ export const HeaderAgenda = () => {
       snapshot.forEach(doc => {
         if (doc.data().email === email) {
           setNome(doc.data().nome);
-          dispatch( { type: 'USER_NAME',usuarioNome : nome } ) 
+          dispatch({ type: 'USER_NAME', usuarioNome: nome })
         }
       });
     })
     .catch(err => {
-      console.log("Error getting documents", err);
+      console.log("Erro ao obter o nome do usuario! ", err);
     });
 
-    console.log(useSelector(state => state.user.usuarioLogin))
 
   useEffect(() => {
     const arrSalas = [];
@@ -76,13 +72,13 @@ export const HeaderAgenda = () => {
   }, []);
 
   // mandando as salas para o redux
-  // dispatch({ type: 'REG_SALAS', arrSalas });
+  dispatch({ type: 'REG_SALAS', arrSalas: salas });
 
   const actionLogout = () => {
     setLoader(true);
     setTimeout(() => {
-      history.push("/");
       dispatch({ type: "LOG_OUT" });
+      setLoader(false);
     }, 1000);
   };
 
@@ -95,21 +91,17 @@ export const HeaderAgenda = () => {
               <Logo src={Img}></Logo>
               <Title>Reserva de Salas - Universidade Ceuma</Title>
             </div>
-            {useSelector(state => state.user.usuarioLogin) > 0 ? (
-              <UserAling>
-                <h1>Usuário : {nome}</h1> 
+            <UserAling>
+              {useSelector(state => state.user.usuarioLogin) > 0 ? (
+                <h1>Usuário: {nome}</h1>
+              )
+                : ''}
+              <Link to='/'>
                 <Button type="button" onClick={actionLogout}>
-                  Sair
+                  Voltar
                 </Button>
-                {loader && (
-                  <Dimmer active>
-                    <Loader size="big">Carregando</Loader>
-                  </Dimmer>
-                )}
-              </UserAling>
-            ) : (
-              ""
-            )}
+              </Link>
+            </UserAling>
           </View>
           <ViewSelect>
             <CircleAling>
@@ -119,17 +111,10 @@ export const HeaderAgenda = () => {
               <Legenda>Disponível</Legenda>
             </CircleAling>
             <SelectAling>
-              <Select>
+              <Select onChange={e => dispatch({ type: "GET_SALA", sala: (e.target.value) })}>
                 {salas.map(sala => (
                   <option value={sala}>{sala}</option>
                 ))}
-              </Select>
-              <Texto>Semana</Texto>
-              <Select>
-                <option value="sala1">2 a 6, Novembro</option>
-                <option value="sala2">9 a 13, Novembro</option>
-                <option value="sala3">16 a 20, Novembro</option>
-                <option value="sala4">23 a 27, Novembro</option>
               </Select>
             </SelectAling>
           </ViewSelect>
@@ -139,4 +124,4 @@ export const HeaderAgenda = () => {
   );
 };
 
-export default withRouter(HeaderAgenda);
+export default HeaderAgenda;

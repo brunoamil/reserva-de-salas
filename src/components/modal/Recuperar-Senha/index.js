@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { Form, Dimmer, Loader, Message } from "semantic-ui-react";
-import Success from "../Success";
+import { Form, Dimmer, Loader, Message,Input } from "semantic-ui-react";
 import firebase from '../../../services/firebase';
 
-import { Container, LabelReg, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC } from "./styles";
+import { Container, LabelReg, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC,CustomForm } from "./styles";
 
 function RedefinirSenha() {
   const [email, setEmail] = useState('');
-  const [success, setSuccess] = useState(false);
   const [carregando, setCarregando] = useState(false)
   const [erro, setErro] = useState(false)
   const [msgErro, setMsgErro] = useState('');
@@ -21,7 +19,6 @@ function RedefinirSenha() {
     setCarregando(true);
     firebase.auth().sendPasswordResetEmail(email).then(sucesso => {
       setCarregando(false)
-      setSuccess(true)
     }).catch(erro => {
       setCarregando(false)
       setErro(true)
@@ -44,19 +41,15 @@ function RedefinirSenha() {
 
   return (
     <>
-    {
-      success ? <Success>Email Enviado!</Success>
-      :
       <CustomModalContent>
         <ContainerModalContent>
-          <TitleContainerMC>REDEFINIR SENHA</TitleContainerMC>
+          <TitleContainerMC>Redefinir Senha</TitleContainerMC>
         </ContainerModalContent>
         <Container>
-          <Form size="tiny" key="tiny" method="POST">
-            <Form.Field>
-              <LabelReg>Email:</LabelReg>
-              <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
-            </Form.Field>
+          <Form size="large" key="tiny" method="POST">
+            <CustomForm>
+              <Input icon='fas fa-envelope' iconPosition='left'onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
+            </CustomForm>
           </Form>
           {
             carregando ?
@@ -71,7 +64,6 @@ function RedefinirSenha() {
             : <div />}
         </Container>
       </CustomModalContent>
-    }
     </>
   );
 }

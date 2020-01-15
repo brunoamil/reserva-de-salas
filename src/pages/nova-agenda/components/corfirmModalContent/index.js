@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Button, Input } from "semantic-ui-react";
+import React, { useState } from "react";
+import { Button, Input, Message } from "semantic-ui-react";
 import firebase from "../../../../services/firebase";
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -30,61 +30,32 @@ const ConfirmModalContent = () => {
     "18:00"
   ];
 
-  
   const [horaFinal, setHoraFinal] = useState(horaInicial);
   const [nomeEvento, setNomeEvento] = useState();
-  const [ID, setID] = useState()
+  const [msgSucesso, setMsgSucesso] = useState(false);
 
 
-  // const id = useSelector(state => state.dados.id);
-  // const info = useSelector(state => state.modal.infoModal);
-  // // const toggleModalInfo = () => {
-  // //   if (id !== '') {
-  // //     console.log(id, info)
-  // //     dispatch({ type: "SET_MODAL_INFO", valueInfo: true })
-  // //   }
-  // // }
-
-  
   const userName = useSelector(state => state.user.usuarioNome);
-  
   const id = useSelector(state => state.dados.id);
-  
+  const sala = useSelector(state => state.salas.salaAtual) || "Reset";
+
   const db = firebase.firestore();
-  
+
   const cadastrarEvento = () => {
-    
-    db.collection('reserva de salas').add( {
+    db.collection("salas").doc(`${sala}`).collection("Eventos").add({
       userName: userName,
       nomeEvento: nomeEvento,
       inicio: horaInicial,
       termino: horaFinal,
       id
-    } ).then( () => {
+    }).then( () => {
       console.log('MANDEI!!');
+      setMsgSucesso(true)
     }).catch( erro => {
       console.log(erro);
-    } )
-    
-    // firebase
-    //   .firestore()
-    //   .collection("reserva de salas")
-    //   .get()
-    //   .then(sucesso => {
-    //     sucesso.forEach(doc => {
-    //       if (doc.data().userName === userName) {
-    //         setID(doc.data().id)
-            
-    //       }
-    //     });
-    //   })
-    //   .catch(erro => {
-    //     console.log("Erro ao pegar salas", erro);
-    //   });
+    });
+    setTimeout(function () { dispatch({ type: "SET_MODAL", valueModal: false}) }, 3000);
   };
-
-  const info = useSelector(state => state.modal.infoModal);
-  const CheckLogin = useSelector(state => state.user.usuarioLogin);
 
   return (
     <>
@@ -107,21 +78,27 @@ const ConfirmModalContent = () => {
             <DescContent>
               <form method="post">
                 <label htmlFor="Event">Evento</label>
-                <Input onChange = {(e) => {
+                <Input onChange={(e) => {
                   setNomeEvento(e.target.value)
                 }} size="big" placeholder="Evento" type="text" name="inputEvent" id="inputEvent" />
               </form>
             </DescContent>
           </HeaderModalContent>
-          <ContainerButton>
-            <Button onClick = {() => {
-              cadastrarEvento();
-              dispatch({ type: "SET_HORA_FINAL", horaFinal });
-              document.getElementById(id).style.background = 'red';
-            }} size="tiny" primary>
-              Confirmar Reserva
-            </Button>
-          </ContainerButton>
+          {
+            msgSucesso ?
+              <Message header="Reserva Concluída!" color="green" icon="check" />
+              :
+              <ContainerButton>
+                <Button onClick={() => {
+                  cadastrarEvento();
+                  dispatch({ type: "SET_HORA_FINAL", horaFinal });
+                  document.getElementById(id).style.background = 'red';
+                }} size="tiny" primary>
+                  Confirmar Reserva
+                </Button>
+              </ContainerButton>
+
+          }
         </ContainerMain>
       </Container>
     </>

@@ -1,6 +1,4 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom';
-
 
 export const Container = styled.div`
     display: flex;
@@ -55,13 +53,13 @@ export const UserAling = styled.div`
 
 `
 export const Button = styled.button`
-    margin: 0px 5px 0px 5px;
+    margin: 0px 5px 5px 5px;
     background-color: #0d4b81;
     color:white;
     border:none;
 
     width: 60px;
-    height: 1.7rem;
+    height: 2.2rem;
 
     font-family: "Open Sans",sans-serif,arial;
     font-size: 0.75rem;
@@ -87,8 +85,7 @@ export const ViewSelect = styled.div`
     display:flex;
     width:100%;
     justify-content:flex-end;
-    margin-top:-30px;
-    margin-bottom: 2px;
+    margin : -30px 0px 2px 0px;
 `
 export const CircleAling = styled.div`
     display:flex;
@@ -130,6 +127,8 @@ export const SelectAling = styled.div`
     flex-flow: row nowrap;
     justify-content:flex-end;
     align-items:flex-end;
+    
+    margin-right: 4px;
 
 `
 

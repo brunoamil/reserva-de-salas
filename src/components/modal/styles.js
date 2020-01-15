@@ -1,24 +1,23 @@
 import styled from "styled-components";
-import { Modal, Button } from 'semantic-ui-react';
+import { Modal, Button,Icon } from 'semantic-ui-react';
 
 export const Global = styled(Modal)`
   padding : 0 !important;
 `
 
+
 export const ContainerHeader = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
+  
+  margin-bottom : -40px;
 `;
 
-export const ModalHeader = styled(Modal.Header)`
-  /* height: 40px; */
-`;
+export const CustomIcon = styled(Icon)`
+  margin: 0.5em 0.5em 0em 0em !important;
+  color: #000 !important;
 
-export const TitleH1Header = styled.h1`
-  margin: 6px 0px 0px 3px !important;
-  font-size: 0.9em;
-  color: #848484;
 `;
 
 export const ContainerModalContent = styled.div`
@@ -31,7 +30,7 @@ export const ContainerModalContent = styled.div`
 export const TitleContainerMC = styled.h1`
   font-weight: bold;
   font-size: 2em;
-  border-bottom: 3px solid #0080ff;
+  border-bottom: 3px solid #0d4b81;
   color: #000;
 `;
 
@@ -41,7 +40,7 @@ export const FooterModal = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #0080ff;
+  background: #0d4b81;
 
   p {
     color: #ffffff;
@@ -72,12 +71,6 @@ export const CustomModalContent = styled(Modal.Content)`
 export const CustomButton = styled(Button)`
   margin: 15px 30px !important;
 `;
-
-export const ContainerLogo = styled.div`
-  display:flex;
-  flex-direction:row;
-`
-
 export const IconExit = styled.span`
   
 `

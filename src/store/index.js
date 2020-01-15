@@ -1,9 +1,10 @@
 import { createStore, combineReducers } from 'redux';
-import { usuarioReducer, setModal, setDadosReserva } from './reducer';
+import { usuarioReducer, setModal, setDadosReserva, setSalas } from './reducer';
 
 const store = createStore(combineReducers({
   user: usuarioReducer,
   modal: setModal,
+  salas: setSalas,
   dados: setDadosReserva,
 }));
 
