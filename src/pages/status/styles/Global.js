@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box ;
   }
   body {
-    background: #2ecc71 !important;
+    background: #0d4b81 !important;
   }
 `;
 

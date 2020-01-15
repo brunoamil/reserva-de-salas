@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Dimmer, Loader, Message } from "semantic-ui-react";
+import { Form, Dimmer, Loader, Message,Input } from "semantic-ui-react";
 import firebase from "../../../services/firebase";
 import "firebase/auth";
 import RedefinirSenha from "../Recuperar-Senha";
@@ -12,6 +12,7 @@ import {
   LabelReg,
   TitleForgot,
   CustomButton,
+  CustomForm,
   CustomModalContent,
   ContainerModalContent,
   TitleContainerMC
@@ -60,26 +61,28 @@ function LoginForm() {
       {login ? (
         <CustomModalContent>
           <ContainerModalContent>
-            <TitleContainerMC>LOGIN</TitleContainerMC>
+            <TitleContainerMC>Login</TitleContainerMC>
           </ContainerModalContent>
           <Container>
-            <Form size="tiny" key="tiny" method="POST">
-              <Form.Field>
-                <LabelReg>Email:</LabelReg>
-                <input
+            <Form size="large" key="tiny" method="POST">
+              <CustomForm>
+                <Input
                   onChange={e => setEmail(e.target.value)}
                   type="email"
                   placeholder="Email"
+                  icon='fas fa-envelope' 
+                  iconPosition='left'
                 />
-              </Form.Field>
-              <Form.Field>
-                <LabelReg>Senha:</LabelReg>
-                <input
+              </CustomForm>
+              <CustomForm>
+                <Input
                   onChange={e => setSenha(e.target.value)}
                   type="password"
                   placeholder="Senha"
+                  icon='fas fa-lock' 
+                  iconPosition='left'
                 />
-              </Form.Field>
+              </CustomForm>
               <TitleForgot onClick={TrocarTela}>
                 Esqueci minha senha!
               </TitleForgot>
@@ -92,7 +95,6 @@ function LoginForm() {
               <CustomButton
                 onClick={Logar}
                 size="large"
-                primary
                 content="Login"
               />
             )}

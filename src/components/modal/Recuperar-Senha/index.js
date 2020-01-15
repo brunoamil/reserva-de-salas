@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Form, Dimmer, Loader, Message } from "semantic-ui-react";
+import { Form, Dimmer, Loader, Message,Input } from "semantic-ui-react";
 import firebase from '../../../services/firebase';
 
-import { Container, LabelReg, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC } from "./styles";
+import { Container, LabelReg, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC,CustomForm } from "./styles";
 
 function RedefinirSenha() {
   const [email, setEmail] = useState('');
@@ -43,14 +43,13 @@ function RedefinirSenha() {
     <>
       <CustomModalContent>
         <ContainerModalContent>
-          <TitleContainerMC>REDEFINIR SENHA</TitleContainerMC>
+          <TitleContainerMC>Redefinir Senha</TitleContainerMC>
         </ContainerModalContent>
         <Container>
-          <Form size="tiny" key="tiny" method="POST">
-            <Form.Field>
-              <LabelReg>Email:</LabelReg>
-              <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
-            </Form.Field>
+          <Form size="large" key="tiny" method="POST">
+            <CustomForm>
+              <Input icon='fas fa-envelope' iconPosition='left'onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
+            </CustomForm>
           </Form>
           {
             carregando ?
