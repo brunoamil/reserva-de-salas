@@ -14,5 +14,3 @@ export const Bloco = Styled.div`
   justify-content: space-around;
   height: 100vh;
 `;
-export const CustomButton = Styled(Button)`
-`
