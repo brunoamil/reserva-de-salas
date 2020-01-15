@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Dimmer, Loader, Message } from "semantic-ui-react";
+import { Form, Dimmer, Loader, Message,Input } from "semantic-ui-react";
 import firebase from '../../../services/firebase';
 
 import { Container, LabelReg, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC,CustomForm } from "./styles";
@@ -48,8 +48,7 @@ function RedefinirSenha() {
         <Container>
           <Form size="large" key="tiny" method="POST">
             <CustomForm>
-              <LabelReg>Email</LabelReg>
-              <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
+              <Input icon='fas fa-envelope' iconPosition='left'onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
             </CustomForm>
           </Form>
           {

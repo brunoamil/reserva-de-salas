@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { withRouter, useHistory } from 'react-router-dom';
-import { Form, Dimmer, Loader, Message } from "semantic-ui-react";
+import { Form, Dimmer, Loader, Message,Input } from "semantic-ui-react";
 import firebase from '../../../services/firebase';
 import { useDispatch } from 'react-redux';
 
@@ -67,19 +67,16 @@ function RegisterForm() {
         <Container>
           <Form size="large" key="tiny" method="POST">
             <CustomForm>
-              <LabelReg>Email</LabelReg>
-              <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
+              <Input icon='fas fa-envelope' iconPosition='left'onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
             </CustomForm>
 
             <Form.Group widths='equal'>
               <CustomForm>
-                <LabelReg>Nome</LabelReg>
-                <input onChange={(e) => setNome(e.target.value)} placeholder="Nome" />
+                <Input icon='fas fa-user' iconPosition='left' onChange={(e) => setNome(e.target.value)} placeholder="Nome" />
               </CustomForm>
 
               <CustomForm>
-                <LabelReg>Senha</LabelReg>
-                <input onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" />
+                <Input icon='fas fa-lock' iconPosition='left' onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" />
               </CustomForm>
             </Form.Group>
           </Form>
