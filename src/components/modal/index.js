@@ -5,7 +5,6 @@ import {
   Global,
   ContainerHeader,
   FooterModal,
-  ModalHeader,
   CustomModalContent,
   IconExit,
   CustomIcon,

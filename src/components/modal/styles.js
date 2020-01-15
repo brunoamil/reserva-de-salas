@@ -16,7 +16,7 @@ export const ContainerHeader = styled.div`
 
 export const CustomIcon = styled(Icon)`
   margin: 0.5em 0.5em 0em 0em !important;
-  color: #0d4b81 !important;
+  color: #000 !important;
 
 `;
 

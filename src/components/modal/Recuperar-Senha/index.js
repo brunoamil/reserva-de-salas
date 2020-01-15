@@ -46,7 +46,7 @@ function RedefinirSenha() {
           <TitleContainerMC>REDEFINIR SENHA</TitleContainerMC>
         </ContainerModalContent>
         <Container>
-          <Form size="tiny" key="tiny" method="POST">
+          <Form size="large" key="tiny" method="POST">
             <Form.Field>
               <LabelReg>Email:</LabelReg>
               <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />

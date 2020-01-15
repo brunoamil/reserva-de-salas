@@ -11,7 +11,6 @@ import {
   Container,
   LabelReg,
   TitleForgot,
-  CustomForm,
   CustomButton,
   CustomModalContent,
   ContainerModalContent,
@@ -61,7 +60,7 @@ function LoginForm() {
       {login ? (
         <CustomModalContent>
           <ContainerModalContent>
-            <TitleContainerMC>LOGIN</TitleContainerMC>
+            <TitleContainerMC>Login</TitleContainerMC>
           </ContainerModalContent>
           <Container>
             <Form size="large" key="tiny" method="POST">
