@@ -1,6 +1,5 @@
 import React from "react";
 
-import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 
@@ -11,7 +10,6 @@ const Status = props => {
   return (
     <>
       <GlobalStyle />
-      <Header />
       <Main />
       <Footer />
     </>
