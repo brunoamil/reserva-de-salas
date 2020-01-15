@@ -2,7 +2,7 @@ import React from "react";
 import firebase from '../../../../services/firebase';
 import {useSelector} from 'react-redux';
 
-import {  } from './styles';
+// import {  } from './styles';
 
 const InfoModal = () => {
   const sala = useSelector(state => state.salas.salaAtual) || "Auditorio";
@@ -30,7 +30,9 @@ const InfoModal = () => {
   };
 
   return (
-    <div>Ok</div>
+    <div>
+
+    </div>
   );
 }
 

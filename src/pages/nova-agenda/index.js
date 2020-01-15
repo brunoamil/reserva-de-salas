@@ -39,7 +39,7 @@ function NovaAgenda() {
   }
   
   const getEventos = async () => {
-    let eventId = [];
+    let event = [];
 
     await firebase
       .firestore()
@@ -49,24 +49,30 @@ function NovaAgenda() {
       .get()
       .then(sucesso => {
         sucesso.forEach(doc => {
-          eventId.push(doc.data().id)
-          console.log(eventId);
-          console.log("opa");
-          setLoader(false);
+          const {id, userName} = doc.data()
+          event.push({id, userName});
+          console.log(event);
         });
       })
       .catch(erro => {
         console.log("Erro ao pegar salas", erro);
       });
-    if (eventId) {
-      eventId.map(id => {
-        let divCell = document.getElementById(`${id}`);
+    if (event) {
+      event.map(item => {
+        let divCell = document.getElementById(`${item.id}`);
 
+        const spanc = document.createElement('span');
+        const titleReserve = document.createElement('h2');
+
+        titleReserve.innerText = item.userName;
+        spanc.setAttribute('id', 'spanCell');
+        spanc.appendChild(titleReserve);
         return (
-          divCell.style.background = 'red' 
+          divCell.appendChild(spanc)
         ) 
       })
     }
+    
   };
 
   const everyAction = () => {
@@ -101,13 +107,7 @@ function NovaAgenda() {
 
   return (
     <>
-    <div id='allPage' onLoad={() =>  getEventos()} >
-    {loader ? (
-      <Dimmer active>
-        <Loader size="big">Carregando Eventos...</Loader>
-      </Dimmer>
-      ) : (
-        <>
+      <div id='allPage' onLoad={() =>  getEventos()} >
         <Modal />
         <HeaderAgenda id="header" />
         <Table id="table" definition>
@@ -129,7 +129,7 @@ function NovaAgenda() {
                     {dias.map((cell, index) => (
                       <Table.Cell>
                         <Container id={`${ number += 1 }`} onClick = {e => {
-                          if (e.target.style.background === 'red') {
+                          if ((e.target.childNodes).length  !== 0) {
                             dispatch({ type: "SET_MODAL", valueModal: true});
                             dispatch({ type: "SET_MODAL_INFO", valueInfo: true});
                           } else {
@@ -146,10 +146,7 @@ function NovaAgenda() {
             }
           </Table.Body>
         </Table>
-        </>
-      )
-    }
-    </div>
+      </div>
     </>
   );
 }

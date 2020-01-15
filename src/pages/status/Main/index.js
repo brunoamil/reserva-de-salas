@@ -1,15 +1,16 @@
 import React from "react";
-import { Bloco, Title, CustomButton } from './styles';
+import { Bloco, Title } from './styles';
 import { Link } from "react-router-dom";
+import { Button } from 'semantic-ui-react';
 
 const Main = props => {
   return (
     <Bloco>
       <Title>Faça sua reserva!</Title>
       <Link to = '/NovaAgenda'>
-        <CustomButton size='massive' color='white'>
+        <Button size='massive' color='white'>
           Reservar
-      </CustomButton>
+      </Button>
       </Link>
     </Bloco>
   );
