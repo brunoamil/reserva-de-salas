@@ -1,4 +1,5 @@
 import Styled from "styled-components";
+import { Button } from 'semantic-ui-react'
 
 export const Title = Styled.h1`
   font-size: 10em;
@@ -8,7 +9,10 @@ export const Title = Styled.h1`
 
 export const Bloco = Styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 60vh;
+  justify-content: space-around;
+  height: 100vh;
 `;
+export const CustomButton = Styled(Button)`
+`
