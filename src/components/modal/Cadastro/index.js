@@ -4,7 +4,7 @@ import { Form, Dimmer, Loader, Message } from "semantic-ui-react";
 import firebase from '../../../services/firebase';
 import { useDispatch } from 'react-redux';
 
-import { Container, LabelReg, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC } from "./styles";
+import { Container, LabelReg, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC,CustomForm } from "./styles";
 
 function RegisterForm() {
   const dispatch = useDispatch(); 
@@ -62,25 +62,25 @@ function RegisterForm() {
     <>
       <CustomModalContent>
         <ContainerModalContent>
-          <TitleContainerMC>CADASTRO</TitleContainerMC>
+          <TitleContainerMC>Cadastro</TitleContainerMC>
         </ContainerModalContent>
         <Container>
-          <Form size="tiny" key="tiny" method="POST">
-            <Form.Field>
-              <LabelReg>Email:</LabelReg>
+          <Form size="large" key="tiny" method="POST">
+            <CustomForm>
+              <LabelReg>Email</LabelReg>
               <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
-            </Form.Field>
+            </CustomForm>
 
             <Form.Group widths='equal'>
-              <Form.Field>
-                <LabelReg>Nome:</LabelReg>
+              <CustomForm>
+                <LabelReg>Nome</LabelReg>
                 <input onChange={(e) => setNome(e.target.value)} placeholder="Nome" />
-              </Form.Field>
+              </CustomForm>
 
-              <Form.Field>
-                <LabelReg>Senha:</LabelReg>
+              <CustomForm>
+                <LabelReg>Senha</LabelReg>
                 <input onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" />
-              </Form.Field>
+              </CustomForm>
             </Form.Group>
           </Form>
           {
@@ -90,7 +90,7 @@ function RegisterForm() {
               </Dimmer>
 
               :
-              <CustomButton size="large" primary content="Cadastrar-se" onClick={Cadastrar} />
+              <CustomButton size="large" content="Cadastrar-se" onClick={Cadastrar} />
           }
           {erro ? <Message header={msgErro} color='red' icon='dont' />
             : <div />}

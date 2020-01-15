@@ -1,16 +1,13 @@
 import React from "react";
-import { Icon } from "semantic-ui-react";
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
   Global,
   ContainerHeader,
-  TitleH1Header,
   FooterModal,
-  ModalHeader,
   CustomModalContent,
   IconExit,
-  ContainerLogo
+  CustomIcon,
 } from "./styles";
 import LoginForm from "./Login";
 import RegisterForm from "./Cadastro";
@@ -35,15 +32,9 @@ const ModalUser = ({
     <>
       <Global size={size} open={open} closeOnEscape={false}
           closeOnDimmerClick={false}>
-        <ModalHeader>
-          <ContainerHeader>
-            <ContainerLogo>
-              <img src={img} alt="Logo Ceuma" width="40" height="38" />
-              <TitleH1Header> - Ceuma Reservas</TitleH1Header>
-            </ContainerLogo>
-            <IconExit onClick={close}><Icon name='times' /></IconExit>
-          </ContainerHeader>
-        </ModalHeader>
+        <ContainerHeader>
+          <IconExit onClick={close}><CustomIcon size="large" name='times' /></IconExit>
+        </ContainerHeader>
         <CustomModalContent>
           {loginForm && <LoginForm />}
           {registerForm && <RegisterForm />}
@@ -55,13 +46,6 @@ const ModalUser = ({
             <p>
               Ainda não possui conta?{" "}
               <span onClick={() => dispatch({ type: "SET_MODAL_REGISTER", valueRegister: true })}>Clique Aqui!</span>
-            </p>
-          </FooterModal>
-        )}
-        {registerForm && (
-          <FooterModal>
-            <p>
-              Já possui conta? <span onClick={() => dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true })}>Clique Aqui!</span>
             </p>
           </FooterModal>
         )}
