@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, Children } from "react";
 import { Table, Dimmer, Loader } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
 import firebase from '../../services/firebase';
 
 import "./index.css";
-import { Container } from "./styles";
+import { Container, CantReserve } from "./styles";
  
 import { HeaderAgenda } from "./components/header";
 import Modal from "../../components/modal";
 
 
-function NovaAgenda( ) {
+function NovaAgenda() {
 
   var date = new Date();
   var data = date.getDate();
@@ -23,7 +23,7 @@ function NovaAgenda( ) {
   const [loader, setLoader] = useState(false);
   
   const CheckLogin = useSelector(state => state.user.usuarioLogin);
-  const sala = useSelector(state => state.salas.salaAtual) || "Auditorio";
+  const sala = useSelector(state => state.salas.salaAtual) || "Reset";
 
   if (dia === 0) {
     data += 1;
@@ -37,49 +37,46 @@ function NovaAgenda( ) {
     dia = dia - 1;
     data = data - 1;
   }
-
-  useEffect(() => {
-    dispatch({ type: "SET_MODAL", modal: true});
-    const getEventos = async () => {
-      let eventId = [];
   
-      await firebase
-        .firestore()
-        .collection("salas")
-        .doc(`${sala}`)
-        .collection("Eventos")
-        .get()
-        .then(sucesso => {
-          sucesso.forEach(doc => {
-            eventId.push(doc.data().id)
-            console.log(eventId);
-            setLoader(false);
-          });
-        })
-        .catch(erro => {
-          console.log("Erro ao pegar salas", erro);
-        });
-      if (eventId) {
-      }
-    };
-    getEventos();
-  })
+  const getEventos = async () => {
+    let eventId = [];
 
+    await firebase
+      .firestore()
+      .collection("salas")
+      .doc(`${sala}`)
+      .collection("Eventos")
+      .get()
+      .then(sucesso => {
+        sucesso.forEach(doc => {
+          eventId.push(doc.data().id)
+          console.log(eventId);
+          console.log("opa");
+          setLoader(false);
+        });
+      })
+      .catch(erro => {
+        console.log("Erro ao pegar salas", erro);
+      });
+    if (eventId) {
+      eventId.map(id => {
+        let divCell = document.getElementById(`${id}`);
+
+        return (
+          divCell.style.background = 'red' 
+        ) 
+      })
+    }
+  };
 
   const everyAction = () => {
+    dispatch({ type: "SET_MODAL", valueModal: true});
     if (CheckLogin === 0) {
       dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true});
     } else {
       dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
     }
-    show();
   }
-
-  //modal {
-  const [modal, setModal] = useState(false);
-  const show = () => setModal(true);
-  const close = () => setModal(false);
-  //}
 
   const dias = [
     `SEG ${data}/${mes}`,
@@ -104,8 +101,14 @@ function NovaAgenda( ) {
 
   return (
     <>
-      <div id='allPage'>
-        <Modal size='tiny' open={modal} close={close}></Modal>
+    <div id='allPage' onLoad={() =>  getEventos()} >
+    {loader ? (
+      <Dimmer active>
+        <Loader size="big">Carregando Eventos...</Loader>
+      </Dimmer>
+      ) : (
+        <>
+        <Modal />
         <HeaderAgenda id="header" />
         <Table id="table" definition>
           <Table.Header>
@@ -123,28 +126,30 @@ function NovaAgenda( ) {
               horas.map((hora, index) => (
                 <Table.Row>
                   <Table.HeaderCell width='1'><strong> {hora} </strong></Table.HeaderCell>
-                  {loader ? (
-                    <Dimmer active>
-                      <Loader size="big">Carregando Eventos...</Loader>
-                    </Dimmer>
-                  ) : (
-                    dias.map((cell, index) => (
+                    {dias.map((cell, index) => (
                       <Table.Cell>
                         <Container id={`${ number += 1 }`} onClick = {e => {
-                          let idCell = e.target.getAttribute("id");
-                          dispatch({ type: "SET_ID", id: idCell });
-                          dispatch({ type: "SET_HORA", hora });
-                          everyAction();
+                          if (e.target.style.background === 'red') {
+                            dispatch({ type: "SET_MODAL", valueModal: true});
+                            dispatch({ type: "SET_MODAL_INFO", valueInfo: true});
+                          } else {
+                            dispatch({ type: "SET_ID", id: e.target.getAttribute('id') });
+                            dispatch({ type: "SET_HORA", hora });
+                            everyAction();
+                          }
                         }} />
                       </Table.Cell>
-                    )))
-                  }
+                    ))
+                    }
                 </Table.Row>
               ))
             }
           </Table.Body>
         </Table>
-      </div>
+        </>
+      )
+    }
+    </div>
     </>
   );
 }
