@@ -1,4 +1,4 @@
-import { MODAL, USER, SALAS, DADOS_RESERVA } from "./states";
+import { MODAL, USER, SALAS, DADOS_RESERVA, LOAD } from "./states";
 
 
 export function usuarioReducer(state = USER, action){
@@ -62,6 +62,15 @@ export function setDadosReserva(state = DADOS_RESERVA, action) {
     case "SET_HORA_FINAL":
       return { ...state, horaFinal: action.horaFinal }
     default: 
+      return state;
+  }
+}
+
+export function setLoad(state = LOAD, action) {
+  switch(action.type) {
+    case "SET_LOADER" :
+      return { ...state, loader: action.set_loader }
+    default:
       return state;
   }
 }

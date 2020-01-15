@@ -111,9 +111,11 @@ export const HeaderAgenda = () => {
               <Legenda>Disponível</Legenda>
             </CircleAling>
             <SelectAling>
-              <Select onChange={e => dispatch({ type: "GET_SALA", sala: (e.target.value) })}>
+              <Select onChange={e => {
+                dispatch({ type: "GET_SALA", sala: (e.target.value) })
+                }}>
                 {salas.map(sala => (
-                  <option value={sala}>{sala}</option>
+                  <option onClick={() => dispatch({ type: "SET_LOADER", set_loader: true })} value={sala}>{sala}</option>
                 ))}
               </Select>
             </SelectAling>
