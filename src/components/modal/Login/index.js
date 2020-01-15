@@ -12,6 +12,7 @@ import {
   LabelReg,
   TitleForgot,
   CustomButton,
+  CustomForm,
   CustomModalContent,
   ContainerModalContent,
   TitleContainerMC
@@ -64,22 +65,22 @@ function LoginForm() {
           </ContainerModalContent>
           <Container>
             <Form size="large" key="tiny" method="POST">
-              <Form.Field>
+              <CustomForm>
                 <LabelReg>Email</LabelReg>
                 <input
                   onChange={e => setEmail(e.target.value)}
                   type="email"
                   placeholder="Email"
                 />
-              </Form.Field>
-              <Form.Field>
+              </CustomForm>
+              <CustomForm>
                 <LabelReg>Senha</LabelReg>
                 <input
                   onChange={e => setSenha(e.target.value)}
                   type="password"
                   placeholder="Senha"
                 />
-              </Form.Field>
+              </CustomForm>
               <TitleForgot onClick={TrocarTela}>
                 Esqueci minha senha!
               </TitleForgot>

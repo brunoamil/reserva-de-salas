@@ -4,7 +4,7 @@ import { Form, Dimmer, Loader, Message } from "semantic-ui-react";
 import firebase from '../../../services/firebase';
 import { useDispatch } from 'react-redux';
 
-import { Container, LabelReg, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC } from "./styles";
+import { Container, LabelReg, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC,CustomForm } from "./styles";
 
 function RegisterForm() {
   const dispatch = useDispatch(); 
@@ -62,25 +62,25 @@ function RegisterForm() {
     <>
       <CustomModalContent>
         <ContainerModalContent>
-          <TitleContainerMC>CADASTRO</TitleContainerMC>
+          <TitleContainerMC>Cadastro</TitleContainerMC>
         </ContainerModalContent>
         <Container>
           <Form size="large" key="tiny" method="POST">
-            <Form.Field>
+            <CustomForm>
               <LabelReg>Email</LabelReg>
               <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
-            </Form.Field>
+            </CustomForm>
 
             <Form.Group widths='equal'>
-              <Form.Field>
+              <CustomForm>
                 <LabelReg>Nome</LabelReg>
                 <input onChange={(e) => setNome(e.target.value)} placeholder="Nome" />
-              </Form.Field>
+              </CustomForm>
 
-              <Form.Field>
+              <CustomForm>
                 <LabelReg>Senha</LabelReg>
                 <input onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" />
-              </Form.Field>
+              </CustomForm>
             </Form.Group>
           </Form>
           {
