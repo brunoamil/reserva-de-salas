@@ -10,9 +10,7 @@ const Footer = props => {
       <Rodape>
         <ContainerButton>
           <Link to="/NovaAgenda">
-            <Button size='big' color='white'>
-              Reservar
-            </Button>
+            
           </Link>
         </ContainerButton>
       </Rodape>
