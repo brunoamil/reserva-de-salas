@@ -68,16 +68,16 @@ function RegisterForm() {
         <Container>
           <Form size="large" key="tiny" method="POST">
             <CustomForm>
-              <Input icon='fas fa-envelope' iconPosition='left'onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
+              <Input icon='mail' iconPosition='left'onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
             </CustomForm>
 
             <Form.Group widths='equal'>
               <CustomForm>
-                <Input icon='fas fa-user' iconPosition='left' onChange={(e) => setNome(e.target.value)} placeholder="Nome" />
+                <Input icon='user' iconPosition='left' onChange={(e) => setNome(e.target.value)} placeholder="Nome" />
               </CustomForm>
 
               <CustomForm>
-                <Input icon='fas fa-lock' iconPosition='left' onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" />
+                <Input icon='lock' iconPosition='left' onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" />
               </CustomForm>
             </Form.Group>
           </Form>
