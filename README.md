@@ -8,21 +8,21 @@ Foi necessária a criação de uma aplicação que fizesse reservas das salas pa
 1) Logar, Cadastrar usuarios;
 2) Visualizar e criar reservas;
 
-# Neste projeto é utilizado as seguintes dependencias:
+## Neste projeto é utilizado as seguintes dependencias:
 
--firebase,
--jquery,
--moment,
--react,
--react-datetime,
--react-dom,
--react-redux,
--react-router-dom,
--react-scripts,
--redux,
--semantic-ui-css,
--semantic-ui-react,
--styled-components.
+*firebase,
+*jquery,
+*moment,
+*react,
+*react-datetime,
+*react-dom,
+*react-redux,
+*react-router-dom,
+*react-scripts,
+*redux,
+*semantic-ui-css,
+*semantic-ui-react,
+*styled-components.
 
 
 ## Execução:
