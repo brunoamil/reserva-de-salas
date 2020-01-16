@@ -62,13 +62,7 @@ function RedefinirSenha() {
         <Container>
           <Form size="large" key="tiny" method="POST">
             <CustomForm>
-              <Input
-                icon="fas fa-envelope"
-                iconPosition="left"
-                onChange={e => setEmail(e.target.value)}
-                type="email"
-                placeholder="Email"
-              />
+              <Input icon='mail' iconPosition='left'onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
             </CustomForm>
           </Form>
           {carregando ? (

@@ -4,9 +4,11 @@ import { MODAL, USER, SALAS, DADOS_RESERVA, LOAD } from "./states";
 export function usuarioReducer(state = USER, action){
   switch(action.type){
     case 'USER_NAME':
-      return {...state, usuarioNome : action.usuarioNome } 
+      return {...state, usuarioNome : action.usuarioNome };
+    case 'USER_SETOR':
+      return {...state, usuarioSetor : action.usuarioSetor } 
     case 'LOG_IN':
-      return {...state, usuarioLogin: 1, usuarioEmail: action.usuarioEmail }
+      return {...state, usuarioLogin: 1, usuarioEmail: action.usuarioEmail };
     case 'LOG_OUT':
       return {...state, usuarioLogin: 0, usuarioEmail: ''};
     default:

@@ -36,34 +36,22 @@ function Agenda() {
       event.map(item => {
         let divCell = document.getElementById(`${item.id}`);
 
-        const spanc = document.createElement('span');
-        const titleReserve = document.createElement('h2');
+        if (divCell.childNodes.length === 0) {
+          const spanc = document.createElement('span');
+          const titleReserve = document.createElement('h2');
 
-        titleReserve.innerText = item.firstName;
-        spanc.setAttribute('id', 'spanCell');
+          titleReserve.innerText = `${item.setor}`;
+          spanc.setAttribute('id', 'spanCell');
 
-        spanc.appendChild(titleReserve);
-        return (
+          spanc.appendChild(titleReserve);
           divCell.appendChild(spanc)
-        ) 
+        }
+        return ''
       })
     } else {
       console.log("opa deu um erro no useEffect da agenda");
     }
   });
-
-  // useEffect(() => {
-  //   if(event) {
-  //     event.map(item => {
-  //       let divCell = document.getElementById(`${item.id}`);
-  //       let spanCell = document.getElementById('spanCell');
-        
-  //       if (divCell.childNodes.length > 1) {
-           
-  //       }
-  //     })
-  //   }
-  // }, [sala])
 
   
   const everyAction = () => {
@@ -121,6 +109,7 @@ function Agenda() {
                   <Table.Cell>
                     <Container
                       id={`${(number += 1)}`}
+                      className={hora}
                       onClick={e => {
                         if ((e.target.childNodes).length !== 0) {
                           dispatch({ type: "SET_MODAL", valueModal: true });

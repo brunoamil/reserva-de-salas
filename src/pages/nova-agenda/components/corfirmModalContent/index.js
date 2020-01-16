@@ -15,6 +15,7 @@ import {
 const ConfirmModalContent = () => {
   const dispatch = useDispatch();
   const horaInicial = useSelector(state => state.dados.hora);
+  const setor = useSelector(state => state.user.usuarioSetor);
 
   const horas = [
     "08:00",
@@ -30,24 +31,26 @@ const ConfirmModalContent = () => {
     "18:00"
   ];
 
-  const [horaFinal, setHoraFinal] = useState(horaInicial);
+  const [horaFinal, setHoraFinal] = useState();
   const [nomeEvento, setNomeEvento] = useState();
   const [msgSucesso, setMsgSucesso] = useState(false);
 
 
   const userName = useSelector(state => state.user.usuarioNome);
   const id = useSelector(state => state.dados.id);
-  const sala = useSelector(state => state.salas.salaAtual) || "Reset";
+  const sala = useSelector(state => state.salas.currentRoom);
+  console.log(sala)
 
   const db = firebase.firestore();
 
   const cadastrarEvento = () => {
-    db.collection("salas").doc(`${sala}`).collection("Eventos").add({
+    db.collection("salas").doc(`${sala}` || 'Auditorio').collection("Eventos").add({
       userName: userName,
       nomeEvento: nomeEvento,
       inicio: horaInicial,
       termino: horaFinal,
-      id
+      id,
+      setor
     }).then( () => {
       setMsgSucesso(true)
       setTimeout(() => {

@@ -1,5 +1,6 @@
 export const USER = {
   usuarioNome : '',
+  usuarioSetor: '',
   usuarioEmail : '',
   usuarioLogin : 0,
   salasReserva: [],

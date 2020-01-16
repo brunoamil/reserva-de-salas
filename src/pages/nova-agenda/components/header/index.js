@@ -41,7 +41,10 @@ export const HeaderAgenda = () => {
       snapshot.forEach(doc => {
         if (doc.data().email === email) {
           setNome(doc.data().nome);
+          const {setor} = doc.data();
+           
           dispatch({ type: 'USER_NAME', usuarioNome: nome })
+          dispatch({ type: 'USER_SETOR', usuarioSetor: setor })
         }
       });
     })
@@ -78,6 +81,7 @@ export const HeaderAgenda = () => {
     setLoader(true);
     setTimeout(() => {
       dispatch({ type: "LOG_OUT" });
+      dispatch({ type: "SET_EVENTOS_SALA", event: [] });
       setLoader(false);
     }, 1000);
   };
@@ -114,6 +118,7 @@ export const HeaderAgenda = () => {
               <Select onChange={e => {
               dispatch({ type: "GET_SALA", sala: (e.target.value) })
               dispatch({ type: "SET_LOADER", set_loader: true })
+              dispatch({ type: "SET_EVENTOS_SALA", event: [] });
               }} defaultValue='Salas'>
                   
                 {salas.map(sala => (

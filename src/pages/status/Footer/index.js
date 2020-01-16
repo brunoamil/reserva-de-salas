@@ -8,9 +8,7 @@ const Footer = props => {
     <>
       <Rodape>
         <ContainerButton>
-          <Link to="/NovaAgenda">
-            
-          </Link>
+          <Link to="/NovaAgenda" />
         </ContainerButton>
       </Rodape>
     </>
