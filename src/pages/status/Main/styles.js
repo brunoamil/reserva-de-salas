@@ -1,5 +1,4 @@
 import Styled from "styled-components";
-import { Button } from 'semantic-ui-react'
 
 export const Title = Styled.h1`
   font-size: 10em;

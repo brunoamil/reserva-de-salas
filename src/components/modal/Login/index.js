@@ -68,7 +68,7 @@ function LoginForm() {
                   onChange={e => setEmail(e.target.value)}
                   type="email"
                   placeholder="Email"
-                  icon='fas fa-envelope' 
+                  icon='mail' 
                   iconPosition='left'
                 />
               </CustomForm>
@@ -77,7 +77,7 @@ function LoginForm() {
                   onChange={e => setSenha(e.target.value)}
                   type="password"
                   placeholder="Senha"
-                  icon='fas fa-lock' 
+                  icon='lock' 
                   iconPosition='left'
                 />
               </CustomForm>
