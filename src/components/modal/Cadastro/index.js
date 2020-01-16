@@ -18,6 +18,7 @@ function RegisterForm() {
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
+  const [setor, setSetor] = useState("")
   const [nome, setNome] = useState("");
   const [senha, setSenha] = useState("");
   const [carregando, setCarregando] = useState(false);
@@ -44,7 +45,8 @@ function RegisterForm() {
             .collection("usuarios")
             .add({
               email: email,
-              nome: nome
+              nome: nome,
+              setor: setor
             })
             .then()
             .catch();
@@ -86,15 +88,19 @@ function RegisterForm() {
         </ContainerModalContent>
         <Container>
           <Form size="large" key="tiny" method="POST">
-            <CustomForm>
-              <Input icon='mail' iconPosition='left'onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
-            </CustomForm>
-
             <Form.Group widths="equal">
               <CustomForm>
                 <Input icon='user' iconPosition='left' onChange={(e) => setNome(e.target.value)} placeholder="Nome" />
               </CustomForm>
+              <CustomForm>
+                <Input icon='building' iconPosition='left' onChange={(e) => setSetor(e.target.value)} placeholder="Setor" />
+              </CustomForm>
+            </Form.Group>
 
+            <Form.Group widths="equal">
+              <CustomForm>
+                <Input icon='mail' iconPosition='left' onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
+              </CustomForm>
               <CustomForm>
                 <Input icon='lock' iconPosition='left' onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" />
               </CustomForm>
@@ -105,17 +111,17 @@ function RegisterForm() {
               <Loader size="medium">Carregando</Loader>
             </Dimmer>
           ) : (
-            <CustomButton
-              size="large"
-              content="Cadastrar-se"
-              onClick={Cadastrar}
-            />
-          )}
+              <CustomButton
+                size="large"
+                content="Cadastrar-se"
+                onClick={Cadastrar}
+              />
+            )}
           {erro ? (
             <Message header={msgErro} color="red" icon="dont" />
           ) : (
-            <div />
-          )}
+              <div />
+            )}
         </Container>
       </CustomModalContent>
     </>
