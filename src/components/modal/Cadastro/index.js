@@ -14,7 +14,7 @@ import {
   CustomForm
 } from "./styles";
 
-function RegisterForm() {
+function RegisterForm({ModalTop}) {
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
@@ -99,6 +99,7 @@ function RegisterForm() {
             <Form.Group widths="equal">
               <CustomForm>
                 <Input
+                  onClick = {ModalTop}
                   icon="fas fa-user"
                   iconPosition="left"
                   onChange={e => setNome(e.target.value)}
@@ -108,6 +109,7 @@ function RegisterForm() {
 
               <CustomForm>
                 <Input
+                  onClick = {ModalTop}
                   icon="fas fa-lock"
                   iconPosition="left"
                   onChange={e => setSenha(e.target.value)}

@@ -12,7 +12,7 @@ import {
   CustomForm
 } from "./styles";
 
-function RedefinirSenha() {
+function RedefinirSenha({ModalTop}) {
   const [email, setEmail] = useState("");
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState(false);
@@ -63,6 +63,7 @@ function RedefinirSenha() {
           <Form size="large" key="tiny" method="POST">
             <CustomForm>
               <Input
+                onClick = {ModalTop}
                 icon="fas fa-envelope"
                 iconPosition="left"
                 onChange={e => setEmail(e.target.value)}
