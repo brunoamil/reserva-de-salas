@@ -17,7 +17,7 @@ import {
   TitleContainerMC
 } from "./styles";
 
-function LoginForm() {
+function LoginForm({ModalTop}) {
   const [login, setLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -30,6 +30,8 @@ function LoginForm() {
   function TrocarTela() {
     setLogin(false);
   }
+  
+  
 
   function Logar() {
     if (email === "" || senha === "") {
@@ -58,7 +60,7 @@ function LoginForm() {
   return (
     <>
       {login ? (
-        <CustomModalContent>
+        <CustomModalContent >
           <ContainerModalContent>
             <TitleContainerMC>Login</TitleContainerMC>
           </ContainerModalContent>
@@ -66,6 +68,7 @@ function LoginForm() {
             <Form size="large" key="tiny" method="POST">
               <CustomForm>
                 <Input
+                  
                   onChange={e => setEmail(e.target.value)}
                   type="email"
                   placeholder="Email"
@@ -75,6 +78,7 @@ function LoginForm() {
               </CustomForm>
               <CustomForm>
                 <Input
+                  onClick = {ModalTop}
                   onChange={e => setSenha(e.target.value)}
                   type="password"
                   placeholder="Senha"
@@ -105,7 +109,7 @@ function LoginForm() {
           </Container>
         </CustomModalContent>
       ) : (
-        <RedefinirSenha />
+        <RedefinirSenha ModalTop = {ModalTop} />
       )}
     </>
   );

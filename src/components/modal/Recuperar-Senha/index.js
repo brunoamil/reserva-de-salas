@@ -12,7 +12,7 @@ import {
   CustomForm
 } from "./styles";
 
-function RedefinirSenha() {
+function RedefinirSenha({ModalTop}) {
   const [email, setEmail] = useState("");
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState(false);

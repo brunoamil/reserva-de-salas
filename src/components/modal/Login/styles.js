@@ -11,6 +11,7 @@ export const Container = styled.div`
 `;
 
 export const TitleContainerMC = styled.h1`
+
   margin-top: 1px;
   font-weight: bold;
   font-size: 2em;
@@ -49,17 +50,23 @@ export const LabelReg = styled.h1`
 export const TitleForgot = styled.a`
   display: flex;
   text-align: end;
-  justify-content: flex-end;
-  align-items: flex-end;
+  justify-content: flex-start;
+  align-items: flex-start;
   
+  cursor: pointer;
+  
+  margin-top: -5px;
   font-size: 1em;
   color: #0d4b81;
   &:hover{
     text-decoration: underline;
   }
+  @media(max-width: 850px) {
+    font-weight: bold;
+  }
+
   
 `;
-
 
 export const CustomButton = styled(Button)`
   width: 100%;

@@ -14,7 +14,7 @@ import {
   CustomForm
 } from "./styles";
 
-function RegisterForm() {
+function RegisterForm({ModalTop}) {
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");

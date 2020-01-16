@@ -61,6 +61,9 @@ const ConfirmModalContent = () => {
     <>
       <Container>
         <ContainerMain>
+          <div>
+            <h1>RESERVA</h1>
+          </div>
           <HourContent>
             <p>De: {horaInicial}</p>
             <div>
@@ -77,10 +80,9 @@ const ConfirmModalContent = () => {
           <HeaderModalContent>
             <DescContent>
               <form method="post">
-                <label htmlFor="Event">Evento</label>
                 <Input onChange={(e) => {
                   setNomeEvento(e.target.value)
-                }} size="big" placeholder="Evento" type="text" name="inputEvent" id="inputEvent" />
+                }} size="large" placeholder="Nome do Evento" type="text" name="inputEvent" id="inputEvent" />
               </form>
             </DescContent>
           </HeaderModalContent>
@@ -93,7 +95,7 @@ const ConfirmModalContent = () => {
                   cadastrarEvento();
                   dispatch({ type: "SET_HORA_FINAL", horaFinal });
                   document.getElementById(id).style.background = 'red';
-                }} size="tiny" primary>
+                }} size="large" primary>
                   Confirmar Reserva
                 </Button>
               </ContainerButton>
