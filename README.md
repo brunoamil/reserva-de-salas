@@ -1,4 +1,4 @@
-# MVP do projeto "reserva de salas".
+# SISTEMA RESERVA DE SALAS.
 
 Cenário:
 Foi necessária a criação de uma aplicação que fizesse reservas das salas para reunião ou eventos, evitando conflitos entre funcionarios.
@@ -10,18 +10,18 @@ Foi necessária a criação de uma aplicação que fizesse reservas das salas pa
 
 ## Neste projeto é utilizado as seguintes dependencias:
 ### Lista:
--firebase;
--jquery;
--moment;
--react;
--react-datetime;
--react-dom;
--react-redux;
--react-router-dom;
--react-scripts;
--redux;
--semantic-ui-css;
--semantic-ui-react;
+-firebase,
+-jquery,
+-moment,
+-react,
+-react-datetime,
+-react-dom,
+-react-redux,
+-react-router-dom,
+-react-scripts,
+-redux,
+-semantic-ui-css,
+-semantic-ui-react,
 -styled-components.
 
 
