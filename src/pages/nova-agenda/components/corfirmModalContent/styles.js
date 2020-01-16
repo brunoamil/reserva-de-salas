@@ -32,6 +32,18 @@ export const ContainerMain = styled.div`
   margin: 20px 30px 15px 30px;
   border-radius: 7px;
   font-family: Arial, Helvetica, sans-serif;
+
+  div{
+    display: flex;
+    justify-content : center;
+    align-items: center;
+  }
+
+  h1{
+    font-family: "PT Sans",sans-serif;
+    color: #000;
+    align-items: center;
+  }
 `;
 
 export const ContainerTitle = styled.div`
@@ -59,9 +71,10 @@ export const HourContent = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  P {
-    font-size: 1.2em;
+  p {
+    font-size: 1.3em;
     margin-top: 10px;
+    font-weight: bold;
   }
   div {
     margin-bottom: 1px;
@@ -69,7 +82,8 @@ export const HourContent = styled.div`
     flex-direction: row;
     align-items: center;
     p {
-      font-size: 1.2em;
+      font-size: 1.3em;
+      font-weight: bold;
     }
     div {
       margin-bottom: 2.7px;
@@ -78,6 +92,18 @@ export const HourContent = styled.div`
       flex-direction: column;
       align-items: center;
       flex-flow: column;
+    }
+    select{
+      border: none;
+      outline : none;
+      background-color: transparent;
+      margin-bottom: 10px;
+
+
+      :optional{
+        font-size: 1.3em;
+      }
+      
     }
   }
 `;
