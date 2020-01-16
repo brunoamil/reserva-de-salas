@@ -8,8 +8,8 @@ Foi necessária a criação de uma aplicação que fizesse reservas das salas pa
 1) Logar, Cadastrar usuarios;
 2) Visualizar e criar reservas;
 
-## Neste projeto é utilizado as seguintes dependencias:
-### Lista:
+# Neste projeto é utilizado as seguintes dependencias:
+
 -firebase,
 -jquery,
 -moment,
