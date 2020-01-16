@@ -71,7 +71,7 @@ export const TitleForgot = styled.a`
 export const CustomButton = styled(Button)`
   width: 100%;
 
-  margin: 5px 0 -2px !important;
+  margin: 20px 0 -2px !important;
   padding: 10px !important;
 
   font-size: 1.2em !important;

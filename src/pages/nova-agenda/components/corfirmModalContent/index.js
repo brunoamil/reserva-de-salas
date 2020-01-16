@@ -9,7 +9,8 @@ import {
   ContainerMain,
   DescContent,
   HourContent,
-  ContainerButton
+  ContainerButton,
+  TextAling
 } from "./styles";
 
 const ConfirmModalContent = () => {
@@ -61,13 +62,13 @@ const ConfirmModalContent = () => {
     <>
       <Container>
         <ContainerMain>
-          <div>
+          <TextAling>
             <h1>RESERVA</h1>
-          </div>
+          </TextAling>
           <HourContent>
-            <p>De: {horaInicial}</p>
+            <p><strong>De:</strong> {horaInicial}</p>
             <div>
-              <p>Até: {" "}</p>
+              <p><strong>Até:</strong> {" "}</p>
 
               <select onChange={e => setHoraFinal(e.target.value)}>
                 {horas.filter(item => item > horaInicial).map(hora => (
@@ -80,9 +81,9 @@ const ConfirmModalContent = () => {
           <HeaderModalContent>
             <DescContent>
               <form method="post">
-                <Input onChange={(e) => {
+                <Input focus onChange={(e) => {
                   setNomeEvento(e.target.value)
-                }} size="large" placeholder="Nome do Evento" type="text" name="inputEvent" id="inputEvent" />
+                }} size="huge" placeholder="Nome do Evento" type="text" name="inputEvent" id="inputEvent" />
               </form>
             </DescContent>
           </HeaderModalContent>
