@@ -49,12 +49,14 @@ const ConfirmModalContent = () => {
       termino: horaFinal,
       id
     }).then( () => {
-      console.log('MANDEI!!');
       setMsgSucesso(true)
+      setTimeout(() => {
+        dispatch({ type: "SET_MODAL", valueModal: false});
+        dispatch({ type: "SET_LOADER", set_loader: true });
+      }, 1000);
     }).catch( erro => {
-      console.log(erro);
-    });
-    setTimeout(function () { dispatch({ type: "SET_MODAL", valueModal: false}) }, 3000);
+      console.log("Não foi possível cadastrar uma reserva", erro);
+    })
   };
 
   return (
@@ -92,7 +94,6 @@ const ConfirmModalContent = () => {
                 <Button onClick={() => {
                   cadastrarEvento();
                   dispatch({ type: "SET_HORA_FINAL", horaFinal });
-                  document.getElementById(id).style.background = 'red';
                 }} size="tiny" primary>
                   Confirmar Reserva
                 </Button>

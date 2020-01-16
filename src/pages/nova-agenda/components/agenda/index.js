@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Table } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
-import firebase from "../../../../services/firebase";
 
 import "../../index.css";
 import { Container } from "./styles";
@@ -16,7 +15,8 @@ function Agenda() {
   const dispatch = useDispatch();
 
   const CheckLogin = useSelector(state => state.user.usuarioLogin);
-  const sala = useSelector(state => state.salas.salaAtual);
+  const event = useSelector(state => state.salas.roomEvents);
+  console.log(event);
 
   if (dia === 0) {
     data += 1;
@@ -31,37 +31,7 @@ function Agenda() {
     data = data - 1;
   }
 
-  const checkName = name => {
-    if(name.indexOf(" ") > -1) {
-      let firstName = name.split(" ");
-      return firstName[0];
-    } else {
-      return name;
-    }
-  }
-
   useEffect(() => {
-    const getEventos = async () => {
-      let event = [];
-
-      await firebase
-      .firestore()
-      .collection("salas")
-      .doc(`${sala}`)
-      .collection("Eventos")
-      .get()
-      .then(sucesso => {
-        sucesso.forEach(doc => {
-          const {id, userName} = doc.data()
-          const firstName = checkName(userName);
-          event.push({id, firstName});
-          
-          console.log(event);
-        });
-      })
-      .catch(erro => {
-        console.log("Erro ao pegar salas", erro);
-      });
     if (event) {
       event.map(item => {
         let divCell = document.getElementById(`${item.id}`);
@@ -77,11 +47,25 @@ function Agenda() {
           divCell.appendChild(spanc)
         ) 
       })
+    } else {
+      console.log("opa deu um erro no useEffect da agenda");
     }
-    };
-    getEventos();
   });
 
+  // useEffect(() => {
+  //   if(event) {
+  //     event.map(item => {
+  //       let divCell = document.getElementById(`${item.id}`);
+  //       let spanCell = document.getElementById('spanCell');
+        
+  //       if (divCell.childNodes.length > 1) {
+           
+  //       }
+  //     })
+  //   }
+  // }, [sala])
+
+  
   const everyAction = () => {
     dispatch({ type: "SET_MODAL", valueModal: true });
 

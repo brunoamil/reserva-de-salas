@@ -112,10 +112,12 @@ export const HeaderAgenda = () => {
             </CircleAling>
             <SelectAling>
               <Select onChange={e => {
-                dispatch({ type: "GET_SALA", sala: (e.target.value) })
-                }}>
+              dispatch({ type: "GET_SALA", sala: (e.target.value) })
+              dispatch({ type: "SET_LOADER", set_loader: true })
+              }} defaultValue='Salas'>
+                  
                 {salas.map(sala => (
-                  <option onClick={() => dispatch({ type: "SET_LOADER", set_loader: true })} value={sala}>{sala}</option>
+                  <option value={sala}>{sala}</option>
                 ))}
               </Select>
             </SelectAling>
