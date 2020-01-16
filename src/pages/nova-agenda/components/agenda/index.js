@@ -17,7 +17,6 @@ function Agenda() {
 
   const CheckLogin = useSelector(state => state.user.usuarioLogin);
   const sala = useSelector(state => state.salas.salaAtual);
-  console.log(sala)
 
   if (dia === 0) {
     data += 1;
@@ -30,6 +29,15 @@ function Agenda() {
   while (dia > 1) {
     dia = dia - 1;
     data = data - 1;
+  }
+
+  const checkName = name => {
+    if(name.indexOf(" ") > -1) {
+      let firstName = name.split(" ");
+      return firstName[0];
+    } else {
+      return name;
+    }
   }
 
   useEffect(() => {
@@ -45,7 +53,8 @@ function Agenda() {
       .then(sucesso => {
         sucesso.forEach(doc => {
           const {id, userName} = doc.data()
-          event.push({id, userName});
+          const firstName = checkName(userName);
+          event.push({id, firstName});
           
           console.log(event);
         });
@@ -60,7 +69,7 @@ function Agenda() {
         const spanc = document.createElement('span');
         const titleReserve = document.createElement('h2');
 
-        titleReserve.innerText = item.userName;
+        titleReserve.innerText = item.firstName;
         spanc.setAttribute('id', 'spanCell');
 
         spanc.appendChild(titleReserve);
