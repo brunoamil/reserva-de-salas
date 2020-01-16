@@ -30,8 +30,9 @@ export const ContainerModalContent = styled.div`
 export const TitleContainerMC = styled.h1`
   font-weight: bold;
   font-size: 2em;
-  border-bottom: 3px solid #0d4b81;
+  border-bottom: 3px solid #0d4b81 !important;
   color: #000;
+  font-family: "PT Sans",sans-serif;
 `;
 
 export const FooterModal = styled.div`
