@@ -16,13 +16,16 @@ export function usuarioReducer(state = USER, action){
 
 export function setSalas(state = SALAS, action) {
   let arrSalas = action.arrSalas;
-  let sala = action.sala;
+  let room = action.sala;
+  let event = action.event;
 
   switch(action.type) {
     case 'REG_SALAS':
-      return {...state, salasReserva: arrSalas};
+      return {...state, roomsReservation: arrSalas};
     case 'GET_SALA':
-      return {...state, salaAtual: sala};
+      return {...state, currentRoom: room};
+    case 'SET_EVENTOS_SALA':
+      return {...state, roomEvents: event};
     default:
       return state;
   }

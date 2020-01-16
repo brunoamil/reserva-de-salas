@@ -2,12 +2,13 @@ export const USER = {
   usuarioNome : '',
   usuarioEmail : '',
   usuarioLogin : 0,
-  salasReserva: []
+  salasReserva: [],
 };
 
 export const SALAS = {
-  salasReserva: [],
-  salaAtual: 'Auditório',
+  roomsReservation: [],
+  currentRoom: '',
+  roomEvents: [],
 };
 
 
@@ -27,5 +28,5 @@ export const DADOS_RESERVA = {
 };
 
 export const LOAD = {
-  loader: false
+  loader: false,
 };

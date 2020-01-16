@@ -88,7 +88,7 @@ function RegisterForm() {
           <Form size="large" key="tiny" method="POST">
             <CustomForm>
               <Input
-                icon="fas fa-envelope"
+                icon="mail"
                 iconPosition="left"
                 onChange={e => setEmail(e.target.value)}
                 type="email"
@@ -99,7 +99,7 @@ function RegisterForm() {
             <Form.Group widths="equal">
               <CustomForm>
                 <Input
-                  icon="fas fa-user"
+                  icon=""
                   iconPosition="left"
                   onChange={e => setNome(e.target.value)}
                   placeholder="Primeiro Nome"

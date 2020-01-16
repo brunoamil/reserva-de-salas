@@ -1,50 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Web site created using create-react-app" />
-
-  <link rel="manifest" href="manifest.json">
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:600&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-
-  <title>Reserva de salas</title>
-</head>
-
-<body>  
-   
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
-  <script>
-
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", function () {
-        navigator.serviceWorker
-          .register("worker.js")
-          .then(
-            function (registration) {
-              console.log(
-                "Worker registration successful",
-                registration.scope
-              );
-            },
-            function (err) {
-              console.log("Worker registration failed", err);
-            }
-          )
-          .catch(function (err) {
-            console.log(err);
-          });
-      });
-    } else {
-      console.log("Service Worker is not supported by browser.");
-    }
-  </script>
-</body>
-
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="manifest" href="./manifest.json">
+    <meta name= "theme-color" content="#96f2d7">
+    
+    <title>Reserva de salas</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+ 
+    <script>
+      if ('serviceWorker' in navigator) {
+        addEventListener('load', function() {
+          navigator.serviceWorker
+            .register('worker.js')
+            .then(
+              function(registration) {
+                console.log(
+                  'Worker registration successful',
+                  registration.scope
+                );
+              },
+              function(err) {
+                console.log('Worker registration failed', err);
+              }
+            )
+            .catch(function(err) {
+              console.log(err);
+            });
+        });
+      } else {
+        console.log('Service Worker is not supported by browser.');
+      }
+    </script>
+  </body>
 </html>
