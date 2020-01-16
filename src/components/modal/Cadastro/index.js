@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 
 import { Container, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC,CustomForm } from "./styles";
 
-function RegisterForm() {
+function RegisterForm({ModalTop}) {
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");

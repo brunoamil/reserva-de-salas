@@ -9,7 +9,8 @@ import {
   ContainerMain,
   DescContent,
   HourContent,
-  ContainerButton
+  ContainerButton,
+  TextAling
 } from "./styles";
 
 const ConfirmModalContent = () => {
@@ -63,10 +64,13 @@ const ConfirmModalContent = () => {
     <>
       <Container>
         <ContainerMain>
+          <TextAling>
+            <h1>RESERVA</h1>
+          </TextAling>
           <HourContent>
-            <p>De: {horaInicial}</p>
+            <p><strong>De:</strong> {horaInicial}</p>
             <div>
-              <p>Até: {" "}</p>
+              <p><strong>Até:</strong> {" "}</p>
 
               <select onChange={e => setHoraFinal(e.target.value)}>
                 {horas.filter(item => item > horaInicial).map(hora => (
@@ -79,10 +83,9 @@ const ConfirmModalContent = () => {
           <HeaderModalContent>
             <DescContent>
               <form method="post">
-                <label htmlFor="Event">Evento</label>
-                <Input onChange={(e) => {
+                <Input focus onChange={(e) => {
                   setNomeEvento(e.target.value)
-                }} size="big" placeholder="Evento" type="text" name="inputEvent" id="inputEvent" />
+                }} size="huge" placeholder="Nome do Evento" type="text" name="inputEvent" id="inputEvent" />
               </form>
             </DescContent>
           </HeaderModalContent>
@@ -94,7 +97,8 @@ const ConfirmModalContent = () => {
                 <Button onClick={() => {
                   cadastrarEvento();
                   dispatch({ type: "SET_HORA_FINAL", horaFinal });
-                }} size="tiny" primary>
+                  document.getElementById(id).style.background = 'red';
+                }} size="large" primary>
                   Confirmar Reserva
                 </Button>
               </ContainerButton>

@@ -4,7 +4,7 @@ import firebase from "../../../services/firebase";
 
 import { Container, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC,CustomForm } from "./styles";
 
-function RedefinirSenha() {
+function RedefinirSenha({ModalTop}) {
   const [email, setEmail] = useState("");
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState(false);

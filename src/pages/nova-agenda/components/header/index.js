@@ -89,7 +89,7 @@ export const HeaderAgenda = () => {
           <View>
             <div>
               <Logo src={Img}></Logo>
-              <Title>Reserva de Salas - Universidade Ceuma</Title>
+              <Title>Reserva de Salas</Title>
             </div>
             <UserAling>
               {useSelector(state => state.user.usuarioLogin) > 0 ? (

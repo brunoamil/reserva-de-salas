@@ -26,17 +26,23 @@ const ModalUser = () => {
     dispatch({ type: "SET_MODAL", valueModal: false })
   }
 
+  const ModalTop = () => {
+    const topInput = document.getElementById('topInput');
+    topInput.style.setProperty('transition', 'all 0.2s ease');
+    topInput.style.setProperty('margin-top', '-25px');
+  }
+
   return (
     <>
-      <Global size="tiny" open={useSelector(state => state.modal.modal)} closeOnEscape={false}
+      <Global id="topInput" size="tiny" open={useSelector(state => state.modal.modal)} closeOnEscape={false}
           closeOnDimmerClick={false}>
         <ContainerHeader>
           <IconExit onClick={close}><CustomIcon size="large" name='times' /></IconExit>
         </ContainerHeader>
         <CustomModalContent>
-          {loginForm && <LoginForm />}
-          {registerForm && <RegisterForm />}
-          {confirmForm && <CofirmModalContent />}
+          {loginForm && <LoginForm ModalTop = {ModalTop} />}
+          {registerForm && <RegisterForm ModalTop = {ModalTop} />}
+          {confirmForm && <CofirmModalContent ModalTop = {ModalTop} />}
           {infoModal && <InfoModal />}
         </CustomModalContent>
         {loginForm && (
