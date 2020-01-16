@@ -50,19 +50,23 @@ export const LabelReg = styled.h1`
 export const TitleForgot = styled.a`
   display: flex;
   text-align: end;
-  justify-content: flex-end;
-  align-items: flex-end;
-  font-weight: bold;
+  justify-content: flex-start;
+  align-items: flex-start;
+  
   cursor: pointer;
   
+  margin-top: -5px;
   font-size: 1em;
   color: #0d4b81;
   &:hover{
     text-decoration: underline;
   }
+  @media(max-width: 850px) {
+    font-weight: bold;
+  }
+
   
 `;
-
 
 export const CustomButton = styled(Button)`
   width: 100%;

@@ -4,6 +4,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     width:100%;
+    margin-top: -10px;
 
 `
 export const View = styled.div`
@@ -62,7 +63,7 @@ export const Button = styled.button`
     height: 2.2rem;
 
     font-family: "Open Sans",sans-serif,arial;
-    font-size: 0.75rem;
+    font-size: 1rem;
     font-weight: 500;
     text-align:center;
 `
