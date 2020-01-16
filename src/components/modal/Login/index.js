@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Dimmer, Loader, Message, Input, Button } from "semantic-ui-react";
+import { Form, Dimmer, Loader, Message, Input } from "semantic-ui-react";
 import firebase from "../../../services/firebase";
 import "firebase/auth";
 import RedefinirSenha from "../Recuperar-Senha";
@@ -12,6 +12,7 @@ import {
   TitleForgot,
   CustomForm,
   CustomModalContent,
+  CustomButton,
   ContainerModalContent,
   TitleContainerMC
 } from "./styles";
@@ -90,7 +91,7 @@ function LoginForm() {
                 <Loader size="medium">Carregando</Loader>
               </Dimmer>
             ) : (
-              <Button
+              <CustomButton
                 onClick={Logar}
                 size="large"
                 content="Login"
