@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {Loader, Dimmer} from 'semantic-ui-react';
+import {Loader, Dimmer } from 'semantic-ui-react';
 import firebase from '../../../../services/firebase';
 import {useSelector, useDispatch} from 'react-redux';
 
-// import {  } from './styles';
+import { Header, Container, Section, ContainerEvento } from './styles';
 
 const InfoModal = () => {
   const dispatch = useDispatch();
@@ -49,13 +49,22 @@ const InfoModal = () => {
       { loader ? (<Dimmer active>
         <Loader size="medium">Carregando Informções...</Loader>
       </Dimmer>) : (
-        <div>
-          <p>Nome: {dadosReserva.userName}</p>
-          <p>Setor: {dadosReserva.setor}</p>
-          <p>Evento: {dadosReserva.nomeEvento}</p>
-          <p>Inicio: {dadosReserva.inicio}</p>
-          <p>Termino: {dadosReserva.termino}</p>
-        </div> 
+        <>
+        <Container>
+          <Header>
+            <h2>Informações</h2>
+          </Header> 
+          <Section>
+            <p><strong>Nome: </strong>{dadosReserva.userName}</p>
+            <p><strong>Setor: </strong>{dadosReserva.setor}</p>
+            <p><strong>Inicio: </strong>{dadosReserva.inicio}</p>
+            <p><strong>Termino: </strong>{dadosReserva.termino}</p>
+          </Section>
+          <ContainerEvento>
+            <p><strong>Evento: </strong>{dadosReserva.nomeEvento}</p>
+          </ContainerEvento>
+        </Container>
+        </>
       ) }
     </>
   )
