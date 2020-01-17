@@ -35,6 +35,8 @@ function Agenda() {
     if (event) {
       event.map(item => {
         let divCell = document.getElementById(`${item.id}`);
+        // let divCellTermino = document.getElementsByClassName(`${item.termino}`).style.background = '#eee';
+  
 
         if (divCell.childNodes.length === 0) {
           const spanc = document.createElement('span');
@@ -102,7 +104,7 @@ function Agenda() {
 
   return (
     <>
-      <div id="allPage">
+      <div id="allPage" onLoad={() => document.getElementsByClassName(`10:00`).style.background = '#f00'}>
         <Table id="table" definition>
           <Table.Header>
             <Table.Row>

@@ -26,6 +26,7 @@ export const DADOS_RESERVA = {
   horaFinal: '',
   evento: '',
   id: '',
+  data: '',
 };
 
 export const LOAD = {

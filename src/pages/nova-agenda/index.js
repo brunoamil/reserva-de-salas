@@ -37,11 +37,10 @@ function NovaAgenda() {
       .get()
       .then(sucesso => {
         sucesso.forEach(doc => {
-          const {id, userName, termino, setor} = doc.data()
-          console.log(setor);
+          const {id, userName, termino, setor} = doc.data();
           const firstName = checkName(userName);
           if (id && userName) {
-            events.push({id, firstName, termino, setor})
+            events.push({id, firstName, termino, setor});
             console.log(events);
             dispatch({ type: "SET_EVENTOS_SALA", event: events });
           }else {

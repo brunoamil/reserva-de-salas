@@ -11,7 +11,6 @@ const InfoModal = () => {
   const sala = useSelector(state => state.salas.currentRoom) || "Auditório";
   const id = useSelector(state => state.dados.id);
   const loader = useSelector(state => state.load.loadInfo);
-  console.log(loader)
 
   const [dadosReserva, setDadosReserva] = useState();
 
@@ -31,7 +30,6 @@ const InfoModal = () => {
                 setDadosReserva({ ...doc.data() });
                 dispatch({ type: "SET_LOAD_INFO", set_loader_info: false });
                 console.log(doc.data())
-                console.log("opa");
               }
             }
           });
