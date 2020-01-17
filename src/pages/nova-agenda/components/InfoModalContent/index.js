@@ -14,6 +14,17 @@ const InfoModal = () => {
 
   const [dadosReserva, setDadosReserva] = useState();
 
+  const checkName = name => {
+    if (name) {
+      if(name.indexOf(" ") > -1) {
+        let firstName = name.split(" ");
+        return firstName[0];
+      } else {
+        return name;
+      }
+    }
+  }
+
   useEffect(() => {
     const getEventos = async () => {
 
@@ -27,7 +38,10 @@ const InfoModal = () => {
           sucesso.forEach(doc => {
             if (id === doc.data().id) {
               if (!dadosReserva) {
-                setDadosReserva({ ...doc.data() });
+                const {userName, setor, inicio, termino, nomeEvento} = doc.data();
+
+                const firstName = checkName(userName);
+                setDadosReserva({ firstName, setor, inicio, termino, nomeEvento });
                 dispatch({ type: "SET_LOAD_INFO", set_loader_info: false });
                 console.log(doc.data())
               }
@@ -53,13 +67,14 @@ const InfoModal = () => {
             <h2>Informações</h2>
           </Header> 
           <Section>
-            <p><strong>Nome: </strong>{dadosReserva.userName}</p>
+            <p><strong>Nome: </strong>{dadosReserva.firstName}</p>
             <p><strong>Setor: </strong>{dadosReserva.setor}</p>
             <p><strong>Inicio: </strong>{dadosReserva.inicio}</p>
             <p><strong>Termino: </strong>{dadosReserva.termino}</p>
           </Section>
           <ContainerEvento>
-            <p><strong>Evento: </strong>{dadosReserva.nomeEvento}</p>
+            <p><strong>Evento: </strong></p>
+            <span>{dadosReserva.nomeEvento}</span>
           </ContainerEvento>
         </Container>
         </>
