@@ -47,7 +47,7 @@ export const ContainerEvento = styled.div`
 
   p{
     font-family: "Open Sans",sans-serif;
-    font-size: 1.5em;
+    font-size: 1.7em;
     color : #000;
   }
 
