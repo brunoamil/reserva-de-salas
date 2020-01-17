@@ -63,7 +63,7 @@ export const Button = styled.button`
     height: 2.2rem;
 
     font-family: "Open Sans",sans-serif,arial;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 500;
     text-align:center;
 `
