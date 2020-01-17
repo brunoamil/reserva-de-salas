@@ -38,6 +38,7 @@ function NovaAgenda() {
       .then(sucesso => {
         sucesso.forEach(doc => {
           const {id, userName, termino, setor} = doc.data();
+          
           const firstName = checkName(userName);
           if (id && userName) {
             events.push({id, firstName, termino, setor});

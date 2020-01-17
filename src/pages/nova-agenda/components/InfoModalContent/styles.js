@@ -25,7 +25,6 @@ export const Header = styled.div`
 export const Section = styled.div`
   display : grid;
   grid-template-columns : repeat(2, 1fr);
-
   margin-top : 10px;
   padding : 5px;
 
@@ -34,9 +33,9 @@ export const Section = styled.div`
     font-family: "Open Sans",sans-serif;
     font-size: 1.5em;
     color : #000;
+    margin-left: 10px;
+    text-align: center;
   }
-
-
 
 `;
 
@@ -44,7 +43,11 @@ export const ContainerEvento = styled.div`
   display : flex;
   justify-content : center;
   align-items: center;
+<<<<<<< HEAD
   margin-top : 10px;
+=======
+  flex-direction: column;
+>>>>>>> origin/alex
 
   width : 100%;
 
@@ -52,6 +55,13 @@ export const ContainerEvento = styled.div`
     font-family: "Open Sans",sans-serif;
     font-size: 1.7em;
     color : #000;
+  }
+
+  span {
+    margin-top: -15px;
+    font-size: 1.5em;
+    width: 70%;
+    text-align:center;
   }
 
 `;
