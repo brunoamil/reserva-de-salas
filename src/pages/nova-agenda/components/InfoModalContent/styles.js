@@ -43,11 +43,7 @@ export const ContainerEvento = styled.div`
   display : flex;
   justify-content : center;
   align-items: center;
-<<<<<<< HEAD
-  margin-top : 10px;
-=======
   flex-direction: column;
->>>>>>> origin/alex
 
   width : 100%;
 
