@@ -6,7 +6,7 @@ export function usuarioReducer(state = USER, action){
     case 'USER_NAME':
       return {...state, usuarioNome : action.usuarioNome };
     case 'USER_SETOR':
-      return {...state, usuarioSetor : action.usuarioSetor } 
+      return {...state, usuarioSetor : action.usuarioSetor };
     case 'LOG_IN':
       return {...state, usuarioLogin: 1, usuarioEmail: action.usuarioEmail };
     case 'LOG_OUT':
@@ -74,7 +74,9 @@ export function setDadosReserva(state = DADOS_RESERVA, action) {
 export function setLoad(state = LOAD, action) {
   switch(action.type) {
     case "SET_LOADER" :
-      return { ...state, loader: action.set_loader }
+      return { ...state, loader: action.set_loader  }
+    case "SET_LOAD_INFO" :
+      return { ...state, loadInfo: action.set_loader_info  }
     default:
       return state;
   }

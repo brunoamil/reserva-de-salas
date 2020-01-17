@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import { withRouter, useHistory } from "react-router-dom";
 import { Form, Dimmer, Loader, Message, Input } from "semantic-ui-react";
 import firebase from "../../../services/firebase";
 import { useDispatch } from "react-redux";
 
 import {
   Container,
-  LabelReg,
   CustomButton,
   CustomModalContent,
   ContainerModalContent,
@@ -14,18 +12,16 @@ import {
   CustomForm
 } from "./styles";
 
-function RegisterForm() {
+function RegisterForm({ ModalTop }) {
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
-  const [setor, setSetor] = useState("")
+  const [setor, setSetor] = useState("");
   const [nome, setNome] = useState("");
   const [senha, setSenha] = useState("");
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState(false);
   const [msgErro, setMsgErro] = useState("");
-
-  const history = useHistory();
 
   function Cadastrar() {
     if (email === "" || senha === "" || nome === "") {
@@ -46,7 +42,7 @@ function RegisterForm() {
             .add({
               email: email,
               nome: nome,
-              setor: setor
+              setor
             })
             .then()
             .catch();
@@ -90,19 +86,41 @@ function RegisterForm() {
           <Form size="large" key="tiny" method="POST">
             <Form.Group widths="equal">
               <CustomForm>
-                <Input icon='user' iconPosition='left' onChange={(e) => setNome(e.target.value)} placeholder="Nome" />
+                <Input
+                  icon="user"
+                  iconPosition="left"
+                  onChange={e => setNome(e.target.value)}
+                  placeholder="Nome"
+                />
               </CustomForm>
               <CustomForm>
-                <Input icon='building' iconPosition='left' onChange={(e) => setSetor(e.target.value)} placeholder="Setor" />
+                <Input
+                  icon="building"
+                  iconPosition="left"
+                  onChange={e => setSetor(e.target.value)}
+                  placeholder="Setor"
+                />
               </CustomForm>
             </Form.Group>
 
             <Form.Group widths="equal">
               <CustomForm>
-                <Input icon='mail' iconPosition='left' onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
+                <Input
+                  icon="mail"
+                  iconPosition="left"
+                  onChange={e => setEmail(e.target.value)}
+                  type="email"
+                  placeholder="Email"
+                />
               </CustomForm>
               <CustomForm>
-                <Input icon='lock' iconPosition='left' onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" />
+                <Input
+                  icon="lock"
+                  iconPosition="left"
+                  onChange={e => setSenha(e.target.value)}
+                  type="password"
+                  placeholder="Senha"
+                />
               </CustomForm>
             </Form.Group>
           </Form>
@@ -111,20 +129,20 @@ function RegisterForm() {
               <Loader size="medium">Carregando</Loader>
             </Dimmer>
           ) : (
-              <CustomButton
-                size="large"
-                content="Cadastrar-se"
-                onClick={Cadastrar}
-              />
-            )}
+            <CustomButton
+              size="large"
+              content="Cadastrar-se"
+              onClick={Cadastrar}
+            />
+          )}
           {erro ? (
             <Message header={msgErro} color="red" icon="dont" />
           ) : (
-              <div />
-            )}
+            <div />
+          )}
         </Container>
       </CustomModalContent>
     </>
   );
 }
-export default withRouter(RegisterForm);
+export default RegisterForm;

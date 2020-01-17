@@ -3,6 +3,7 @@ import { Modal, Button,Icon } from 'semantic-ui-react';
 
 export const Global = styled(Modal)`
   padding : 0 !important;
+  /* height: 57vh; */
 `
 
 
@@ -46,6 +47,10 @@ export const FooterModal = styled.div`
   p {
     color: #ffffff;
     font-size: 1em;
+    span{
+      font-weight: bold !important;
+      cursor: pointer;
+    }
   }
 
   a {

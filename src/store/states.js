@@ -30,4 +30,5 @@ export const DADOS_RESERVA = {
 
 export const LOAD = {
   loader: false,
+  loadInfo: false,
 };

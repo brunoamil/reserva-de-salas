@@ -41,7 +41,10 @@ function Agenda() {
           const titleReserve = document.createElement('h2');
 
           titleReserve.innerText = `${item.setor}`;
-          spanc.setAttribute('id', 'spanCell');
+
+          spanc.setAttribute('id', `${item.id}`);
+          spanc.setAttribute('class', 'spanCell');
+          titleReserve.setAttribute('id', `${item.id}`);
 
           spanc.appendChild(titleReserve);
           divCell.appendChild(spanc)
@@ -54,15 +57,27 @@ function Agenda() {
   });
 
   
-  const everyAction = () => {
+  const modalActions = samTag => {
     dispatch({ type: "SET_MODAL", valueModal: true });
 
-    if (CheckLogin === 0) {
-      dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true });
+    if (samTag.length !== 0) {
+      dispatch({ type: "SET_MODAL", valueModal: true });
+      dispatch({ type: "SET_MODAL_INFO", valueInfo: true });
     } else {
-      dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
+      if (CheckLogin === 0) {
+        dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true });
+      } else {
+        dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
+      }
     }
+
   };
+
+  const reduxTableActions = (idTable, hour) => {
+    dispatch({ type: "SET_ID", id: idTable });
+    dispatch({ type: "SET_HORA", hora: hour });
+    dispatch({ type: "SET_LOAD_INFO", set_loader_info: true });
+  }
 
   const dias = [
     `SEG ${data}/${mes}`,
@@ -93,7 +108,7 @@ function Agenda() {
             <Table.Row>
               <Table.HeaderCell id="none" />
               {dias.map(dia => (
-                <Table.HeaderCell>
+                <Table.HeaderCell key={dia}>
                   <strong> {dia} </strong>
                 </Table.HeaderCell>
               ))}
@@ -101,27 +116,18 @@ function Agenda() {
           </Table.Header>
           <Table.Body>
             {horas.map((hora, index) => (
-              <Table.Row>
+              <Table.Row key={index}>
                 <Table.HeaderCell width="1">
-                  <strong> {hora} </strong>
+                  <strong > {hora} </strong>
                 </Table.HeaderCell>
-                {dias.map(() => (
-                  <Table.Cell>
+                {dias.map((dia, index) => (
+                  <Table.Cell key={index}>
                     <Container
                       id={`${(number += 1)}`}
                       className={hora}
                       onClick={e => {
-                        if ((e.target.childNodes).length !== 0) {
-                          dispatch({ type: "SET_MODAL", valueModal: true });
-                          dispatch({ type: "SET_MODAL_INFO", valueInfo: true });
-                        } else {
-                          dispatch({
-                            type: "SET_ID",
-                            id: e.target.getAttribute("id")
-                          });
-                          dispatch({ type: "SET_HORA", hora });
-                          everyAction();
-                        }
+                        modalActions(e.target.childNodes);
+                        reduxTableActions(e.target.getAttribute("id"), hora);
                       }}
                     />
                   </Table.Cell>

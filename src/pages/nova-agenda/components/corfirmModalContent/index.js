@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Input, Message } from "semantic-ui-react";
 import firebase from "../../../../services/firebase";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 
 import {
   Container,
@@ -9,7 +9,8 @@ import {
   ContainerMain,
   DescContent,
   HourContent,
-  ContainerButton
+  ContainerButton,
+  TextAling
 } from "./styles";
 
 const ConfirmModalContent = () => {
@@ -35,74 +36,94 @@ const ConfirmModalContent = () => {
   const [nomeEvento, setNomeEvento] = useState();
   const [msgSucesso, setMsgSucesso] = useState(false);
 
-
   const userName = useSelector(state => state.user.usuarioNome);
   const id = useSelector(state => state.dados.id);
-  const sala = useSelector(state => state.salas.currentRoom);
-  console.log(sala)
+  const sala = useSelector(state => state.salas.currentRoom) || "Auditório";
 
   const db = firebase.firestore();
 
   const cadastrarEvento = () => {
-    db.collection("salas").doc(`${sala}` || 'Auditorio').collection("Eventos").add({
-      userName: userName,
-      nomeEvento: nomeEvento,
-      inicio: horaInicial,
-      termino: horaFinal,
-      id,
-      setor
-    }).then( () => {
-      setMsgSucesso(true)
-      setTimeout(() => {
-        dispatch({ type: "SET_MODAL", valueModal: false});
-        dispatch({ type: "SET_LOADER", set_loader: true });
-      }, 1000);
-    }).catch( erro => {
-      console.log("Não foi possível cadastrar uma reserva", erro);
-    })
+    db.collection("salas")
+      .doc(`${sala}`)
+      .collection("Eventos")
+      .add({
+        userName: userName,
+        nomeEvento: nomeEvento,
+        inicio: horaInicial,
+        termino: horaFinal,
+        id,
+        setor
+      })
+      .then(() => {
+        setMsgSucesso(true);
+        setTimeout(() => {
+          dispatch({ type: "SET_MODAL", valueModal: false });
+          dispatch({ type: "SET_LOADER", set_loader: true });
+        }, 1000);
+      })
+      .catch(erro => {
+        console.log("Não foi possível cadastrar uma reserva", erro);
+      });
   };
 
   return (
     <>
       <Container>
         <ContainerMain>
+          <TextAling>
+            <h1>RESERVA</h1>
+          </TextAling>
           <HourContent>
-            <p>De: {horaInicial}</p>
+            <p>
+              <strong>De:</strong> {horaInicial}
+            </p>
             <div>
-              <p>Até: {" "}</p>
+              <p>
+                <strong>Até:</strong>{" "}
+              </p>
 
               <select onChange={e => setHoraFinal(e.target.value)}>
-                {horas.filter(item => item > horaInicial).map(hora => (
-                  <option>{hora}</option>
-                ))}
+                {horas
+                  .filter(item => item > horaInicial)
+                  .map(hora => (
+                    <option key={hora}>{hora}</option>
+                  ))}
               </select>
-
             </div>
           </HourContent>
           <HeaderModalContent>
             <DescContent>
               <form method="post">
-                <label htmlFor="Event">Evento</label>
-                <Input onChange={(e) => {
-                  setNomeEvento(e.target.value)
-                }} size="big" placeholder="Evento" type="text" name="inputEvent" id="inputEvent" />
+                <Input
+                  focus
+                  onChange={e => {
+                    setNomeEvento(e.target.value);
+                  }}
+                  size="huge"
+                  placeholder="Nome do Evento"
+                  type="text"
+                  name="inputEvent"
+                  id="inputEvent"
+                />
               </form>
             </DescContent>
           </HeaderModalContent>
-          {
-            msgSucesso ?
-              <Message header="Reserva Concluída!" color="green" icon="check" />
-              :
-              <ContainerButton>
-                <Button onClick={() => {
+          {msgSucesso ? (
+            <Message header="Reserva Concluída!" color="green" icon="check" />
+          ) : (
+            <ContainerButton>
+              <Button
+                onClick={() => {
                   cadastrarEvento();
                   dispatch({ type: "SET_HORA_FINAL", horaFinal });
-                }} size="tiny" primary>
-                  Confirmar Reserva
-                </Button>
-              </ContainerButton>
-
-          }
+                }}
+                size="large"
+                primary
+              >
+                Confirmar Reserva
+              </Button>
+            </ContainerButton>
+          )}
         </ContainerMain>
       </Container>
     </>
