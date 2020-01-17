@@ -78,7 +78,7 @@ export const HeaderAgenda = () => {
   dispatch({ type: 'REG_SALAS', arrSalas: salas });
 
   const actionLogout = () => {
-    setLoader(true);
+    actionLoader();
     setTimeout(() => {
       dispatch({ type: "LOG_OUT" });
       dispatch({ type: "SET_EVENTOS_SALA", event: [] });
@@ -106,14 +106,21 @@ export const HeaderAgenda = () => {
             </div>
             <UserAling>
               {useSelector(state => state.user.usuarioLogin) > 0 ? (
+                <>
                 <h1>Usuário: {nome}</h1>
-              )
-                : ''}
+                  <Button type="button" onClick={actionLogout}>
+                    Sair
+                  </Button>
+                </>
+              ): 
               <Link to='/'>
-                <Button type="button" onClick={actionLogout}>
+                <Button type="button">
                   Voltar
                 </Button>
-              </Link>
+              </Link>  
+            }
+
+              
             </UserAling>
           </View>
           <ViewSelect>
