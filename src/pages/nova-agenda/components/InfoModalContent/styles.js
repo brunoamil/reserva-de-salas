@@ -27,8 +27,10 @@ export const Section = styled.div`
   grid-template-columns : repeat(2, 1fr);
 
   margin-top : 10px;
+  padding : 5px;
 
   p{
+    margin : 5px 10px;
     font-family: "Open Sans",sans-serif;
     font-size: 1.5em;
     color : #000;
@@ -42,6 +44,7 @@ export const ContainerEvento = styled.div`
   display : flex;
   justify-content : center;
   align-items: center;
+  margin-top : 10px;
 
   width : 100%;
 
