@@ -48,9 +48,9 @@ export function setModal(state = MODAL, action) {
     case 'SET_MODAL_CONFIRM':
       return { ...state, confirmForm: valueConfirm, registerForm: false, loginForm: false, infoModal: false};
     case "SET_MODAL_INFO":
-      return { ...state, infoModal: valueInfo, confirmForm: false, registerForm: false, loginForm: false }
+      return { ...state, infoModal: valueInfo, confirmForm: false, registerForm: false, loginForm: false };
     case "SET_MODAL":
-      return { ...state, modal: valueModal }
+      return { ...state, modal: valueModal };
     default: 
       return state;
   }
@@ -59,13 +59,15 @@ export function setModal(state = MODAL, action) {
 export function setDadosReserva(state = DADOS_RESERVA, action) {
   switch(action.type) {
     case "SET_EVENTO":
-      return { ...state, evento: action.evento }
+      return { ...state, evento: action.evento };
     case "SET_ID":
-      return { ...state, id: action.id }
+      return { ...state, id: action.id };
     case "SET_HORA":
-      return { ...state, hora: action.hora }
+      return { ...state, hora: action.hora };
     case "SET_HORA_FINAL":
-      return { ...state, horaFinal: action.horaFinal }
+      return { ...state, horaFinal: action.horaFinal };
+    case "SET_DATA":
+      return { ...state, data: action.data };
     default: 
       return state;
   }
@@ -74,9 +76,9 @@ export function setDadosReserva(state = DADOS_RESERVA, action) {
 export function setLoad(state = LOAD, action) {
   switch(action.type) {
     case "SET_LOADER" :
-      return { ...state, loader: action.set_loader  }
+      return { ...state, loader: action.set_loader  };
     case "SET_LOAD_INFO" :
-      return { ...state, loadInfo: action.set_loader_info  }
+      return { ...state, loadInfo: action.set_loader_info  };
     default:
       return state;
   }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Dimmer, Loader, Message, Input } from "semantic-ui-react";
 import firebase from "../../../services/firebase";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   Container,
@@ -48,6 +48,8 @@ function RegisterForm({ ModalTop }) {
             .catch();
 
           dispatch({ type: "LOG_IN", usuarioEmail: email });
+          dispatch({ type: "USER_SETOR", usuarioSetor: setor });
+          
           dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
         })
         .catch(erro => {
@@ -75,6 +77,8 @@ function RegisterForm({ ModalTop }) {
         });
     }
   }
+
+  console.log(useSelector(state => state.user.usuarioSetor));
 
   return (
     <>
