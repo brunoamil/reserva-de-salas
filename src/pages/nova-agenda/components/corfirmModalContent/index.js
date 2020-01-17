@@ -10,7 +10,8 @@ import {
   DescContent,
   HourContent,
   ContainerButton,
-  TextAling
+  TextAling,
+  CustomOption
 } from "./styles";
 
 const ConfirmModalContent = () => {
@@ -35,6 +36,7 @@ const ConfirmModalContent = () => {
   const [horaFinal, setHoraFinal] = useState();
   const [nomeEvento, setNomeEvento] = useState();
   const [msgSucesso, setMsgSucesso] = useState(false);
+  const [msgErro, setMsgErro] = useState(false);
 
   const userName = useSelector(state => state.user.usuarioNome);
   const id = useSelector(state => state.dados.id);
@@ -43,27 +45,31 @@ const ConfirmModalContent = () => {
   const db = firebase.firestore();
 
   const cadastrarEvento = () => {
-    db.collection("salas")
-      .doc(`${sala}`)
-      .collection("Eventos")
-      .add({
-        userName: userName,
-        nomeEvento: nomeEvento,
-        inicio: horaInicial,
-        termino: horaFinal,
-        id,
-        setor
-      })
-      .then(() => {
-        setMsgSucesso(true);
-        setTimeout(() => {
-          dispatch({ type: "SET_MODAL", valueModal: false });
-          dispatch({ type: "SET_LOADER", set_loader: true });
-        }, 1000);
-      })
-      .catch(erro => {
-        console.log("Não foi possível cadastrar uma reserva", erro);
-      });
+    if (!nomeEvento || !horaFinal) {
+      setMsgErro(true);
+    } else {
+      db.collection("salas")
+        .doc(`${sala}`)
+        .collection("Eventos")
+        .add({
+          userName: userName,
+          nomeEvento: nomeEvento,
+          inicio: horaInicial,
+          termino: horaFinal,
+          id,
+          setor
+        })
+        .then(() => {
+          setMsgSucesso(true);
+          setTimeout(() => {
+            dispatch({ type: "SET_MODAL", valueModal: false });
+            dispatch({ type: "SET_LOADER", set_loader: true });
+          }, 1000);
+        })
+        .catch(erro => {
+          console.log("Não foi possível cadastrar uma reserva", erro);
+        });
+    }
   };
 
   return (
@@ -82,7 +88,13 @@ const ConfirmModalContent = () => {
                 <strong>Até:</strong>{" "}
               </p>
 
-              <select onChange={e => setHoraFinal(e.target.value)}>
+              <select
+                onChange={e => setHoraFinal(e.target.value)}
+                defaultValue={"DEFAULT"}
+              >
+                <CustomOption key="10" disabled hidden value="DEFAULT">
+                  horas
+                </CustomOption>
                 {horas
                   .filter(item => item > horaInicial)
                   .map(hora => (
@@ -105,25 +117,25 @@ const ConfirmModalContent = () => {
                   name="inputEvent"
                   id="inputEvent"
                 />
+                {/* <Select placeholder='Select your country' options='oi' /> */}
               </form>
             </DescContent>
           </HeaderModalContent>
-          {msgSucesso ? (
-            <Message header="Reserva Concluída!" color="green" icon="check" />
-          ) : (
             <ContainerButton>
               <Button
                 onClick={() => {
                   cadastrarEvento();
                   dispatch({ type: "SET_HORA_FINAL", horaFinal });
-                }}
+                }}  
                 size="large"
                 primary
-              >
+                id="button"
+                >
                 Confirmar Reserva
               </Button>
             </ContainerButton>
-          )}
+            {msgSucesso && <Message header="Reserva Concluída!" color="green" icon="check" />}
+            {msgErro && <Message header="Verifique os Campos Acima!" color="red" icon="dont" />}
         </ContainerMain>
       </Container>
     </>
