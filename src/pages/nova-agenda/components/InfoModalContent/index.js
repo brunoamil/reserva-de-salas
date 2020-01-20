@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Loader, Dimmer, Icon, Message } from "semantic-ui-react";
+import { Loader, Dimmer, Icon, Message, Button } from "semantic-ui-react";
 import firebase from "../../../../services/firebase";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -9,8 +9,7 @@ import {
   Section,
   ContainerEvento,
   ContainerInfo,
-  ContainerExit,
-  ButtonDelete
+  ContainerExit
 } from "./styles";
 
 const InfoModal = () => {
@@ -162,9 +161,9 @@ const InfoModal = () => {
 
             {email && (
               <ContainerExit>
-                <ButtonDelete icon onClick={ActionDelete} size="big">
-                  Excluir
-                </ButtonDelete>
+                <Button negative icon onClick={ActionDelete} size="big">
+                  Excluir reserva
+                </Button>
               </ContainerExit>
             )}
           </ContainerInfo>
