@@ -4,8 +4,16 @@
 /node_modules
 /.pnp
 .pnp.js
+<<<<<<< HEAD
 yarn.lock
 package-lock.json
+=======
+/yarn.lock
+.firebase
+.firebaserc
+database.rules.json
+firebase.json
+>>>>>>> origin/dev-mvp
 
 # testing
 /coverage

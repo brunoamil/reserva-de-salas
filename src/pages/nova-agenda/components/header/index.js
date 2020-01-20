@@ -10,7 +10,6 @@ import {
   Header,
   Title,
   UserAling,
-  Button,
   Select,
   SelectAling,
   Container,
@@ -19,7 +18,11 @@ import {
   Circle2,
   Legenda,
   View,
-  ViewSelect
+  ContainerHeader,
+  ContainerVoltar,
+  ContainerLeftHeader,
+  ViewSelect,
+  ButtonVoltar
 } from "./styles";
 
 
@@ -40,7 +43,7 @@ export const HeaderAgenda = () => {
     .then(snapshot => {
       snapshot.forEach(doc => {
         if (doc.data().email === email) {
-          setNome(doc.data().nome);  
+          setNome(doc.data().nome);
           dispatch({ type: 'USER_NAME', usuarioNome: nome });
         }
 
@@ -100,27 +103,31 @@ export const HeaderAgenda = () => {
       <Header>
         <Container>
           <View>
-            <div>
-              <Logo src={Img}></Logo>
-              <Title>Reserva de Salas</Title>
-            </div>
-            <UserAling>
-              {useSelector(state => state.user.usuarioLogin) > 0 ? (
-                <>
-                <h1>Usuário: {nome}</h1>
-                  <Button type="button" onClick={actionLogout}>
-                    Sair
-                  </Button>
-                </>
-              ): 
-              <Link to='/'>
-                <Button type="button">
-                  Voltar
-                </Button>
-              </Link>  
-            }
+            <ContainerHeader>
+              <ContainerVoltar>
+                {useSelector(state => state.user.usuarioLogin) === 0 ? (
+                  <Link to='/'>
+                    <ButtonVoltar name='arrow left' size='large' color='black' ></ButtonVoltar>
+                  </Link>
+                ) : ''}
+              </ContainerVoltar>
 
-              
+
+              <ContainerLeftHeader>
+                <Logo src={Img}></Logo>
+                <Title>Reserva de Salas</Title>
+              </ContainerLeftHeader>
+            </ContainerHeader>
+            <UserAling>
+              {useSelector(state => state.user.usuarioLogin) === 1 ? (
+                <>
+                  <h1>Usuário: {nome}</h1>
+                  <ButtonVoltar name='sign-out' size='large' onClick={actionLogout}></ButtonVoltar>
+                </>
+              ) : ''
+              }
+
+
             </UserAling>
           </View>
           <ViewSelect>
