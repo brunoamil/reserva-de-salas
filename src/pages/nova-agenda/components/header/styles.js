@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {Icon} from 'semantic-ui-react'
 
 export const Container = styled.div`
     display: flex;
@@ -80,6 +81,10 @@ export const Button = styled.button`
     font-size: 1.1rem;
     font-weight: 500;
     text-align:center;
+`
+export const ButtonVoltar = styled(Icon)`
+    margin-left: 20px !important;
+    margin-right: 14px !important;
 `
 // export const ContainerAlert = styled.div`
 //     display: flex;

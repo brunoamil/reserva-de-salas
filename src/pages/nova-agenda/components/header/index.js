@@ -22,7 +22,8 @@ import {
   ContainerHeader,
   ContainerVoltar,
   ContainerLeftHeader,
-  ViewSelect
+  ViewSelect,
+  ButtonVoltar
 } from "./styles";
 
 
@@ -43,7 +44,7 @@ export const HeaderAgenda = () => {
     .then(snapshot => {
       snapshot.forEach(doc => {
         if (doc.data().email === email) {
-          setNome(doc.data().nome);  
+          setNome(doc.data().nome);
           dispatch({ type: 'USER_NAME', usuarioNome: nome });
         }
 
@@ -106,15 +107,13 @@ export const HeaderAgenda = () => {
             <ContainerHeader>
               <ContainerVoltar>
                 {useSelector(state => state.user.usuarioLogin) === 0 ? (
-                    <Link to='/'>
-                      <Button type="button">
-                        Voltar
-                      </Button>
-                    </Link> 
-                  ) : '' }
+                  <Link to='/'>
+                    <ButtonVoltar name='arrow left' size='large' color='black' ></ButtonVoltar>
+                  </Link>
+                ) : ''}
               </ContainerVoltar>
 
-                
+
               <ContainerLeftHeader>
                 <Logo src={Img}></Logo>
                 <Title>Reserva de Salas</Title>
@@ -123,15 +122,13 @@ export const HeaderAgenda = () => {
             <UserAling>
               {useSelector(state => state.user.usuarioLogin) === 1 ? (
                 <>
-                <h1>Usuário: {nome}</h1>
-                  <Button type="button" onClick={actionLogout}>
-                    Sair
-                  </Button>
+                  <h1>Usuário: {nome}</h1>
+                  <ButtonVoltar name='sign-out' size='large' onClick={actionLogout}></ButtonVoltar>
                 </>
-              ): ''
-            }
+              ) : ''
+              }
 
-              
+
             </UserAling>
           </View>
           <ViewSelect>
