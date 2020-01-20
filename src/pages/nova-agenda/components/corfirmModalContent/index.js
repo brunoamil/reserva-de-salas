@@ -22,6 +22,7 @@ const ConfirmModalContent = () => {
   const userName = useSelector(state => state.user.usuarioNome);
   const userEmail = useSelector(state => state.user.usuarioEmail);
   const id = useSelector(state => state.dados.id);
+  const data = useSelector(state => state.dados.data);
   const sala = useSelector(state => state.salas.currentRoom);
   
   const [horaFinal, setHoraFinal] = useState("");
@@ -45,7 +46,7 @@ const ConfirmModalContent = () => {
     }))
     .catch(err => console.log("Erro ao pegar o setor", err))
     
-    const data = {
+    const dados = {
       id,
       setor,
       userName,
@@ -53,6 +54,7 @@ const ConfirmModalContent = () => {
       nomeEvento,
       inicio: horaInicial,
       termino: horaFinal,
+      data,
     };
 
     if (!nomeEvento || !horaFinal) {
@@ -64,7 +66,7 @@ const ConfirmModalContent = () => {
         .doc(`${sala}`)
         .collection("Eventos")
         .doc(id)
-        .set(data)
+        .set(dados)
         .then(() => {
           setMsgSucesso(true);
           setLoader(false);
