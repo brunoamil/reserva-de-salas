@@ -5,6 +5,10 @@
 /.pnp
 .pnp.js
 /yarn.lock
+.firebase
+.firebaserc
+database.rules.json
+firebase.json
 
 # testing
 /coverage
