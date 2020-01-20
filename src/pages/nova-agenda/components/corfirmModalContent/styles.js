@@ -148,3 +148,8 @@ export const ContainerButton = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const CustomOption = styled.option`
+  font-size: 16px;
+  color: #eee !important;
+`;
