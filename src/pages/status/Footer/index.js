@@ -1,18 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 
 import { Rodape, ContainerButton } from './styles';
 
-const Footer = props => {
+const Footer = () => {
+  const history = useHistory();
+
+  const redirectToAgenda = () => {
+    history.push("/NovaAgenda");
+  }
+
   return (
     <>
       <Rodape>
-        <ContainerButton>
-          <Link to="/NovaAgenda" />
-        </ContainerButton>
+        <ContainerButton onClick={redirectToAgenda} />
       </Rodape>
     </>
   );
 }
 
-export default Footer;
+export default withRouter(Footer);

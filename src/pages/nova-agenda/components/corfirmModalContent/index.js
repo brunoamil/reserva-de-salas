@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Input, Message, Dimmer, Loader } from "semantic-ui-react";
+import { Input, Message, Dimmer, Loader } from "semantic-ui-react";
 import firebase from "../../../../services/firebase";
 
 import {
@@ -11,16 +11,19 @@ import {
   HourContent,
   ContainerButton,
   TextAling,
-  CustomOption
+  CustomOption,
+  CustomButton
 } from "./styles";
 
 const ConfirmModalContent = () => {
+
   const dispatch = useDispatch();
   const horaInicial = useSelector(state => state.dados.hora);
   const userName = useSelector(state => state.user.usuarioNome);
   const userEmail = useSelector(state => state.user.usuarioEmail);
   const id = useSelector(state => state.dados.id);
-  const sala = useSelector(state => state.salas.currentRoom) || "Auditório";
+  const data = useSelector(state => state.dados.data);
+  const sala = useSelector(state => state.salas.currentRoom);
   
   const [horaFinal, setHoraFinal] = useState("");
   const [nomeEvento, setNomeEvento] = useState();
@@ -29,34 +32,41 @@ const ConfirmModalContent = () => {
   const [loader, setLoader] = useState(false);
   
   const db = firebase.firestore();
-  
+
   
   
   const cadastrarEvento = async () => {
     let setor = '';
-    await db.collection("usuarios").get()
-      .then(item => item.forEach(doc => {
-        if (userEmail === doc.data().email) {
-          setor = doc.data().setor;
-          console.log(doc.data().setor)
-        }
-      }))
-      .catch(err => console.log("Erro ao pegar o setor", err))
-  
+    await db.collection("usuarios")
+    .get()
+    .then(item => item.forEach(doc => {
+      if (userEmail === doc.data().email) {
+        setor = doc.data().setor;
+      }
+    }))
+    .catch(err => console.log("Erro ao pegar o setor", err))
+    
+    const dados = {
+      id,
+      setor,
+      userName,
+      userEmail,
+      nomeEvento,
+      inicio: horaInicial,
+      termino: horaFinal,
+      data,
+    };
+
     if (!nomeEvento || !horaFinal) {
       setMsgErro(true);
     } else {
+      setMsgErro(false);
+      setLoader(true);
       db.collection("salas")
         .doc(`${sala}`)
         .collection("Eventos")
-        .add({
-          userName: userName,
-          nomeEvento: nomeEvento,
-          inicio: horaInicial,
-          termino: horaFinal,
-          id,
-          setor
-        })
+        .doc(id)
+        .set(dados)
         .then(() => {
           setMsgSucesso(true);
           setLoader(false);
@@ -114,7 +124,7 @@ const ConfirmModalContent = () => {
                 defaultValue={"DEFAULT"}
               >
                 <CustomOption key="10" disabled hidden value="DEFAULT">
-                  hora
+                  horas
                 </CustomOption>
                 {horas
                   .filter(item => item > horaInicial)
@@ -123,7 +133,6 @@ const ConfirmModalContent = () => {
                   ))}
               </select>
 
-              
             </div>
           </HourContent>
           <HeaderModalContent>
@@ -144,18 +153,17 @@ const ConfirmModalContent = () => {
             </DescContent>
           </HeaderModalContent>
             <ContainerButton>
-              <Button
+              <CustomButton
                 onClick={() => {
                   cadastrarEvento();
                   actionFinalHour();
-                  setLoader(true);
                 }}
                 size="large"
                 primary
                 id="button"
                 >
                 Confirmar Reserva
-              </Button>
+              </CustomButton>
             </ContainerButton>
             {msgSucesso && <Message header="Reserva Concluída!" color="green" icon="check" />}
             {msgErro && <Message header="Verifique os Campos Acima!" color="red" icon="dont" />}
