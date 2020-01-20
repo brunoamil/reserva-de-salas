@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
 import { Table } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
+import moment from 'moment'
 
 import "../../index.css";
 import { Container } from "./styles";
 
 function Agenda() {
-  var date = new Date();
-  var data = date.getDate();
-  var dia = date.getDay();
-  var mes = date.getMonth() + 1;
+  var now = moment()
+
+  var dia = now.day();
+  
+  
   let number = 0;
 
   const dispatch = useDispatch();
@@ -19,22 +21,23 @@ function Agenda() {
   console.log(event);
 
   if (dia === 0) {
-    data += 1;
-    dia += 1;
+    now.add(1,'days')
   }
   if (dia === 6) {
-    data += 2;
-    dia = 1;
+    now = now.add(2, 'days');
+    dia = 0
   }
   while (dia > 1) {
+    now = now.subtract(1, 'days');
     dia = dia - 1;
-    data = data - 1;
   }
 
   useEffect(() => {
     if (event) {
       event.map(item => {
         let divCell = document.getElementById(`${item.id}`);
+        // let divCellTermino = document.getElementsByClassName(`${item.termino}`).style.background = '#eee';
+  
 
         if (divCell.childNodes.length === 0) {
           const spanc = document.createElement('span');
@@ -80,11 +83,11 @@ function Agenda() {
   }
 
   const dias = [
-    `SEG ${data}/${mes}`,
-    `TER ${data + 1}/${mes}`,
-    `QUA ${data + 2}/${mes}`,
-    `QUI ${data + 3}/${mes}`,
-    `SEX ${data + 4}/${mes}`
+    `SEG ${now.format("D/M")}`,
+    `TER ${now.add(1,'days').format("D/M")}`,
+    `QUA ${now.add(1,'days').format("D/M")}`,
+    `QUI ${now.add(1,'days').format("D/M")}`,
+    `SEX ${now.add(1,'days').format("D/M")}`
   ];
   const horas = [
     "08:00",
@@ -102,7 +105,7 @@ function Agenda() {
 
   return (
     <>
-      <div id="allPage">
+      <div id="allPage" onLoad={() => document.getElementsByClassName(`10:00`).style.background = '#f00'}>
         <Table id="table" definition>
           <Table.Header>
             <Table.Row>

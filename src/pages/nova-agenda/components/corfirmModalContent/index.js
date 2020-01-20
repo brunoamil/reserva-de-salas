@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Button, Input, Message } from "semantic-ui-react";
-import firebase from "../../../../services/firebase";
 import { useSelector, useDispatch } from "react-redux";
+import { Button, Input, Message, Dimmer, Loader } from "semantic-ui-react";
+import firebase from "../../../../services/firebase";
 
 import {
   Container,
@@ -17,34 +17,32 @@ import {
 const ConfirmModalContent = () => {
   const dispatch = useDispatch();
   const horaInicial = useSelector(state => state.dados.hora);
-  const setor = useSelector(state => state.user.usuarioSetor);
-
-  const horas = [
-    "08:00",
-    "09:00",
-    "10:00",
-    "11:00",
-    "12:00",
-    "13:00",
-    "14:00",
-    "15:00",
-    "16:00",
-    "17:00",
-    "18:00"
-  ];
-
-  const [horaFinal, setHoraFinal] = useState();
+  const userName = useSelector(state => state.user.usuarioNome);
+  const userEmail = useSelector(state => state.user.usuarioEmail);
+  const id = useSelector(state => state.dados.id);
+  const sala = useSelector(state => state.salas.currentRoom) || "Auditório";
+  
+  const [horaFinal, setHoraFinal] = useState("");
   const [nomeEvento, setNomeEvento] = useState();
   const [msgSucesso, setMsgSucesso] = useState(false);
   const [msgErro, setMsgErro] = useState(false);
-
-  const userName = useSelector(state => state.user.usuarioNome);
-  const id = useSelector(state => state.dados.id);
-  const sala = useSelector(state => state.salas.currentRoom) || "Auditório";
-
+  const [loader, setLoader] = useState(false);
+  
   const db = firebase.firestore();
-
-  const cadastrarEvento = () => {
+  
+  
+  
+  const cadastrarEvento = async () => {
+    let setor = '';
+    await db.collection("usuarios").get()
+      .then(item => item.forEach(doc => {
+        if (userEmail === doc.data().email) {
+          setor = doc.data().setor;
+          console.log(doc.data().setor)
+        }
+      }))
+      .catch(err => console.log("Erro ao pegar o setor", err))
+  
     if (!nomeEvento || !horaFinal) {
       setMsgErro(true);
     } else {
@@ -61,6 +59,7 @@ const ConfirmModalContent = () => {
         })
         .then(() => {
           setMsgSucesso(true);
+          setLoader(false);
           setTimeout(() => {
             dispatch({ type: "SET_MODAL", valueModal: false });
             dispatch({ type: "SET_LOADER", set_loader: true });
@@ -72,8 +71,30 @@ const ConfirmModalContent = () => {
     }
   };
 
+  const horas = [
+    "08:00",
+    "09:00",
+    "10:00",
+    "11:00",
+    "12:00",
+    "13:00",
+    "14:00",
+    "15:00",
+    "16:00",
+    "17:00",
+    "18:00"
+  ];
+
+  const actionFinalHour = () => {
+    dispatch({ type: "SET_HORA_FINAL", horaFinal });
+  };
+
   return (
     <>
+    { loader && ( 
+      <Dimmer active>
+        <Loader size="medium">Cadastrando Reserva...</Loader>
+      </Dimmer>) }
       <Container>
         <ContainerMain>
           <TextAling>
@@ -93,7 +114,7 @@ const ConfirmModalContent = () => {
                 defaultValue={"DEFAULT"}
               >
                 <CustomOption key="10" disabled hidden value="DEFAULT">
-                  horas
+                  hora
                 </CustomOption>
                 {horas
                   .filter(item => item > horaInicial)
@@ -101,6 +122,8 @@ const ConfirmModalContent = () => {
                     <option key={hora}>{hora}</option>
                   ))}
               </select>
+
+              
             </div>
           </HourContent>
           <HeaderModalContent>
@@ -117,7 +140,6 @@ const ConfirmModalContent = () => {
                   name="inputEvent"
                   id="inputEvent"
                 />
-                {/* <Select placeholder='Select your country' options='oi' /> */}
               </form>
             </DescContent>
           </HeaderModalContent>
@@ -125,8 +147,9 @@ const ConfirmModalContent = () => {
               <Button
                 onClick={() => {
                   cadastrarEvento();
-                  dispatch({ type: "SET_HORA_FINAL", horaFinal });
-                }}  
+                  actionFinalHour();
+                  setLoader(true);
+                }}
                 size="large"
                 primary
                 id="button"
@@ -140,6 +163,6 @@ const ConfirmModalContent = () => {
       </Container>
     </>
   );
-};
+}
 
 export default ConfirmModalContent;

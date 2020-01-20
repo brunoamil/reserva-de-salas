@@ -35,7 +35,7 @@ export const Header = styled.div`
 
 export const Logo = styled.img`
     width: 60px;
-    margin: 15px 5px 5px 1px;
+    margin: 15px 10px 6px 1px;
 `
 
 export const UserAling = styled.div`
@@ -63,7 +63,7 @@ export const Button = styled.button`
     height: 2.2rem;
 
     font-family: "Open Sans",sans-serif,arial;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 500;
     text-align:center;
 `
@@ -78,9 +78,9 @@ export const Button = styled.button`
 export const Title = styled.h1`
     color: #0d4b81;
     font-family: "PT Sans",sans-serif;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    margin-top: 0.5rem;
+    margin-top: 0.4em;
 `
 export const ViewSelect = styled.div`
     display:flex;

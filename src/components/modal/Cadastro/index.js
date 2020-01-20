@@ -21,7 +21,7 @@ function RegisterForm({ ModalTop }) {
   const [senha, setSenha] = useState("");
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState(false);
-  const [msgErro, setMsgErro] = useState("");
+  const [msgErro, setMsgErro] = useState(""); 
 
   function Cadastrar() {
     if (email === "" || senha === "" || nome === "") {
@@ -40,14 +40,16 @@ function RegisterForm({ ModalTop }) {
             .firestore()
             .collection("usuarios")
             .add({
-              email: email,
-              nome: nome,
-              setor
+              email,
+              nome,
+              setor,
             })
             .then()
             .catch();
 
           dispatch({ type: "LOG_IN", usuarioEmail: email });
+          dispatch({ type: "USER_SETOR", usuarioSetor: setor });
+
           dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
         })
         .catch(erro => {
@@ -75,6 +77,23 @@ function RegisterForm({ ModalTop }) {
         });
     }
   }
+  const capitalize = (s, count = 0) => {
+    if (typeof s !== "string") return "";
+    if (s.indexOf(" ") > -1) {
+      let nomes = s.split(" ");
+      if (count < nomes.length) {
+        return capitalize(nomes[count]).concat(" " + capitalize(s, count + 1));
+      }
+      return "";
+    } else {
+      if (s !== undefined)
+        return s
+          .charAt(0)
+          .toUpperCase()
+          .concat(s.slice(1).toLowerCase());
+      return "";
+    }
+  };
 
   return (
     <>
@@ -89,7 +108,10 @@ function RegisterForm({ ModalTop }) {
                 <Input
                   icon="user"
                   iconPosition="left"
-                  onChange={e => setNome(e.target.value)}
+                  onChange={e => {
+                    let name = capitalize(e.target.value);
+                    setNome(name);
+                  }}
                   placeholder="Nome"
                 />
               </CustomForm>
@@ -97,7 +119,10 @@ function RegisterForm({ ModalTop }) {
                 <Input
                   icon="building"
                   iconPosition="left"
-                  onChange={e => setSetor(e.target.value)}
+                  onChange={e => {
+                    let sector = e.target.value;
+                    setSetor(sector.toUpperCase());
+                  }}
                   placeholder="Setor"
                 />
               </CustomForm>

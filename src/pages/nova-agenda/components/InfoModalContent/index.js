@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {Loader, Dimmer} from 'semantic-ui-react';
+import {Loader, Dimmer,Icon } from 'semantic-ui-react';
 import firebase from '../../../../services/firebase';
 import {useSelector, useDispatch} from 'react-redux';
 
-// import {  } from './styles';
+import { Header, Container, Section, ContainerEvento } from './styles';
 
 const InfoModal = () => {
   const dispatch = useDispatch();
@@ -11,9 +11,19 @@ const InfoModal = () => {
   const sala = useSelector(state => state.salas.currentRoom) || "Auditório";
   const id = useSelector(state => state.dados.id);
   const loader = useSelector(state => state.load.loadInfo);
-  console.log(loader)
 
   const [dadosReserva, setDadosReserva] = useState();
+
+  const checkName = name => {
+    if (name) {
+      if(name.indexOf(" ") > -1) {
+        let firstName = name.split(" ");
+        return firstName[0];
+      } else {
+        return name;
+      }
+    }
+  }
 
   useEffect(() => {
     const getEventos = async () => {
@@ -28,10 +38,12 @@ const InfoModal = () => {
           sucesso.forEach(doc => {
             if (id === doc.data().id) {
               if (!dadosReserva) {
-                setDadosReserva({ ...doc.data() });
+                const {userName, setor, inicio, termino, nomeEvento} = doc.data();
+
+                const firstName = checkName(userName);
+                setDadosReserva({ firstName, setor, inicio, termino, nomeEvento });
                 dispatch({ type: "SET_LOAD_INFO", set_loader_info: false });
                 console.log(doc.data())
-                console.log("opa");
               }
             }
           });
@@ -49,13 +61,23 @@ const InfoModal = () => {
       { loader ? (<Dimmer active>
         <Loader size="medium">Carregando Informções...</Loader>
       </Dimmer>) : (
-        <div>
-          <p>Nome: {dadosReserva.userName}</p>
-          <p>Setor: {dadosReserva.setor}</p>
-          <p>Evento: {dadosReserva.nomeEvento}</p>
-          <p>Inicio: {dadosReserva.inicio}</p>
-          <p>Termino: {dadosReserva.termino}</p>
-        </div> 
+        <>
+        <Container>
+          <Header>
+            <h2>Informações</h2>
+          </Header> 
+          <Section>
+            <p><strong>Nome: </strong>{dadosReserva.firstName}</p>
+            <p><strong>Setor: </strong>{dadosReserva.setor}</p>
+            <p><strong>Inicio: </strong>{dadosReserva.inicio}</p>
+            <p><strong>Termino: </strong>{dadosReserva.termino}</p>
+          </Section>
+          <ContainerEvento>
+            <p><strong>Evento: </strong></p>
+            <span>{dadosReserva.nomeEvento}</span>
+          </ContainerEvento>
+        </Container>
+        </>
       ) }
     </>
   )
