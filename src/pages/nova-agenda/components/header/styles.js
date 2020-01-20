@@ -12,16 +12,29 @@ export const View = styled.div`
     display:flex;
     align-items:center;
     justify-content: space-between;
-
-    div{
-      display:flex;
-      flex-flow : row nowrap;
-      align-items : center;
-      text-align : center;
-    }
    
+  
 
 `
+export const ContainerHeader = styled.div`
+  display: flex;
+  /* margin: 0px 5px;  */
+`;
+
+export const ContainerVoltar = styled.div`
+  display:flex;
+  flex-flow : row nowrap;
+  align-items : center;
+  text-align : center;
+`;
+
+export const ContainerLeftHeader = styled.div`
+  display:flex;
+  flex-flow : row nowrap;
+  align-items : center;
+  text-align : center;
+
+`;
 
 export const Header = styled.div`
     display: flex;
@@ -47,6 +60,7 @@ export const UserAling = styled.div`
     h1 {
       color: #0d4b81;
       font-family: "PT Sans",sans-serif;
+      line-height : 1.7em;
       font-size: 1.3rem;
       font-weight: 700;
       margin : 0px;

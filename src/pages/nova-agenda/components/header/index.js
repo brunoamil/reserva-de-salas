@@ -19,6 +19,9 @@ import {
   Circle2,
   Legenda,
   View,
+  ContainerHeader,
+  ContainerVoltar,
+  ContainerLeftHeader,
   ViewSelect
 } from "./styles";
 
@@ -100,24 +103,32 @@ export const HeaderAgenda = () => {
       <Header>
         <Container>
           <View>
-            <div>
-              <Logo src={Img}></Logo>
-              <Title>Reserva de Salas</Title>
-            </div>
+            <ContainerHeader>
+              <ContainerVoltar>
+                {useSelector(state => state.user.usuarioLogin) === 0 ? (
+                    <Link to='/'>
+                      <Button type="button">
+                        Voltar
+                      </Button>
+                    </Link> 
+                  ) : '' }
+              </ContainerVoltar>
+
+                
+              <ContainerLeftHeader>
+                <Logo src={Img}></Logo>
+                <Title>Reserva de Salas</Title>
+              </ContainerLeftHeader>
+            </ContainerHeader>
             <UserAling>
-              {useSelector(state => state.user.usuarioLogin) > 0 ? (
+              {useSelector(state => state.user.usuarioLogin) === 1 ? (
                 <>
                 <h1>Usuário: {nome}</h1>
                   <Button type="button" onClick={actionLogout}>
                     Sair
                   </Button>
                 </>
-              ): 
-              <Link to='/'>
-                <Button type="button">
-                  Voltar
-                </Button>
-              </Link>  
+              ): ''
             }
 
               
