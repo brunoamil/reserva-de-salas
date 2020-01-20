@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Loader, Dimmer,Icon } from 'semantic-ui-react';
+import {Loader, Dimmer } from 'semantic-ui-react';
 import firebase from '../../../../services/firebase';
 import {useSelector, useDispatch} from 'react-redux';
 
