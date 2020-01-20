@@ -1,5 +1,8 @@
-*{
-  overflow: hidden !important;
+
+@media screen and (min-width: 768px) {
+  * {
+    overflow: hidden !important;
+  }
 }
 
 #allPage{

@@ -8,7 +8,7 @@ export const USER = {
 
 export const SALAS = {
   roomsReservation: [],
-  currentRoom: '',
+  currentRoom: "Auditório",
   roomEvents: [],
 };
 

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from 'moment'
 
 import "../../index.css";
-import { Container } from "./styles";
+import { ContainerCell, Container } from "./styles";
 
 function Agenda() {
   var now = moment()
@@ -105,7 +105,7 @@ function Agenda() {
 
   return (
     <>
-      <div id="allPage" onLoad={() => document.getElementsByClassName(`10:00`).style.background = '#f00'}>
+      <Container id="allPage" onLoad={() => document.getElementsByClassName(`10:00`).style.background = '#f00'}>
         <Table id="table" definition>
           <Table.Header>
             <Table.Row>
@@ -125,7 +125,7 @@ function Agenda() {
                 </Table.HeaderCell>
                 {dias.map((dia, index) => (
                   <Table.Cell key={index}>
-                    <Container
+                    <ContainerCell
                       id={`${(number += 1)}`}
                       className={hora}
                       onClick={e => {
@@ -139,7 +139,7 @@ function Agenda() {
             ))}
           </Table.Body>
         </Table>
-      </div>
+      </Container>
     </>
   );
 }

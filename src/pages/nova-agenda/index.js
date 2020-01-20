@@ -28,7 +28,7 @@ function NovaAgenda() {
 
     const getEventos = async () => {
       let events = [];
-
+      
       await firebase
       .firestore()
       .collection("salas")

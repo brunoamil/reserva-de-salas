@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Icon } from "semantic-ui-react";
+import { Icon, Button } from "semantic-ui-react";
 
 export const Container = styled.div``;
 
@@ -18,12 +18,6 @@ export const HeaderModalContent = styled.div`
   flex-direction: column;
 `;
 
-export const Title = styled.h1`
-  font-weight: bold;
-  font-size: 1.2em;
-  border-bottom: 3px solid #0080ff;
-  color: #000;
-`;
 
 export const ContainerMain = styled.div`
   display: flex;
@@ -40,6 +34,7 @@ export const TextAling = styled.div`
     justify-content:center;
     width: 100%;
     align-items: center;
+    margin-bottom: 10px;
 
     h1{
       font-family: "PT Sans",sans-serif;
@@ -152,4 +147,8 @@ export const ContainerButton = styled.div`
 export const CustomOption = styled.option`
   font-size: 16px;
   color: #eee !important;
+`;
+
+export const CustomButton = styled(Button)`
+  background: #0d4b81 !important;
 `;
