@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import { withRouter, useHistory } from "react-router-dom";
 import { Form, Dimmer, Loader, Message, Input } from "semantic-ui-react";
 import firebase from "../../../services/firebase";
 import { useDispatch } from "react-redux";
 
 import {
   Container,
-  LabelReg,
   CustomButton,
   CustomModalContent,
   ContainerModalContent,
@@ -14,17 +12,16 @@ import {
   CustomForm
 } from "./styles";
 
-function RegisterForm() {
+function RegisterForm({ ModalTop }) {
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
+  const [setor, setSetor] = useState("");
   const [nome, setNome] = useState("");
   const [senha, setSenha] = useState("");
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState(false);
-  const [msgErro, setMsgErro] = useState("");
-
-  const history = useHistory();
+  const [msgErro, setMsgErro] = useState(""); 
 
   function Cadastrar() {
     if (email === "" || senha === "" || nome === "") {
@@ -43,13 +40,16 @@ function RegisterForm() {
             .firestore()
             .collection("usuarios")
             .add({
-              email: email,
-              nome: nome
+              email,
+              nome,
+              setor,
             })
             .then()
             .catch();
 
           dispatch({ type: "LOG_IN", usuarioEmail: email });
+          dispatch({ type: "USER_SETOR", usuarioSetor: setor });
+
           dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
         })
         .catch(erro => {
@@ -77,6 +77,23 @@ function RegisterForm() {
         });
     }
   }
+  const capitalize = (s, count = 0) => {
+    if (typeof s !== "string") return "";
+    if (s.indexOf(" ") > -1) {
+      let nomes = s.split(" ");
+      if (count < nomes.length) {
+        return capitalize(nomes[count]).concat(" " + capitalize(s, count + 1));
+      }
+      return "";
+    } else {
+      if (s !== undefined)
+        return s
+          .charAt(0)
+          .toUpperCase()
+          .concat(s.slice(1).toLowerCase());
+      return "";
+    }
+  };
 
   return (
     <>
@@ -86,17 +103,49 @@ function RegisterForm() {
         </ContainerModalContent>
         <Container>
           <Form size="large" key="tiny" method="POST">
-            <CustomForm>
-              <Input icon='mail' iconPosition='left'onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
-            </CustomForm>
+            <Form.Group widths="equal">
+              <CustomForm>
+                <Input
+                  icon="user"
+                  iconPosition="left"
+                  onChange={e => {
+                    let name = capitalize(e.target.value);
+                    setNome(name);
+                  }}
+                  placeholder="Nome"
+                />
+              </CustomForm>
+              <CustomForm>
+                <Input
+                  icon="building"
+                  iconPosition="left"
+                  onChange={e => {
+                    let sector = e.target.value;
+                    setSetor(sector.toUpperCase());
+                  }}
+                  placeholder="Setor"
+                />
+              </CustomForm>
+            </Form.Group>
 
             <Form.Group widths="equal">
               <CustomForm>
-                <Input icon='user' iconPosition='left' onChange={(e) => setNome(e.target.value)} placeholder="Nome" />
+                <Input
+                  icon="mail"
+                  iconPosition="left"
+                  onChange={e => setEmail(e.target.value)}
+                  type="email"
+                  placeholder="Email"
+                />
               </CustomForm>
-
               <CustomForm>
-                <Input icon='lock' iconPosition='left' onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" />
+                <Input
+                  icon="lock"
+                  iconPosition="left"
+                  onChange={e => setSenha(e.target.value)}
+                  type="password"
+                  placeholder="Senha"
+                />
               </CustomForm>
             </Form.Group>
           </Form>
@@ -121,4 +170,4 @@ function RegisterForm() {
     </>
   );
 }
-export default withRouter(RegisterForm);
+export default RegisterForm;

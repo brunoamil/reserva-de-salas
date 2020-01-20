@@ -4,8 +4,11 @@
 /node_modules
 /.pnp
 .pnp.js
-yarn.lock
-package.lock.json
+/yarn.lock
+.firebase
+.firebaserc
+database.rules.json
+firebase.json
 
 # testing
 /coverage

@@ -1,13 +1,15 @@
 export const USER = {
   usuarioNome : '',
+  usuarioSetor: '',
   usuarioEmail : '',
   usuarioLogin : 0,
-  salasReserva: []
+  salasReserva: [],
 };
 
 export const SALAS = {
-  salasReserva: [],
-  salaAtual: 'Auditório',
+  roomsReservation: [],
+  currentRoom: '',
+  roomEvents: [],
 };
 
 
@@ -24,8 +26,10 @@ export const DADOS_RESERVA = {
   horaFinal: '',
   evento: '',
   id: '',
+  data: '',
 };
 
 export const LOAD = {
-  loader: false
+  loader: false,
+  loadInfo: false,
 };

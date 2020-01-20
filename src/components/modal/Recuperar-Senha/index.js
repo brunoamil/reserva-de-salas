@@ -2,17 +2,9 @@ import React, { useState } from "react";
 import { Form, Dimmer, Loader, Message, Input } from "semantic-ui-react";
 import firebase from "../../../services/firebase";
 
-import {
-  Container,
-  LabelReg,
-  CustomButton,
-  CustomModalContent,
-  ContainerModalContent,
-  TitleContainerMC,
-  CustomForm
-} from "./styles";
+import { Container, CustomButton, CustomModalContent, ContainerModalContent, TitleContainerMC,CustomForm } from "./styles";
 
-function RedefinirSenha() {
+function RedefinirSenha({ModalTop}) {
   const [email, setEmail] = useState("");
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState(false);

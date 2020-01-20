@@ -28,7 +28,7 @@ export const HeaderAgenda = () => {
   const dispatch = useDispatch();
 
   const [nome, setNome] = useState();
-  const [loader, setLoader] = useState(false);
+  const [/*loader*/, setLoader] = useState(false);
   const [salas, setSalas] = useState([]);
 
   //Verifica o email e pega o nome
@@ -40,15 +40,18 @@ export const HeaderAgenda = () => {
     .then(snapshot => {
       snapshot.forEach(doc => {
         if (doc.data().email === email) {
-          setNome(doc.data().nome);
-          dispatch({ type: 'USER_NAME', usuarioNome: nome })
+          setNome(doc.data().nome);  
+          dispatch({ type: 'USER_NAME', usuarioNome: nome });
         }
+
+        //pegando setor
+        const { setor } = doc.data();
+        dispatch({ type: 'USER_SETOR', usuarioSetor: setor })
       });
     })
     .catch(err => {
       console.log("Erro ao obter o nome do usuario! ", err);
     });
-
 
   useEffect(() => {
     const arrSalas = [];
@@ -75,12 +78,22 @@ export const HeaderAgenda = () => {
   dispatch({ type: 'REG_SALAS', arrSalas: salas });
 
   const actionLogout = () => {
-    setLoader(true);
+    actionLoader();
     setTimeout(() => {
       dispatch({ type: "LOG_OUT" });
+      dispatch({ type: "SET_EVENTOS_SALA", event: [] });
       setLoader(false);
     }, 1000);
   };
+
+  const roomsActions = room => {
+    dispatch({ type: "GET_SALA", sala: room });
+    dispatch({ type: "SET_EVENTOS_SALA", event: [] });
+  }
+
+  const actionLoader = () => (
+    dispatch({ type: "SET_LOADER", set_loader: true })
+  );
 
   return (
     <>
@@ -89,18 +102,25 @@ export const HeaderAgenda = () => {
           <View>
             <div>
               <Logo src={Img}></Logo>
-              <Title>Reserva de Salas - Universidade Ceuma</Title>
+              <Title>Reserva de Salas</Title>
             </div>
             <UserAling>
               {useSelector(state => state.user.usuarioLogin) > 0 ? (
+                <>
                 <h1>Usuário: {nome}</h1>
-              )
-                : ''}
+                  <Button type="button" onClick={actionLogout}>
+                    Sair
+                  </Button>
+                </>
+              ): 
               <Link to='/'>
-                <Button type="button" onClick={actionLogout}>
+                <Button type="button">
                   Voltar
                 </Button>
-              </Link>
+              </Link>  
+            }
+
+              
             </UserAling>
           </View>
           <ViewSelect>
@@ -112,10 +132,11 @@ export const HeaderAgenda = () => {
             </CircleAling>
             <SelectAling>
               <Select onChange={e => {
-                dispatch({ type: "GET_SALA", sala: (e.target.value) })
-                }}>
+                roomsActions(e.target.value);
+                actionLoader();
+              }}>
                 {salas.map(sala => (
-                  <option onClick={() => dispatch({ type: "SET_LOADER", set_loader: true })} value={sala}>{sala}</option>
+                  <option key={sala}>{sala}</option>
                 ))}
               </Select>
             </SelectAling>

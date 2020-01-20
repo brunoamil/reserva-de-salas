@@ -1,103 +1,93 @@
 import React, { useEffect } from "react";
 import { Table } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
-import firebase from "../../../../services/firebase";
+import moment from 'moment'
 
 import "../../index.css";
 import { Container } from "./styles";
 
 function Agenda() {
-  var date = new Date();
-  var data = date.getDate();
-  var dia = date.getDay();
-  var mes = date.getMonth() + 1;
+  var now = moment()
+
+  var dia = now.day();
+  
+  
   let number = 0;
 
   const dispatch = useDispatch();
 
   const CheckLogin = useSelector(state => state.user.usuarioLogin);
-  const sala = useSelector(state => state.salas.salaAtual);
+  const event = useSelector(state => state.salas.roomEvents);
+  console.log(event);
 
   if (dia === 0) {
-    data += 1;
-    dia += 1;
+    now.add(1,'days')
   }
   if (dia === 6) {
-    data += 2;
-    dia = 1;
+    now = now.add(2, 'days');
+    dia = 0
   }
   while (dia > 1) {
+    now = now.subtract(1, 'days');
     dia = dia - 1;
-    data = data - 1;
-  }
-
-  const checkName = name => {
-    if(name.indexOf(" ") > -1) {
-      let firstName = name.split(" ");
-      return firstName[0];
-    } else {
-      return name;
-    }
   }
 
   useEffect(() => {
-    const getEventos = async () => {
-      let event = [];
-
-      await firebase
-      .firestore()
-      .collection("salas")
-      .doc(`${sala}`)
-      .collection("Eventos")
-      .get()
-      .then(sucesso => {
-        sucesso.forEach(doc => {
-          const {id, userName} = doc.data()
-          const firstName = checkName(userName);
-          event.push({id, firstName});
-          
-          console.log(event);
-        });
-      })
-      .catch(erro => {
-        console.log("Erro ao pegar salas", erro);
-      });
     if (event) {
       event.map(item => {
         let divCell = document.getElementById(`${item.id}`);
+        // let divCellTermino = document.getElementsByClassName(`${item.termino}`).style.background = '#eee';
+  
 
-        const spanc = document.createElement('span');
-        const titleReserve = document.createElement('h2');
+        if (divCell.childNodes.length === 0) {
+          const spanc = document.createElement('span');
+          const titleReserve = document.createElement('h2');
 
-        titleReserve.innerText = item.firstName;
-        spanc.setAttribute('id', 'spanCell');
+          titleReserve.innerText = `${item.setor}`;
 
-        spanc.appendChild(titleReserve);
-        return (
+          spanc.setAttribute('id', `${item.id}`);
+          spanc.setAttribute('class', 'spanCell');
+          titleReserve.setAttribute('id', `${item.id}`);
+
+          spanc.appendChild(titleReserve);
           divCell.appendChild(spanc)
-        ) 
+        }
+        return ''
       })
+    } else {
+      console.log("opa deu um erro no useEffect da agenda");
     }
-    };
-    getEventos();
   });
 
-  const everyAction = () => {
+  
+  const modalActions = samTag => {
     dispatch({ type: "SET_MODAL", valueModal: true });
 
-    if (CheckLogin === 0) {
-      dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true });
+    if (samTag.length !== 0) {
+      dispatch({ type: "SET_MODAL", valueModal: true });
+      dispatch({ type: "SET_MODAL_INFO", valueInfo: true });
     } else {
-      dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
+      if (CheckLogin === 0) {
+        dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true });
+      } else {
+        dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
+      }
     }
+
   };
 
+  const reduxTableActions = (idTable, hour) => {
+    dispatch({ type: "SET_ID", id: idTable });
+    dispatch({ type: "SET_HORA", hora: hour });
+    dispatch({ type: "SET_LOAD_INFO", set_loader_info: true });
+  }
+
   const dias = [
-    `SEG ${data}/${mes}`,
-    `TER ${data + 1}/${mes}`,
-    `QUA ${data + 2}/${mes}`,
-    `QUI ${data + 3}/${mes}`,
-    `SEX ${data + 4}/${mes}`
+    `SEG ${now.format("D/M")}`,
+    `TER ${now.add(1,'days').format("D/M")}`,
+    `QUA ${now.add(1,'days').format("D/M")}`,
+    `QUI ${now.add(1,'days').format("D/M")}`,
+    `SEX ${now.add(1,'days').format("D/M")}`
   ];
   const horas = [
     "08:00",
@@ -115,13 +105,13 @@ function Agenda() {
 
   return (
     <>
-      <div id="allPage">
+      <div id="allPage" onLoad={() => document.getElementsByClassName(`10:00`).style.background = '#f00'}>
         <Table id="table" definition>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell id="none" />
               {dias.map(dia => (
-                <Table.HeaderCell>
+                <Table.HeaderCell key={dia}>
                   <strong> {dia} </strong>
                 </Table.HeaderCell>
               ))}
@@ -129,26 +119,18 @@ function Agenda() {
           </Table.Header>
           <Table.Body>
             {horas.map((hora, index) => (
-              <Table.Row>
+              <Table.Row key={index}>
                 <Table.HeaderCell width="1">
-                  <strong> {hora} </strong>
+                  <strong > {hora} </strong>
                 </Table.HeaderCell>
-                {dias.map(() => (
-                  <Table.Cell>
+                {dias.map((dia, index) => (
+                  <Table.Cell key={index}>
                     <Container
                       id={`${(number += 1)}`}
+                      className={hora}
                       onClick={e => {
-                        if ((e.target.childNodes).length !== 0) {
-                          dispatch({ type: "SET_MODAL", valueModal: true });
-                          dispatch({ type: "SET_MODAL_INFO", valueInfo: true });
-                        } else {
-                          dispatch({
-                            type: "SET_ID",
-                            id: e.target.getAttribute("id")
-                          });
-                          dispatch({ type: "SET_HORA", hora });
-                          everyAction();
-                        }
+                        modalActions(e.target.childNodes);
+                        reduxTableActions(e.target.getAttribute("id"), hora);
                       }}
                     />
                   </Table.Cell>
