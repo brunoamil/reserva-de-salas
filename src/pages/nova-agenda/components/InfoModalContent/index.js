@@ -66,7 +66,7 @@ const InfoModal = () => {
                   userEmail
                 });
                 dispatch({ type: "SET_LOAD_INFO", set_loader_info: false });
-                console.log(doc.data());
+                // console.log(doc.data());
               }
             }
           });
