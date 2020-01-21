@@ -36,7 +36,7 @@ function Agenda() {
     if (event) {
       event.map(item => {
         let divCell = document.getElementById(`${item.id}`);
-        let divCellTermino = document.getElementsByClassName(`${item.termino} ${item.data}`);
+        let divCellTermino = document.getElementById(`${item.data}`);
   
         console.log(divCellTermino)
         if (divCell.childNodes.length === 0) {
@@ -112,7 +112,7 @@ function Agenda() {
             <Table.Row>
               <Table.HeaderCell id="none" />
               {dias.map(dia => (
-                <Table.HeaderCell key={dia}>
+                <Table.HeaderCell key={dia} id={dia}>
                   <strong> {dia} </strong>
                 </Table.HeaderCell>
               ))}
@@ -125,7 +125,7 @@ function Agenda() {
                   <strong > {hora} </strong>
                 </Table.HeaderCell>
                 {dias.map((dia, index) => (
-                  <Table.Cell key={index} className={`${hora} ${dia}`}>
+                  <Table.Cell key={index} className={`${hora}`}>
                     <ContainerCell
                       id={`${(number += 1)}`}
                       onClick={e => {
