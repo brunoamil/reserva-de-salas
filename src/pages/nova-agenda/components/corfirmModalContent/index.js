@@ -11,7 +11,6 @@ import {
   HourContent,
   ContainerButton,
   TextAling,
-  CustomOption,
   CustomButton
 } from "./styles";
 
@@ -24,28 +23,28 @@ const ConfirmModalContent = () => {
   const id = useSelector(state => state.dados.id);
   const data = useSelector(state => state.dados.data);
   const sala = useSelector(state => state.salas.currentRoom);
-  
+
   const [horaFinal, setHoraFinal] = useState("");
   const [nomeEvento, setNomeEvento] = useState();
   const [msgSucesso, setMsgSucesso] = useState(false);
   const [msgErro, setMsgErro] = useState(false);
   const [loader, setLoader] = useState(false);
-  
+
   const db = firebase.firestore();
 
-  
-  
+
+
   const cadastrarEvento = async () => {
     let setor = '';
     await db.collection("usuarios")
-    .get()
-    .then(item => item.forEach(doc => {
-      if (userEmail === doc.data().email) {
-        setor = doc.data().setor;
-      }
-    }))
-    .catch(err => console.log("Erro ao pegar o setor", err))
-    
+      .get()
+      .then(item => item.forEach(doc => {
+        if (userEmail === doc.data().email) {
+          setor = doc.data().setor;
+        }
+      }))
+      .catch(err => console.log("Erro ao pegar o setor", err))
+
     const dados = {
       id,
       setor,
@@ -57,11 +56,14 @@ const ConfirmModalContent = () => {
       data,
     };
 
-    if (!nomeEvento || !horaFinal) {
+    if (!nomeEvento) {
       setMsgErro(true);
+      
     } else {
       setMsgErro(false);
       setLoader(true);
+      console.log('hora inicial: ',horaInicial);
+      console.log('hora final: ',horaFinal);
       db.collection("salas")
         .doc(`${sala}`)
         .collection("Eventos")
@@ -81,30 +83,16 @@ const ConfirmModalContent = () => {
     }
   };
 
-  const horas = [
-    "08:00",
-    "09:00",
-    "10:00",
-    "11:00",
-    "12:00",
-    "13:00",
-    "14:00",
-    "15:00",
-    "16:00",
-    "17:00",
-    "18:00"
-  ];
-
   const actionFinalHour = () => {
     dispatch({ type: "SET_HORA_FINAL", horaFinal });
   };
 
   return (
     <>
-    { loader && ( 
-      <Dimmer active>
-        <Loader size="medium">Cadastrando Reserva...</Loader>
-      </Dimmer>) }
+      {loader && (
+        <Dimmer active>
+          <Loader size="medium">Cadastrando Reserva...</Loader>
+        </Dimmer>)}
       <Container>
         <ContainerMain>
           <TextAling>
@@ -116,23 +104,8 @@ const ConfirmModalContent = () => {
             </p>
             <div>
               <p>
-                <strong>Até:</strong>{" "}
+                <strong>Até:</strong>{`${parseInt(horaInicial) + 1}:00`}
               </p>
-
-              <select
-                onChange={e => setHoraFinal(e.target.value)}
-                defaultValue={"DEFAULT"}
-              >
-                <CustomOption key="10" disabled hidden value="DEFAULT">
-                  horas
-                </CustomOption>
-                {horas
-                  .filter(item => item > horaInicial)
-                  .map(hora => (
-                    <option key={hora}>{hora}</option>
-                  ))}
-              </select>
-
             </div>
           </HourContent>
           <HeaderModalContent>
@@ -152,21 +125,22 @@ const ConfirmModalContent = () => {
               </form>
             </DescContent>
           </HeaderModalContent>
-            <ContainerButton>
-              <CustomButton
-                onClick={() => {
-                  cadastrarEvento();
-                  actionFinalHour();
-                }}
-                size="large"
-                primary
-                id="button"
-                >
-                Confirmar Reserva
+          <ContainerButton>
+            <CustomButton
+              onClick={() => {
+                cadastrarEvento();
+                setHoraFinal(`${parseInt(horaInicial) + 1}:00`)
+                actionFinalHour();
+              }}
+              size="large"
+              primary
+              id="button"
+            >
+              Confirmar Reserva
               </CustomButton>
-            </ContainerButton>
-            {msgSucesso && <Message header="Reserva Concluída!" color="green" icon="check" />}
-            {msgErro && <Message header="Verifique os Campos Acima!" color="red" icon="dont" />}
+          </ContainerButton>
+          {msgSucesso && <Message header="Reserva Concluída!" color="green" icon="check" />}
+          {msgErro && <Message header="Insira o nome do evento!" color="red" icon="dont" />}
         </ContainerMain>
       </Container>
     </>

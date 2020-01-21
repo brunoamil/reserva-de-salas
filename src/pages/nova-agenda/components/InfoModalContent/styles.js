@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import {Button} from 'semantic-ui-react';
 
 export const Container = styled.div`
   height: 15em;
@@ -74,9 +73,4 @@ export const ContainerExit = styled.div`
     height: 1.2em;
     margin-right: 1.5em;
   }
-`;
-
-export const ButtonDelete = styled(Button)`
-  background: #0d4b81 !important ;
-  color: #fff !important; 
 `;

@@ -29,7 +29,7 @@ const ModalUser = () => {
   const ModalTop = () => {
     const topInput = document.getElementById('topInput');
     topInput.style.setProperty('transition', 'all 0.2s ease');
-    topInput.style.setProperty('margin-top', '-25px');
+    topInput.style.setProperty('margin-top', '-5em');
   }
 
   return (

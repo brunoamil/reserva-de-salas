@@ -5,6 +5,11 @@ export const Title = Styled.h1`
   color: #ffffff;
   text-align: center;
 `;
+export const FooterStatus = Styled.p`
+  color: #cccccc;
+  position: absolute;
+  bottom: 0;
+`
 
 export const Bloco = Styled.div`
   display: flex;
