@@ -34,6 +34,17 @@ export const HeaderAgenda = () => {
   const [/*loader*/, setLoader] = useState(false);
   const [salas, setSalas] = useState([]);
 
+  const checkName = name => {
+    if (name) {
+      if (name.indexOf(" ") > -1) {
+        let firstName = name.split(" ");
+        return firstName[0];
+      } else {
+        return name;
+      }
+    }
+  };
+
   //Verifica o email e pega o nome
   const email = useSelector(state => state.user.usuarioEmail);
   firebase
@@ -43,7 +54,7 @@ export const HeaderAgenda = () => {
     .then(snapshot => {
       snapshot.forEach(doc => {
         if (doc.data().email === email) {
-          setNome(doc.data().nome);
+          setNome(checkName(doc.data().nome));
           dispatch({ type: 'USER_NAME', usuarioNome: nome });
         }
 
@@ -85,6 +96,7 @@ export const HeaderAgenda = () => {
     setTimeout(() => {
       dispatch({ type: "LOG_OUT" });
       dispatch({ type: "SET_EVENTOS_SALA", event: [] });
+      dispatch({ type: 'USER_NAME', usuarioNome: '' })
       setLoader(false);
     }, 1000);
   };
@@ -126,8 +138,6 @@ export const HeaderAgenda = () => {
                 </>
               ) : ''
               }
-
-
             </UserAling>
           </View>
           <ViewSelect>

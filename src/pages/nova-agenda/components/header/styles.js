@@ -55,8 +55,8 @@ export const Logo = styled.img`
 export const UserAling = styled.div`
     display:flex;
     /* justify-content:flex-end; */
-    flex-flow: row nowrap;
-    margin: 15px 0px 30px 0px;
+    flex-direction: row;
+    /* margin: 15px 0px 30px 0px; */
 
     h1 {
       color: #0d4b81;
@@ -64,7 +64,7 @@ export const UserAling = styled.div`
       line-height : 1.7em;
       font-size: 1.3rem;
       font-weight: 700;
-      margin : 0px;
+      /* margin-bottom: 4px; */
     }
 
 `
@@ -85,6 +85,7 @@ export const Button = styled.button`
 export const ButtonVoltar = styled(Icon)`
     margin-left: 20px !important;
     margin-right: 14px !important;
+    margin-top: 4px !important;
 `
 // export const ContainerAlert = styled.div`
 //     display: flex;
