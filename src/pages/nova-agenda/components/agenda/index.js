@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from 'moment'
 
 import "../../index.css";
-import { Container } from "./styles";
+import { ContainerCell, Container } from "./styles";
 
 function Agenda() {
   var now = moment()
@@ -36,9 +36,9 @@ function Agenda() {
     if (event) {
       event.map(item => {
         let divCell = document.getElementById(`${item.id}`);
-        // let divCellTermino = document.getElementsByClassName(`${item.termino}`).style.background = '#eee';
+        let divCellTermino = document.getElementsByClassName(`${item.termino} ${item.data}`);
   
-
+        console.log(divCellTermino)
         if (divCell.childNodes.length === 0) {
           const spanc = document.createElement('span');
           const titleReserve = document.createElement('h2');
@@ -76,9 +76,10 @@ function Agenda() {
 
   };
 
-  const reduxTableActions = (idTable, hour) => {
+  const reduxTableActions = (idTable, hour, data) => {
     dispatch({ type: "SET_ID", id: idTable });
     dispatch({ type: "SET_HORA", hora: hour });
+    dispatch({ type: "SET_DATA", data });
     dispatch({ type: "SET_LOAD_INFO", set_loader_info: true });
   }
 
@@ -105,7 +106,7 @@ function Agenda() {
 
   return (
     <>
-      <div id="allPage" onLoad={() => document.getElementsByClassName(`10:00`).style.background = '#f00'}>
+      <Container id="allPage" >
         <Table id="table" definition>
           <Table.Header>
             <Table.Row>
@@ -124,22 +125,22 @@ function Agenda() {
                   <strong > {hora} </strong>
                 </Table.HeaderCell>
                 {dias.map((dia, index) => (
-                  <Table.Cell key={index}>
-                    <Container
+                  <Table.Cell key={index} className={`${hora} ${dia}`}>
+                    <ContainerCell
                       id={`${(number += 1)}`}
-                      className={hora}
                       onClick={e => {
                         modalActions(e.target.childNodes);
-                        reduxTableActions(e.target.getAttribute("id"), hora);
+                        reduxTableActions(e.target.getAttribute("id"), hora, dia);
                       }}
-                    />
+                    >
+                    </ContainerCell>
                   </Table.Cell>
                 ))}
               </Table.Row>
             ))}
           </Table.Body>
         </Table>
-      </div>
+      </Container>
     </>
   );
 }

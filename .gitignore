@@ -5,14 +5,21 @@
 /.pnp
 .pnp.js
 <<<<<<< HEAD
+<<<<<<< HEAD
 yarn.lock
 package-lock.json
 =======
+=======
+>>>>>>> origin/dev-mvp
 /yarn.lock
 .firebase
 .firebaserc
 database.rules.json
 firebase.json
+<<<<<<< HEAD
+>>>>>>> origin/dev-mvp
+=======
+package-lock.json
 >>>>>>> origin/dev-mvp
 
 # testing

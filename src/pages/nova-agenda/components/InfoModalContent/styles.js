@@ -1,6 +1,10 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Container = styled.div`
+  height: 15em;
+`;
+
+export const ContainerInfo = styled.div`
   display:flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -10,31 +14,29 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.div`
-  width : 50%;
-  padding: 10px;
+  width : 100%;
   justify-content: center;
   text-align: center;
 
-  h2{
+  h2 {
     font-family: "PT Sans",sans-serif;
     color: #000;
-    border-bottom : 3px solid #0d4b81;
   }
 `;
 
 export const Section = styled.div`
-  display : grid;
+  display: grid;
   grid-template-columns : repeat(2, 1fr);
   margin-top : 10px;
   padding : 5px;
 
   p{
-    margin : 5px 10px;
+    margin : 10px 10px 5px 10px;
     font-family: "Open Sans",sans-serif;
     font-size: 1.5em;
     color : #000;
     margin-left: 10px;
-    text-align: center;
+    text-align: left;
   }
 
 `;
@@ -44,8 +46,8 @@ export const ContainerEvento = styled.div`
   justify-content : center;
   align-items: center;
   flex-direction: column;
-
-  width : 100%;
+  margin-top: 1em;
+  width: 100%;
 
   p{
     font-family: "Open Sans",sans-serif;
@@ -59,5 +61,16 @@ export const ContainerEvento = styled.div`
     width: 70%;
     text-align:center;
   }
+`;
 
+export const ContainerExit = styled.div`
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  
+  span {
+    height: 1.2em;
+    margin-right: 1.5em;
+  }
 `;
