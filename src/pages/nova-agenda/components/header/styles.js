@@ -61,10 +61,10 @@ export const UserAling = styled.div`
     h1 {
       color: #0d4b81;
       font-family: "PT Sans",sans-serif;
-      line-height : 1.7em;
+      line-height : 1.2em;
       font-size: 1.3rem;
       font-weight: 700;
-      margin : 0px;
+      margin : 0px 5px 0px 0px;
     }
 
 `
@@ -83,8 +83,7 @@ export const Button = styled.button`
     text-align:center;
 `
 export const ButtonVoltar = styled(Icon)`
-    margin-left: 20px !important;
-    margin-right: 14px !important;
+    margin: 0px 10px;
 `
 // export const ContainerAlert = styled.div`
 //     display: flex;
