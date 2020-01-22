@@ -9,7 +9,8 @@ import {
   CustomModalContent,
   ContainerModalContent,
   TitleContainerMC,
-  CustomForm
+  CustomForm,
+
 } from "./styles";
 
 function RegisterForm({ ModalTop }) {
@@ -106,6 +107,7 @@ function RegisterForm({ ModalTop }) {
             <Form.Group widths="equal">
               <CustomForm>
                 <Input
+                  onClick = {ModalTop}
                   icon="user"
                   iconPosition="left"
                   onChange={e => {
@@ -114,9 +116,8 @@ function RegisterForm({ ModalTop }) {
                   }}
                   placeholder="Nome"
                 />
-              </CustomForm>
-              <CustomForm>
                 <Input
+                  onClick = {ModalTop}
                   icon="building"
                   iconPosition="left"
                   onChange={e => {
@@ -125,21 +126,16 @@ function RegisterForm({ ModalTop }) {
                   }}
                   placeholder="Setor"
                 />
-              </CustomForm>
-            </Form.Group>
-
-            <Form.Group widths="equal">
-              <CustomForm>
                 <Input
+                  onClick = {ModalTop}
                   icon="mail"
                   iconPosition="left"
                   onChange={e => setEmail(e.target.value)}
                   type="email"
                   placeholder="Email"
                 />
-              </CustomForm>
-              <CustomForm>
                 <Input
+                  onClick = {ModalTop}
                   icon="lock"
                   iconPosition="left"
                   onChange={e => setSenha(e.target.value)}

@@ -54,7 +54,7 @@ function RedefinirSenha({ModalTop}) {
         <Container>
           <Form size="large" key="tiny" method="POST">
             <CustomForm>
-              <Input icon='mail' iconPosition='left'onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
+              <Input icon='mail' iconPosition='left'onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" onClick = {ModalTop} />
             </CustomForm>
           </Form>
           {carregando ? (

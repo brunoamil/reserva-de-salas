@@ -41,6 +41,7 @@ export const Header = styled.div`
     display: flex;
     flex-direction: row;
     align-items:right;
+    height : 10vh;
 
     /* width: 100vw;
     padding: 2px 0px; */
