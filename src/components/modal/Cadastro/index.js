@@ -106,6 +106,7 @@ function RegisterForm({ ModalTop }) {
             <Form.Group widths="equal">
               <CustomForm>
                 <Input
+                  onClick = {ModalTop}
                   icon="user"
                   iconPosition="left"
                   onChange={e => {
@@ -117,6 +118,7 @@ function RegisterForm({ ModalTop }) {
               </CustomForm>
               <CustomForm>
                 <Input
+                  onClick = {ModalTop}
                   icon="building"
                   iconPosition="left"
                   onChange={e => {
@@ -131,6 +133,7 @@ function RegisterForm({ ModalTop }) {
             <Form.Group widths="equal">
               <CustomForm>
                 <Input
+                  onClick = {ModalTop}
                   icon="mail"
                   iconPosition="left"
                   onChange={e => setEmail(e.target.value)}
@@ -140,6 +143,7 @@ function RegisterForm({ ModalTop }) {
               </CustomForm>
               <CustomForm>
                 <Input
+                  onClick = {ModalTop}
                   icon="lock"
                   iconPosition="left"
                   onChange={e => setSenha(e.target.value)}
