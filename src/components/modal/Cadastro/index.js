@@ -9,7 +9,8 @@ import {
   CustomModalContent,
   ContainerModalContent,
   TitleContainerMC,
-  CustomForm
+  CustomForm,
+
 } from "./styles";
 
 function RegisterForm({ ModalTop }) {
@@ -115,8 +116,6 @@ function RegisterForm({ ModalTop }) {
                   }}
                   placeholder="Nome"
                 />
-              </CustomForm>
-              <CustomForm>
                 <Input
                   onClick = {ModalTop}
                   icon="building"
@@ -127,11 +126,6 @@ function RegisterForm({ ModalTop }) {
                   }}
                   placeholder="Setor"
                 />
-              </CustomForm>
-            </Form.Group>
-
-            <Form.Group widths="equal">
-              <CustomForm>
                 <Input
                   onClick = {ModalTop}
                   icon="mail"
@@ -140,8 +134,6 @@ function RegisterForm({ ModalTop }) {
                   type="email"
                   placeholder="Email"
                 />
-              </CustomForm>
-              <CustomForm>
                 <Input
                   onClick = {ModalTop}
                   icon="lock"

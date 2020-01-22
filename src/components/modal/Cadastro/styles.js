@@ -18,7 +18,7 @@ export const LabelReg = styled.h1`
 `;
 
 export const CustomForm = styled(Form.Field)`
-
+  width : 100%;
   margin-top: 10px !important;
   input{
     font-size: 1.1em !important;
