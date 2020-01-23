@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Form, Dimmer, Loader, Message, Input } from "semantic-ui-react";
+import { Form, Message, Input } from "semantic-ui-react";
 import firebase from "../../../services/firebase";
 import "firebase/auth";
+
 import RedefinirSenha from "../Recuperar-Senha";
+import Loading from '../../loader';
 
 //Redux
 import { useDispatch } from 'react-redux';
@@ -43,7 +45,6 @@ function LoginForm({ModalTop}) {
         .auth()
         .signInWithEmailAndPassword(email, senha)
         .then(sucesso => {
-          // history.push("/NovaAgenda");
           setCarregando(false);
 
           dispatch( {type: 'LOG_IN', usuarioEmail: email} );
@@ -90,9 +91,7 @@ function LoginForm({ModalTop}) {
               </TitleForgot>
             </Form>
             {carregando ? (
-              <Dimmer active>
-                <Loader size="medium">Carregando</Loader>
-              </Dimmer>
+              <Loading size="medium">Carregando...</Loading>
             ) : (
               <CustomButton
                 onClick={Logar}

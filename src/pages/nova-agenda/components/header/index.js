@@ -111,8 +111,6 @@ export const HeaderAgenda = () => {
                   </Link>
                 ) : ''}
               </ContainerVoltar>
-
-
               <ContainerLeftHeader>
                 <Logo src={Img}></Logo>
                 <Title>Reserva de Salas</Title>
@@ -126,8 +124,6 @@ export const HeaderAgenda = () => {
                 </>
               ) : ''
               }
-
-
             </UserAling>
           </View>
           <ViewSelect>
