@@ -41,6 +41,7 @@ export const Header = styled.div`
     display: flex;
     flex-direction: row;
     align-items: right;
+    height: 12vh;
 
     /* width: 100vw;
     padding: 2px 0px; */
@@ -104,7 +105,7 @@ export const ViewSelect = styled.div`
     display:flex;
     width:100%;
     justify-content:flex-end;
-    margin : -30px 0px 2px 0px;
+    margin : -30px 0px 10px 0px;
 `
 export const CircleAling = styled.div`
     display:flex;
@@ -161,6 +162,7 @@ export const Select = styled.select`
     
     border: 1px solid rgba(0, 0, 0, 0.541);
     height: 30px;
+    margin-top: 5px;
 
     background-color:white;
     color:#0d4b81;

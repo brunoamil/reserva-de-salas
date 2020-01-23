@@ -104,9 +104,56 @@ function RegisterForm({ ModalTop }) {
         </ContainerModalContent>
         <Container>
           <Form size="large" key="tiny" method="POST">
-            <Form.Group widths="equal">
-              <CustomForm>
-                <Input
+
+            <CustomForm>
+              <Input
+                onClick = {ModalTop}
+                icon="user"
+                iconPosition="left"
+                onChange={e => {
+                  let name = capitalize(e.target.value);
+                  setNome(name);
+                }}
+                placeholder="Nome"
+              />
+            </CustomForm>
+
+            <CustomForm>
+              <Input
+                onClick = {ModalTop}
+                icon="building"
+                iconPosition="left"
+                onChange={e => {
+                  let sector = e.target.value;
+                  setSetor(sector.toUpperCase());
+                }}
+                placeholder="Setor"
+              />
+            </CustomForm>
+
+            <CustomForm>
+              <Input
+                onClick = {ModalTop}
+                icon="mail"
+                iconPosition="left"
+                onChange={e => setEmail(e.target.value)}
+                type="email"
+                placeholder="Email"
+              />
+            </CustomForm>
+
+            <CustomForm>
+              <Input
+                onClick = {ModalTop}
+                icon="lock"
+                iconPosition="left"
+                onChange={e => setSenha(e.target.value)}
+                type="password"
+                placeholder="Senha"
+              />
+            </CustomForm>
+            {/* <Form.Field>
+              <Input
                   onClick = {ModalTop}
                   icon="user"
                   iconPosition="left"
@@ -116,6 +163,9 @@ function RegisterForm({ ModalTop }) {
                   }}
                   placeholder="Nome"
                 />
+            </Form.Field>
+
+            <Form.Field>
                 <Input
                   onClick = {ModalTop}
                   icon="building"
@@ -126,24 +176,7 @@ function RegisterForm({ ModalTop }) {
                   }}
                   placeholder="Setor"
                 />
-                <Input
-                  onClick = {ModalTop}
-                  icon="mail"
-                  iconPosition="left"
-                  onChange={e => setEmail(e.target.value)}
-                  type="email"
-                  placeholder="Email"
-                />
-                <Input
-                  onClick = {ModalTop}
-                  icon="lock"
-                  iconPosition="left"
-                  onChange={e => setSenha(e.target.value)}
-                  type="password"
-                  placeholder="Senha"
-                />
-              </CustomForm>
-            </Form.Group>
+            </Form.Field> */}
           </Form>
           {carregando ? (
             <Dimmer active>
