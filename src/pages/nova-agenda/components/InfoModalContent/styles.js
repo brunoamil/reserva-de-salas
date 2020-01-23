@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 15em;
+  height: 18em;
 `;
 
 export const ContainerInfo = styled.div`

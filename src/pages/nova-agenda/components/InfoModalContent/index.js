@@ -66,7 +66,7 @@ const InfoModal = () => {
                   userEmail
                 });
                 dispatch({ type: "SET_LOAD_INFO", set_loader_info: false });
-                console.log(doc.data());
+                // console.log(doc.data());
               }
             }
           });
@@ -147,10 +147,6 @@ const InfoModal = () => {
               
             </Section>
 
-            {msgErro && (
-              <Message header="Essa Reserva não é sua!" color="red" icon="dont" />
-            )}
-
             {loaderDel && (
               <Dimmer active>
                 <Loader size="medium">Deletando Reserva...</Loader>
@@ -163,6 +159,10 @@ const InfoModal = () => {
                   Excluir reserva
                 </Button>
               </ContainerExit>
+            )}
+
+            {msgErro && (
+              <Message header="Essa Reserva não é sua!" color="red" icon="dont" />
             )}
           </ContainerInfo>
         </>
