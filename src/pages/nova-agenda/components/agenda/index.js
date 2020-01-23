@@ -35,11 +35,7 @@ function Agenda() {
     if (event) {
       event.map(item => {
         let divCell = document.getElementById(`${item.id}`);
-<<<<<<< HEAD
-        let divCellTermino = document.getElementById(`${item.data}`);
-=======
         // let divCellTermino = document.getElementsByClassName(`${item.termino} ${item.data}`);
->>>>>>> origin/dev-mvp
   
         // console.log(divCellTermino)
         if (divCell.childNodes.length === 0) {
