@@ -1,93 +1,40 @@
 import React, { useEffect } from "react";
 import { Table } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
-import moment from 'moment'
+import moment from "moment";
 
 import "../../index.css";
 import { ContainerCell, Container } from "./styles";
 
 function Agenda() {
-  var now = moment()
-
-  var dia = now.day();
-  
-  let number = 0;
-
   const dispatch = useDispatch();
 
   const CheckLogin = useSelector(state => state.user.usuarioLogin);
   const event = useSelector(state => state.salas.roomEvents);
-  // console.log(event);
 
-  if (dia === 0) {
-    now.add(1,'days')
-  }
+  var now = moment();
+  var dia = now.day();
+  let idDivCell = 0;
+
+  if (dia === 0) now.add(1, "days");
+
   if (dia === 6) {
-    now = now.add(2, 'days');
-    dia = 0
+    now = now.add(2, "days");
+    dia = 0;
   }
   while (dia > 1) {
-    now = now.subtract(1, 'days');
+    now = now.subtract(1, "days");
     dia = dia - 1;
-  }
-
-  useEffect(() => {
-    if (event) {
-      event.map(item => {
-        let divCell = document.getElementById(`${item.id}`);
-        // let divCellTermino = document.getElementsByClassName(`${item.termino} ${item.data}`);
-  
-        // console.log(divCellTermino)
-        if (divCell.childNodes.length === 0) {
-          const spanc = document.createElement('span');
-          const titleReserve = document.createElement('h2');
-
-          titleReserve.innerText = `${item.setor}`;
-
-          spanc.setAttribute('id', `${item.id}`);
-          spanc.setAttribute('class', 'spanCell');
-          titleReserve.setAttribute('id', `${item.id}`);
-
-          spanc.appendChild(titleReserve);
-          divCell.appendChild(spanc);
-        }
-        return ''
-      })
-    } else {
-    }
-  });
-
-  
-  const modalActions = samTag => {
-    dispatch({ type: "SET_MODAL", valueModal: true });
-
-    if (samTag.length !== 0) {
-      dispatch({ type: "SET_MODAL", valueModal: true });
-      dispatch({ type: "SET_MODAL_INFO", valueInfo: true });
-    } else {
-      if (CheckLogin === false) {
-        dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true });
-      } else {
-        dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
-      }
-    }
-
-  };
-
-  const reduxTableActions = (idTable, hour, data) => {
-    dispatch({ type: "SET_ID", id: idTable });
-    dispatch({ type: "SET_HORA", hora: hour });
-    dispatch({ type: "SET_DATA", data });
-    dispatch({ type: "SET_LOAD_INFO", set_loader_info: true });
   }
 
   const dias = [
     `SEG ${now.format("D/M")}`,
-    `TER ${now.add(1,'days').format("D/M")}`,
-    `QUA ${now.add(1,'days').format("D/M")}`,
-    `QUI ${now.add(1,'days').format("D/M")}`,
-    `SEX ${now.add(1,'days').format("D/M")}`
+    `TER ${now.add(1, "days").format("D/M")}`,
+    `QUA ${now.add(1, "days").format("D/M")}`,
+    `QUI ${now.add(1, "days").format("D/M")}`,
+    `SEX ${now.add(1, "days").format("D/M")}`
   ];
+
   const horas = [
     "08:00",
     "09:00",
@@ -102,9 +49,78 @@ function Agenda() {
     "18:00"
   ];
 
+  useEffect(() => cellActions(event));
+
+  const cellActions = event => {
+    if (event) {
+      event.map(info => {
+        let divCell = document.getElementById(`${info.id}`);
+        let cellTermino;
+
+        if (divCell.childNodes.length === 0) {
+
+          const spanc = document.createElement("span");
+          const spanct = document.createElement("span");
+          const titleReserve = document.createElement("h2");
+          const checkHour = `${parseInt(info.inicio) + 1}:00`;
+
+          titleReserve.innerText = `${info.setor}`;
+
+          spanc.setAttribute("id", `${info.id}`);
+          titleReserve.setAttribute("id", `${info.id}`);
+          spanct.setAttribute("class", "spanCellTermino");
+          spanc.setAttribute("class", "spanCell");
+
+          if (checkHour === info.termino) {
+            cellTermino = document.getElementsByClassName(
+              `${info.termino} ${parseInt(info.id) + 5}`
+            );
+            cellTermino[0].style.background = "brown";
+          } else {
+            horas.filter(hora => info.inicio < hora < info.termino).map(h => {
+              cellTermino = document.getElementsByClassName(
+                `${h} ${parseInt(info.id) + 5}`
+              );
+
+              cellTermino.style.background = "brown";
+              return '';
+            })
+          }
+
+          spanc.appendChild(titleReserve);
+          divCell.appendChild(spanc);
+          // if (cellTermino) cellTermino.appendChild(spanct)
+        }
+        return "";
+      });
+    }
+  };
+
+  const modalActions = samTag => {
+    dispatch({ type: "SET_MODAL", valueModal: true });
+
+    if (samTag.length !== 0) {
+      dispatch({ type: "SET_MODAL", valueModal: true });
+      dispatch({ type: "SET_MODAL_INFO", valueInfo: true });
+    } else {
+      if (CheckLogin === false) {
+        dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true });
+      } else {
+        dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
+      }
+    }
+  };
+
+  const reduxTableActions = (idTable, hour, data) => {
+    dispatch({ type: "SET_ID", id: idTable });
+    dispatch({ type: "SET_HORA", hora: hour });
+    dispatch({ type: "SET_DATA", data });
+    dispatch({ type: "SET_LOAD_INFO", set_loader_info: true });
+  };
+
   return (
     <>
-      <Container id="allPage" >
+      <Container id="allPage">
         <Table id="table" definition>
           <Table.Header>
             <Table.Row>
@@ -120,18 +136,24 @@ function Agenda() {
             {horas.map((hora, index) => (
               <Table.Row key={index}>
                 <Table.HeaderCell width="1">
-                  <strong > {hora} </strong>
+                  <strong> {hora} </strong>
                 </Table.HeaderCell>
                 {dias.map((dia, index) => (
-                  <Table.Cell key={index} className={`${hora}`}>
+                  <Table.Cell
+                    key={index}
+                    className={`${hora} ${(idDivCell += 1)}`}
+                  >
                     <ContainerCell
-                      id={`${(number += 1)}`}
+                      id={`${idDivCell}`}
                       onClick={e => {
                         modalActions(e.target.childNodes);
-                        reduxTableActions(e.target.getAttribute("id"), hora, dia);
+                        reduxTableActions(
+                          e.target.getAttribute("id"),
+                          hora,
+                          dia
+                        );
                       }}
-                    >
-                    </ContainerCell>
+                    ></ContainerCell>
                   </Table.Cell>
                 ))}
               </Table.Row>
