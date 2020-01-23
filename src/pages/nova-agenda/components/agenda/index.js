@@ -11,14 +11,13 @@ function Agenda() {
 
   var dia = now.day();
   
-  
   let number = 0;
 
   const dispatch = useDispatch();
 
   const CheckLogin = useSelector(state => state.user.usuarioLogin);
   const event = useSelector(state => state.salas.roomEvents);
-  console.log(event);
+  // console.log(event);
 
   if (dia === 0) {
     now.add(1,'days')
@@ -36,9 +35,13 @@ function Agenda() {
     if (event) {
       event.map(item => {
         let divCell = document.getElementById(`${item.id}`);
+<<<<<<< HEAD
         let divCellTermino = document.getElementById(`${item.data}`);
+=======
+        // let divCellTermino = document.getElementsByClassName(`${item.termino} ${item.data}`);
+>>>>>>> origin/dev-mvp
   
-        console.log(divCellTermino)
+        // console.log(divCellTermino)
         if (divCell.childNodes.length === 0) {
           const spanc = document.createElement('span');
           const titleReserve = document.createElement('h2');
@@ -50,12 +53,11 @@ function Agenda() {
           titleReserve.setAttribute('id', `${item.id}`);
 
           spanc.appendChild(titleReserve);
-          divCell.appendChild(spanc)
+          divCell.appendChild(spanc);
         }
         return ''
       })
     } else {
-      console.log("opa deu um erro no useEffect da agenda");
     }
   });
 

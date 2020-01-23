@@ -42,7 +42,7 @@ function NovaAgenda() {
           const firstName = checkName(userName);
           if (id && userName) {
             events.push({id, firstName, termino, setor, data});
-            console.log(events);
+            // console.log(events);
             dispatch({ type: "SET_EVENTOS_SALA", event: events });
           }else {
             dispatch({ type: "SET_EVENTOS_SALA", event: [] });

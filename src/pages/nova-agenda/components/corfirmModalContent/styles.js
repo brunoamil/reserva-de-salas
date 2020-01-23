@@ -72,51 +72,13 @@ export const HourContent = styled.div`
   align-items: center;
 
   margin-top: 15px;
-  p {
+  margin-bottom: 25px;
+
+  strong {
     font-size: 1.3em;
-    margin-top: 10px;
 
     @media(min-width: 850px) {
       font-size: 1.5em;
-    }
-  }
-  div {
-    margin-bottom: 1px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    p {
-      font-size: 1.3em;
-
-      @media(min-width: 850px) {
-      font-size: 1.5em;
-      }
-      
-    }
-    div {
-      margin-bottom: 2.7px;
-      font-size: 1.1em;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex-flow: column;
-    }
-    select{
-      border: none;
-      outline : none;
-      background-color: transparent;
-      margin-bottom: 10px;
-
-
-      :optional{
-        font-size: 1.3em;
-
-        @media(min-width: 850px) {
-          font-size: 1.5em;
-        }
-
-      }
-      
     }
   }
 `;
