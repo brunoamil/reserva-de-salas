@@ -40,8 +40,7 @@ export const ContainerLeftHeader = styled.div`
 export const Header = styled.div`
     display: flex;
     flex-direction: row;
-    align-items:right;
-    height : 10vh;
+    align-items: right;
 
     /* width: 100vw;
     padding: 2px 0px; */
@@ -148,7 +147,7 @@ export const SelectAling = styled.div`
     justify-content:flex-end;
     align-items:flex-end;
     
-    margin-right: 4px;
+    margin-right: 20px;
 
 `
 
@@ -161,7 +160,7 @@ export const Select = styled.select`
     padding: 0px 5px;
     
     border: 1px solid rgba(0, 0, 0, 0.541);
-    height: 20px;
+    height: 30px;
 
     background-color:white;
     color:#0d4b81;
