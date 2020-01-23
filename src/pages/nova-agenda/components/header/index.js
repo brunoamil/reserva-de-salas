@@ -118,9 +118,11 @@ export const HeaderAgenda = () => {
             <ContainerHeader>
 
               <ContainerVoltar>
-                <Link to='/'>
-                  <ButtonVoltar name='arrow left' size='large' color='black' ></ButtonVoltar>
-                </Link>
+                {useSelector(state => state.user.usuarioLogin) === false ? (
+                  <Link to='/'>
+                    <ButtonVoltar name='arrow left' size='large' color='black' ></ButtonVoltar>
+                  </Link>
+                ) : ''}
               </ContainerVoltar>
               <ContainerLeftHeader>
                 <Logo src={Img}></Logo>
@@ -128,7 +130,7 @@ export const HeaderAgenda = () => {
               </ContainerLeftHeader>
             </ContainerHeader>
             <UserAling>
-              {useSelector(state => state.user.usuarioLogin) === 1 ? (
+              {useSelector(state => state.user.usuarioLogin) === true ? (
                 <>
                   <h1>Usuário: {nome}</h1>
                   <ButtonVoltar name='sign-out' size='large' onClick={actionLogout}></ButtonVoltar>

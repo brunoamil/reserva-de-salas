@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { Form, Message, Input } from "semantic-ui-react";
+import { useDispatch } from 'react-redux';
 import firebase from "../../../services/firebase";
 import "firebase/auth";
 
 import RedefinirSenha from "../Recuperar-Senha";
 import Loading from '../../loader';
-
-//Redux
-import { useDispatch } from 'react-redux';
 
 import {
   Container,

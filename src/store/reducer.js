@@ -8,9 +8,9 @@ export function usuarioReducer(state = USER, action){
     case 'USER_SETOR':
       return {...state, usuarioSetor : action.usuarioSetor };
     case 'LOG_IN':
-      return {...state, usuarioLogin: 1, usuarioEmail: action.usuarioEmail };
+      return {...state, usuarioLogin: true, usuarioEmail: action.usuarioEmail };
     case 'LOG_OUT':
-      return {...state, usuarioLogin: 0, usuarioEmail: ''};
+      return {...state, usuarioLogin: false, usuarioEmail: ''};
     default:
       return state;
   };
