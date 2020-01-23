@@ -27,6 +27,12 @@ export const ContainerVoltar = styled.div`
   flex-flow : row nowrap;
   align-items : center;
   text-align : center;
+  margin : 0px 15px 0px 20px;
+
+  @media(min-width: 723px) {
+    margin: 0px 15px 0px 20px;
+  }
+
 `;
 
 export const ContainerLeftHeader = styled.div`
@@ -90,6 +96,8 @@ export const Button = styled.button`
 export const ButtonVoltar = styled(Icon)`
     margin: 0px 10px;
 
+  
+
 `
 // export const ContainerAlert = styled.div`
 //     display: flex;
@@ -110,7 +118,7 @@ export const ViewSelect = styled.div`
     display:flex;
     width:100%;
     justify-content:flex-end;
-    margin : -30px 0px 10px 0px;
+    margin : -32px 0px 12px 0px;
 `
 export const CircleAling = styled.div`
     display:flex;
