@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Form, Dimmer, Loader, Message, Input } from "semantic-ui-react";
+import { Form, Message, Input } from "semantic-ui-react";
 import firebase from "../../../services/firebase";
 import { useDispatch } from "react-redux";
+
+import Loading from '../../loader';
 
 import {
   Container,
@@ -150,9 +152,7 @@ function RegisterForm({ ModalTop }) {
             </Form.Group>
           </Form>
           {carregando ? (
-            <Dimmer active>
-              <Loader size="medium">Carregando</Loader>
-            </Dimmer>
+            <Loading size="medium">Carregando...</Loading>
           ) : (
             <CustomButton
               size="large"

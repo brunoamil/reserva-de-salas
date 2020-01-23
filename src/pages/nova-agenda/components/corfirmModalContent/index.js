@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Input, Message, Dimmer, Loader } from "semantic-ui-react";
+import { Input, Message} from "semantic-ui-react";
 import firebase from "../../../../services/firebase";
+
+import Loading from '../../../../components/loader';
 
 import {
   Container,
@@ -96,9 +98,10 @@ const ConfirmModalContent = () => {
   return (
     <>
       {loader && (
-        <Dimmer active>
-          <Loader size="medium">Cadastrando Reserva...</Loader>
-        </Dimmer>)}
+        <Loading size='big'>
+          Carregando Reservas...
+        </Loading>  
+      )}
       <Container>
         <ContainerMain>
           <TextAling>
