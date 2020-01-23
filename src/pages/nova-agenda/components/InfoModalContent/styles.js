@@ -25,10 +25,15 @@ export const Header = styled.div`
 `;
 
 export const Section = styled.div`
-  display: grid;
-  grid-template-columns : repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: start;
+
   margin-top : 10px;
   padding : 5px;
+  width : 100%;
 
   p{
     margin : 10px 10px 5px 10px;
@@ -39,28 +44,6 @@ export const Section = styled.div`
     text-align: left;
   }
 
-`;
-
-export const ContainerEvento = styled.div`
-  display : flex;
-  justify-content : center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 1em;
-  width: 100%;
-
-  p{
-    font-family: "Open Sans",sans-serif;
-    font-size: 1.7em;
-    color : #000;
-  }
-
-  span {
-    margin-top: -15px;
-    font-size: 1.5em;
-    width: 70%;
-    text-align:center;
-  }
 `;
 
 export const ContainerExit = styled.div`
