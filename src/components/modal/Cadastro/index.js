@@ -152,31 +152,6 @@ function RegisterForm({ ModalTop }) {
                 placeholder="Senha"
               />
             </CustomForm>
-            {/* <Form.Field>
-              <Input
-                  onClick = {ModalTop}
-                  icon="user"
-                  iconPosition="left"
-                  onChange={e => {
-                    let name = capitalize(e.target.value);
-                    setNome(name);
-                  }}
-                  placeholder="Nome"
-                />
-            </Form.Field>
-
-            <Form.Field>
-                <Input
-                  onClick = {ModalTop}
-                  icon="building"
-                  iconPosition="left"
-                  onChange={e => {
-                    let sector = e.target.value;
-                    setSetor(sector.toUpperCase());
-                  }}
-                  placeholder="Setor"
-                />
-            </Form.Field> */}
           </Form>
           {carregando ? (
             <Dimmer active>
