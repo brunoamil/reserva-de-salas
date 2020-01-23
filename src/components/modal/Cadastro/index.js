@@ -9,7 +9,8 @@ import {
   CustomModalContent,
   ContainerModalContent,
   TitleContainerMC,
-  CustomForm
+  CustomForm,
+
 } from "./styles";
 
 function RegisterForm({ ModalTop }) {
@@ -103,51 +104,54 @@ function RegisterForm({ ModalTop }) {
         </ContainerModalContent>
         <Container>
           <Form size="large" key="tiny" method="POST">
-            <Form.Group widths="equal">
-              <CustomForm>
-                <Input
-                  icon="user"
-                  iconPosition="left"
-                  onChange={e => {
-                    let name = capitalize(e.target.value);
-                    setNome(name);
-                  }}
-                  placeholder="Nome"
-                />
-              </CustomForm>
-              <CustomForm>
-                <Input
-                  icon="building"
-                  iconPosition="left"
-                  onChange={e => {
-                    let sector = e.target.value;
-                    setSetor(sector.toUpperCase());
-                  }}
-                  placeholder="Setor"
-                />
-              </CustomForm>
-            </Form.Group>
 
-            <Form.Group widths="equal">
-              <CustomForm>
-                <Input
-                  icon="mail"
-                  iconPosition="left"
-                  onChange={e => setEmail(e.target.value)}
-                  type="email"
-                  placeholder="Email"
-                />
-              </CustomForm>
-              <CustomForm>
-                <Input
-                  icon="lock"
-                  iconPosition="left"
-                  onChange={e => setSenha(e.target.value)}
-                  type="password"
-                  placeholder="Senha"
-                />
-              </CustomForm>
-            </Form.Group>
+            <CustomForm>
+              <Input
+                onClick = {ModalTop}
+                icon="user"
+                iconPosition="left"
+                onChange={e => {
+                  let name = capitalize(e.target.value);
+                  setNome(name);
+                }}
+                placeholder="Nome"
+              />
+            </CustomForm>
+
+            <CustomForm>
+              <Input
+                onClick = {ModalTop}
+                icon="building"
+                iconPosition="left"
+                onChange={e => {
+                  let sector = e.target.value;
+                  setSetor(sector.toUpperCase());
+                }}
+                placeholder="Setor"
+              />
+            </CustomForm>
+
+            <CustomForm>
+              <Input
+                onClick = {ModalTop}
+                icon="mail"
+                iconPosition="left"
+                onChange={e => setEmail(e.target.value)}
+                type="email"
+                placeholder="Email"
+              />
+            </CustomForm>
+
+            <CustomForm>
+              <Input
+                onClick = {ModalTop}
+                icon="lock"
+                iconPosition="left"
+                onChange={e => setSenha(e.target.value)}
+                type="password"
+                placeholder="Senha"
+              />
+            </CustomForm>
           </Form>
           {carregando ? (
             <Dimmer active>

@@ -6,20 +6,23 @@
 }
 
 #allPage{
-    margin-top: -5px;
+    margin-top: -10px;
 }
 #table{
     margin: 0 !important;   
     border: none;
     border-radius: 0;
     height: 91.5vh;
-    margin-top: 0.7% !important;
 }
 .ui.table td{
     text-align: center;
     border-left: 1px solid rgb(206, 202, 202);
     padding: 0 !important;
 }
+.ui.table tr td{
+    border-top: 1px solid rgb(206, 202, 202) ;
+}
+
 .ui.table th{
     text-align: center !important;
     background-color: #0d4b81 !important;

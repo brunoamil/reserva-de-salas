@@ -69,6 +69,7 @@ function LoginForm({ModalTop}) {
             <Form size="large" key="tiny" method="POST">
               <CustomForm>
                 <Input
+                  onClick = {ModalTop}
                   onChange={e => setEmail(e.target.value)}
                   type="email"
                   placeholder="Email"

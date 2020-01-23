@@ -139,15 +139,13 @@ const InfoModal = () => {
                 <strong>Termino: </strong>
                 {dadosReserva.termino}
               </p>
-            </Section>
-
-            <ContainerEvento>
               <p>
               <Icon name="file" size="small" />
                 <strong>Evento: </strong>
+                {dadosReserva.nomeEvento}
               </p>
-              <span>{dadosReserva.nomeEvento}</span>
-            </ContainerEvento>
+              
+            </Section>
 
             {loaderDel && (
               <Dimmer active>
