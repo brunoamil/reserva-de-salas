@@ -65,7 +65,7 @@ function Agenda() {
       dispatch({ type: "SET_MODAL", valueModal: true });
       dispatch({ type: "SET_MODAL_INFO", valueInfo: true });
     } else {
-      if (CheckLogin === 0) {
+      if (CheckLogin === false) {
         dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true });
       } else {
         dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
