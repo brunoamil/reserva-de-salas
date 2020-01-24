@@ -25,7 +25,7 @@ function RegisterForm({ ModalTop }) {
   const [msgErro, setMsgErro] = useState(""); 
 
   function Cadastrar() {
-    if (email === "" || senha === "" || nome === "") {
+    if (email === "" || senha === "" || nome === "" || setor === "") {
       setErro(true);
       setMsgErro("Verifique se todos os campos estão preenchidos!");
     } else {
