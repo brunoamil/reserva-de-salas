@@ -27,6 +27,12 @@ export const ContainerVoltar = styled.div`
   flex-flow : row nowrap;
   align-items : center;
   text-align : center;
+  margin : 0px 15px 0px 20px;
+
+  @media(min-width: 723px) {
+    margin: 0px 15px 0px 20px;
+  }
+
 `;
 
 export const ContainerLeftHeader = styled.div`
@@ -40,7 +46,8 @@ export const ContainerLeftHeader = styled.div`
 export const Header = styled.div`
     display: flex;
     flex-direction: row;
-    align-items:right;
+    align-items: right;
+    height: 12vh;
 
     /* width: 100vw;
     padding: 2px 0px; */
@@ -56,15 +63,19 @@ export const UserAling = styled.div`
     display:flex;
     /* justify-content:flex-end; */
     flex-direction: row;
+    margin-top: -20px;
+    margin-right: 10px;
     /* margin: 15px 0px 30px 0px; */
 
     h1 {
       color: #0d4b81;
       font-family: "PT Sans",sans-serif;
-      line-height : 1.7em;
+      line-height : 1.2em;
       font-size: 1.3rem;
       font-weight: 700;
-      /* margin-bottom: 4px; */
+
+      margin : 0px 5px 0px 0px;
+
     }
 
 `
@@ -83,9 +94,10 @@ export const Button = styled.button`
     text-align:center;
 `
 export const ButtonVoltar = styled(Icon)`
-    margin-left: 20px !important;
-    margin-right: 14px !important;
-    margin-top: 4px !important;
+    margin: 0px 10px;
+
+  
+
 `
 // export const ContainerAlert = styled.div`
 //     display: flex;
@@ -106,7 +118,7 @@ export const ViewSelect = styled.div`
     display:flex;
     width:100%;
     justify-content:flex-end;
-    margin : -30px 0px 2px 0px;
+    margin : -32px 0px 12px 0px;
 `
 export const CircleAling = styled.div`
     display:flex;
@@ -149,7 +161,7 @@ export const SelectAling = styled.div`
     justify-content:flex-end;
     align-items:flex-end;
     
-    margin-right: 4px;
+    margin-right: 20px;
 
 `
 
@@ -162,7 +174,8 @@ export const Select = styled.select`
     padding: 0px 5px;
     
     border: 1px solid rgba(0, 0, 0, 0.541);
-    height: 20px;
+    height: 30px;
+    margin-top: 5px;
 
     background-color:white;
     color:#0d4b81;

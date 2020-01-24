@@ -116,12 +116,11 @@ export const HeaderAgenda = () => {
         <Container>
           <View>
             <ContainerHeader>
+
               <ContainerVoltar>
-                {useSelector(state => state.user.usuarioLogin) === false ? (
-                  <Link to='/'>
-                    <ButtonVoltar name='arrow left' size='large' color='black' ></ButtonVoltar>
-                  </Link>
-                ) : ''}
+                <Link to='/'>
+                  <ButtonVoltar name='arrow left' size='large' color='black' ></ButtonVoltar>
+                </Link>
               </ContainerVoltar>
 
 

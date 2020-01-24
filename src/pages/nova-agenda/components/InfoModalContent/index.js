@@ -9,7 +9,6 @@ import {
   Header,
   Container,
   Section,
-  ContainerEvento,
   ContainerInfo,
   ContainerExit
 } from "./styles";
@@ -83,7 +82,7 @@ const InfoModal = () => {
 
   //Delete reserva
   const ActionDelete = () => {
-    if (dadosReserva.userEmail === email) {
+    if (email !== "") {
       setLoaderDel(true);
       firebase
         .firestore()
@@ -139,27 +138,22 @@ const InfoModal = () => {
                 <strong>Termino: </strong>
                 {dadosReserva.termino}
               </p>
-            </Section>
-
-            <ContainerEvento>
               <p>
                 <Icon name="file" size="small" />
                 <strong>Evento: </strong>
+                {dadosReserva.nomeEvento}
               </p>
-              <span>{dadosReserva.nomeEvento}</span>
-            </ContainerEvento>
+              
+            </Section>
 
             {loaderDel && (
               <Loading size="medium">Deletando Informações...</Loading>
             )}
-
-            {email && (
               <ContainerExit>
                 <Button negative icon onClick={ActionDelete} size="big">
                   Excluir reserva
                 </Button>
               </ContainerExit>
-            )}
 
             {msgErro && (
               <Message
