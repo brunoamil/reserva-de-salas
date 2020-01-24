@@ -119,7 +119,7 @@ export const HeaderAgenda = () => {
 
               <ContainerVoltar>
                 <Link to='/'>
-                  <ButtonVoltar name='arrow left' size='large' color='black' ></ButtonVoltar>
+                  <ButtonVoltar name='arrow left' size='large' color='black' onClick={actionLogout}></ButtonVoltar>
                 </Link>
               </ContainerVoltar>
 
