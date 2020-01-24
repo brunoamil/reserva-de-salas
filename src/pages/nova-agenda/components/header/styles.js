@@ -64,7 +64,7 @@ export const UserAling = styled.div`
     /* justify-content:flex-end; */
     flex-direction: row;
     margin-top: -20px;
-    margin-right: 10px;
+    /* margin-right: 10px; */
     /* margin: 15px 0px 30px 0px; */
 
     h1 {

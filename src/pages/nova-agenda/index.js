@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import { Dimmer, Loader } from "semantic-ui-react";
+import { Dimmer, Loader, Responsive, Segment } from "semantic-ui-react";
 import { useSelector, useDispatch } from 'react-redux';
 import firebase from '../../services/firebase';
  
@@ -67,10 +67,27 @@ function NovaAgenda() {
   return (
     <>
       <Modal />
-      <HeaderAgenda id="header" />
-      { loader ? (<Dimmer active>
-        <Loader size="medium">Carregando Reservas...</Loader>
-      </Dimmer>) : <Agenda /> }
+
+      {/* PC E TABLET */}
+      <Responsive as={Segment} minWidth={768}>
+
+        <HeaderAgenda id="header" />
+        { loader ? (<Dimmer active>
+          <Loader size="medium">Carregando Reservas...</Loader>
+        </Dimmer>) : <Agenda /> }
+
+      </Responsive>
+
+      {/* MOBILE */}
+      <Responsive as={Segment} maxWidth={768}>
+
+        <HeaderAgenda id="header" />
+        { loader ? (<Dimmer active>
+          <Loader size="medium">Carregando Reservas...</Loader>
+        </Dimmer>) : <Agenda /> }
+
+      </Responsive>
+
     </>
   );
 }
