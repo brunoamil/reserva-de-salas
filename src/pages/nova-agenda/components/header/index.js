@@ -113,6 +113,11 @@ export const HeaderAgenda = () => {
     dispatch({ type: "SET_LOADER", set_loader: true })
   );
 
+  const createRoom = () => (
+    alert('funcionalidade nao disponivel')
+
+  )
+
   const clearReservation = () => (
     firebase
       .firestore()
@@ -153,8 +158,13 @@ export const HeaderAgenda = () => {
             <UserAling>
               {useSelector(state => state.user.usuarioLogin) === 1 ? (
                 <>
-                  <Button size='small' positive>Criar sala</Button>
-                  <Button size='small' negative onClick={clearReservation}>Limpar reservas</Button>
+                  {email === "admin@ceuma.com" ? (
+                    <>
+                    <Button size='small' positive onClick={createRoom}>Criar sala</Button>
+                    <Button size='small' negative onClick={clearReservation}>Limpar reservas</Button>
+                    </>
+                  ) : ''
+                }
                   <h1>Usuário: {nome}</h1>
                   <ButtonVoltar name='sign-out' size='large' onClick={actionLogout}></ButtonVoltar>
                 </>
