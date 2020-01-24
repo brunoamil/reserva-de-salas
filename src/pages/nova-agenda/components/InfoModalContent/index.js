@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Loader, Dimmer, Icon, Message, Button } from "semantic-ui-react";
+import { Icon, Message, Button } from "semantic-ui-react";
 import firebase from "../../../../services/firebase";
 import { useSelector, useDispatch } from "react-redux";
+
+import Loading from "../../../../components/loader";
 
 import {
   Header,
@@ -108,9 +110,7 @@ const InfoModal = () => {
     <>
       {loader ? (
         <Container>
-          <Dimmer active>
-            <Loader size="medium">Carregando Informações...</Loader>
-          </Dimmer>
+          <Loading size="medium">Carregando Informações...</Loading>
         </Container>
       ) : (
         <>
@@ -140,7 +140,7 @@ const InfoModal = () => {
                 {dadosReserva.termino}
               </p>
               <p>
-              <Icon name="file" size="small" />
+                <Icon name="file" size="small" />
                 <strong>Evento: </strong>
                 {dadosReserva.nomeEvento}
               </p>
@@ -148,9 +148,7 @@ const InfoModal = () => {
             </Section>
 
             {loaderDel && (
-              <Dimmer active>
-                <Loader size="medium">Deletando Reserva...</Loader>
-              </Dimmer>
+              <Loading size="medium">Deletando Informações...</Loading>
             )}
 
             {email && (
@@ -162,7 +160,11 @@ const InfoModal = () => {
             )}
 
             {msgErro && (
-              <Message header="Essa Reserva não é sua!" color="red" icon="dont" />
+              <Message
+                header="Essa Reserva não é sua!"
+                color="red"
+                icon="dont"
+              />
             )}
           </ContainerInfo>
         </>

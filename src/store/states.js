@@ -2,7 +2,7 @@ export const USER = {
   usuarioNome : '',
   usuarioSetor: '',
   usuarioEmail : '',
-  usuarioLogin : 0,
+  usuarioLogin : false,
   salasReserva: [],
 };
 
