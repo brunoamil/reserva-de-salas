@@ -5,6 +5,7 @@ import firebase from "../../../../services/firebase";
 
 import Img from "../../../../assets/img/ceuma.png";
 
+import { Button } from 'semantic-ui-react';
 import {
   Logo,
   Header,
@@ -33,6 +34,8 @@ export const HeaderAgenda = () => {
   const [nome, setNome] = useState();
   const [/*loader*/, setLoader] = useState(false);
   const [salas, setSalas] = useState([]);
+
+  const room = useSelector(state => state.salas.currentRoom)
 
   const checkName = name => {
     if (name) {
@@ -110,6 +113,24 @@ export const HeaderAgenda = () => {
     dispatch({ type: "SET_LOADER", set_loader: true })
   );
 
+  const clearReservation = () => (
+    firebase
+      .firestore()
+      .collection("salas")
+      .doc(room)
+      .collection('Eventos')
+      .get()
+      .then(sucesso => {
+        sucesso.forEach(doc => {
+          firebase.firestore().collection('salas').doc(room).collection('Eventos').doc(doc.data().id).delete().then(sucesso => {
+            console.log('reservas excluidas');
+          })
+        })
+        dispatch({ type: "SET_EVENTOS_SALA", event: [] });
+        dispatch({ type: "SET_LOADER", set_loader: true });
+      })
+  )
+
   return (
     <>
       <Header>
@@ -132,6 +153,8 @@ export const HeaderAgenda = () => {
             <UserAling>
               {useSelector(state => state.user.usuarioLogin) === 1 ? (
                 <>
+                  <Button size='small' positive>Criar sala</Button>
+                  <Button size='small' negative onClick={clearReservation}>Limpar reservas</Button>
                   <h1>Usuário: {nome}</h1>
                   <ButtonVoltar name='sign-out' size='large' onClick={actionLogout}></ButtonVoltar>
                 </>
