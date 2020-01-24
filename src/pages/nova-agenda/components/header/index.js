@@ -114,86 +114,87 @@ export const HeaderAgenda = () => {
   );
 
   const createRoom = () => (
-    alert('funcionalidade nao disponivel')
-
+    // alert('funcionalidade nao disponivel')
+    dispatch({ type: "SET_MODAL", valueModal: true })
+    
   )
 
-  const clearReservation = () => (
-    firebase
-      .firestore()
-      .collection("salas")
-      .doc(room)
-      .collection('Eventos')
-      .get()
-      .then(sucesso => {
-        sucesso.forEach(doc => {
-          firebase.firestore().collection('salas').doc(room).collection('Eventos').doc(doc.data().id).delete().then(sucesso => {
-            console.log('reservas excluidas');
-          })
+const clearReservation = () => (
+  firebase
+    .firestore()
+    .collection("salas")
+    .doc(room)
+    .collection('Eventos')
+    .get()
+    .then(sucesso => {
+      sucesso.forEach(doc => {
+        firebase.firestore().collection('salas').doc(room).collection('Eventos').doc(doc.data().id).delete().then(sucesso => {
+          console.log('reservas excluidas');
         })
-        dispatch({ type: "SET_EVENTOS_SALA", event: [] });
-        dispatch({ type: "SET_LOADER", set_loader: true });
       })
-  )
+      dispatch({ type: "SET_EVENTOS_SALA", event: [] });
+      dispatch({ type: "SET_LOADER", set_loader: true });
+    })
+)
 
-  return (
-    <>
-      <Header>
-        <Container>
-          <View>
-            <ContainerHeader>
+return (
+  <>
+    <Header>
+      <Container>
+        <View>
+          <ContainerHeader>
 
-              <ContainerVoltar>
-                <Link to='/'>
-                  <ButtonVoltar name='arrow left' size='large' color='black' onClick={actionLogout}></ButtonVoltar>
-                </Link>
-              </ContainerVoltar>
+            <ContainerVoltar>
+              <Link to='/'>
+                <ButtonVoltar name='arrow left' size='large' color='black' onClick={actionLogout}></ButtonVoltar>
+              </Link>
+            </ContainerVoltar>
 
 
-              <ContainerLeftHeader>
-                <Logo src={Img}></Logo>
-                <Title>Reserva de Salas</Title>
-              </ContainerLeftHeader>
-            </ContainerHeader>
-            <UserAling>
-              {useSelector(state => state.user.usuarioLogin) === 1 ? (
-                <>
-                  {email === "admin@ceuma.com" ? (
-                    <>
+            <ContainerLeftHeader>
+              <Logo src={Img}></Logo>
+              <Title>Reserva de Salas</Title>
+            </ContainerLeftHeader>
+          </ContainerHeader>
+          <UserAling>
+            {useSelector(state => state.user.usuarioLogin) === 1 ? (
+              <>
+                {email === "admin@ceuma.com" ? (
+                  <>
                     <Button size='small' positive onClick={createRoom}>Criar sala</Button>
                     <Button size='small' negative onClick={clearReservation}>Limpar reservas</Button>
-                    </>
-                  ) : ''
+                  </>
+                ) : ''
                 }
-                  <h1>Usuário: {nome}</h1>
-                  <ButtonVoltar name='sign-out' size='large' onClick={actionLogout}></ButtonVoltar>
-                </>
-              ) : ''
-              }
-            </UserAling>
-          </View>
-          <ViewSelect>
-            <CircleAling>
-              <Circle></Circle>
-              <Legenda>Indisponível</Legenda>
-              <Circle2></Circle2>
-              <Legenda>Disponível</Legenda>
-            </CircleAling>
-            <SelectAling>
-              <Select onChange={e => {
-                roomsActions(e.target.value);
-                actionLoader();
-              }}>
-                {salas.map(sala => (
-                  <option key={sala}>{sala}</option>
-                ))}
-              </Select>
-            </SelectAling>
-          </ViewSelect>
-        </Container>
-      </Header>
-    </>
-  );
+                <h1>Usuário: {nome}</h1>
+                <ButtonVoltar name='sign-out' size='large' onClick={actionLogout}></ButtonVoltar>
+              </>
+            ) : ''
+            }
+          </UserAling>
+        </View>
+        <ViewSelect>
+          <CircleAling>
+            <Circle></Circle>
+            <Legenda>Indisponível</Legenda>
+            <Circle2></Circle2>
+            <Legenda>Disponível</Legenda>
+          </CircleAling>
+          <SelectAling>
+            <Select onChange={e => {
+              roomsActions(e.target.value);
+              actionLoader();
+            }}>
+              {salas.map(sala => (
+                <option key={sala}>{sala}</option>
+              ))}
+            </Select>
+          </SelectAling>
+        </ViewSelect>
+      </Container>
+    </Header>
+  </>
+);
 };
 
 export default HeaderAgenda;

@@ -19,6 +19,7 @@ export const MODAL = {
   registerForm: false,
   confirmForm: false,
   infoModal: false,
+  createRoomModal: false
 }
 
 export const DADOS_RESERVA = {

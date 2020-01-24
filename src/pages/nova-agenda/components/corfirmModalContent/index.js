@@ -74,6 +74,7 @@ const ConfirmModalContent = () => {
           setMsgSucesso(true);
           setLoader(false);
           setTimeout(() => {
+            dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: false});
             dispatch({ type: "SET_MODAL", valueModal: false });
             dispatch({ type: "SET_LOADER", set_loader: true });
           }, 1000);
