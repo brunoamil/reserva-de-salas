@@ -27,9 +27,13 @@ const ModalUser = () => {
   }
 
   const ModalTop = () => {
-    const topInput = document.getElementById('topInput');
-    topInput.style.setProperty('transition', 'all 0.2s ease');
-    topInput.style.setProperty('margin-top', '-5em');
+    const width = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
+    const height = (window.innerHeight > 0) ? window.innerHeight : window.screen.height;
+    if(width <=1000 && height<= 600) {
+      const topInput = document.getElementById('topInput');
+      topInput.style.setProperty('transition', 'all 0.2s ease');
+      topInput.style.setProperty('margin-top', '-5em');
+    }
   }
 
   return (
