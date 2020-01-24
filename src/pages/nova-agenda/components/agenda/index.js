@@ -62,34 +62,41 @@ function Agenda() {
           const spanc = document.createElement("span");
           const spanct = document.createElement("span");
           const titleReserve = document.createElement("h2");
+          const titleReserveTermino = document.createElement("h2");
           const checkHour = `${parseInt(info.inicio) + 1}:00`;
 
           titleReserve.innerText = `${info.setor}`;
+          titleReserveTermino.innerText = `${info.setor}`;
 
           spanc.setAttribute("id", `${info.id}`);
           titleReserve.setAttribute("id", `${info.id}`);
+          titleReserveTermino.setAttribute("id", `${info.id}`);
           spanct.setAttribute("class", "spanCellTermino");
           spanc.setAttribute("class", "spanCell");
 
+          spanc.appendChild(titleReserve);
+          spanct.appendChild(titleReserveTermino);
+          divCell.appendChild(spanc);
+          
           if (checkHour === info.termino) {
             cellTermino = document.getElementsByClassName(
               `${info.termino} ${parseInt(info.id) + 5}`
             );
-            cellTermino[0].style.background = "brown";
+            cellTermino[0].innerHTML = '';
+            cellTermino[0].appendChild(spanct);
           } else {
-            horas.filter(hora => info.inicio < hora < info.termino).map(h => {
-              cellTermino = document.getElementsByClassName(
-                `${h} ${parseInt(info.id) + 5}`
-              );
+            let idCellTermino = parseInt(info.id);
 
-              cellTermino.style.background = "brown";
+            horas.filter(hora => hora > info.inicio && hora <= info.termino)
+            .map(h => {
+              cellTermino = document.getElementsByClassName(
+                `${h} ${ idCellTermino += 5}`
+              );
+              cellTermino[0].innerHTML = '';
+              cellTermino[0].appendChild(spanct);
               return '';
             })
           }
-
-          spanc.appendChild(titleReserve);
-          divCell.appendChild(spanc);
-          // if (cellTermino) cellTermino.appendChild(spanct)
         }
         return "";
       });
