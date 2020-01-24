@@ -14,7 +14,7 @@ const Main = props => {
           Reservar
       </Button>
       </Link>
-    <FooterStatus>Versão 1.0</FooterStatus>
+    <FooterStatus>Versão 1.1.1</FooterStatus>
     </Bloco>
     </>
   );
