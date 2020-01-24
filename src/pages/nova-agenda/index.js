@@ -10,6 +10,10 @@ import Loading from '../../components/loader';
 
 import "./index.css";
 
+//Responsive
+import { HeaderAgendaMobile } from "./components/header/responsive/"
+import AgendaMobile  from './components/agenda/responsive/'
+
 function NovaAgenda() {
   const dispatch = useDispatch();
   const loader = useSelector(state => state.load.loader);
@@ -77,9 +81,10 @@ function NovaAgenda() {
 
       {/* MOBILE */}
       <Responsive as={Segment} maxWidth={768}>
-        <HeaderAgenda id="header" />
-        { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <Agenda /> }
+        <HeaderAgendaMobile id="header" />
+        { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <AgendaMobile /> }
       </Responsive>
+
     </>
   );
 }
