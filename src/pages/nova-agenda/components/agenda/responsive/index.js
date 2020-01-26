@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Table } from "semantic-ui-react";
+import { Table, Accordion, Icon, AccordionTitle } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from 'moment'
 
@@ -105,39 +105,56 @@ function AgendaMobile() {
   return (
     <>
       <Container id="allPage" >
-        <Table id="table" definition>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell id="none" />
-              {dias.map(dia => (
-                <Table.HeaderCell key={dia}>
-                  <strong> {dia} </strong>
-                </Table.HeaderCell>
-              ))}
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {horas.map((hora, index) => (
-              <Table.Row key={index}>
-                <Table.HeaderCell width="1">
-                  <strong > {hora} </strong>
-                </Table.HeaderCell>
-                {dias.map((dia, index) => (
-                  <Table.Cell key={index} className={`${hora} ${dia}`}>
-                    <ContainerCell
-                      id={`${(number += 1)}`}
-                      onClick={e => {
-                        modalActions(e.target.childNodes);
-                        reduxTableActions(e.target.getAttribute("id"), hora, dia);
-                      }}
-                    >
-                    </ContainerCell>
-                  </Table.Cell>
+
+        <Accordion>
+          <Table id="table" definition>
+
+            <AccordionTitle>
+
+              <Table.Header>
+
+                <Table.Row>
+                  <Table.HeaderCell id="none" />
+                  {dias.map(dia => (
+                    <Table.HeaderCell key={dia}>
+                      <strong> {dia} </strong>
+                      <Icon name="dropdown"/>
+                    </Table.HeaderCell>
+                  ))}
+                  
+                </Table.Row>
+
+              </Table.Header>
+
+            </AccordionTitle>
+
+            <Accordion.Content>
+              <Table.Body>
+                {horas.map((hora, index) => (
+                  <Table.Row key={index}>
+                    <Table.HeaderCell width="1">
+                      <strong > {hora} </strong>
+                    </Table.HeaderCell>
+                    {dias.map((dia, index) => (
+                      <Table.Cell key={index} className={`${hora} ${dia}`}>
+                        <ContainerCell
+                          id={`${(number += 1)}`}
+                          onClick={e => {
+                            modalActions(e.target.childNodes);
+                            reduxTableActions(e.target.getAttribute("id"), hora, dia);
+                          }}
+                        >
+                        </ContainerCell>
+                      </Table.Cell>
+                    ))}
+                  </Table.Row>
                 ))}
-              </Table.Row>
-            ))}
-          </Table.Body>
-        </Table>
+              </Table.Body>
+            </Accordion.Content>
+            
+          </Table>
+        </Accordion>
+
       </Container>
     </>
   );

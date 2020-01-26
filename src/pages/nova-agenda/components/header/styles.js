@@ -94,9 +94,11 @@ export const Button = styled.button`
     text-align:center;
 `
 export const ButtonVoltar = styled(Icon)`
-    margin: 0px 10px;
+    margin: 0px 15px;
 
-  
+    @media(min-width: 768px) {
+        margin: 0 35px 0px 30px;
+    }
 
 `
 // export const ContainerAlert = styled.div`
