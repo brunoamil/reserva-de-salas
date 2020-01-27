@@ -39,7 +39,7 @@ export function setModal(state = MODAL, action) {
   let valueConfirm = action.valueConfirm;
   let valueInfo = action.valueInfo;
   let valueModal = action.valueModal;
-  let valueCreateRoomModal = action.valueCreateRoomModal;
+  let createRoomForm = action.createRoomForm;
 
   switch(action.type) {
     case 'SET_MODAL_LOGIN':
@@ -50,8 +50,8 @@ export function setModal(state = MODAL, action) {
       return { ...state, confirmForm: valueConfirm, registerForm: false, loginForm: false, infoModal: false};
     case "SET_MODAL_INFO":
       return { ...state, infoModal: valueInfo, confirmForm: false, registerForm: false, loginForm: false };
-    case "SET_CREATE_ROOM-MODAL":
-      return ( ...state, valueCreateRoomModal)
+    case "SET_MODAL_CREATE_ROOM":
+      return { ...state, createRoomForm, infoModal: false, confirmForm: false, registerForm: false, loginForm: false };
     case "SET_MODAL":
       return { ...state, modal: valueModal };
     default: 

@@ -5,9 +5,7 @@ import firebase from "../../../../services/firebase";
 
 import {
   Container,
-  HeaderModalContent,
   ContainerMain,
-  DescContent,
   HourContent,
   ContainerButton,
   TextAling,

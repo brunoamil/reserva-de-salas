@@ -113,11 +113,11 @@ export const HeaderAgenda = () => {
     dispatch({ type: "SET_LOADER", set_loader: true })
   );
 
-  const createRoom = () => (
-    // alert('funcionalidade nao disponivel')
+  const createRoom = () => {
+      // alert('funcionalidade nao disponivel')
     dispatch({ type: "SET_MODAL", valueModal: true })
-    
-  )
+    dispatch({ type: "SET_MODAL_CREATE_ROOM", createRoomForm: true});
+  }
 
 const clearReservation = () => (
   firebase
