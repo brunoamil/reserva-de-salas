@@ -7,9 +7,7 @@ import Loading from "../../../../components/loader";
 
 import {
   Container,
-  HeaderModalContent,
   ContainerMain,
-  DescContent,
   HourContent,
   ContainerButton,
   TextAling,
@@ -78,6 +76,7 @@ const ConfirmModalContent = () => {
           setMsgSucesso(true);
           setLoader(false);
           setTimeout(() => {
+            dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: false});
             dispatch({ type: "SET_MODAL", valueModal: false });
             dispatch({ type: "SET_LOADER", set_loader: true });
           }, 1000);
@@ -159,23 +158,16 @@ const ConfirmModalContent = () => {
               </select>
             </div>
           </HourContent>
-          <HeaderModalContent>
-            <DescContent>
-              <form method="post">
                 <Input
-                  focus
                   onChange={e => {
                     setNomeEvento(e.target.value);
                   }}
                   size="huge"
                   placeholder="Nome do Evento"
                   type="text"
-                  name="inputEvent"
-                  id="inputEvent"
+                  icon="file"
+                  iconPosition="left"
                 />
-              </form>
-            </DescContent>
-          </HeaderModalContent>
           <ContainerButton>
             <CustomButton
               onClick={() => {
@@ -185,6 +177,7 @@ const ConfirmModalContent = () => {
               size="large"
               primary
               id="button"
+              fluid
             >
               Confirmar Reserva
             </CustomButton>

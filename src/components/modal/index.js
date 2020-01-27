@@ -13,6 +13,7 @@ import LoginForm from "./Login";
 import RegisterForm from "./Cadastro";
 import CofirmModalContent from './../../pages/nova-agenda/components/corfirmModalContent';
 import InfoModal from './../../pages/nova-agenda/components/InfoModalContent';
+import CreateRoomForm from "../../pages/nova-agenda/components/createRoomModal";
 
 const ModalUser = () => {
   const dispatch = useDispatch();
@@ -21,9 +22,15 @@ const ModalUser = () => {
   const registerForm = useSelector(state => state.modal.registerForm);
   const confirmForm = useSelector(state => state.modal.confirmForm);
   const infoModal = useSelector(state => state.modal.infoModal);
+  const createRoomForm = useSelector(state => state.modal.createRoomForm);
+  console.log(createRoomForm);
 
   const close = () => {
     dispatch({ type: "SET_MODAL", valueModal: false })
+    dispatch({ type: "SET_MODAL_INFO", valueInfo: false });
+    dispatch({ type: "SET_MODAL_LOGIN", valueLogin: false });
+    dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: false });
+    dispatch({ type: "SET_MODAL_CREATE_ROOM", createRoomForm: false})    
   }
 
   const ModalTop = () => {
@@ -44,6 +51,7 @@ const ModalUser = () => {
           {registerForm && <RegisterForm ModalTop = {ModalTop} />}
           {confirmForm && <CofirmModalContent ModalTop = {ModalTop} />}
           {infoModal && <InfoModal />}
+          {createRoomForm && <CreateRoomForm size = 'tiny'/>}
         </CustomModalContent>
         {loginForm && (
           <FooterModal>
