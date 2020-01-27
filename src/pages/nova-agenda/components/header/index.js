@@ -148,15 +148,13 @@ export const HeaderAgenda = () => {
                   <ButtonVoltar name='arrow left' size='large' color='black' onClick={actionLogout}></ButtonVoltar>
                 </Link>
               </ContainerVoltar>
-
-
               <ContainerLeftHeader>
                 <Logo src={Img}></Logo>
                 <Title>Reserva de Salas</Title>
               </ContainerLeftHeader>
             </ContainerHeader>
             <UserAling>
-              {useSelector(state => state.user.usuarioLogin) === 1 ? (
+              {useSelector(state => state.user.usuarioLogin) === true ? (
                 <>
                   {email === "admin@ceuma.com" ? (
                     <>

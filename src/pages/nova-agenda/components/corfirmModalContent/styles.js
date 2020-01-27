@@ -80,6 +80,24 @@ export const HourContent = styled.div`
     @media(min-width: 850px) {
       font-size: 1.5em;
     }
+
+  }
+  div {
+    display: flex;
+    flex-direction: row;
+
+    select{
+      border: none;
+      outline : none;
+      background-color: transparent;
+      /* margin-bottom: 10px; */
+      :optional{
+        font-size: 1.5em;
+        @media(min-width: 850px) {
+          font-size: 1.5em;
+        }
+      }
+    }
   }
 `;
 
@@ -107,7 +125,7 @@ export const ContainerButton = styled.div`
 `;
 
 export const CustomOption = styled.option`
-  font-size: 16px;
+  font-size: 1.5em;
   color: #eee !important;
 `;
 

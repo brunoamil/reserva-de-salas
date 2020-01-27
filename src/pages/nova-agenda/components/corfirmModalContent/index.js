@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Input, Message, Dimmer, Loader } from "semantic-ui-react";
+import { Input, Message } from "semantic-ui-react";
 import firebase from "../../../../services/firebase";
+
+import Loading from "../../../../components/loader";
 
 import {
   Container,
@@ -11,11 +13,11 @@ import {
   HourContent,
   ContainerButton,
   TextAling,
-  CustomButton
+  CustomButton,
+  CustomOption
 } from "./styles";
 
 const ConfirmModalContent = () => {
-
   const dispatch = useDispatch();
 
   const horaInicial = useSelector(state => state.dados.hora);
@@ -30,21 +32,24 @@ const ConfirmModalContent = () => {
   const [msgSucesso, setMsgSucesso] = useState(false);
   const [msgErro, setMsgErro] = useState(false);
   const [loader, setLoader] = useState(false);
+  const [limitFinalHour, setlimitFinalHour] = useState(false);
 
   const db = firebase.firestore();
 
   const cadastrarEvento = async () => {
+    let setor = "";
 
-    let setor = '';
-    
-    await db.collection("usuarios")
+    await db
+      .collection("usuarios")
       .get()
-      .then(item => item.forEach(doc => {
-        if (userEmail === doc.data().email) {
-          setor = doc.data().setor;
-        }
-      }))
-      .catch(err => console.log("Erro ao pegar o setor", err))
+      .then(item =>
+        item.forEach(doc => {
+          if (userEmail === doc.data().email) {
+            setor = doc.data().setor;
+          }
+        })
+      )
+      .catch(err => console.log("Erro ao pegar o setor", err));
 
     const dados = {
       id,
@@ -54,12 +59,11 @@ const ConfirmModalContent = () => {
       nomeEvento,
       inicio: horaInicial,
       termino: horaFinal,
-      data,
+      data
     };
 
     if (!nomeEvento) {
       setMsgErro(true);
-      
     } else {
       setMsgErro(false);
       setLoader(true);
@@ -84,21 +88,45 @@ const ConfirmModalContent = () => {
     }
   };
 
-  useEffect(() => {
-    const actionFinalHour = () => {
-      setHoraFinal(`${parseInt(horaInicial) + 1}:00`);
-      dispatch({ type: "SET_HORA_FINAL", horaFinal });
-    };
+  const getDateEvent = async () => {
+    await db
+      .collection("salas")
+      .doc(`${sala}`)
+      .collection("Eventos")
+      .get()
+      .then(event => event.forEach(
+        doc => {
+          if (data === doc.data().data) {
+            setlimitFinalHour(doc.data().inicio);
+          }
+        }
+      ))
+      .catch()
+  }
 
-    actionFinalHour();
-  })
+  getDateEvent();
+
+  const actionFinalHour = () => {
+    dispatch({ type: "SET_HORA_FINAL", horaFinal });
+  };
+
+  const horas = [
+    "08:00",
+    "09:00",
+    "10:00",
+    "11:00",
+    "12:00",
+    "13:00",
+    "14:00",
+    "15:00",
+    "16:00",
+    "17:00",
+    "18:00"
+  ];
 
   return (
     <>
-      {loader && (
-        <Dimmer active>
-          <Loader size="medium">Cadastrando Reserva...</Loader>
-        </Dimmer>)}
+      {loader && <Loading size="big">Carregando Reservas...</Loading>}
       <Container>
         <ContainerMain>
           <TextAling>
@@ -106,7 +134,30 @@ const ConfirmModalContent = () => {
           </TextAling>
           <HourContent>
             <strong>De: {horaInicial}</strong>
-            <strong>Até: {horaFinal}</strong>
+            
+            <div>
+              <strong>Até: </strong>
+              <select
+                onChange={e => setHoraFinal(e.target.value)}
+                defaultValue={"DEFAULT"}
+              >
+                <CustomOption key="10" disabled hidden value="DEFAULT">
+                  horas
+                </CustomOption>
+                {limitFinalHour ?
+                  horas.filter(item =>  item > horaInicial && item < limitFinalHour)
+                  .map(hora => (
+                    <option key={hora}>{hora}</option>
+                  )) 
+                  :
+                  horas
+                  .filter(item => item > horaInicial)
+                  .map(hora => (
+                    <option key={hora}>{hora}</option>
+                  ))
+                }
+              </select>
+            </div>
           </HourContent>
           <HeaderModalContent>
             <DescContent>
@@ -129,20 +180,29 @@ const ConfirmModalContent = () => {
             <CustomButton
               onClick={() => {
                 cadastrarEvento();
+                actionFinalHour();
               }}
               size="large"
               primary
               id="button"
             >
               Confirmar Reserva
-              </CustomButton>
+            </CustomButton>
           </ContainerButton>
-          {msgSucesso && <Message header="Reserva Concluída!" color="green" icon="check" />}
-          {msgErro && <Message header="Insira o nome do evento!" color="red" icon="dont" />}
+          {msgSucesso && (
+            <Message header="Reserva Concluída!" color="green" icon="check" />
+          )}
+          {msgErro && (
+            <Message
+              header="Insira o nome do evento!"
+              color="red"
+              icon="dont"
+            />
+          )}
         </ContainerMain>
       </Container>
     </>
   );
-}
+};
 
 export default ConfirmModalContent;
