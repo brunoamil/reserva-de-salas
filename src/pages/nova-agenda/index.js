@@ -13,7 +13,7 @@ import "./index.css";
 //Responsive
 import { HeaderAgendaMobile } from "./components/header/responsive/"
 import AgendaMobile  from './components/agenda/responsive/'
-import { ErrorPage } from './components/errorPage/'
+// import { ErrorPage } from './components/errorPage/'
 
 function NovaAgenda() {
   const dispatch = useDispatch();

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import { Table, Accordion, Icon, AccordionTitle } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from 'moment'
@@ -15,6 +15,8 @@ function AgendaMobile() {
 
   const dispatch = useDispatch();
 
+  const [activeIndex, setActiveIndex] = useState();
+
   const CheckLogin = useSelector(state => state.user.usuarioLogin);
   const event = useSelector(state => state.salas.roomEvents);
   // console.log(event);
@@ -30,6 +32,18 @@ function AgendaMobile() {
     now = now.subtract(1, 'days');
     dia = dia - 1;
   }
+
+  const handleClick = (e ,titleProps) => {
+    const index = titleProps;
+    setActiveIndex();
+    const newIndex = activeIndex === index ? -1 : index;
+
+    setActiveIndex(newIndex);
+
+  };
+
+
+
 
   useEffect(() => {
     if (event) {
@@ -109,7 +123,7 @@ function AgendaMobile() {
         <Accordion>
           <Table id="table" definition>
 
-            <AccordionTitle>
+            <AccordionTitle active={activeIndex === 0} index={0} onClick={handleClick} >
 
               <Table.Header>
 
@@ -128,7 +142,7 @@ function AgendaMobile() {
 
             </AccordionTitle>
 
-            <Accordion.Content>
+            <Accordion.Content active={activeIndex === 0}>
               <Table.Body>
                 {horas.map((hora, index) => (
                   <Table.Row key={index}>

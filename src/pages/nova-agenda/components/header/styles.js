@@ -182,6 +182,8 @@ export const Select = styled.select`
     background-color:white;
     color:#0d4b81;
 
+    font-size : 1.15em;
+
     option {
       white-space : none !important;
       width : 10px !important;
