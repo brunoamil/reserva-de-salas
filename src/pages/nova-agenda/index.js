@@ -81,13 +81,13 @@ function NovaAgenda() {
       </Responsive>
 
       {/* MOBILE */}
-      {/* <Responsive as={Segment} maxWidth={768}>
+      <Responsive as={Segment} maxWidth={768}>
         <HeaderAgendaMobile id="header" />
         { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <AgendaMobile /> }
-      </Responsive> */}
-      <Responsive as={Segment} maxWidth={768}>
-        { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <ErrorPage /> }
       </Responsive>
+      {/* <Responsive as={Segment} maxWidth={768}>
+        { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <ErrorPage /> }
+      </Responsive> */}
 
     </>
   );
