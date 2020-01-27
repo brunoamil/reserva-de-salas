@@ -152,7 +152,7 @@ const InfoModal = () => {
               </Dimmer>
             )}
               <ContainerExit>
-                <Button negative icon onClick={ActionDelete} size="big">
+                <Button fluid negative icon onClick={ActionDelete} size="large">
                   Excluir reserva
                 </Button>
               </ContainerExit>

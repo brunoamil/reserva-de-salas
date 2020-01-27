@@ -134,6 +134,7 @@ const ConfirmModalContent = () => {
               size="large"
               primary
               id="button"
+              fluid
             >
               Confirmar Reserva
               </CustomButton>
