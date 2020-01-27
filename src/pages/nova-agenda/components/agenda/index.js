@@ -49,66 +49,49 @@ function Agenda() {
     "18:00"
   ];
 
-  useEffect(() => cellActions(event));
+  useEffect(() => renderCellActions(event));
 
-  const cellActions = event => {
+  const renderCellActions = event => {
     if (event) {
       event.map(info => {
         let divCell = document.getElementById(`${info.id}`);
-        
+
+        const reserveHour = horas.filter(
+          hora => hora > info.inicio && hora <= info.termino
+        );
+
         if (divCell.childNodes.length === 0) {
-          
-          const spanc = document.createElement("span");
-          const titleReserve = document.createElement("h2");
-          
-          const checkHour = `${parseInt(info.inicio) + 1}:00`;
 
-          titleReserve.innerText = `${info.setor}`;
-          spanc.setAttribute("id", `${info.id}`);
-          titleReserve.setAttribute("id", `${info.id}`);
-          
-          spanc.setAttribute("class", "spanCell");
-
-          spanc.appendChild(titleReserve);
-          divCell.appendChild(spanc);
-          
-          if (checkHour === info.termino) {
-            let divCellTermino = document.getElementById(`${parseInt(info.id) + 5}`);
-
-            const spanct = document.createElement("span");
-            const titleReserveTermino = document.createElement("h2");
-
-            spanct.setAttribute("class", "spanCellTermino");
-            spanct.setAttribute("id", `${info.id}`);
-            titleReserveTermino.setAttribute("id", `${info.id}`);
-            titleReserveTermino.innerText = `${info.setor}`;
-            
-            spanct.appendChild(titleReserveTermino);
-            divCellTermino.appendChild(spanct);
-          } else {
+          renderFinalReserve(divCell, info.id, info.setor);
+          if (reserveHour.length > 1) {
             let idCellTermino = parseInt(info.id);
-            horas.filter(hora => hora > info.inicio && hora <= info.termino)
-            .map(h => {
-              let divCellTermino = document.getElementById(String(idCellTermino += 5));
+            reserveHour.pop();
 
-              const spanct = document.createElement("span");
-              const titleReserveTermino = document.createElement("h2");
+            reserveHour.map(hour => {
+              let divCellTermino = document.getElementById(
+                String((idCellTermino += 5))
+              );
 
-              spanct.setAttribute("class", "spanCellTermino");
-              spanct.setAttribute("id", `${info.id}`);
-              titleReserveTermino.setAttribute("id", `${info.id}`);
-              titleReserveTermino.innerText = `${info.setor}`;
-              
-              spanct.appendChild(titleReserveTermino);
-              divCellTermino.appendChild(spanct);
-
-              return "";
-            })
+              return renderFinalReserve(divCellTermino, info.id, info.setor);
+            });
           }
         }
         return "";
       });
     }
+  };
+
+  const renderFinalReserve = (divCell, id, setor) => {
+    const spanct = document.createElement("span");
+    const titleReserveTermino = document.createElement("h2");
+
+    spanct.setAttribute("class", "spanCell");
+    spanct.setAttribute("id", `${id}`);
+    titleReserveTermino.setAttribute("id", `${id}`);
+    titleReserveTermino.innerText = `${setor}`;
+
+    spanct.appendChild(titleReserveTermino);
+    divCell.appendChild(spanct);
   };
 
   const modalActions = samTag => {
