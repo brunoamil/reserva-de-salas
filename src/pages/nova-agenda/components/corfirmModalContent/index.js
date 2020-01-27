@@ -109,23 +109,16 @@ const ConfirmModalContent = () => {
             <strong>De: {horaInicial}</strong>
             <strong>Até: {horaFinal}</strong>
           </HourContent>
-          <HeaderModalContent>
-            <DescContent>
-              <form method="post">
                 <Input
-                  focus
                   onChange={e => {
                     setNomeEvento(e.target.value);
                   }}
                   size="huge"
                   placeholder="Nome do Evento"
                   type="text"
-                  name="inputEvent"
-                  id="inputEvent"
+                  icon="file"
+                  iconPosition="left"
                 />
-              </form>
-            </DescContent>
-          </HeaderModalContent>
           <ContainerButton>
             <CustomButton
               onClick={() => {
