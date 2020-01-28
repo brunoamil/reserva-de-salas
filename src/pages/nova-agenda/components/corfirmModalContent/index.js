@@ -67,8 +67,6 @@ const ConfirmModalContent = () => {
     } else {
       setMsgErro(false);
       setLoader(true);
-      // console.log('hora inicial: ',horaInicial);
-      // console.log('hora final: ',horaFinal);
       db.collection("salas")
         .doc(`${sala}`)
         .collection("Eventos")
@@ -98,7 +96,6 @@ const ConfirmModalContent = () => {
         doc => {
           if (data === doc.data().data) {
             setlimitFinalHour(doc.data().inicio);
-            console.log(limitFinalHour)
           }
         }
       ))
@@ -107,8 +104,9 @@ const ConfirmModalContent = () => {
 
   getDateEvent();
 
-  const actionFinalHour = () => {
+  const actionFinalHour = (finalHour) => {
     dispatch({ type: "SET_HORA_FINAL", horaFinal });
+    setHoraFinal(finalHour);
   };
 
   const horas = [
@@ -139,22 +137,23 @@ const ConfirmModalContent = () => {
             <div>
               <strong>Até: </strong>
               <select
-                onChange={e => setHoraFinal(e.target.value)}
+                onChange={e => actionFinalHour(e.target.value)}
                 defaultValue={"DEFAULT"}
               >
                 <CustomOption key="10" disabled hidden value="DEFAULT">
                   horas
                 </CustomOption>
                 {limitFinalHour ?
-                  horas.filter(item =>  item > horaInicial && item < limitFinalHour)
-                  .map(hora => (
-                    <option key={hora}>{hora}</option>
+                  horas.filter(hour => hour > horaInicial && hour < limitFinalHour)
+                  .map(hour => (
+                    <option key={hour}>{hour}</option>
                   )) 
                   :
                   horas
-                  .filter(item => item > horaInicial)
-                  .map(hora => (
-                    <option key={hora}>{hora}</option>
+                  .filter(hour => hour > horaInicial)
+                  .map(hour => (
+
+                    <option key={hour}>{hour}</option>
                   ))
                 }
               </select>
@@ -206,4 +205,4 @@ const ConfirmModalContent = () => {
   );
 };
 
-export default ConfirmModalContent;
+export default React.memo(ConfirmModalContent);
