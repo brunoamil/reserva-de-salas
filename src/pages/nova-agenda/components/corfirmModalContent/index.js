@@ -32,7 +32,20 @@ const ConfirmModalContent = () => {
   const [msgSucesso, setMsgSucesso] = useState(false);
   const [msgErro, setMsgErro] = useState(false);
   const [loader, setLoader] = useState(false);
-  const [limitFinalHour, setlimitFinalHour] = useState(false);
+
+  const horas = [
+    "08:00",
+    "09:00",
+    "10:00",
+    "11:00",
+    "12:00",
+    "13:00",
+    "14:00",
+    "15:00",
+    "16:00",
+    "17:00",
+    "18:00"
+  ];
 
   const db = firebase.firestore();
 
@@ -86,7 +99,9 @@ const ConfirmModalContent = () => {
     }
   };
 
-  const getDateEvent = async () => {
+  const getInicialHourEvent = async () => {
+    let limitFinalHour;
+
     await db
       .collection("salas")
       .doc(`${sala}`)
@@ -95,33 +110,31 @@ const ConfirmModalContent = () => {
       .then(event => event.forEach(
         doc => {
           if (data === doc.data().data) {
-            setlimitFinalHour(doc.data().inicio);
+            limitFinalHour = doc.data().inicio;
           }
         }
       ))
       .catch()
+
+    return horas.filter(h => h > horaInicial && h <= limitFinalHour);
   }
 
-  getDateEvent();
+  let limitHour = [];
+  getInicialHourEvent().then(arr => {
+    if (arr.length >= 1){
+      limitHour.push(...arr)
+    } else {
+      limitHour.push(...horas)
+    }
+  });
+  console.log(limitHour);
 
   const actionFinalHour = (finalHour) => {
     dispatch({ type: "SET_HORA_FINAL", horaFinal });
     setHoraFinal(finalHour);
   };
 
-  const horas = [
-    "08:00",
-    "09:00",
-    "10:00",
-    "11:00",
-    "12:00",
-    "13:00",
-    "14:00",
-    "15:00",
-    "16:00",
-    "17:00",
-    "18:00"
-  ];
+  
 
   return (
     <>
@@ -143,12 +156,7 @@ const ConfirmModalContent = () => {
                 <CustomOption key="10" disabled hidden value="DEFAULT">
                   horas
                 </CustomOption>
-                {limitFinalHour ?
-                  horas.filter(hour => hour > horaInicial && hour < limitFinalHour)
-                  .map(hour => (
-                    <option key={hour}>{hour}</option>
-                  )) 
-                  :
+                {
                   horas
                   .filter(hour => hour > horaInicial)
                   .map(hour => (
