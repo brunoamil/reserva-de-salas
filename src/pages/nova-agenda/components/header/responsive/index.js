@@ -117,13 +117,6 @@ export const HeaderAgendaMobile = () => {
           <View>
             <ContainerHeader>
 
-              <ContainerVoltar>
-                <Link to='/'>
-                  <ButtonVoltar name='arrow left' size='large' color='black' ></ButtonVoltar>
-                </Link>
-              </ContainerVoltar>
-
-
               <ContainerLeftHeader>
                 <Logo src={Img}></Logo>
                 <Title>Reserva de Salas</Title>

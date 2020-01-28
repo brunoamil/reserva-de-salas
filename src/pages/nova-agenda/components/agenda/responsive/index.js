@@ -15,7 +15,7 @@ function AgendaMobile() {
 
   const dispatch = useDispatch();
 
-  const [activeIndex, setActiveIndex] = useState();
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const CheckLogin = useSelector(state => state.user.usuarioLogin);
   const event = useSelector(state => state.salas.roomEvents);
@@ -33,16 +33,13 @@ function AgendaMobile() {
     dia = dia - 1;
   }
 
-  const handleClick = (e ,titleProps) => {
-    const index = titleProps;
-    setActiveIndex();
-    const newIndex = activeIndex === index ? -1 : index;
+  //Funcionalidade do Accordion
+  const handleClick = (e, titleProps) => {
+    const { index } = titleProps
+    const newIndex = activeIndex === index ? -1 : index
 
-    setActiveIndex(newIndex);
-
-  };
-
-
+    setActiveIndex(newIndex)
+  }
 
 
   useEffect(() => {

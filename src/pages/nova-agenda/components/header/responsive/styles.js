@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import {Icon} from 'semantic-ui-react'
 
+
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -20,19 +21,6 @@ export const View = styled.div`
 export const ContainerHeader = styled.div`
   display: flex;
   /* margin: 0px 5px;  */
-`;
-
-export const ContainerVoltar = styled.div`
-  display:flex;
-  flex-flow : row nowrap;
-  align-items : center;
-  text-align : center;
-  margin : 0px 15px 0px 20px;
-
-  @media(min-width: 723px) {
-    margin: 0px 15px 0px 20px;
-  }
-
 `;
 
 export const ContainerLeftHeader = styled.div`
@@ -117,7 +105,7 @@ export const Title = styled.h1`
 export const ViewSelect = styled.div`
     display:flex;
     width:100%;
-    justify-content:flex-end;
+    justify-content: space-between;
     margin : -10px 0px 5px 0px;
 `
 export const CircleAling = styled.div`
@@ -158,10 +146,7 @@ export const SelectAling = styled.div`
     width: auto;
     display:flex;
     flex-flow: row nowrap;
-    justify-content:flex-end;
-    align-items:flex-end;
-    
-    margin-right: 20px;
+    margin-right: 5px;
 
 `
 
