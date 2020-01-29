@@ -23,7 +23,8 @@ import {
   ContainerVoltar,
   ContainerLeftHeader,
   ViewSelect,
-  ButtonVoltar
+  ButtonVoltar,
+  ContainerAdmin
 } from "./styles";
 
 
@@ -158,12 +159,14 @@ const clearReservation = () => (
                 <>
                   {email === "admin@ceuma.com" ? (
                     <>
-                    <Button size='small' positive onClick={createRoom}>Criar sala</Button>
-                    <Button size='small' negative onClick={clearReservation}>Limpar reservas</Button>
+                    <ContainerAdmin>
+                      <Button size='small' positive onClick={createRoom}>Criar sala</Button>
+                      <Button size='small' negative onClick={clearReservation}>Limpar reservas</Button>
+                    </ContainerAdmin>
                   </>
                 ) : ''
                 }
-                <h1>Usuário: {nome}</h1>
+                <h1>{nome}</h1>
                 <ButtonVoltar name='sign-out' size='large' onClick={actionLogout}></ButtonVoltar>
               </>
             ) : ''
