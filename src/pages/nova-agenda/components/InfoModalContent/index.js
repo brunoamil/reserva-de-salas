@@ -82,12 +82,6 @@ const InfoModal = () => {
     getEventos();
   });
 
-  const OpenModal = () => {
-    setOpen(true)
-  }
-  const CloseModal = () => {
-    setOpen(false)
-  }
   //Delete reserva
   const ActionDelete = () => {
     if (email !== "") {
@@ -161,7 +155,7 @@ const InfoModal = () => {
 
               {logado ?
                 <ContainerExit>
-                  <Button fluid negative icon onClick={OpenModal} size="large">
+                  <Button fluid negative icon onClick={()=>{setOpen(true)}} size="large">
                     Excluir reserva
                   </Button>
                 </ContainerExit>
@@ -181,7 +175,7 @@ const InfoModal = () => {
               <Modal.Actions>
                 <Button
                   content='Cancelar'
-                  onClick={CloseModal}
+                  onClick={()=>{setOpen(false)}}
                 />
                 <Button negative
                   icon='x'

@@ -1,8 +1,8 @@
 export const USER = {
   usuarioNome : '',
   usuarioSetor: '',
-  usuarioEmail : 'admin@ceuma.com',
-  usuarioLogin : true,
+  usuarioEmail : '',
+  usuarioLogin : false,
   salasReserva: [],
 };
 

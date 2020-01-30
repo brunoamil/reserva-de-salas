@@ -23,7 +23,6 @@ const ModalUser = () => {
   const confirmForm = useSelector(state => state.modal.confirmForm);
   const infoModal = useSelector(state => state.modal.infoModal);
   const createRoomForm = useSelector(state => state.modal.createRoomForm);
-  console.log(createRoomForm);
 
   const close = () => {
     dispatch({ type: "SET_MODAL", valueModal: false })
