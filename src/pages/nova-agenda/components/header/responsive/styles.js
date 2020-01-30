@@ -8,7 +8,7 @@ export const Container = styled.div`
     
     width:100%;
 
-    /* margin-top: -10px; */
+    margin-top: -10px;
     padding-bottom: 10px;
 
     background-color: #ececec;
@@ -48,13 +48,14 @@ export const Header = styled.div`
 
 export const Logo = styled.img`
     width: 60px;
-    margin: 15px 10px 6px 1px;
+    margin: 15px 0px 6px 1px;
 `
 
 export const UserAling = styled.div`
     display:flex;
     /* justify-content:flex-end; */
     flex-direction: row;
+    flex-flow: row nowrap;
     margin-top: -20px;
     /* margin-right: 10px; */
     /* margin: 15px 0px 30px 0px; */
@@ -63,7 +64,7 @@ export const UserAling = styled.div`
       color: #0d4b81;
       font-family: "PT Sans",sans-serif;
       line-height : 1.2em;
-      font-size: 1.3rem;
+      font-size: 1.2em;
       font-weight: 700;
 
       margin : 0px 5px 0px 0px;
@@ -86,9 +87,9 @@ export const Button = styled.button`
     text-align:center;
 `
 export const ButtonVoltar = styled(Icon)`
-    margin: 0px 10px;
+  font-size: 1.3em !important;
 
-  
+  margin: 0px 5px;
 
 `
 // export const ContainerAlert = styled.div`
@@ -102,7 +103,7 @@ export const ButtonVoltar = styled(Icon)`
 export const Title = styled.h1`
     color: #0d4b81;
     font-family: "PT Sans",sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.2em;
     font-weight: 700;
     margin-top: 0.4em;
 `

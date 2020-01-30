@@ -126,7 +126,7 @@ export const HeaderAgendaMobile = () => {
               {useSelector(state => state.user.usuarioLogin) === true ? (
                 <>
                   <h1>Usuário: {nome}</h1>
-                  <ButtonVoltar name='sign-out' size='large' onClick={actionLogout}></ButtonVoltar>
+                  <ButtonVoltar name='sign-out' onClick={actionLogout}></ButtonVoltar>
                 </>
               ) : ''
               }

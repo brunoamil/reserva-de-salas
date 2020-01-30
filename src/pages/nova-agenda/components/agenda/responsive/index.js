@@ -54,21 +54,22 @@ function AgendaMobile() {
   // });
 
   
-  // const modalActions = samTag => {
-  //   dispatch({ type: "SET_MODAL", valueModal: true });
+  const modalActions = samTag => {
+    dispatch({ type: "SET_MODAL", valueModal: true });
 
-  //   if (samTag.length !== 0) {
-  //     dispatch({ type: "SET_MODAL", valueModal: true });
-  //     dispatch({ type: "SET_MODAL_INFO", valueInfo: true });
-  //   } else {
-  //     if (CheckLogin === false) {
-  //       dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true });
-  //     } else {
-  //       dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
-  //     }
-  //   }
+    // if (samTag.length !== 0) {
+    //   dispatch({ type: "SET_MODAL", valueModal: true });
+    //   dispatch({ type: "SET_MODAL_INFO", valueInfo: true });
+    // } else {
+    //   if (CheckLogin === false) {
+    //     dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true });
+    //   } else {
+    //     dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
+    //   }
+    // }
+    dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true });
 
-  // };
+  };
 
   // const reduxTableActions = (idTable, hour, data) => {
   //   dispatch({ type: "SET_ID", id: idTable });
@@ -116,7 +117,7 @@ function AgendaMobile() {
           { horas.map( (hour, index) => (
             <span key={ index }>
               <ContainerHour>{ hour }</ContainerHour>
-              <ContainerCell></ContainerCell>
+              <ContainerCell onClick={(e) => modalActions("12")}></ContainerCell>
             </span>
           ) ) }
 
