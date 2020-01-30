@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from 'moment'
 
 import "../../../index.css";
-import { ContainerDay, ContainerSelect, ContainerContent, ContainerHour, ContainerCell } from "./styles";
+import { Container, ContainerDay, ContainerSelect, ContainerContent, ContainerHour, ContainerCell } from "./styles";
 
 function AgendaMobile() {
   var now = moment()
@@ -100,26 +100,28 @@ function AgendaMobile() {
 
   return (
     <>
-      <ContainerDay>
-        <ContainerSelect>
-          <select>
-            { dias.map((day, index) => (
-              <option>
-                { day }
-              </option>
-            )) }
-          </select>
-        </ContainerSelect>
-      </ContainerDay>
-      <ContainerContent>
-        { horas.map( (hour, index) => (
-          <span>
-            <ContainerHour>{ hour }</ContainerHour>
-            <ContainerCell></ContainerCell>
-          </span>
-        ) ) }
+      <Container>
+        <ContainerDay>
+          <ContainerSelect>
+            <select>
+              { dias.map((day, index) => (
+                <option key={ index }>
+                  { day }
+                </option>
+              )) }
+            </select>
+          </ContainerSelect>
+        </ContainerDay>
+        <ContainerContent>
+          { horas.map( (hour, index) => (
+            <span key={ index }>
+              <ContainerHour>{ hour }</ContainerHour>
+              <ContainerCell></ContainerCell>
+            </span>
+          ) ) }
 
-      </ContainerContent>
+        </ContainerContent>
+      </Container>
     </>
   );
 }

@@ -11,8 +11,8 @@ import Loading from '../../components/loader';
 import "./index.css";
 
 //Responsive
-import { HeaderAgendaMobile } from "./components/header/responsive/"
-import AgendaMobile  from './components/agenda/responsive/'
+import { HeaderAgendaMobile } from './components/header/responsive/';
+import AgendaMobile  from './components/agenda/responsive/';
 // import { ErrorPage } from './components/errorPage/'
 
 function NovaAgenda() {

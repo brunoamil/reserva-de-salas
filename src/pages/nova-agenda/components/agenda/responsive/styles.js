@@ -1,14 +1,18 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
+
+export const Container = styled.div`
+  height: 85vh;
+
+`;
+
 
 export const ContainerDay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
 
-  height: 10vh;
   width: 100%;
 
-  background-color: #ececec;
 `;
 
 export const ContainerSelect = styled.div`

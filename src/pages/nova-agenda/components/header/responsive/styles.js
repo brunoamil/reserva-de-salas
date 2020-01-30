@@ -5,8 +5,12 @@ import {Icon} from 'semantic-ui-react'
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
+    
     width:100%;
-    margin-top: -10px;
+
+    /* margin-top: -10px; */
+    padding-bottom: 10px;
+
     background-color: #ececec;
 
 `
@@ -36,7 +40,6 @@ export const Header = styled.div`
     display: flex;
     flex-direction: row;
     align-items: right;
-    height: 12vh;
 
     /* width: 100vw;
     padding: 2px 0px; */
