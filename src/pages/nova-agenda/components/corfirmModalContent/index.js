@@ -99,8 +99,18 @@ const ConfirmModalContent = () => {
     }
   };
 
-  const getInicialHourEvent = async () => {
+  const LimitHourReserve = arrLimitFinalHour => {
     let limitFinalHour;
+
+    const reserve = arrLimitFinalHour.filter(reserve => reserve.inicio > horaInicial)[0];
+    console.log(reserve);
+    limitFinalHour = reserve.inicio;
+
+    console.log(horas.filter(h => h > horaInicial && h <= limitFinalHour));
+  }
+
+  const getInicialHourEvent = async () => {
+    let arrLimitFinalHour = [];
 
     await db
       .collection("salas")
@@ -110,22 +120,22 @@ const ConfirmModalContent = () => {
       .then(event => event.forEach(
         doc => {
           if (data === doc.data().data) {
-            limitFinalHour = doc.data().inicio;
+            arrLimitFinalHour.push(doc.data());
           }
         }
       ))
       .catch()
-
-    return horas.filter(h => h > horaInicial && h <= limitFinalHour);
+    
+    return LimitHourReserve(arrLimitFinalHour);
   }
 
   let limitHour = [];
   getInicialHourEvent().then(arr => {
-    if (arr.length >= 1){
-      limitHour.push(...arr)
-    } else {
-      limitHour.push(...horas)
-    }
+    // if (arr.length >= 1){
+    //   limitHour.push(...arr)
+    // } else {
+    //   limitHour.push(...horas)
+    // }
   });
   console.log(limitHour);
 
