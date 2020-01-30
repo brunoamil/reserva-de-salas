@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Input, Message } from "semantic-ui-react";
 import firebase from "../../../../services/firebase";
 
-import Loading from "../../../../components/loader";
-
 import {
   Container,
   ContainerMain,
@@ -27,14 +25,14 @@ const ConfirmModalContent = () => {
 
   const [horaFinal, setHoraFinal] = useState("");
   const [nomeEvento, setNomeEvento] = useState("");
-  const [msgSucesso, setMsgSucesso] = useState(false);
   const [msgErro, setMsgErro] = useState(false);
-  const [loader, setLoader] = useState(false);
   const [limitFinalHour, setlimitFinalHour] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   const db = firebase.firestore();
 
   const cadastrarEvento = async () => {
+    setLoading(true)
     let setor = "";
 
     await db
@@ -64,7 +62,6 @@ const ConfirmModalContent = () => {
       setMsgErro(true);
     } else {
       setMsgErro(false);
-      setLoader(true);
       // console.log('hora inicial: ',horaInicial);
       // console.log('hora final: ',horaFinal);
       db.collection("salas")
@@ -73,10 +70,9 @@ const ConfirmModalContent = () => {
         .doc(id)
         .set(dados)
         .then(() => {
-          setMsgSucesso(true);
-          setLoader(false);
           setTimeout(() => {
-            dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: false});
+            setLoading(false)
+            dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: false });
             dispatch({ type: "SET_MODAL", valueModal: false });
             dispatch({ type: "SET_LOADER", set_loader: true });
           }, 1000);
@@ -125,7 +121,6 @@ const ConfirmModalContent = () => {
 
   return (
     <>
-      {loader && <Loading size="big">Carregando Reservas...</Loading>}
       <Container>
         <ContainerMain>
           <TextAling>
@@ -133,7 +128,7 @@ const ConfirmModalContent = () => {
           </TextAling>
           <HourContent>
             <strong>De: {horaInicial}</strong>
-            
+
             <div>
               <strong>Até: </strong>
               <select
@@ -144,30 +139,30 @@ const ConfirmModalContent = () => {
                   horas
                 </CustomOption>
                 {limitFinalHour ?
-                  horas.filter(item =>  item > horaInicial && item < limitFinalHour)
-                  .map(hora => (
-                    <option key={hora}>{hora}</option>
-                  )) 
+                  horas.filter(item => item > horaInicial && item < limitFinalHour)
+                    .map(hora => (
+                      <option key={hora}>{hora}</option>
+                    ))
                   :
                   horas
-                  .filter(item => item > horaInicial)
-                  .map(hora => (
-                    <option key={hora}>{hora}</option>
-                  ))
+                    .filter(item => item > horaInicial)
+                    .map(hora => (
+                      <option key={hora}>{hora}</option>
+                    ))
                 }
               </select>
             </div>
           </HourContent>
-                <Input
-                  onChange={e => {
-                    setNomeEvento(e.target.value);
-                  }}
-                  size="huge"
-                  placeholder="Nome do Evento"
-                  type="text"
-                  icon="file"
-                  iconPosition="left"
-                />
+          <Input
+            onChange={e => {setNomeEvento(e.target.value);}}
+            size="huge"
+            placeholder="Nome do Evento"
+            type="text"
+            icon="book"
+            iconPosition="left"
+            loading = {loading}
+            disabled = {loading}
+          />
           <ContainerButton>
             <CustomButton
               onClick={() => {
@@ -182,9 +177,6 @@ const ConfirmModalContent = () => {
               Confirmar Reserva
             </CustomButton>
           </ContainerButton>
-          {msgSucesso && (
-            <Message header="Reserva Concluída!" color="green" icon="check" />
-          )}
           {msgErro && (
             <Message
               header="Insira o nome do evento!"

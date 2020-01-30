@@ -25,7 +25,7 @@ const CreateRoomModal = () => {
                 .catch(erro => {
                 })
             setTimeout(() => {
-                dispatch({ type: "SET_MODAL_CREATE_ROOM", createRoomForm: false});
+                dispatch({ type: "SET_MODAL_CREATE_ROOM", createRoomForm: false });
                 dispatch({ type: "SET_MODAL", valueModal: false });
                 dispatch({ type: "SET_LOADER", set_loader: true });
             }, 1000)
@@ -42,7 +42,8 @@ const CreateRoomModal = () => {
                     <Form size="large" key="tiny" method="POST">
                         <CustomForm>
                             <Input
-                                loading = {loading}
+                                loading={loading}
+                                disabled={loading}
                                 onChange={e => { setNomeSala(e.target.value) }}
                                 icon="table"
                                 iconPosition="left"
