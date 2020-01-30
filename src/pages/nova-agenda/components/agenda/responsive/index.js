@@ -1,25 +1,19 @@
-import React, { useState,useEffect } from "react";
-import { Table, Accordion, Icon, AccordionTitle } from "semantic-ui-react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from 'moment'
 
 import "../../../index.css";
-import { ContainerCell, Container } from "./styles";
+import { ContainerDay, ContainerSelect, ContainerContent, ContainerHour, ContainerCell } from "./styles";
 
 function AgendaMobile() {
   var now = moment()
 
   var dia = now.day();
   
-  let number = 0;
-
   const dispatch = useDispatch();
 
-  const [activeIndex, setActiveIndex] = useState(0);
-
   const CheckLogin = useSelector(state => state.user.usuarioLogin);
-  const event = useSelector(state => state.salas.roomEvents);
-  // console.log(event);
+  // const event = useSelector(state => state.salas.roomEvents);
 
   if (dia === 0) {
     now.add(1,'days')
@@ -33,64 +27,55 @@ function AgendaMobile() {
     dia = dia - 1;
   }
 
-  //Funcionalidade do Accordion
-  const handleClick = (e, titleProps) => {
-    const { index } = titleProps
-    const newIndex = activeIndex === index ? -1 : index
-
-    setActiveIndex(newIndex)
-  }
-
-
-  useEffect(() => {
-    if (event) {
-      event.map(item => {
-        let divCell = document.getElementById(`${item.id}`);
-        // let divCellTermino = document.getElementsByClassName(`${item.termino} ${item.data}`);
+  // useEffect(() => {
+  //   if (event) {
+  //     event.map(item => {
+  //       let divCell = document.getElementById(`${item.id}`);
+  //       // let divCellTermino = document.getElementsByClassName(`${item.termino} ${item.data}`);
   
-        // console.log(divCellTermino)
-        if (divCell.childNodes.length === 0) {
-          const spanc = document.createElement('span');
-          const titleReserve = document.createElement('h2');
+  //       // console.log(divCellTermino)
+  //       if (divCell.childNodes.length === 0) {
+  //         const spanc = document.createElement('span');
+  //         const titleReserve = document.createElement('h2');
 
-          titleReserve.innerText = `${item.setor}`;
+  //         titleReserve.innerText = `${item.setor}`;
 
-          spanc.setAttribute('id', `${item.id}`);
-          spanc.setAttribute('class', 'spanCell');
-          titleReserve.setAttribute('id', `${item.id}`);
+  //         spanc.setAttribute('id', `${item.id}`);
+  //         spanc.setAttribute('class', 'spanCell');
+  //         titleReserve.setAttribute('id', `${item.id}`);
 
-          spanc.appendChild(titleReserve);
-          divCell.appendChild(spanc);
-        }
-        return ''
-      })
-    } else {
-    }
-  });
+  //         spanc.appendChild(titleReserve);
+  //         divCell.appendChild(spanc);
+  //       }
+  //       return ''
+  //     })
+  //   } else {
+  //   }
+  // });
 
   
-  const modalActions = samTag => {
-    dispatch({ type: "SET_MODAL", valueModal: true });
+  // const modalActions = samTag => {
+  //   dispatch({ type: "SET_MODAL", valueModal: true });
 
-    if (samTag.length !== 0) {
-      dispatch({ type: "SET_MODAL", valueModal: true });
-      dispatch({ type: "SET_MODAL_INFO", valueInfo: true });
-    } else {
-      if (CheckLogin === false) {
-        dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true });
-      } else {
-        dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
-      }
-    }
+  //   if (samTag.length !== 0) {
+  //     dispatch({ type: "SET_MODAL", valueModal: true });
+  //     dispatch({ type: "SET_MODAL_INFO", valueInfo: true });
+  //   } else {
+  //     if (CheckLogin === false) {
+  //       dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true });
+  //     } else {
+  //       dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
+  //     }
+  //   }
 
-  };
+  // };
 
-  const reduxTableActions = (idTable, hour, data) => {
-    dispatch({ type: "SET_ID", id: idTable });
-    dispatch({ type: "SET_HORA", hora: hour });
-    dispatch({ type: "SET_DATA", data });
-    dispatch({ type: "SET_LOAD_INFO", set_loader_info: true });
-  }
+  // const reduxTableActions = (idTable, hour, data) => {
+  //   dispatch({ type: "SET_ID", id: idTable });
+  //   dispatch({ type: "SET_HORA", hora: hour });
+  //   dispatch({ type: "SET_DATA", data });
+  //   dispatch({ type: "SET_LOAD_INFO", set_loader_info: true });
+  // }
 
   const dias = [
     `SEG ${now.format("D/M")}`,
@@ -115,58 +100,26 @@ function AgendaMobile() {
 
   return (
     <>
-      <Container id="allPage" >
+      <ContainerDay>
+        <ContainerSelect>
+          <select>
+            { dias.map((day, index) => (
+              <option>
+                { day }
+              </option>
+            )) }
+          </select>
+        </ContainerSelect>
+      </ContainerDay>
+      <ContainerContent>
+        { horas.map( (hour, index) => (
+          <span>
+            <ContainerHour>{ hour }</ContainerHour>
+            <ContainerCell></ContainerCell>
+          </span>
+        ) ) }
 
-        <Accordion>
-          <Table id="table" definition>
-
-            <AccordionTitle active={activeIndex === 0} index={0} onClick={handleClick} >
-
-              <Table.Header>
-
-                <Table.Row>
-                  <Table.HeaderCell id="none" />
-                  {dias.map(dia => (
-                    <Table.HeaderCell key={dia}>
-                      <strong> {dia} </strong>
-                      <Icon name="dropdown"/>
-                    </Table.HeaderCell>
-                  ))}
-                  
-                </Table.Row>
-
-              </Table.Header>
-
-            </AccordionTitle>
-
-            <Accordion.Content active={activeIndex === 0}>
-              <Table.Body>
-                {horas.map((hora, index) => (
-                  <Table.Row key={index}>
-                    <Table.HeaderCell width="1">
-                      <strong > {hora} </strong>
-                    </Table.HeaderCell>
-                    {dias.map((dia, index) => (
-                      <Table.Cell key={index} className={`${hora} ${dia}`}>
-                        <ContainerCell
-                          id={`${(number += 1)}`}
-                          onClick={e => {
-                            modalActions(e.target.childNodes);
-                            reduxTableActions(e.target.getAttribute("id"), hora, dia);
-                          }}
-                        >
-                        </ContainerCell>
-                      </Table.Cell>
-                    ))}
-                  </Table.Row>
-                ))}
-              </Table.Body>
-            </Accordion.Content>
-            
-          </Table>
-        </Accordion>
-
-      </Container>
+      </ContainerContent>
     </>
   );
 }

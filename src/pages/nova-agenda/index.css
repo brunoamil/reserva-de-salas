@@ -3,6 +3,12 @@
   * {
     overflow: hidden !important;
   }
+
+  .ui.table tr{
+    box-shadow: none !important;
+  }
+
+
 }
 
 #allPage{
