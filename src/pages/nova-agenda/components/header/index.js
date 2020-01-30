@@ -106,6 +106,11 @@ export const HeaderAgenda = () => {
     }, 1000);
   };
 
+  const actionBack = () => {
+    dispatch({ type: "GET_SALA", sala: 'Auditório' });
+    actionLogout();
+  }
+
   const roomsActions = room => {
     dispatch({ type: "GET_SALA", sala: room });
     dispatch({ type: "SET_EVENTOS_SALA", event: [] });
@@ -164,7 +169,7 @@ export const HeaderAgenda = () => {
             <ContainerHeader>
               <ContainerVoltar>
                 <Link to='/'>
-                  <ButtonVoltar name='arrow left' size='large' color='black' onClick={actionLogout}></ButtonVoltar>
+                  <ButtonVoltar name='arrow left' size='large' color='black' onClick={actionBack}></ButtonVoltar>
                 </Link>
               </ContainerVoltar>
               <ContainerLeftHeader>
