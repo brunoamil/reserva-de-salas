@@ -13,7 +13,6 @@ import "./index.css";
 //Responsive
 import { HeaderAgendaMobile } from './components/header/responsive/';
 import AgendaMobile  from './components/agenda/responsive/';
-// import { ErrorPage } from './components/errorPage/'
 
 function NovaAgenda() {
   const dispatch = useDispatch();
@@ -85,9 +84,6 @@ function NovaAgenda() {
         <HeaderAgendaMobile id="header" />
         { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <AgendaMobile /> }
       </Responsive>
-      {/* <Responsive as={Segment} maxWidth={768}>
-        { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <ErrorPage /> }
-      </Responsive> */}
 
     </>
   );
