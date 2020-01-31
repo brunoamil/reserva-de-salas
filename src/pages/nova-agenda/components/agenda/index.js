@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from 'moment'
 
 import "../../index.css";
-import { ContainerCell, Container } from "./styles";
+import { ContainerCell, Container} from "./styles";
 
 function Agenda() {
   var now = moment()

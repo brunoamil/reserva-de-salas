@@ -97,11 +97,7 @@ const ConfirmModalContent = () => {
 
   return (
     <>
-      {loader && (
-        <Loading size='big'>
-          Carregando Reservas...
-        </Loading>  
-      )}
+      {loader && <Loading size="big">Carregando Reservas...</Loading>}
       <Container>
         <ContainerMain>
           <TextAling>
