@@ -79,6 +79,17 @@ export const UserAling = styled.div`
     }
 
 `
+export const ContainerAdmin = styled.div`
+  margin-right : 30px;
+
+  Button{
+    margin: 0px 10px;
+  }
+
+`;
+
+
+
 export const Button = styled.button`
     margin: 0px 5px 5px 5px;
     background-color: #0d4b81;
@@ -126,6 +137,8 @@ export const CircleAling = styled.div`
 
 
 `
+
+
 
 export const Circle = styled.div`
     width:20px;

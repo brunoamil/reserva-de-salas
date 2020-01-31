@@ -5,7 +5,7 @@ import firebase from "../../../../services/firebase";
 
 import Img from "../../../../assets/img/ceuma.png";
 
-import { Button } from 'semantic-ui-react';
+import { Button, Modal } from 'semantic-ui-react';
 import {
   Logo,
   Header,
@@ -23,7 +23,8 @@ import {
   ContainerVoltar,
   ContainerLeftHeader,
   ViewSelect,
-  ButtonVoltar
+  ButtonVoltar,
+  ContainerAdmin
 } from "./styles";
 
 
@@ -34,6 +35,7 @@ export const HeaderAgenda = () => {
   const [nome, setNome] = useState();
   const [/*loader*/, setLoader] = useState(false);
   const [salas, setSalas] = useState([]);
+  const [open, setOpen] = useState(false);
 
   const room = useSelector(state => state.salas.currentRoom)
 
@@ -114,35 +116,52 @@ export const HeaderAgenda = () => {
   );
 
   const createRoom = () => {
-      // alert('funcionalidade nao disponivel')
+    // alert('funcionalidade nao disponivel')
     dispatch({ type: "SET_MODAL", valueModal: true })
-    dispatch({ type: "SET_MODAL_CREATE_ROOM", createRoomForm: true});
+    dispatch({ type: "SET_MODAL_CREATE_ROOM", createRoomForm: true });
   }
 
-const clearReservation = () => (
-  firebase
-    .firestore()
-    .collection("salas")
-    .doc(room)
-    .collection('Eventos')
-    .get()
-    .then(sucesso => {
-      sucesso.forEach(doc => {
-        firebase.firestore().collection('salas').doc(room).collection('Eventos').doc(doc.data().id).delete().then(sucesso => {
-          console.log('reservas excluidas');
+  const clearReservation = () => {
+    setOpen(false)
+    firebase
+      .firestore()
+      .collection("salas")
+      .doc(room)
+      .collection('Eventos')
+      .get()
+      .then(sucesso => {
+        sucesso.forEach(doc => {
+          firebase.firestore().collection('salas').doc(room).collection('Eventos').doc(doc.data().id).delete().then(sucesso => {
+          })
         })
+        dispatch({ type: "SET_MODAL", valueModal: false });
+        dispatch({ type: "SET_EVENTOS_SALA", event: [] });
+        dispatch({ type: "SET_LOADER", set_loader: true });
       })
-    })
-)
+  }
 
 
   return (
     <>
+      <Modal closeOnEscape size="tiny" open={open}>
+        <Modal.Header>Deseja excluir todas as reservas desta sala?</Modal.Header>
+        <Modal.Actions>
+          <Button
+            content='Não'
+            onClick={() => { setOpen(false) }}
+          />
+          <Button negative
+            icon='x'
+            labelPosition='right'
+            content="Sim"
+            onClick={clearReservation}
+          />
+        </Modal.Actions>
+      </Modal>
       <Header>
         <Container>
           <View>
             <ContainerHeader>
-
               <ContainerVoltar>
                 <Link to='/'>
                   <ButtonVoltar name='arrow left' size='large' color='black' onClick={actionLogout}></ButtonVoltar>
@@ -158,40 +177,42 @@ const clearReservation = () => (
                 <>
                   {email === "admin@ceuma.com" ? (
                     <>
-                    <Button size='small' positive onClick={createRoom}>Criar sala</Button>
-                    <Button size='small' negative onClick={clearReservation}>Limpar reservas</Button>
-                  </>
-                ) : ''
-                }
-                <h1>Usuário: {nome}</h1>
-                <ButtonVoltar name='sign-out' size='large' onClick={actionLogout}></ButtonVoltar>
-              </>
-            ) : ''
-            }
-          </UserAling>
-        </View>
-        <ViewSelect>
-          <CircleAling>
-            <Circle></Circle>
-            <Legenda>Indisponível</Legenda>
-            <Circle2></Circle2>
-            <Legenda>Disponível</Legenda>
-          </CircleAling>
-          <SelectAling>
-            <Select onChange={e => {
-              roomsActions(e.target.value);
-              actionLoader();
-            }}>
-              {salas.map(sala => (
-                <option key={sala}>{sala}</option>
-              ))}
-            </Select>
-          </SelectAling>
-        </ViewSelect>
-      </Container>
-    </Header>
-  </>
-);
+                      <ContainerAdmin>
+                        <Button size='small' positive onClick={createRoom}>Criar sala</Button>
+                        <Button size='small' negative onClick={() => { setOpen(true) }}>Limpar reservas</Button>
+                      </ContainerAdmin>
+                    </>
+                  ) : ''
+                  }
+                  <h1>{nome}</h1>
+                  <ButtonVoltar name='sign-out' size='large' onClick={actionLogout}></ButtonVoltar>
+                </>
+              ) : ''
+              }
+            </UserAling>
+          </View>
+          <ViewSelect>
+            <CircleAling>
+              <Circle></Circle>
+              <Legenda>Indisponível</Legenda>
+              <Circle2></Circle2>
+              <Legenda>Disponível</Legenda>
+            </CircleAling>
+            <SelectAling>
+              <Select onChange={e => {
+                roomsActions(e.target.value);
+                actionLoader();
+              }}>
+                {salas.map(sala => (
+                  <option key={sala}>{sala}</option>
+                ))}
+              </Select>
+            </SelectAling>
+          </ViewSelect>
+        </Container>
+      </Header>
+    </>
+  );
 }
 
 export default HeaderAgenda;
