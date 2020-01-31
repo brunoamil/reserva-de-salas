@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Input, Message } from "semantic-ui-react";
 import firebase from "../../../../services/firebase";
@@ -32,6 +32,7 @@ const ConfirmModalContent = () => {
   const [msgSucesso, setMsgSucesso] = useState(false);
   const [msgErro, setMsgErro] = useState(false);
   const [loader, setLoader] = useState(false);
+  const [selectHour, setSelectHour] = useState([]);
 
   const horas = [
     "08:00",
@@ -72,7 +73,8 @@ const ConfirmModalContent = () => {
       nomeEvento,
       inicio: horaInicial,
       termino: horaFinal,
-      data
+      data,
+      posReserva: parseInt(id)
     };
 
     if (!nomeEvento) {
@@ -99,52 +101,44 @@ const ConfirmModalContent = () => {
     }
   };
 
-  const LimitHourReserve = arrLimitFinalHour => {
-    let limitFinalHour;
-
-    const reserve = arrLimitFinalHour.filter(reserve => reserve.inicio > horaInicial)[0];
-    console.log(reserve);
-    limitFinalHour = reserve.inicio;
-
-    console.log(horas.filter(h => h > horaInicial && h <= limitFinalHour));
-  }
-
-  const getInicialHourEvent = async () => {
-    let arrLimitFinalHour = [];
-
-    await db
-      .collection("salas")
-      .doc(`${sala}`)
-      .collection("Eventos")
-      .get()
-      .then(event => event.forEach(
-        doc => {
-          if (data === doc.data().data) {
-            arrLimitFinalHour.push(doc.data());
-          }
-        }
-      ))
-      .catch()
-    
-    return LimitHourReserve(arrLimitFinalHour);
-  }
-
-  let limitHour = [];
-  getInicialHourEvent().then(arr => {
-    // if (arr.length >= 1){
-    //   limitHour.push(...arr)
-    // } else {
-    //   limitHour.push(...horas)
-    // }
-  });
-  console.log(limitHour);
-
-  const actionFinalHour = (finalHour) => {
+  const actionFinalHour = finalHour => {
     dispatch({ type: "SET_HORA_FINAL", horaFinal });
     setHoraFinal(finalHour);
   };
 
-  
+  useEffect(() => {
+    const getReserveId = async () => {
+      let arrReserve = [];
+
+      await db
+        .collection("salas")
+        .doc(`${sala}`)
+        .collection("Eventos")
+        .orderBy("posReserva", "asc")
+        .get()
+        .then(item =>
+          item.forEach(doc => {
+            if (data === doc.data().data) {
+              arrReserve.push(doc.data());
+            }
+          })
+        );
+
+      let limitHour = arrReserve.filter(
+        reserve => parseInt(reserve.id) > parseInt(id)
+      )[0];
+
+      if (!arrReserve.length) {
+        setSelectHour(horas.filter(hour => hour > horaInicial));
+      } else {
+        setSelectHour(
+          horas.filter(hour => hour > horaInicial && hour <= limitHour.inicio)
+        );
+      }
+    };
+
+    getReserveId();
+  });
 
   return (
     <>
@@ -156,7 +150,7 @@ const ConfirmModalContent = () => {
           </TextAling>
           <HourContent>
             <strong>De: {horaInicial}</strong>
-            
+
             <div>
               <strong>Até: </strong>
               <select
@@ -166,14 +160,9 @@ const ConfirmModalContent = () => {
                 <CustomOption key="10" disabled hidden value="DEFAULT">
                   horas
                 </CustomOption>
-                {
-                  horas
-                  .filter(hour => hour > horaInicial)
-                  .map(hour => (
-
-                    <option key={hour}>{hour}</option>
-                  ))
-                }
+                {selectHour.map(hour => (
+                  <option key={hour}>{hour}</option>
+                ))}
               </select>
             </div>
           </HourContent>
