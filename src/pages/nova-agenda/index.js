@@ -11,6 +11,7 @@ import "./index.css";
 
 function NovaAgenda() {
   const dispatch = useDispatch();
+
   const loader = useSelector(state => state.load.loader);
   const sala = useSelector(state => state.salas.currentRoom);
   
