@@ -130,5 +130,7 @@ export const CustomOption = styled.option`
 `;
 
 export const CustomButton = styled(Button)`
+  margin-top: 5% !important;
+  color: white !important;
   background: #0d4b81 !important;
 `;

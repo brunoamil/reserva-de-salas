@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Icon, Message, Button, Modal } from "semantic-ui-react";
+import { Icon, Button, Modal, Segment } from "semantic-ui-react";
 import firebase from "../../../../services/firebase";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -7,10 +7,7 @@ import Loading from "../../../../components/loader";
 
 import {
   Header,
-  Container,
-  Section,
-  ContainerInfo,
-  ContainerExit
+  Container
 } from "./styles";
 
 const InfoModal = () => {
@@ -23,7 +20,6 @@ const InfoModal = () => {
   const logado = useSelector(state => state.user.usuarioLogin)
 
   const [dadosReserva, setDadosReserva] = useState();
-  const [msgErro, setMsgErro] = useState(false);
   const [loaderDel, setLoaderDel] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -103,11 +99,17 @@ const InfoModal = () => {
           }, 1500);
         })
         .catch(erro => console.log("Erro ao EXCLUIR Reserva!", erro));
-    } else {
-      setMsgErro(true);
     }
   };
 
+  const verificarLogin = () => {
+    if (logado === true) {
+      setOpen(true);
+    }
+    else {
+      dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true });
+    }
+  }
   return (
     <>
       {loader ? (
@@ -116,73 +118,70 @@ const InfoModal = () => {
         </Container>
       ) : (
           <>
+            {loaderDel && (
+              <Loading size="medium">Deletando Informações...</Loading>
+            )}
             <Header>
               <h2>Informações da Reserva</h2>
             </Header>
-            <ContainerInfo>
-              <Section>
-                <p>
-                  <Icon name="user" size="small" />
-                  <strong>Nome: </strong>
-                  {dadosReserva.firstName}
-                </p>
-                <p>
-                  <Icon name="building" size="small" />
-                  <strong>Setor: </strong>
-                  {dadosReserva.setor}
-                </p>
-                <p>
-                  <Icon name="time" size="small" />
+            <Segment.Group size="big" >
+              <Segment >
+                <Icon name="user" size="large" />
+                <strong>Nome: </strong>
+                {dadosReserva.firstName}
+              </Segment>
+              <Segment>
+                <Icon name="building" size="large" />
+                <strong>Setor: </strong>
+                {dadosReserva.setor}
+              </Segment>
+
+
+              <Segment.Group horizontal >
+                <Segment>
+                  <Icon name="time" size="large" />
                   <strong>Inicio: </strong>
                   {dadosReserva.inicio}
-                </p>
-                <p>
-                  <Icon name="stopwatch" size="small" />
+                </Segment>
+                <Segment>
+                  <Icon name="stopwatch" size="large" />
                   <strong>Termino: </strong>
                   {dadosReserva.termino}
-                </p>
-                <p>
-                  <Icon name="file" size="small" />
-                  <strong>Evento: </strong>
-                  {dadosReserva.nomeEvento}
-                </p>
+                </Segment>
+              </Segment.Group>
 
-              </Section>
 
-              {loaderDel && (
-                <Loading size="medium">Deletando Informações...</Loading>
-              )}
+              <Segment>
+                <Icon name="calendar check" size="large" />
+                <strong>Evento: </strong>
+                {dadosReserva.nomeEvento}
+              </Segment>
 
               {logado ?
-                <ContainerExit>
-                  <Button fluid negative icon onClick={()=>{setOpen(true)}} size="large">
+                <Segment.Group>
+                  <Button fluid negative icon onClick={verificarLogin} size="large">
                     Excluir reserva
-                  </Button>
-                </ContainerExit>
+                      </Button>
+                </Segment.Group>
                 : ""
               }
 
-              {msgErro && (
-                <Message
-                  header="Essa Reserva não é sua!"
-                  color="red"
-                  icon="dont"
-                />
-              )}
-            </ContainerInfo>
+            </Segment.Group>
             <Modal size="tiny" open={open}>
-              <Modal.Header>Tem certeza que deseja excluir esta reserva?</Modal.Header>
-              <Modal.Actions>
-                <Button
-                  content='Cancelar'
-                  onClick={()=>{setOpen(false)}}
-                />
-                <Button negative
-                  icon='x'
-                  labelPosition='right'
-                  content="Sim"
-                  onClick={ActionDelete} />
-              </Modal.Actions>
+              <>
+                <Modal.Header>Tem certeza que deseja excluir esta reserva?</Modal.Header>
+                <Modal.Actions>
+                  <Button
+                    content='Cancelar'
+                    onClick={() => { setOpen(false) }}
+                  />
+                  <Button negative
+                    icon='x'
+                    labelPosition='right'
+                    content="Sim"
+                    onClick={ActionDelete} />
+                </Modal.Actions>
+              </>
             </Modal>
           </>
         )}

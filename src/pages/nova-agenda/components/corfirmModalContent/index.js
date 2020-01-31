@@ -7,7 +7,6 @@ import {
   Container,
   ContainerMain,
   HourContent,
-  ContainerButton,
   TextAling,
   CustomButton,
   CustomOption
@@ -140,7 +139,7 @@ const ConfirmModalContent = () => {
       <Container>
         <ContainerMain>
           <TextAling>
-            <h1>RESERVA</h1>
+            <h1>Reservar horários</h1>
           </TextAling>
           <HourContent>
             <strong>De: {horaInicial}</strong>
@@ -161,29 +160,28 @@ const ConfirmModalContent = () => {
             </div>
           </HourContent>
           <Input
-            onChange={e => {setNomeEvento(e.target.value);}}
+            onChange={e => { setNomeEvento(e.target.value); }}
             size="huge"
             placeholder="Nome do Evento"
             type="text"
-            icon="book"
+            icon="calendar check outline"
             iconPosition="left"
-            loading = {loading}
-            disabled = {loading}
+            loading={loading}
+            disabled={loading}
           />
-          <ContainerButton>
-            <CustomButton
-              onClick={() => {
-                cadastrarEvento();
-                actionFinalHour();
-              }}
-              size="large"
-              primary
-              id="button"
-              fluid
-            >
-              Confirmar Reserva
+          {/* <ContainerButton> */}
+          <CustomButton
+            onClick={() => {
+              cadastrarEvento();
+              actionFinalHour();
+            }}
+            size="big"
+            id="button"
+            fluid
+          >
+            Confirmar Reserva
             </CustomButton>
-          </ContainerButton>
+          {/* </ContainerButton> */}
           {msgErro && (
             <Message
               header="Insira o nome do evento!"
