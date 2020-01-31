@@ -30,7 +30,20 @@ const ConfirmModalContent = () => {
   const [msgSucesso, setMsgSucesso] = useState(false);
   const [msgErro, setMsgErro] = useState(false);
   const [loader, setLoader] = useState(false);
-  const [limitFinalHour, setlimitFinalHour] = useState(false);
+
+  const horas = [
+    "08:00",
+    "09:00",
+    "10:00",
+    "11:00",
+    "12:00",
+    "13:00",
+    "14:00",
+    "15:00",
+    "16:00",
+    "17:00",
+    "18:00"
+  ];
 
   const db = firebase.firestore();
 
@@ -65,8 +78,6 @@ const ConfirmModalContent = () => {
     } else {
       setMsgErro(false);
       setLoader(true);
-      // console.log('hora inicial: ',horaInicial);
-      // console.log('hora final: ',horaFinal);
       db.collection("salas")
         .doc(`${sala}`)
         .collection("Eventos")
@@ -87,7 +98,19 @@ const ConfirmModalContent = () => {
     }
   };
 
-  const getDateEvent = async () => {
+  const LimitHourReserve = arrLimitFinalHour => {
+    let limitFinalHour;
+
+    const reserve = arrLimitFinalHour.filter(reserve => reserve.inicio > horaInicial)[0];
+    console.log(reserve);
+    limitFinalHour = reserve.inicio;
+
+    console.log(horas.filter(h => h > horaInicial && h <= limitFinalHour));
+  }
+
+  const getInicialHourEvent = async () => {
+    let arrLimitFinalHour = [];
+
     await db
       .collection("salas")
       .doc(`${sala}`)
@@ -96,32 +119,31 @@ const ConfirmModalContent = () => {
       .then(event => event.forEach(
         doc => {
           if (data === doc.data().data) {
-            setlimitFinalHour(doc.data().inicio);
+            arrLimitFinalHour.push(doc.data());
           }
         }
       ))
       .catch()
+    
+    return LimitHourReserve(arrLimitFinalHour);
   }
 
-  getDateEvent();
+  let limitHour = [];
+  getInicialHourEvent().then(arr => {
+    // if (arr.length >= 1){
+    //   limitHour.push(...arr)
+    // } else {
+    //   limitHour.push(...horas)
+    // }
+  });
+  console.log(limitHour);
 
-  const actionFinalHour = () => {
+  const actionFinalHour = (finalHour) => {
     dispatch({ type: "SET_HORA_FINAL", horaFinal });
+    setHoraFinal(finalHour);
   };
 
-  const horas = [
-    "08:00",
-    "09:00",
-    "10:00",
-    "11:00",
-    "12:00",
-    "13:00",
-    "14:00",
-    "15:00",
-    "16:00",
-    "17:00",
-    "18:00"
-  ];
+  
 
   return (
     <>
@@ -137,22 +159,18 @@ const ConfirmModalContent = () => {
             <div>
               <strong>Até: </strong>
               <select
-                onChange={e => setHoraFinal(e.target.value)}
+                onChange={e => actionFinalHour(e.target.value)}
                 defaultValue={"DEFAULT"}
               >
                 <CustomOption key="10" disabled hidden value="DEFAULT">
                   horas
                 </CustomOption>
-                {limitFinalHour ?
-                  horas.filter(item =>  item > horaInicial && item < limitFinalHour)
-                  .map(hora => (
-                    <option key={hora}>{hora}</option>
-                  )) 
-                  :
+                {
                   horas
-                  .filter(item => item > horaInicial)
-                  .map(hora => (
-                    <option key={hora}>{hora}</option>
+                  .filter(hour => hour > horaInicial)
+                  .map(hour => (
+
+                    <option key={hour}>{hour}</option>
                   ))
                 }
               </select>
@@ -198,4 +216,4 @@ const ConfirmModalContent = () => {
   );
 };
 
-export default ConfirmModalContent;
+export default React.memo(ConfirmModalContent);

@@ -3,7 +3,6 @@ export const USER = {
   usuarioSetor: '',
   usuarioEmail : '',
   usuarioLogin : false,
-  salasReserva: [],
 };
 
 export const SALAS = {
