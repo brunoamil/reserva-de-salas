@@ -102,7 +102,7 @@ function RegisterForm({ ModalTop }) {
     <>
       <CustomModalContent>
         <ContainerModalContent>
-          <TitleContainerMC>Cadastro</TitleContainerMC>
+          <TitleContainerMC>Cadastro de usuários</TitleContainerMC>
         </ContainerModalContent>
         <Container>
           <Form size="large" key="tiny" method="POST">
@@ -137,7 +137,7 @@ function RegisterForm({ ModalTop }) {
                 <option value="RH" />
                 <option value="MANTENEDORA" />
                 <option value="CSC" />
-                <option value="INFRA"/>
+                <option value="INFRA" />
               </datalist>
             </CustomForm>
 
@@ -167,7 +167,8 @@ function RegisterForm({ ModalTop }) {
             <Loading size="medium">Carregando...</Loading>
           ) : (
               <CustomButton
-                size="large"
+                fluid
+                size="big"
                 content="Cadastrar-se"
                 onClick={Cadastrar}
               />

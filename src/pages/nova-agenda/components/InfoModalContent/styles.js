@@ -14,6 +14,7 @@ export const ContainerInfo = styled.div`
 `;
 
 export const Header = styled.div`
+  margin-top:2%;
   width : 100%;
   justify-content: center;
   text-align: center;
