@@ -138,7 +138,7 @@ const ConfirmModalContent = () => {
     };
 
     getReserveId();
-  });
+  }, );
 
   return (
     <>
