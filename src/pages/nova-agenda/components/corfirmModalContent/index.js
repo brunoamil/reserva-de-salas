@@ -3,13 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { Input, Message } from "semantic-ui-react";
 import firebase from "../../../../services/firebase";
 
-import Loading from "../../../../components/loader";
-
 import {
   Container,
-  HeaderModalContent,
   ContainerMain,
-  DescContent,
   HourContent,
   ContainerButton,
   TextAling,
@@ -29,9 +25,8 @@ const ConfirmModalContent = () => {
 
   const [horaFinal, setHoraFinal] = useState("");
   const [nomeEvento, setNomeEvento] = useState("");
-  const [msgSucesso, setMsgSucesso] = useState(false);
   const [msgErro, setMsgErro] = useState(false);
-  const [loader, setLoader] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [selectHour, setSelectHour] = useState([]);
 
   const horas = [
@@ -51,6 +46,7 @@ const ConfirmModalContent = () => {
   const db = firebase.firestore();
 
   const cadastrarEvento = async () => {
+    setLoading(true)
     let setor = "";
 
     await db
@@ -81,16 +77,15 @@ const ConfirmModalContent = () => {
       setMsgErro(true);
     } else {
       setMsgErro(false);
-      setLoader(true);
       db.collection("salas")
         .doc(`${sala}`)
         .collection("Eventos")
         .doc(id)
         .set(dados)
         .then(() => {
-          setMsgSucesso(true);
-          setLoader(false);
           setTimeout(() => {
+            setLoading(false)
+            dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: false });
             dispatch({ type: "SET_MODAL", valueModal: false });
             dispatch({ type: "SET_LOADER", set_loader: true });
           }, 1000);
@@ -142,7 +137,6 @@ const ConfirmModalContent = () => {
 
   return (
     <>
-      {loader && <Loading size="big">Carregando Reservas...</Loading>}
       <Container>
         <ContainerMain>
           <TextAling>
@@ -166,23 +160,16 @@ const ConfirmModalContent = () => {
               </select>
             </div>
           </HourContent>
-          <HeaderModalContent>
-            <DescContent>
-              <form method="post">
-                <Input
-                  focus
-                  onChange={e => {
-                    setNomeEvento(e.target.value);
-                  }}
-                  size="huge"
-                  placeholder="Nome do Evento"
-                  type="text"
-                  name="inputEvent"
-                  id="inputEvent"
-                />
-              </form>
-            </DescContent>
-          </HeaderModalContent>
+          <Input
+            onChange={e => {setNomeEvento(e.target.value);}}
+            size="huge"
+            placeholder="Nome do Evento"
+            type="text"
+            icon="book"
+            iconPosition="left"
+            loading = {loading}
+            disabled = {loading}
+          />
           <ContainerButton>
             <CustomButton
               onClick={() => {
@@ -192,13 +179,11 @@ const ConfirmModalContent = () => {
               size="large"
               primary
               id="button"
+              fluid
             >
               Confirmar Reserva
             </CustomButton>
           </ContainerButton>
-          {msgSucesso && (
-            <Message header="Reserva Concluída!" color="green" icon="check" />
-          )}
           {msgErro && (
             <Message
               header="Insira o nome do evento!"

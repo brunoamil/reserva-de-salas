@@ -46,6 +46,7 @@ function LoginForm({ModalTop}) {
           setCarregando(false);
 
           dispatch( {type: 'LOG_IN', usuarioEmail: email} );
+          dispatch({ type: "SET_MODAL_LOGIN", valueLogin: false });
           dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true});
         })
         .catch(erro => {

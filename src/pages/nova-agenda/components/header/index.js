@@ -5,6 +5,7 @@ import firebase from "../../../../services/firebase";
 
 import Img from "../../../../assets/img/ceuma.png";
 
+import { Button, Modal } from 'semantic-ui-react';
 import {
   Logo,
   Header,
@@ -22,7 +23,8 @@ import {
   ContainerVoltar,
   ContainerLeftHeader,
   ViewSelect,
-  ButtonVoltar
+  ButtonVoltar,
+  ContainerAdmin
 } from "./styles";
 
 
@@ -33,6 +35,9 @@ export const HeaderAgenda = () => {
   const [nome, setNome] = useState();
   const [/*loader*/, setLoader] = useState(false);
   const [salas, setSalas] = useState([]);
+  const [open, setOpen] = useState(false);
+
+  const room = useSelector(state => state.salas.currentRoom)
 
   const checkName = name => {
     if (name) {
@@ -101,6 +106,11 @@ export const HeaderAgenda = () => {
     }, 1000);
   };
 
+  const actionBack = () => {
+    dispatch({ type: "GET_SALA", sala: 'Auditório' });
+    actionLogout();
+  }
+
   const roomsActions = room => {
     dispatch({ type: "GET_SALA", sala: room });
     dispatch({ type: "SET_EVENTOS_SALA", event: [] });
@@ -110,19 +120,57 @@ export const HeaderAgenda = () => {
     dispatch({ type: "SET_LOADER", set_loader: true })
   );
 
+  const createRoom = () => {
+    // alert('funcionalidade nao disponivel')
+    dispatch({ type: "SET_MODAL", valueModal: true })
+    dispatch({ type: "SET_MODAL_CREATE_ROOM", createRoomForm: true });
+  }
+
+  const clearReservation = () => {
+    setOpen(false)
+    firebase
+      .firestore()
+      .collection("salas")
+      .doc(room)
+      .collection('Eventos')
+      .get()
+      .then(sucesso => {
+        sucesso.forEach(doc => {
+          firebase.firestore().collection('salas').doc(room).collection('Eventos').doc(doc.data().id).delete().then(sucesso => {
+          })
+        })
+        dispatch({ type: "SET_MODAL", valueModal: false });
+        dispatch({ type: "SET_EVENTOS_SALA", event: [] });
+        dispatch({ type: "SET_LOADER", set_loader: true });
+      })
+  }
+
+
   return (
     <>
+      <Modal closeOnEscape size="tiny" open={open}>
+        <Modal.Header>Deseja excluir todas as reservas desta sala?</Modal.Header>
+        <Modal.Actions>
+          <Button
+            content='Não'
+            onClick={() => { setOpen(false) }}
+          />
+          <Button negative
+            icon='x'
+            labelPosition='right'
+            content="Sim"
+            onClick={clearReservation}
+          />
+        </Modal.Actions>
+      </Modal>
       <Header>
         <Container>
           <View>
             <ContainerHeader>
-
               <ContainerVoltar>
-                {useSelector(state => state.user.usuarioLogin) === false ? (
-                  <Link to='/'>
-                    <ButtonVoltar name='arrow left' size='large' color='black' ></ButtonVoltar>
-                  </Link>
-                ) : ''}
+                <Link to='/'>
+                  <ButtonVoltar name='arrow left' size='large' color='black' onClick={actionBack}></ButtonVoltar>
+                </Link>
               </ContainerVoltar>
               <ContainerLeftHeader>
                 <Logo src={Img}></Logo>
@@ -132,7 +180,16 @@ export const HeaderAgenda = () => {
             <UserAling>
               {useSelector(state => state.user.usuarioLogin) === true ? (
                 <>
-                  <h1>Usuário: {nome}</h1>
+                  {email === "admin@ceuma.com" ? (
+                    <>
+                      <ContainerAdmin>
+                        <Button size='small' positive onClick={createRoom}>Criar sala</Button>
+                        <Button size='small' negative onClick={() => { setOpen(true) }}>Limpar reservas</Button>
+                      </ContainerAdmin>
+                    </>
+                  ) : ''
+                  }
+                  <h1>{nome}</h1>
                   <ButtonVoltar name='sign-out' size='large' onClick={actionLogout}></ButtonVoltar>
                 </>
               ) : ''
@@ -161,6 +218,6 @@ export const HeaderAgenda = () => {
       </Header>
     </>
   );
-};
+}
 
 export default HeaderAgenda;

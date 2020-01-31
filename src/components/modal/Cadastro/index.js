@@ -24,10 +24,10 @@ function RegisterForm({ ModalTop }) {
   const [senha, setSenha] = useState("");
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState(false);
-  const [msgErro, setMsgErro] = useState(""); 
+  const [msgErro, setMsgErro] = useState("");
 
   function Cadastrar() {
-    if (email === "" || senha === "" || nome === "") {
+    if (email === "" || senha === "" || nome === "" || setor === "") {
       setErro(true);
       setMsgErro("Verifique se todos os campos estão preenchidos!");
     } else {
@@ -109,7 +109,7 @@ function RegisterForm({ ModalTop }) {
 
             <CustomForm>
               <Input
-                onClick = {ModalTop}
+                onClick={ModalTop}
                 icon="user"
                 iconPosition="left"
                 onChange={e => {
@@ -122,8 +122,9 @@ function RegisterForm({ ModalTop }) {
 
             <CustomForm>
               <Input
-                onClick = {ModalTop}
+                onClick={ModalTop}
                 icon="building"
+                list="setores"
                 iconPosition="left"
                 onChange={e => {
                   let sector = e.target.value;
@@ -131,11 +132,18 @@ function RegisterForm({ ModalTop }) {
                 }}
                 placeholder="Setor"
               />
+              <datalist id="setores">
+                <option value="NTI" />
+                <option value="RH" />
+                <option value="MANTENEDORA" />
+                <option value="CSC" />
+                <option value="INFRA"/>
+              </datalist>
             </CustomForm>
 
             <CustomForm>
               <Input
-                onClick = {ModalTop}
+                onClick={ModalTop}
                 icon="mail"
                 iconPosition="left"
                 onChange={e => setEmail(e.target.value)}
@@ -146,7 +154,7 @@ function RegisterForm({ ModalTop }) {
 
             <CustomForm>
               <Input
-                onClick = {ModalTop}
+                onClick={ModalTop}
                 icon="lock"
                 iconPosition="left"
                 onChange={e => setSenha(e.target.value)}
@@ -158,17 +166,17 @@ function RegisterForm({ ModalTop }) {
           {carregando ? (
             <Loading size="medium">Carregando...</Loading>
           ) : (
-            <CustomButton
-              size="large"
-              content="Cadastrar-se"
-              onClick={Cadastrar}
-            />
-          )}
+              <CustomButton
+                size="large"
+                content="Cadastrar-se"
+                onClick={Cadastrar}
+              />
+            )}
           {erro ? (
             <Message header={msgErro} color="red" icon="dont" />
           ) : (
-            <div />
-          )}
+              <div />
+            )}
         </Container>
       </CustomModalContent>
     </>
