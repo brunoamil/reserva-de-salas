@@ -48,19 +48,6 @@ function Agenda() {
     "17:00",
     "18:00"
   ];
-  const horario = [
-    "8h - 9h",
-    "9h - 10h",
-    "10h - 11h",
-    "11h - 12h",
-    "12h - 13h",
-    "13h - 14h",
-    "14h - 15h",
-    "15h - 16h",
-    "16h - 17h",
-    "17h - 18h",
-    "18h - 19h"
-  ];
 
   useEffect(() => renderCellActions(event));
 
@@ -146,7 +133,7 @@ function Agenda() {
             {horas.map((hora, index) => (
               <Table.Row key={index}>
                 <Table.HeaderCell width="1">
-                  <strong> {horario[index]} </strong>
+                  <strong> {hora} </strong>
                 </Table.HeaderCell>
                 {dias.map((dia, index) => (
                   <Table.Cell
