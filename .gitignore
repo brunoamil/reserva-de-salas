@@ -1,26 +1,12 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
-<<<<<<< HEAD
-<<<<<<< HEAD
-yarn.lock
-package-lock.json
-=======
-=======
->>>>>>> origin/dev-mvp
-/yarn.lock
 .firebase
 .firebaserc
 database.rules.json
 firebase.json
-<<<<<<< HEAD
->>>>>>> origin/dev-mvp
-=======
-package-lock.json
->>>>>>> origin/dev-mvp
+README.md
 
 # testing
 /coverage
