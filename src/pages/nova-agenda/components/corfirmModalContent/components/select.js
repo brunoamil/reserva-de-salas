@@ -1,24 +1,50 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
+import firebase from "../../../../../services/firebase";
+
 
 import { CustomOption } from '../styles';
 
-const Select = ({ db, room, date, inicialHour, id }) => {
+const Select = ({ room, date, inicialHour, id }) => {
   const dispatch = useDispatch();
 
-  // const [finalHour, setFinalHour] = useState();
   const [selectHour, setSelectHour] = useState([]);
 
   const actionFinalHour = finalHour => {
-    dispatch({ type: "SET_HORA_FINAL", finalHour });
-    // setFinalHour(finalHour);
+    dispatch({ type: "SET_HORA_FINAL", horaFinal: finalHour });
   };
 
-  useEffect(() => {
-    const getReserveId = async () => {
-      let arrReserve = [];
+  
+  const funcSelect = useCallback((limitHour, inicialHour) => {
+    const horas = [
+      "08:00",
+      "09:00",
+      "10:00",
+      "11:00",
+      "12:00",
+      "13:00",
+      "14:00",
+      "15:00",
+      "16:00",
+      "17:00",
+      "18:00"
+    ];
 
-      await db
+    if (!limitHour) {
+      setSelectHour(e => horas.filter(hour => hour > inicialHour));
+    } else {
+      setSelectHour(e =>
+        horas.filter(hour => hour > inicialHour && hour <= limitHour.inicio)
+      );
+    }
+  }, [])
+
+  useEffect(() => {
+    const getReserve = async () => {
+      let arrReserve = [];
+  
+      await firebase
+        .firestore()
         .collection("salas")
         .doc(`${room}`)
         .collection("Eventos")
@@ -30,37 +56,17 @@ const Select = ({ db, room, date, inicialHour, id }) => {
               arrReserve.push(doc.data());
             }
           })
-        );
-
+        ).catch(err => console.log("Erro: ", err));
+    
       let limitHour = arrReserve.filter(
         reserve => parseInt(reserve.id) > parseInt(id)
       )[0];
 
-      if (!arrReserve.length) {
-        setSelectHour(horas.filter(hour => hour > inicialHour));
-      } else {
-        setSelectHour(
-          horas.filter(hour => hour > inicialHour && hour <= limitHour.inicio)
-        );
-      }
-    };
+      funcSelect(limitHour, inicialHour);
+    }
 
-    getReserveId();
-  }, );
-
-  const horas = [
-    "08:00",
-    "09:00",
-    "10:00",
-    "11:00",
-    "12:00",
-    "13:00",
-    "14:00",
-    "15:00",
-    "16:00",
-    "17:00",
-    "18:00"
-  ];
+    getReserve();
+  }, [id, date, inicialHour, room, funcSelect]);
 
   return (
     <>
@@ -79,4 +85,4 @@ const Select = ({ db, room, date, inicialHour, id }) => {
   )
 }
 
-export default Select;
+export default React.memo(Select);

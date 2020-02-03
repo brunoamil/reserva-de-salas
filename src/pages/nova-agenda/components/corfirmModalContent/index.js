@@ -59,6 +59,7 @@ const ConfirmModalContent = () => {
     };
 
     if (!nomeEvento || !finalHour) {
+      console.log(finalHour)
       setMsgErro(true);
     } else {
       setMsgErro(false);
