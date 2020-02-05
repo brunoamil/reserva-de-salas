@@ -1,23 +1,21 @@
 
-@media screen and (min-width: 768px) {
-  * {
-    overflow: hidden !important;
+@media only screen and (max-width: 768px) {
+  .ui.dimmer {
+    height: 100vh !important;
   }
 }
 
-#allPage{
-    margin-top: -10px;
-}
+
 #table{
-    margin: 0 !important;   
-    border: none;
-    border-radius: 0;
-    height: 90vh;
+  margin: 0 !important;   
+  border: none;
+  border-radius: 0;
+  height: 90%;
 }
 .ui.table td{
-    text-align: center;
-    border-left: 1px solid rgb(206, 202, 202);
-    padding: 0 !important;
+  text-align: center;
+  border-left: 1px solid rgb(206, 202, 202);
+  padding: 0 !important;
 }
 .ui.table tr td{
     border-top: 1px solid rgb(206, 202, 202) ;
@@ -45,9 +43,7 @@
   padding: 0 !important;
 }
 
-.ui.dimmer {
-  height: 100vh !important;
-}
+
 
 #none{
     border: none !important;

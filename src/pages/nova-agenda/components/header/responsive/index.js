@@ -100,7 +100,7 @@ export const HeaderAgendaMobile = () => {
   };
 
   const roomsActions = room => {
-    dispatch({ type: "GET_SALA", sala: room });
+    dispatch({ type: "GET_SALA", room });
     dispatch({ type: "SET_EVENTOS_SALA", event: [] });
   }
 
@@ -154,4 +154,4 @@ export const HeaderAgendaMobile = () => {
   );
 };
 
-export default HeaderAgendaMobile;
+export default React.memo(HeaderAgendaMobile);

@@ -107,12 +107,12 @@ export const HeaderAgenda = () => {
   };
 
   const actionBack = () => {
-    dispatch({ type: "GET_SALA", sala: 'Auditório' });
+    // dispatch({ type: "GET_SALA", sala: 'Auditório' });
     actionLogout();
   }
 
   const roomsActions = room => {
-    dispatch({ type: "GET_SALA", sala: room });
+    dispatch({ type: "GET_SALA", room });
     dispatch({ type: "SET_EVENTOS_SALA", event: [] });
   }
 

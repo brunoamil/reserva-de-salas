@@ -81,12 +81,8 @@ function NovaAgenda() {
 
       {/* MOBILE */}
       <Responsive as={Segment} maxWidth={768}>
-        { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : (
-          <>
-            <HeaderAgendaMobile id="header" />
-            <AgendaMobile />
-          </>
-        ) }
+        <HeaderAgendaMobile id="header" />
+        { loader ? <Loading size = 'large'> Carregando Reservas...</Loading> : <AgendaMobile />}
       </Responsive>
 
   </>

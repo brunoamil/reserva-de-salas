@@ -138,10 +138,9 @@ function Agenda() {
                 {dias.map((dia, index) => (
                   <Table.Cell
                     key={index}
-                    className={`${hora} ${(idDivCell += 1)}`}
                   >
                     <ContainerCell
-                      id={`${idDivCell}`}
+                      id={`${idDivCell += 1}`}
                       onClick={e => {
                         modalActions(e.target.childNodes);
                         reduxTableActions(
