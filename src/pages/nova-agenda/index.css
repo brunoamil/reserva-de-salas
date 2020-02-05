@@ -40,6 +40,15 @@
     color: white !important;
     padding: 13px 0 10px;
 }
+
+.ui.segment {
+  padding: 0 !important;
+}
+
+.ui.dimmer {
+  height: 100vh !important;
+}
+
 #none{
     border: none !important;
 }
