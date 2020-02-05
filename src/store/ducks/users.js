@@ -15,7 +15,7 @@ export const INICIAL_STATE = {
 };
 
 const name = (state = INICIAL_STATE, { name }) => (
-  {...state, userName: name }
+  {...state, userName: name} 
 )
 
 const sector = (state = INICIAL_STATE, { sector }) => (

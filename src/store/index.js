@@ -1,5 +1,10 @@
 import { createStore, combineReducers } from 'redux';
-import { usuarioReducer, setModal, setDadosReserva, setSalas, setLoad } from './reducer';
+// import setSalas from './ducks/salas';
+// import setModal from './ducks/modal'
+// import setDadosReserva from './ducks/dadosReserva'
+// import setLoad from './ducks/load'
+import usuarioReducer from './ducks/users'
+import {setModal, setDadosReserva, setSalas, setLoad } from './reducer';
 
 const store = createStore(combineReducers({
   user: usuarioReducer,
@@ -10,3 +15,4 @@ const store = createStore(combineReducers({
 }));
 
 export default store;
+

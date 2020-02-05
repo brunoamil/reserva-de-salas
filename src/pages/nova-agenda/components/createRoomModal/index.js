@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Form, Input, Button, Message } from 'semantic-ui-react';
 import { CustomModalContent, ContainerModalContent, TitleContainerMC, Container, CustomForm } from './styles';
 
+
 import firebase from "../../../../services/firebase"
 
 const CreateRoomModal = () => {
@@ -11,6 +12,8 @@ const CreateRoomModal = () => {
     const [loading, setLoading] = useState(false)
     const [nomeSala, setNomeSala] = useState()
     const [msgErro, setMsgErro] = useState(false)
+
+    
 
     function CreateRoom() {
         if (nomeSala === "" || nomeSala === undefined) {
