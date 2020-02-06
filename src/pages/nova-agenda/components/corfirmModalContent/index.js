@@ -65,8 +65,6 @@ const ConfirmModalContent = () => {
     } else {
       setMsgErro(false);
       setLoader(true);
-      // console.log('hora inicial: ',horaInicial);
-      // console.log('hora final: ',horaFinal);
       db.collection("salas")
         .doc(`${sala}`)
         .collection("Eventos")
@@ -144,4 +142,4 @@ const ConfirmModalContent = () => {
   );
 }
 
-export default ConfirmModalContent;
+export default React.memo(ConfirmModalContent);

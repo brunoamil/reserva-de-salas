@@ -8,6 +8,8 @@ import Modal from "../../components/modal";
 import Agenda from "./components/agenda";
 import Loading from '../../components/loader';
 
+import { Creators as UserActions } from  '../../store/ducks/users';
+
 import "./index.css";
 
 //Responsive
@@ -16,9 +18,15 @@ import AgendaMobile  from './components/agenda/responsive/';
 
 function NovaAgenda() {
   const dispatch = useDispatch();
+  
   const loader = useSelector(state => state.load.loader);
   const sala = useSelector(state => state.salas.currentRoom);
+
+  const users = useSelector(state => state.users)
   
+  useEffect(() => dispatch(UserActions.name('Alex')));
+  console.log(UserActions)
+  console.log(users);  
   useEffect(() => {
     const checkName = name => {
       if (name) {
