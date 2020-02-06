@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import firebase from "../../../../services/firebase";
+import { Label, Icon } from 'semantic-ui-react'
 
 import Img from "../../../../assets/img/ceuma.png";
 
@@ -17,6 +18,8 @@ import {
   ContainerHeader,
   ContainerVoltar,
   ContainerLeftHeader,
+  ContainerRightHeader,
+  ContainerLogo,
   ViewSelect,
   ButtonVoltar
 } from "./styles";
@@ -106,9 +109,46 @@ export const HeaderAgenda = () => {
     dispatch({ type: "SET_LOADER", set_loader: true })
   );
 
+  const imageProps = {
+    avatar: true,
+    spaced: 'right',
+    src: '/images/avatar/small/elliot.jpg',
+  }
+
   return (
     <>
       <Header>
+        <ContainerLeftHeader>
+          <ContainerVoltar>
+            <Link to='/'>
+              <ButtonVoltar name='arrow left' size='large' color='black' ></ButtonVoltar>
+            </Link>
+          </ContainerVoltar>
+          <ContainerLogo>
+            <Logo src={Img}></Logo>
+            <Title>Reserva de Salas</Title>
+          </ContainerLogo>
+        </ContainerLeftHeader>
+
+        <ContainerRightHeader>
+          <UserAling>
+            {useSelector(state => state.user.usuarioLogin) === true ? (
+              <>
+                <Label as='a' size='big' color='blue'>
+                  <Icon name="user circle"/>
+                  <span>{nome}</span>
+                  <Label.Detail>
+                    <Icon name="sign-out" onClick={actionLogout} basic color='white'/>
+                  </Label.Detail>
+                </Label>
+              </>
+            ) : ''
+            }
+          </UserAling>
+
+        </ContainerRightHeader>
+      </Header>
+      {/* <Header>
         <Container>
           <View>
             <ContainerHeader>
@@ -148,7 +188,7 @@ export const HeaderAgenda = () => {
             </SelectAling>
           </ViewSelect>
         </Container>
-      </Header>
+      </Header> */}
     </>
   );
 };

@@ -1,8 +1,8 @@
 
 @media screen and (min-width: 768px) {
-  * {
+  /* * {
     overflow: hidden !important;
-  }
+  } */
 
   .ui.table tr{
     box-shadow: none !important;
@@ -11,14 +11,14 @@
 
 }
 
-#allPage{
+/* #allPage{
     margin-top: -10px;
-}
+} */
 #table{
     margin: 0 !important;   
     border: none;
     border-radius: 0;
-    height: 91.5vh;
+    height: 90vh;
 }
 .ui.table td{
     text-align: center;
