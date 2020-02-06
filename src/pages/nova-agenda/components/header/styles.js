@@ -122,39 +122,6 @@ export const ViewSelect = styled.div`
     justify-content:flex-end;
     margin : -32px 0px 12px 0px;
 `
-export const CircleAling = styled.div`
-    display:flex;
-    align-items:flex-end;
-
-
-`
-
-export const Circle = styled.div`
-    width:20px;
-    height:20px;
-    margin:0px 5px;
-    border:1px solid rgba(37, 37, 37, 0.473);
-    border-radius:100%;
-    background-color: brown;
-
-`
-export const Circle2 = styled.div`
-    width:20px;
-    height:20px;
-    margin:0px 5px;
-    border-radius:100%;
-    border:1px solid rgba(37, 37, 37, 0.473);
-    background-color: #e2e2e279;
-
-`
-
-export const Legenda = styled.p`
-    font-family: "Open Sans",sans-serif,arial;
-    font-size: 1.1rem;
-    margin: 0px 15px 0px 2px;
-
-`
-
 
 export const SelectAling = styled.div`
     width: auto;

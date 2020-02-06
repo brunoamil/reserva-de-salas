@@ -13,10 +13,6 @@ import {
   Select,
   SelectAling,
   Container,
-  CircleAling,
-  Circle,
-  Circle2,
-  Legenda,
   View,
   ContainerHeader,
   ContainerVoltar,
@@ -140,12 +136,6 @@ export const HeaderAgenda = () => {
             </UserAling>
           </View>
           <ViewSelect>
-            <CircleAling>
-              <Circle></Circle>
-              <Legenda>Indisponível</Legenda>
-              <Circle2></Circle2>
-              <Legenda>Disponível</Legenda>
-            </CircleAling>
             <SelectAling>
               <Select onChange={e => {
                 roomsActions(e.target.value);
