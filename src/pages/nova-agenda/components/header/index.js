@@ -109,12 +109,6 @@ export const HeaderAgenda = () => {
     dispatch({ type: "SET_LOADER", set_loader: true })
   );
 
-  const imageProps = {
-    avatar: true,
-    spaced: 'right',
-    src: '/images/avatar/small/elliot.jpg',
-  }
-
   return (
     <>
       <Header>
