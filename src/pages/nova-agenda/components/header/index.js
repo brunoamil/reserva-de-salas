@@ -18,6 +18,7 @@ import {
   ContainerHeader,
   ContainerVoltar,
   ContainerLeftHeader,
+  ContainerCenterHeader,
   ContainerRightHeader,
   ContainerLogo,
   ContainerUser,
@@ -127,6 +128,10 @@ export const HeaderAgenda = () => {
           </ContainerLogo>
         </ContainerLeftHeader>
 
+        <ContainerCenterHeader>
+          <h1>Auditorio</h1>
+        </ContainerCenterHeader>
+
         <ContainerRightHeader>
             {useSelector(state => state.user.usuarioLogin) === true ? (
               <>
@@ -141,7 +146,7 @@ export const HeaderAgenda = () => {
                   </ContainerLogout>
                 </UserAling>
               </>
-            ) : ''
+            ) : <span></span>
             }
         </ContainerRightHeader>
       </Header>

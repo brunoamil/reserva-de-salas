@@ -26,7 +26,7 @@ export const ContainerVoltar = styled.div`
   margin : 0px 15px 0px 20px;
 
   @media only screen and (min-width: 1080px) {
-    margin: 0 45px 0px 45px;
+    margin: 0 30px 0px 30px;
   }
 `;
 
@@ -56,11 +56,36 @@ export const Title = styled.h1`
 
   margin : 0 !important;
 `
+export const ContainerCenterHeader = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+
+  margin-right: 100px;
+  margin-top: -30px;
+
+  h1{
+    color: #0d4b81c9;
+
+    font-family: "PT Sans",sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+
+    margin : 0 !important;
+  }
+
+`;
+
 export const ContainerRightHeader = styled.div`
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
+
+  span{
+    width: 16vw;
+  }
 
 `;
 
@@ -84,7 +109,7 @@ export const UserAling = styled.div`
   }
 
   h2{
-    /* color: #2e3131; */
+    color: #e6e6e6;
     margin: 0px;
     font-size: 0.9em;
     font-family: "PT Sans",sans-serif;
@@ -101,7 +126,6 @@ export const ContainerUser = styled.div`
   flex-flow: column nowrap;
   justify-content: flex-start
 `;
-
 
 
 /* // export const Container = styled.div`
