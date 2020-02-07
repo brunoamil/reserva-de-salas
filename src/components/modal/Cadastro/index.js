@@ -5,6 +5,9 @@ import { useDispatch } from "react-redux";
 
 import Loading from '../../loader';
 
+import {Creators as modalAction} from '../../../store/ducks/modal'
+import {Creators as usersAction} from '../../../store/ducks/users'
+
 import {
   Container,
   CustomButton,
@@ -50,10 +53,10 @@ function RegisterForm({ ModalTop }) {
             .then()
             .catch();
 
-          dispatch({ type: "LOG_IN", usuarioEmail: email });
-          dispatch({ type: "USER_SETOR", usuarioSetor: setor });
+          dispatch(modalAction.login(email));
+          dispatch(usersAction.sector(setor));
 
-          dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
+          dispatch(modalAction.confirm(true));
         })
         .catch(erro => {
           setCarregando(false);

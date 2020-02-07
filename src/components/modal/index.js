@@ -17,11 +17,8 @@ import InfoModal from './../../pages/nova-agenda/components/InfoModalContent';
 const ModalUser = () => {
   const dispatch = useDispatch();
 
-  const loginForm = useSelector(state => state.modal.loginForm);
-  const registerForm = useSelector(state => state.modal.registerForm);
-  const confirmForm = useSelector(state => state.modal.confirmForm);
-  const infoModal = useSelector(state => state.modal.infoModal);
-
+  const modalForm = useSelector(state=>state.modal_1)
+  
   const close = () => {
     dispatch({ type: "SET_MODAL", valueModal: false })
   }
@@ -44,12 +41,12 @@ const ModalUser = () => {
           <IconExit onClick={close}><CustomIcon size="large" name='times' /></IconExit>
         </ContainerHeader>
         <CustomModalContent>
-          {loginForm && <LoginForm ModalTop = {ModalTop} />}
-          {registerForm && <RegisterForm ModalTop = {ModalTop} />}
-          {confirmForm && <CofirmModalContent ModalTop = {ModalTop} />}
-          {infoModal && <InfoModal />}
+          {modalForm.loginForm && <LoginForm ModalTop = {ModalTop} />}
+          {modalForm.registerForm && <RegisterForm ModalTop = {ModalTop} />}
+          {modalForm.confirmForm && <CofirmModalContent ModalTop = {ModalTop} />}
+          {modalForm.infoModal && <InfoModal />}
         </CustomModalContent>
-        {loginForm && (
+        {modalForm.loginForm && (
           <FooterModal>
             <p>
               Ainda não possui conta?{" "}

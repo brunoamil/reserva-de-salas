@@ -7,9 +7,6 @@ export const { Types, Creators } = createActions({
   roomEvents: ["events"]
 });
 
-console.log(Types)
-console.log(Creators)
-
 //criando os reducer handlers
 export const INICIAL_STATE = {
   rooms: [],

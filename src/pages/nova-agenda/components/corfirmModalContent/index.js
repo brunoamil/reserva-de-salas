@@ -6,6 +6,8 @@ import firebase from "../../../../services/firebase";
 import Select from './components/select';
 import Loading from '../../../../components/loader';
 
+import { Creators as loadAction} from '../../../../store/ducks/load'
+
 import {
   Container,
   ContainerMain,
@@ -18,12 +20,10 @@ const ConfirmModalContent = () => {
 
   const dispatch = useDispatch();
 
-  const inicialHour = useSelector(state => state.dados.hora);
-  const finalHour = useSelector(state => state.dados.horaFinal);
+  const reserveData = useSelector(state => state.dadosReserva);
+  
   const userName = useSelector(state => state.user.usuarioNome);
   const userEmail = useSelector(state => state.user.usuarioEmail);
-  const id = useSelector(state => state.dados.id);
-  const data = useSelector(state => state.dados.data);
   const sala = useSelector(state => state.salas.currentRoom);
 
   const [nomeEvento, setNomeEvento] = useState("");
@@ -46,19 +46,19 @@ const ConfirmModalContent = () => {
       .catch(err => console.log("Erro ao pegar o setor", err))
 
     const dados = {
-      id,
+      id: reserveData.reserve_id,
       setor,
       userName,
       userEmail,
       nomeEvento,
-      inicio: inicialHour,
-      termino: finalHour,
-      data,
-      posReserva: parseInt(id)
+      inicio: reserveData.reserve_inicial_hour,
+      termino: reserveData.reserve_final_hour,
+      data: reserveData.reserve_date,
+      posReserva: parseInt(reserveData.reserve_id)
     };
 
-    if (!nomeEvento || !finalHour) {
-      console.log(finalHour)
+    if (!nomeEvento || !reserveData.reserve_final_hour) {
+      console.log(reserveData.reserve_final_hour)
       setMsgErro(true);
       
     } else {
@@ -66,13 +66,13 @@ const ConfirmModalContent = () => {
       db.collection("salas")
         .doc(`${sala}`)
         .collection("Eventos")
-        .doc(id)
+        .doc(reserveData.reserve_id)
         .set(dados)
         .then(() => {
           setLoading(false);
           setTimeout(() => {
             dispatch({ type: "SET_MODAL", valueModal: false });
-            dispatch({ type: "SET_LOADER", set_loader: true });
+            dispatch(loadAction.reserve(true));
           }, 1000);
         })
         .catch(erro => {
@@ -89,16 +89,16 @@ const ConfirmModalContent = () => {
             <h1>Reservar horários</h1>
           </TextAling>
           <HourContent>
-            <strong>De: {inicialHour}</strong>
+            <strong>De: {reserveData.reserve_inicial_hour}</strong>
 
             <div>
               <strong>Até: </strong>
               <Select 
                 db = {db}
                 room = {sala}
-                date = {data}
-                inicialHour = {inicialHour}
-                id = {id}
+                date = {reserveData.reserve_date}
+                inicialHour = {reserveData.reserve_inicial_hour}
+                id={reserveData.reserve_id}
               />
             </div>
           </HourContent>

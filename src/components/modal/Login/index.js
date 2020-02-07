@@ -7,6 +7,9 @@ import "firebase/auth";
 import RedefinirSenha from "../Recuperar-Senha";
 import Loading from '../../loader';
 
+import { Creators as usersAction } from '../../../store/ducks/users' 
+import { Creators as modalActions } from '../../../store/ducks/modal' 
+
 import {
   Container,
   TitleForgot,
@@ -46,9 +49,9 @@ function LoginForm({ ModalTop }) {
           // history.push("/NovaAgenda");
           setCarregando(false);
 
-          dispatch({ type: 'LOG_IN', usuarioEmail: email });
-          dispatch({ type: "SET_MODAL_LOGIN", valueLogin: false });
-          dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
+          dispatch(usersAction.login(email));
+          dispatch(modalActions.login(false));
+          dispatch(modalActions.confirm(true));
         })
         .catch(erro => {
           setCarregando(false);
