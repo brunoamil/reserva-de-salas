@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Form, Dimmer, Loader, Message, Input } from "semantic-ui-react";
+import { Form, Message, Input } from "semantic-ui-react";
 import firebase from "../../../services/firebase";
 import { useDispatch } from "react-redux";
+
+import Loading from '../../loader';
 
 import {
   Container,
@@ -9,7 +11,8 @@ import {
   CustomModalContent,
   ContainerModalContent,
   TitleContainerMC,
-  CustomForm
+  CustomForm,
+
 } from "./styles";
 
 function RegisterForm({ ModalTop }) {
@@ -21,10 +24,10 @@ function RegisterForm({ ModalTop }) {
   const [senha, setSenha] = useState("");
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState(false);
-  const [msgErro, setMsgErro] = useState(""); 
+  const [msgErro, setMsgErro] = useState("");
 
   function Cadastrar() {
-    if (email === "" || senha === "" || nome === "") {
+    if (email === "" || senha === "" || nome === "" || setor === "") {
       setErro(true);
       setMsgErro("Verifique se todos os campos estão preenchidos!");
     } else {
@@ -99,72 +102,82 @@ function RegisterForm({ ModalTop }) {
     <>
       <CustomModalContent>
         <ContainerModalContent>
-          <TitleContainerMC>Cadastro</TitleContainerMC>
+          <TitleContainerMC>Cadastro de usuários</TitleContainerMC>
         </ContainerModalContent>
         <Container>
           <Form size="large" key="tiny" method="POST">
-            <Form.Group widths="equal">
-              <CustomForm>
-                <Input
-                  icon="user"
-                  iconPosition="left"
-                  onChange={e => {
-                    let name = capitalize(e.target.value);
-                    setNome(name);
-                  }}
-                  placeholder="Nome"
-                />
-              </CustomForm>
-              <CustomForm>
-                <Input
-                  icon="building"
-                  iconPosition="left"
-                  onChange={e => {
-                    let sector = e.target.value;
-                    setSetor(sector.toUpperCase());
-                  }}
-                  placeholder="Setor"
-                />
-              </CustomForm>
-            </Form.Group>
 
-            <Form.Group widths="equal">
-              <CustomForm>
-                <Input
-                  icon="mail"
-                  iconPosition="left"
-                  onChange={e => setEmail(e.target.value)}
-                  type="email"
-                  placeholder="Email"
-                />
-              </CustomForm>
-              <CustomForm>
-                <Input
-                  icon="lock"
-                  iconPosition="left"
-                  onChange={e => setSenha(e.target.value)}
-                  type="password"
-                  placeholder="Senha"
-                />
-              </CustomForm>
-            </Form.Group>
+            <CustomForm>
+              <Input
+                onClick={ModalTop}
+                icon="user"
+                iconPosition="left"
+                onChange={e => {
+                  let name = capitalize(e.target.value);
+                  setNome(name);
+                }}
+                placeholder="Nome"
+              />
+            </CustomForm>
+
+            <CustomForm>
+              <Input
+                onClick={ModalTop}
+                icon="building"
+                list="setores"
+                iconPosition="left"
+                onChange={e => {
+                  let sector = e.target.value;
+                  setSetor(sector.toUpperCase());
+                }}
+                placeholder="Setor"
+              />
+              <datalist id="setores">
+                <option value="NTI" />
+                <option value="RH" />
+                <option value="MANTENEDORA" />
+                <option value="CSC" />
+                <option value="INFRA" />
+              </datalist>
+            </CustomForm>
+
+            <CustomForm>
+              <Input
+                onClick={ModalTop}
+                icon="mail"
+                iconPosition="left"
+                onChange={e => setEmail(e.target.value)}
+                type="email"
+                placeholder="Email"
+              />
+            </CustomForm>
+
+            <CustomForm>
+              <Input
+                onClick={ModalTop}
+                icon="lock"
+                iconPosition="left"
+                onChange={e => setSenha(e.target.value)}
+                type="password"
+                placeholder="Senha"
+              />
+            </CustomForm>
           </Form>
           {carregando ? (
-            <Dimmer active>
-              <Loader size="medium">Carregando</Loader>
-            </Dimmer>
+            <Loading size="medium">Carregando...</Loading>
           ) : (
-            <CustomButton
-              size="large"
-              content="Cadastrar-se"
-              onClick={Cadastrar}
-            />
-          )}
+              <CustomButton
+                fluid
+                size="big"
+                content="Cadastrar-se"
+                onClick={Cadastrar}
+              />
+            )}
           {erro ? (
             <Message header={msgErro} color="red" icon="dont" />
           ) : (
-            <div />
-          )}
+              <div />
+            )}
         </Container>
       </CustomModalContent>
     </>

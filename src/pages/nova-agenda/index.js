@@ -1,16 +1,21 @@
 import React, {useEffect} from "react";
-import { Dimmer, Loader } from "semantic-ui-react";
 import { useSelector, useDispatch } from 'react-redux';
 import firebase from '../../services/firebase';
- 
-import "./index.css";
+import { Responsive, Segment } from 'semantic-ui-react'
 
 import { HeaderAgenda } from "./components/header";
 import Modal from "../../components/modal";
 import Agenda from "./components/agenda";
+import Loading from '../../components/loader';
+
+import { HeaderAgendaMobile } from './components/header/responsive/';
+import AgendaMobile  from './components/agenda/responsive/';
+
+import "./index.css";
 
 function NovaAgenda() {
   const dispatch = useDispatch();
+
   const loader = useSelector(state => state.load.loader);
   const sala = useSelector(state => state.salas.currentRoom);
   
@@ -28,7 +33,7 @@ function NovaAgenda() {
 
     const getEventos = async () => {
       let events = [];
-
+      
       await firebase
       .firestore()
       .collection("salas")
@@ -37,12 +42,12 @@ function NovaAgenda() {
       .get()
       .then(sucesso => {
         sucesso.forEach(doc => {
-          const {id, userName, termino, setor} = doc.data();
+          const {id, userName, termino, inicio, setor, data} = doc.data();
           
           const firstName = checkName(userName);
           if (id && userName) {
-            events.push({id, firstName, termino, setor});
-            console.log(events);
+            events.push({id, firstName, termino, inicio, setor, data});
+            // console.log(events);
             dispatch({ type: "SET_EVENTOS_SALA", event: events });
           }else {
             dispatch({ type: "SET_EVENTOS_SALA", event: [] });
@@ -67,11 +72,20 @@ function NovaAgenda() {
   return (
     <>
       <Modal />
-      <HeaderAgenda id="header" />
-      { loader ? (<Dimmer active>
-        <Loader size="medium">Carregando Reservas...</Loader>
-      </Dimmer>) : <Agenda /> }
-    </>
+
+      {/* PC E TABLET */}
+      <Responsive as={Segment} minWidth={768}>
+        <HeaderAgenda id="header" />
+        { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <Agenda /> }
+      </Responsive>
+
+      {/* MOBILE */}
+      <Responsive as={Segment} maxWidth={768}>
+        <HeaderAgendaMobile id="header" />
+        { loader ? <Loading size = 'large'> Carregando Reservas...</Loading> : <AgendaMobile />}
+      </Responsive>
+
+  </>
   );
 }
 export default NovaAgenda;

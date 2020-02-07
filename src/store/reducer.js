@@ -8,9 +8,9 @@ export function usuarioReducer(state = USER, action){
     case 'USER_SETOR':
       return {...state, usuarioSetor : action.usuarioSetor };
     case 'LOG_IN':
-      return {...state, usuarioLogin: 1, usuarioEmail: action.usuarioEmail };
+      return {...state, usuarioLogin: true, usuarioEmail: action.usuarioEmail };
     case 'LOG_OUT':
-      return {...state, usuarioLogin: 0, usuarioEmail: ''};
+      return {...state, usuarioLogin: false, usuarioEmail: ''};
     default:
       return state;
   };
@@ -39,6 +39,7 @@ export function setModal(state = MODAL, action) {
   let valueConfirm = action.valueConfirm;
   let valueInfo = action.valueInfo;
   let valueModal = action.valueModal;
+  let createRoomForm = action.createRoomForm;
 
   switch(action.type) {
     case 'SET_MODAL_LOGIN':
@@ -49,6 +50,8 @@ export function setModal(state = MODAL, action) {
       return { ...state, confirmForm: valueConfirm, registerForm: false, loginForm: false, infoModal: false};
     case "SET_MODAL_INFO":
       return { ...state, infoModal: valueInfo, confirmForm: false, registerForm: false, loginForm: false };
+    case "SET_MODAL_CREATE_ROOM":
+      return { ...state, createRoomForm, infoModal: false, confirmForm: false, registerForm: false, loginForm: false };
     case "SET_MODAL":
       return { ...state, modal: valueModal };
     default: 

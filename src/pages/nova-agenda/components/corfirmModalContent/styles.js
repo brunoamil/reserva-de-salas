@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Icon } from "semantic-ui-react";
+import { Icon, Button } from "semantic-ui-react";
 
 export const Container = styled.div``;
 
@@ -18,12 +18,6 @@ export const HeaderModalContent = styled.div`
   flex-direction: column;
 `;
 
-export const Title = styled.h1`
-  font-weight: bold;
-  font-size: 1.2em;
-  border-bottom: 3px solid #0080ff;
-  color: #000;
-`;
 
 export const ContainerMain = styled.div`
   display: flex;
@@ -40,6 +34,7 @@ export const TextAling = styled.div`
     justify-content:center;
     width: 100%;
     align-items: center;
+    margin-bottom: 10px;
 
     h1{
       font-family: "PT Sans",sans-serif;
@@ -77,51 +72,31 @@ export const HourContent = styled.div`
   align-items: center;
 
   margin-top: 15px;
-  p {
+  margin-bottom: 25px;
+
+  strong {
     font-size: 1.3em;
-    margin-top: 10px;
 
     @media(min-width: 850px) {
       font-size: 1.5em;
     }
+
   }
   div {
-    margin-bottom: 1px;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    p {
-      font-size: 1.3em;
 
-      @media(min-width: 850px) {
-      font-size: 1.5em;
-      }
-      
-    }
-    div {
-      margin-bottom: 2.7px;
-      font-size: 1.1em;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex-flow: column;
-    }
     select{
       border: none;
       outline : none;
       background-color: transparent;
-      margin-bottom: 10px;
-
-
+      /* margin-bottom: 10px; */
       :optional{
-        font-size: 1.3em;
-
+        font-size: 1.5em;
         @media(min-width: 850px) {
           font-size: 1.5em;
         }
-
       }
-      
     }
   }
 `;
@@ -142,14 +117,14 @@ export const ZeroHourContent = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export const ContainerButton = styled.div`
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 
 export const CustomOption = styled.option`
-  font-size: 16px;
+  font-size: 1.5em;
   color: #eee !important;
+`;
+
+export const CustomButton = styled(Button)`
+  margin-top: 5% !important;
+  color: white !important;
+  background: #0d4b81 !important;
 `;

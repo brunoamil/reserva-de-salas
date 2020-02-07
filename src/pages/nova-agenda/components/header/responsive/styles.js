@@ -1,12 +1,15 @@
 import styled from 'styled-components'
 import {Icon} from 'semantic-ui-react'
 
+
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
+    
     width:100%;
     margin-top: -10px;
-
+    padding-bottom: 10px;
+    background-color: #ececec;
 `
 export const View = styled.div`
     width:100%;
@@ -15,24 +18,10 @@ export const View = styled.div`
     justify-content: space-between;
    
   
-
 `
 export const ContainerHeader = styled.div`
   display: flex;
   /* margin: 0px 5px;  */
-`;
-
-export const ContainerVoltar = styled.div`
-  display:flex;
-  flex-flow : row nowrap;
-  align-items : center;
-  text-align : center;
-  margin : 0px 15px 0px 20px;
-
-  @media(min-width: 723px) {
-    margin: 0px 15px 0px 20px;
-  }
-
 `;
 
 export const ContainerLeftHeader = styled.div`
@@ -40,15 +29,12 @@ export const ContainerLeftHeader = styled.div`
   flex-flow : row nowrap;
   align-items : center;
   text-align : center;
-
 `;
 
 export const Header = styled.div`
     display: flex;
     flex-direction: row;
     align-items: right;
-    /* height: 12vh; */
-
     /* width: 100vw;
     padding: 2px 0px; */
 `
@@ -56,59 +42,41 @@ export const Header = styled.div`
 
 export const Logo = styled.img`
     width: 60px;
-    margin: 15px 10px 6px 1px;
+    margin: 15px 0px 6px 1px;
 `
 
 export const UserAling = styled.div`
     display:flex;
     /* justify-content:flex-end; */
     flex-direction: row;
+    flex-flow: row nowrap;
     margin-top: -20px;
-    margin-right: 10px;
+    /* margin-right: 10px; */
     /* margin: 15px 0px 30px 0px; */
-
     h1 {
       color: #0d4b81;
       font-family: "PT Sans",sans-serif;
       line-height : 1.2em;
-      font-size: 1.3rem;
+      font-size: 1.2em;
       font-weight: 700;
-
       margin : 0px 5px 0px 0px;
-
     }
-
 `
-export const ContainerAdmin = styled.div`
-  margin-right : 30px;
-
-  Button{
-    margin: 0px 10px;
-  }
-
-`;
-
-
-
 export const Button = styled.button`
     margin: 0px 5px 5px 5px;
     background-color: #0d4b81;
     color:white;
     border:none;
-
     width: 60px;
     height: 2.2rem;
-
     font-family: "Open Sans",sans-serif,arial;
     font-size: 1.1rem;
     font-weight: 500;
     text-align:center;
 `
 export const ButtonVoltar = styled(Icon)`
-    margin: 0px 10px;
-
-  
-
+  font-size: 1.3em !important;
+  margin: 0px 5px;
 `
 // export const ContainerAlert = styled.div`
 //     display: flex;
@@ -121,24 +89,20 @@ export const ButtonVoltar = styled(Icon)`
 export const Title = styled.h1`
     color: #0d4b81;
     font-family: "PT Sans",sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.2em;
     font-weight: 700;
     margin-top: 0.4em;
 `
 export const ViewSelect = styled.div`
     display:flex;
     width:100%;
-    justify-content:flex-end;
-    margin : -32px 0px 12px 0px;
+    justify-content: space-between;
+    margin : -10px 0px 5px 0px;
 `
 export const CircleAling = styled.div`
     display:flex;
     align-items:flex-end;
-
-
 `
-
-
 
 export const Circle = styled.div`
     width:20px;
@@ -147,7 +111,6 @@ export const Circle = styled.div`
     border:1px solid rgba(37, 37, 37, 0.473);
     border-radius:100%;
     background-color: brown;
-
 `
 export const Circle2 = styled.div`
     width:20px;
@@ -156,14 +119,12 @@ export const Circle2 = styled.div`
     border-radius:100%;
     border:1px solid rgba(37, 37, 37, 0.473);
     background-color: #e2e2e279;
-
 `
 
 export const Legenda = styled.p`
     font-family: "Open Sans",sans-serif,arial;
     font-size: 1.1rem;
     margin: 0px 15px 0px 2px;
-
 `
 
 
@@ -171,11 +132,7 @@ export const SelectAling = styled.div`
     width: auto;
     display:flex;
     flex-flow: row nowrap;
-    justify-content:flex-end;
-    align-items:flex-end;
-    
-    margin-right: 20px;
-
+    margin-right: 5px;
 `
 
 export const Select = styled.select`
@@ -183,16 +140,13 @@ export const Select = styled.select`
     align-items: center !important;
     justify-content: center;
     text-align: center !important;
-
     padding: 0px 5px;
     
     border: 1px solid rgba(0, 0, 0, 0.541);
     height: 30px;
     margin-top: 5px;
-
     background-color:white;
     color:#0d4b81;
-
     option {
       white-space : none !important;
       width : 10px !important;
@@ -206,5 +160,4 @@ export const Texto = styled.p`
     font-size: 1.2rem;
     font-weight: 700;
     margin:0px 5px;
-
 `

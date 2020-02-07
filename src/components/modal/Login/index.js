@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Form, Dimmer, Loader, Message, Input } from "semantic-ui-react";
+import { Form, Message, Input } from "semantic-ui-react";
+import { useDispatch } from 'react-redux';
 import firebase from "../../../services/firebase";
 import "firebase/auth";
-import RedefinirSenha from "../Recuperar-Senha";
 
-//Redux
-import { useDispatch } from 'react-redux';
+import RedefinirSenha from "../Recuperar-Senha";
+import Loading from '../../loader';
 
 import {
   Container,
@@ -17,7 +17,7 @@ import {
   TitleContainerMC
 } from "./styles";
 
-function LoginForm({ModalTop}) {
+function LoginForm({ ModalTop }) {
   const [login, setLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -30,8 +30,8 @@ function LoginForm({ModalTop}) {
   function TrocarTela() {
     setLogin(false);
   }
-  
-  
+
+
 
   function Logar() {
     if (email === "" || senha === "") {
@@ -43,11 +43,11 @@ function LoginForm({ModalTop}) {
         .auth()
         .signInWithEmailAndPassword(email, senha)
         .then(sucesso => {
-          // history.push("/NovaAgenda");
           setCarregando(false);
 
-          dispatch( {type: 'LOG_IN', usuarioEmail: email} );
-          dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true});
+          dispatch({ type: 'LOG_IN', usuarioEmail: email });
+          dispatch({ type: "SET_MODAL_LOGIN", valueLogin: false });
+          dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
         })
         .catch(erro => {
           setCarregando(false);
@@ -68,20 +68,21 @@ function LoginForm({ModalTop}) {
             <Form size="large" key="tiny" method="POST">
               <CustomForm>
                 <Input
+                  onClick={ModalTop}
                   onChange={e => setEmail(e.target.value)}
                   type="email"
                   placeholder="Email"
-                  icon='mail' 
+                  icon='mail'
                   iconPosition='left'
                 />
               </CustomForm>
               <CustomForm>
                 <Input
-                  onClick = {ModalTop}
+                  onClick={ModalTop}
                   onChange={e => setSenha(e.target.value)}
                   type="password"
                   placeholder="Senha"
-                  icon='lock' 
+                  icon='lock'
                   iconPosition='left'
                 />
               </CustomForm>
@@ -90,26 +91,25 @@ function LoginForm({ModalTop}) {
               </TitleForgot>
             </Form>
             {carregando ? (
-              <Dimmer active>
-                <Loader size="medium">Carregando</Loader>
-              </Dimmer>
+              <Loading size="medium">Carregando...</Loading>
             ) : (
-              <CustomButton
-                onClick={Logar}
-                size="large"
-                content="Login"
-              />
-            )}
+                <CustomButton
+                  fluid
+                  onClick={Logar}
+                  size="big"
+                  content="Login"
+                />
+              )}
             {erro ? (
               <Message header={msgErro} color="red" icon="dont" />
             ) : (
-              <div />
-            )}
+                <div />
+              )}
           </Container>
         </CustomModalContent>
       ) : (
-        <RedefinirSenha ModalTop = {ModalTop} />
-      )}
+          <RedefinirSenha ModalTop={ModalTop} />
+        )}
     </>
   );
 }

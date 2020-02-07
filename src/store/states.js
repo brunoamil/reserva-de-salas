@@ -2,13 +2,12 @@ export const USER = {
   usuarioNome : '',
   usuarioSetor: '',
   usuarioEmail : '',
-  usuarioLogin : 0,
-  salasReserva: [],
+  usuarioLogin : false,
 };
 
 export const SALAS = {
   roomsReservation: [],
-  currentRoom: '',
+  currentRoom: "Auditório",
   roomEvents: [],
 };
 
@@ -19,6 +18,7 @@ export const MODAL = {
   registerForm: false,
   confirmForm: false,
   infoModal: false,
+  createRoomForm: false,
 }
 
 export const DADOS_RESERVA = {

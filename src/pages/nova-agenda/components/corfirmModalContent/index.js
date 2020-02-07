@@ -1,66 +1,77 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Input, Message, Dimmer, Loader } from "semantic-ui-react";
+import { Input, Message } from "semantic-ui-react";
 import firebase from "../../../../services/firebase";
+
+import Select from './components/select';
 
 import {
   Container,
-  HeaderModalContent,
   ContainerMain,
-  DescContent,
   HourContent,
-  ContainerButton,
   TextAling,
-  CustomOption
+  CustomButton,
 } from "./styles";
 
 const ConfirmModalContent = () => {
   const dispatch = useDispatch();
-  const horaInicial = useSelector(state => state.dados.hora);
+
+  const inicialHour = useSelector(state => state.dados.hora);
+  const finalHour = useSelector(state => state.dados.horaFinal);
   const userName = useSelector(state => state.user.usuarioNome);
   const userEmail = useSelector(state => state.user.usuarioEmail);
   const id = useSelector(state => state.dados.id);
-  const sala = useSelector(state => state.salas.currentRoom) || "Auditório";
-  
-  const [horaFinal, setHoraFinal] = useState("");
-  const [nomeEvento, setNomeEvento] = useState();
-  const [msgSucesso, setMsgSucesso] = useState(false);
+  const data = useSelector(state => state.dados.data);
+  const sala = useSelector(state => state.salas.currentRoom);
+
+  const [nomeEvento, setNomeEvento] = useState("");
   const [msgErro, setMsgErro] = useState(false);
-  const [loader, setLoader] = useState(false);
-  
+  const [loading, setLoading] = useState(false);
+
   const db = firebase.firestore();
-  
-  
-  
+
   const cadastrarEvento = async () => {
-    let setor = '';
-    await db.collection("usuarios").get()
-      .then(item => item.forEach(doc => {
-        if (userEmail === doc.data().email) {
-          setor = doc.data().setor;
-          console.log(doc.data().setor)
-        }
-      }))
-      .catch(err => console.log("Erro ao pegar o setor", err))
-  
-    if (!nomeEvento || !horaFinal) {
+    setLoading(true)
+    let setor = "";
+
+    await db
+      .collection("usuarios")
+      .get()
+      .then(item =>
+        item.forEach(doc => {
+          if (userEmail === doc.data().email) {
+            setor = doc.data().setor;
+          }
+        })
+      )
+      .catch(err => console.log("Erro ao pegar o setor", err));
+
+    const dados = {
+      id,
+      setor,
+      userName,
+      userEmail,
+      nomeEvento,
+      inicio: inicialHour,
+      termino: finalHour,
+      data,
+      posReserva: parseInt(id)
+    };
+
+    if (!nomeEvento || !finalHour) {
+      console.log(finalHour)
       setMsgErro(true);
     } else {
+      setMsgErro(false);
       db.collection("salas")
         .doc(`${sala}`)
         .collection("Eventos")
-        .add({
-          userName: userName,
-          nomeEvento: nomeEvento,
-          inicio: horaInicial,
-          termino: horaFinal,
-          id,
-          setor
-        })
+        .doc(id)
+        .set(dados)
         .then(() => {
-          setMsgSucesso(true);
-          setLoader(false);
           setTimeout(() => {
+            setLoading(false)
+            dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: false });
             dispatch({ type: "SET_MODAL", valueModal: false });
             dispatch({ type: "SET_LOADER", set_loader: true });
           }, 1000);
@@ -70,99 +81,56 @@ const ConfirmModalContent = () => {
         });
     }
   };
-
-  const horas = [
-    "08:00",
-    "09:00",
-    "10:00",
-    "11:00",
-    "12:00",
-    "13:00",
-    "14:00",
-    "15:00",
-    "16:00",
-    "17:00",
-    "18:00"
-  ];
-
-  const actionFinalHour = () => {
-    dispatch({ type: "SET_HORA_FINAL", horaFinal });
-  };
-
   return (
     <>
-    { loader && ( 
-      <Dimmer active>
-        <Loader size="medium">Cadastrando Reserva...</Loader>
-      </Dimmer>) }
       <Container>
         <ContainerMain>
           <TextAling>
-            <h1>RESERVA</h1>
+            <h1>Reservar horários</h1>
           </TextAling>
           <HourContent>
-            <p>
-              <strong>De:</strong> {horaInicial}
-            </p>
+            <strong>De: {inicialHour}</strong>
+
             <div>
-              <p>
-                <strong>Até:</strong>{" "}
-              </p>
-
-              <select
-                onChange={e => setHoraFinal(e.target.value)}
-                defaultValue={"DEFAULT"}
-              >
-                <CustomOption key="10" disabled hidden value="DEFAULT">
-                  hora
-                </CustomOption>
-                {horas
-                  .filter(item => item > horaInicial)
-                  .map(hora => (
-                    <option key={hora}>{hora}</option>
-                  ))}
-              </select>
-
-              
+              <strong>Até: </strong>
+              <Select 
+                db = {db}
+                room = {sala}
+                date = {data}
+                inicialHour = {inicialHour}
+                id = {id}
+              />
             </div>
           </HourContent>
-          <HeaderModalContent>
-            <DescContent>
-              <form method="post">
-                <Input
-                  focus
-                  onChange={e => {
-                    setNomeEvento(e.target.value);
-                  }}
-                  size="huge"
-                  placeholder="Nome do Evento"
-                  type="text"
-                  name="inputEvent"
-                  id="inputEvent"
-                />
-              </form>
-            </DescContent>
-          </HeaderModalContent>
-            <ContainerButton>
-              <Button
-                onClick={() => {
-                  cadastrarEvento();
-                  actionFinalHour();
-                  setLoader(true);
-                }}
-                size="large"
-                primary
-                id="button"
-                >
-                Confirmar Reserva
-              </Button>
-            </ContainerButton>
-            {msgSucesso && <Message header="Reserva Concluída!" color="green" icon="check" />}
-            {msgErro && <Message header="Verifique os Campos Acima!" color="red" icon="dont" />}
+          <Input
+            onChange={e => { setNomeEvento(e.target.value); }}
+            size="huge"
+            placeholder="Nome do Evento"
+            type="text"
+            icon="calendar check outline"
+            iconPosition="left"
+            loading={loading}
+            disabled={loading}
+          />
+          <CustomButton
+            onClick={() => cadastrarEvento()}
+            size="big"
+            id="button"
+            fluid
+          >
+            Confirmar Reserva
+          </CustomButton>
+          {msgErro && (
+            <Message
+              header="Insira o nome do evento!"
+              color="red"
+              icon="dont"
+            />
+          )}
         </ContainerMain>
       </Container>
     </>
   );
-}
+};
 
-export default ConfirmModalContent;
+export default React.memo(ConfirmModalContent);

@@ -1,22 +1,26 @@
-*{
-  overflow: hidden !important;
+
+@media only screen and (max-width: 768px) {
+  .ui.dimmer {
+    height: 100vh !important;
+  }
 }
 
-#allPage{
-    margin-top: -5px;
-}
+
 #table{
-    margin: 0 !important;   
-    border: none;
-    border-radius: 0;
-    height: 91.5vh;
-    margin-top: 0.7% !important;
+  margin: 0 !important;   
+  border: none;
+  border-radius: 0;
+  height: 90%;
 }
 .ui.table td{
-    text-align: center;
-    border-left: 1px solid rgb(206, 202, 202);
-    padding: 0 !important;
+  text-align: center;
+  border-left: 1px solid rgb(206, 202, 202);
+  padding: 0 !important;
 }
+.ui.table tr td{
+    border-top: 1px solid rgb(206, 202, 202) ;
+}
+
 .ui.table th{
     text-align: center !important;
     background-color: #0d4b81 !important;
@@ -34,6 +38,13 @@
     color: white !important;
     padding: 13px 0 10px;
 }
+
+.ui.segment {
+  padding: 0 !important;
+}
+
+
+
 #none{
     border: none !important;
 }

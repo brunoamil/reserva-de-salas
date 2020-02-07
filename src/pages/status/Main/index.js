@@ -1,11 +1,12 @@
 import React from "react";
-import { Bloco, Title } from './styles';
+import { Bloco, FooterStatus, Title } from './styles';
 import { Link } from "react-router-dom";
 import { Button } from 'semantic-ui-react'
 
 
 const Main = props => {
   return (
+    <>
     <Bloco>
       <Title>Faça sua reserva!</Title>
       <Link to = '/NovaAgenda'>
@@ -13,7 +14,9 @@ const Main = props => {
           Reservar
       </Button>
       </Link>
+    <FooterStatus>Versão 1.1.1</FooterStatus>
     </Bloco>
+    </>
   );
 };
 

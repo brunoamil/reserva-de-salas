@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  
+`;
+
+export const ContainerCell = styled.div`
   width : 100%;
   height : 43px;
   display: flex;
@@ -15,3 +19,4 @@ export const CantReserve = styled.span`
   background-color: brown;
   align-self: flex-end
 `;
+
