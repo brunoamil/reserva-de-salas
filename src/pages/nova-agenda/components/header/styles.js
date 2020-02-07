@@ -25,12 +25,13 @@ export const ContainerVoltar = styled.div`
   text-align : center;
   margin : 0px 15px 0px 20px;
 
-  @media only screen and (min-width: 900px) {
+  @media only screen and (min-width: 1080px) {
     margin: 0 45px 0px 45px;
   }
 `;
 
 export const ButtonVoltar = styled(Icon)`
+  margin-left: 5px;
 `;
 
 export const ContainerLogo = styled.div`
@@ -64,20 +65,46 @@ export const ContainerRightHeader = styled.div`
 `;
 
 export const UserAling = styled.div`
-    display:flex;
-    flex-flow: row nowrap;
+  display:flex;
+  flex-flow: row nowrap;
+  align-items: center;
 
-    span {
-      margin: 0px !important;
-      padding: 0 !important;
-      color: #fff;
-      font-family: "PT Sans",sans-serif;
+  background-color: #0d4b81;
+  color: #fff;
 
-    }
+  padding: 7px;
+  border-radius: 50px 0px 0px 50px;
+  margin-right: -5px;
+
+  h1 {
+    margin: 0px;
+    font-size: 1.1em;
+    font-family: "PT Sans",sans-serif;
+
+  }
+
+  h2{
+    /* color: #2e3131; */
+    margin: 0px;
+    font-size: 0.9em;
+    font-family: "PT Sans",sans-serif;
+  }
 
 `
+export const ContainerLogout = styled.div`
+  margin-left: 20px;
 
-// export const Container = styled.div`
+`;
+
+export const ContainerUser = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start
+`;
+
+
+
+/* // export const Container = styled.div`
 //     display: flex;
 //     flex-direction: column;
 //     width:100%;
@@ -151,7 +178,7 @@ export const UserAling = styled.div`
 //     font-size: 1.1rem;
 //     font-weight: 500;
 //     text-align:center;
-// `
+// ` */
 
 // `
 // // export const ContainerAlert = styled.div`

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import firebase from "../../../../services/firebase";
-import { Label, Icon } from 'semantic-ui-react'
+import { Icon } from 'semantic-ui-react'
 
 import Img from "../../../../assets/img/ceuma.png";
 
@@ -20,6 +20,9 @@ import {
   ContainerLeftHeader,
   ContainerRightHeader,
   ContainerLogo,
+  ContainerUser,
+  ContainerLogout,
+  CustomLabel,
   ViewSelect,
   ButtonVoltar
 } from "./styles";
@@ -125,21 +128,21 @@ export const HeaderAgenda = () => {
         </ContainerLeftHeader>
 
         <ContainerRightHeader>
-          <UserAling>
             {useSelector(state => state.user.usuarioLogin) === true ? (
               <>
-                <Label as='a' size='big' color='blue'>
-                  <Icon name="user circle"/>
-                  <span>{nome}</span>
-                  <Label.Detail>
-                    <Icon name="sign-out" onClick={actionLogout} basic color='white'/>
-                  </Label.Detail>
-                </Label>
+                <UserAling>
+                  <Icon name='user circle' size='big'></Icon>
+                  <ContainerUser>
+                    <h1>{nome}</h1>
+                    <h2>NTI</h2>
+                  </ContainerUser>
+                  <ContainerLogout>
+                    <Icon name='sign-out' size='large' onClick={actionLogout}></Icon>
+                  </ContainerLogout>
+                </UserAling>
               </>
             ) : ''
             }
-          </UserAling>
-
         </ContainerRightHeader>
       </Header>
       {/* <Header>
