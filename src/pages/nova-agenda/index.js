@@ -1,32 +1,26 @@
 import React, {useEffect} from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { Responsive, Segment } from 'semantic-ui-react'
 import firebase from '../../services/firebase';
+import { Responsive, Segment } from 'semantic-ui-react'
 
 import { HeaderAgenda } from "./components/header";
 import Modal from "../../components/modal";
 import Agenda from "./components/agenda";
 import Loading from '../../components/loader';
 
-import { Creators as UserActions } from  '../../store/ducks/users';
-
-import "./index.css";
-
-//Responsive
 import { HeaderAgendaMobile } from './components/header/responsive/';
 import AgendaMobile  from './components/agenda/responsive/';
 
+import { Creators as LoaderActions } from '../../store/ducks/load';
+
+import "./index.css";
+
 function NovaAgenda() {
   const dispatch = useDispatch();
-  
-  const loader = useSelector(state => state.load.loader);
-  const sala = useSelector(state => state.salas.currentRoom);
 
-  const users = useSelector(state => state.users)
+  const loader = useSelector(state => state.load_1.loadReserve);
+  const sala = useSelector(state => state.salas.currentRoom);
   
-  useEffect(() => dispatch(UserActions.name('Alex')));
-  console.log(UserActions)
-  console.log(users);  
   useEffect(() => {
     const checkName = name => {
       if (name) {
@@ -50,11 +44,11 @@ function NovaAgenda() {
       .get()
       .then(sucesso => {
         sucesso.forEach(doc => {
-          const {id, userName, termino, setor, data} = doc.data();
+          const {id, userName, termino, inicio, setor, data} = doc.data();
           
           const firstName = checkName(userName);
           if (id && userName) {
-            events.push({id, firstName, termino, setor, data});
+            events.push({id, firstName, termino, inicio, setor, data});
             // console.log(events);
             dispatch({ type: "SET_EVENTOS_SALA", event: events });
           }else {
@@ -73,7 +67,7 @@ function NovaAgenda() {
 
   if (loader) {
     setTimeout(() => {
-      dispatch({ type: "SET_LOADER", set_loader: false })
+      dispatch(LoaderActions.reserve(false))
     }, 1000);
   }
  
@@ -90,10 +84,9 @@ function NovaAgenda() {
       {/* MOBILE */}
       <Responsive as={Segment} maxWidth={768}>
         <HeaderAgendaMobile id="header" />
-        { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <AgendaMobile /> }
+        { loader ? <Loading size = 'large'> Carregando Reservas...</Loading> : <AgendaMobile />}
       </Responsive>
-
-    </>
+  </>
   );
 }
 export default NovaAgenda;

@@ -1,31 +1,39 @@
 import { createActions, createReducer } from "reduxsauce";
 
+// criando actions types && creators
 export const { Types, Creators } = createActions({
-    registro: ['registro'],
-    pegar: ['pegar'],
-    evento: ['evento'],
+  rooms: ["arr_rooms"],
+  currentRoom: ["room"],
+  roomEvents: ["events"]
 });
 
+console.log(Types)
+console.log(Creators)
+
+//criando os reducer handlers
 export const INICIAL_STATE = {
-    roomsReservation: [],
-    currentRoom: "Auditório",
-    roomEvents: [],
+  rooms: [],
+  currentRoom: "Auditório",
+  roomEvents: []
 };
 
-const registro = (state = INICIAL_STATE, {arrSalas}) => (
-    {...state, roomsReservation: arrSalas}
-)
+const set_rooms = (state = INICIAL_STATE, { arr_rooms }) => (
+  {...state, rooms: arr_rooms}
+);
 
-const pegar = (state = INICIAL_STATE, {room}) => (
-    {...state, currentRoom: room}
-)
+const set_current_room = (state = INICIAL_STATE, { room }) => ({
+  ...state,
+  currentRoom: room
+});
 
-const evento = (state = INICIAL_STATE, {event}) => (
-    {...state, roomEvents: event}
-)
+const set_room_events = (state = INICIAL_STATE, { events }) => ({
+  ...state,
+  roomEvents: events
+});
 
+//criando os reducers
 export default createReducer(INICIAL_STATE, {
-    [types.REGISTRO]:registro,
-    [types.PEGAR]:pegar,
-    [types.EVENTO]:evento,
-})
+  [Types.ROOMS]: set_rooms,
+  [Types.CURRENT_ROOM]: set_current_room,
+  [Types.ROOM_EVENTS]: set_room_events,
+});

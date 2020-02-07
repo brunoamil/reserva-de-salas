@@ -12,7 +12,7 @@ function AgendaMobile() {
   
   const dispatch = useDispatch();
 
-  const CheckLogin = useSelector(state => state.user.usuarioLogin);
+  // const CheckLogin = useSelector(state => state.user.usuarioLogin);
   // const event = useSelector(state => state.salas.roomEvents);
 
   if (dia === 0) {

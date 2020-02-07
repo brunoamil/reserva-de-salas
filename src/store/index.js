@@ -1,18 +1,7 @@
-import { createStore, combineReducers } from 'redux';
-// import setSalas from './ducks/salas';
-// import setModal from './ducks/modal'
-// import setDadosReserva from './ducks/dadosReserva'
-// import setLoad from './ducks/load'
-import usuarioReducer from './ducks/users'
-import {setModal, setDadosReserva, setSalas, setLoad } from './reducer';
+import { createStore } from 'redux';
 
-const store = createStore(combineReducers({
-  user: usuarioReducer,
-  modal: setModal,
-  salas: setSalas,
-  dados: setDadosReserva,
-  load: setLoad
-}));
+import reducers from './ducks';
+
+const store = createStore(reducers);
 
 export default store;
-

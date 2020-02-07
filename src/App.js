@@ -6,7 +6,7 @@ import Status from './pages/status';
 import NovaAgenda from './pages/nova-agenda';
 
 //Redux
-import store from '../src/store/index';
+import store from './store';
 import { Provider } from 'react-redux';
 
 function App() {

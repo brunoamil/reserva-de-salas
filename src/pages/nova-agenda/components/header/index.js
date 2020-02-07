@@ -5,6 +5,8 @@ import firebase from "../../../../services/firebase";
 
 import Img from "../../../../assets/img/ceuma.png";
 
+import { Creators as LoadActions } from '../../../../store/ducks/load';
+
 import {
   Logo,
   Header,
@@ -102,12 +104,12 @@ export const HeaderAgenda = () => {
   };
 
   const roomsActions = room => {
-    dispatch({ type: "GET_SALA", sala: room });
+    dispatch({ type: "GET_SALA", room });
     dispatch({ type: "SET_EVENTOS_SALA", event: [] });
   }
 
   const actionLoader = () => (
-    dispatch({ type: "SET_LOADER", set_loader: true })
+    dispatch(LoadActions.reserve(true))
   );
 
   return (

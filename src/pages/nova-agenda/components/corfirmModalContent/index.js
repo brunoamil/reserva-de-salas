@@ -1,37 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Input, Message} from "semantic-ui-react";
 import firebase from "../../../../services/firebase";
 
+import Select from './components/select';
 import Loading from '../../../../components/loader';
 
 import {
   Container,
-  HeaderModalContent,
   ContainerMain,
-  DescContent,
   HourContent,
-  ContainerButton,
   TextAling,
-  CustomButton
+  CustomButton,
 } from "./styles";
 
 const ConfirmModalContent = () => {
 
   const dispatch = useDispatch();
 
-  const horaInicial = useSelector(state => state.dados.hora);
+  const inicialHour = useSelector(state => state.dados.hora);
+  const finalHour = useSelector(state => state.dados.horaFinal);
   const userName = useSelector(state => state.user.usuarioNome);
   const userEmail = useSelector(state => state.user.usuarioEmail);
   const id = useSelector(state => state.dados.id);
   const data = useSelector(state => state.dados.data);
   const sala = useSelector(state => state.salas.currentRoom);
 
-  const [horaFinal, setHoraFinal] = useState("");
   const [nomeEvento, setNomeEvento] = useState("");
-  const [msgSucesso, setMsgSucesso] = useState(false);
   const [msgErro, setMsgErro] = useState(false);
-  const [loader, setLoader] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const db = firebase.firestore();
 
@@ -54,25 +51,25 @@ const ConfirmModalContent = () => {
       userName,
       userEmail,
       nomeEvento,
-      inicio: horaInicial,
-      termino: horaFinal,
+      inicio: inicialHour,
+      termino: finalHour,
       data,
+      posReserva: parseInt(id)
     };
 
-    if (!nomeEvento) {
+    if (!nomeEvento || !finalHour) {
+      console.log(finalHour)
       setMsgErro(true);
       
     } else {
       setMsgErro(false);
-      setLoader(true);
       db.collection("salas")
         .doc(`${sala}`)
         .collection("Eventos")
         .doc(id)
         .set(dados)
         .then(() => {
-          setMsgSucesso(true);
-          setLoader(false);
+          setLoading(false);
           setTimeout(() => {
             dispatch({ type: "SET_MODAL", valueModal: false });
             dispatch({ type: "SET_LOADER", set_loader: true });
@@ -83,59 +80,53 @@ const ConfirmModalContent = () => {
         });
     }
   };
-
-  useEffect(() => {
-    const actionFinalHour = () => {
-      setHoraFinal(`${parseInt(horaInicial) + 1}:00`);
-      dispatch({ type: "SET_HORA_FINAL", horaFinal });
-    };
-
-    actionFinalHour();
-  })
-
   return (
     <>
-      {loader && <Loading size="big">Carregando Reservas...</Loading>}
+      {loading && <Loading size="big">Carregando Reservas...</Loading>}
       <Container>
         <ContainerMain>
           <TextAling>
-            <h1>RESERVA</h1>
+            <h1>Reservar horários</h1>
           </TextAling>
           <HourContent>
-            <strong>De: {horaInicial}</strong>
-            <strong>Até: {horaFinal}</strong>
+            <strong>De: {inicialHour}</strong>
+
+            <div>
+              <strong>Até: </strong>
+              <Select 
+                db = {db}
+                room = {sala}
+                date = {data}
+                inicialHour = {inicialHour}
+                id = {id}
+              />
+            </div>
           </HourContent>
-          <HeaderModalContent>
-            <DescContent>
-              <form method="post">
-                <Input
-                  focus
-                  onChange={e => {
-                    setNomeEvento(e.target.value);
-                  }}
-                  size="huge"
-                  placeholder="Nome do Evento"
-                  type="text"
-                  name="inputEvent"
-                  id="inputEvent"
-                />
-              </form>
-            </DescContent>
-          </HeaderModalContent>
-          <ContainerButton>
-            <CustomButton
-              onClick={() => {
-                cadastrarEvento();
-              }}
-              size="large"
-              primary
-              id="button"
-            >
-              Confirmar Reserva
-              </CustomButton>
-          </ContainerButton>
-          {msgSucesso && <Message header="Reserva Concluída!" color="green" icon="check" />}
-          {msgErro && <Message header="Insira o nome do evento!" color="red" icon="dont" />}
+          <Input
+            onChange={e => { setNomeEvento(e.target.value); }}
+            size="huge"
+            placeholder="Nome do Evento"
+            type="text"
+            icon="calendar check outline"
+            iconPosition="left"
+            loading={loading}
+            disabled={loading}
+          />
+          <CustomButton
+            onClick={() => cadastrarEvento()}
+            size="big"
+            id="button"
+            fluid
+          >
+            Confirmar Reserva
+          </CustomButton>
+          {msgErro && (
+            <Message
+              header="Insira o nome do evento!"
+              color="red"
+              icon="dont"
+            />
+          )}
         </ContainerMain>
       </Container>
     </>

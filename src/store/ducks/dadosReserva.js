@@ -1,47 +1,47 @@
 import { createActions, createReducer } from "reduxsauce";
 
 export const { Types, Creators } = createActions({
-  evento: ["evento"],
+  inicial_hour: ["inicial_hour"],
+  final_hour: ["final_hour"],
+  event: ["event"],
   id: ["id"],
-  hora: ["hora"],
-  horaFinal: ["horaFinal"],
-  data: ["data"]
+  date: ["date"],
 });
 
 export const INICIAL_STATE = {
-  hora: "",
-  horaFinal: "",
-  evento: "",
-  id: "",
-  data: ""
+  reserve_inicial_hour: "",
+  reserve_final_hour: "",
+  reserve_event: "",
+  reserve_id: "",
+  reserve_date: ""
 };
 
-const set_event = (state = INICIAL_STATE, { evento }) => ({
+const event = (state = INICIAL_STATE, { event }) => ({
   ...state,
-  evento: evento
+  reserve_event: event
 });
 
-const set_id = (state = INICIAL_STATE, { id }) => ({ ...state, id: id });
+const id = (state = INICIAL_STATE, { id }) => ({ ...state, reserve_id: id });
 
-const set_hora = (state = INICIAL_STATE, { hora }) => ({
+const inicial_hour = (state = INICIAL_STATE, { inicial_hour }) => ({
   ...state,
-  hora: hora
+  reserve_inicial_hour: inicial_hour
 });
 
-const set_hora_final = (state = INICIAL_STATE, { horaFinal }) => ({
+const final_hour = (state = INICIAL_STATE, { final_hour }) => ({
   ...state,
-  horaFinal: horaFinal
+  reserve_final_hour: final_hour
 });
 
-const set_data = (state = INICIAL_STATE, { data }) => ({
+const date = (state = INICIAL_STATE, { date }) => ({
   ...state,
-  data: data
+  reserve_date: date
 });
 
 export default createReducer(INICIAL_STATE, {
-  [type.EVENTO]: set_event,
-  [type.ID]: set_id,
-  [type.HORA]: set_hora,
-  [type.HORAFINAL]: set_hora_final,
-  [type.DATA]: set_data
+  [Types.EVENT]: event,
+  [Types.ID]: id,
+  [Types.INICIAL_HOUR]: inicial_hour,
+  [Types.FINAL_HOUR]: final_hour,
+  [Types.DATE]: date
 });

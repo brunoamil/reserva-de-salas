@@ -102,7 +102,7 @@ function RegisterForm({ ModalTop }) {
     <>
       <CustomModalContent>
         <ContainerModalContent>
-          <TitleContainerMC>Cadastro</TitleContainerMC>
+          <TitleContainerMC>Cadastro de usuários</TitleContainerMC>
         </ContainerModalContent>
         <Container>
           <Form size="large" key="tiny" method="POST">
@@ -131,6 +131,13 @@ function RegisterForm({ ModalTop }) {
                 }}
                 placeholder="Setor"
               />
+              <datalist id="setores">
+                <option value="NTI" />
+                <option value="RH" />
+                <option value="MANTENEDORA" />
+                <option value="CSC" />
+                <option value="INFRA" />
+              </datalist>
             </CustomForm>
 
             <CustomForm>
@@ -158,12 +165,13 @@ function RegisterForm({ ModalTop }) {
           {carregando ? (
             <Loading size="medium">Carregando...</Loading>
           ) : (
-            <CustomButton
-              size="large"
-              content="Cadastrar-se"
-              onClick={Cadastrar}
-            />
-          )}
+              <CustomButton
+                fluid
+                size="big"
+                content="Cadastrar-se"
+                onClick={Cadastrar}
+              />
+            )}
           {erro ? (
             <Message header={msgErro} color="red" icon="dont" />
           ) : (
