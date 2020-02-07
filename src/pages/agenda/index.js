@@ -3,13 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import firebase from '../../services/firebase';
 import { Responsive, Segment } from 'semantic-ui-react'
 
-import { HeaderAgenda } from "./components/header";
+import Header from "../../components/agenda/header";
 import Modal from "../../components/modal";
-import Agenda from "./components/agenda";
+import Main from "../../components/agenda/main";
 import Loading from '../../components/loader';
 
-import { HeaderAgendaMobile } from './components/header/responsive/';
-import AgendaMobile  from './components/agenda/responsive/';
+import HeaderMobile from '../../components/agenda/header/responsive';
+import MainMobile  from '../../components/agenda/main/responsive';
 
 import "./index.css";
 
@@ -75,14 +75,14 @@ function NovaAgenda() {
 
       {/* PC E TABLET */}
       <Responsive as={Segment} minWidth={768}>
-        <HeaderAgenda id="header" />
-        { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <Agenda /> }
+        <Header id="header" />
+        { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <Main /> }
       </Responsive>
 
       {/* MOBILE */}
       <Responsive as={Segment} maxWidth={768}>
-        <HeaderAgendaMobile id="header" />
-        { loader ? <Loading size = 'large'> Carregando Reservas...</Loading> : <AgendaMobile />}
+        <HeaderMobile id="header" />
+        { loader ? <Loading size = 'large'> Carregando Reservas...</Loading> : <MainMobile />}
       </Responsive>
 
   </>

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import firebase from "../../../../../services/firebase";
+import firebase from "../../../../services/firebase";
 
-import Img from "../../../../../assets/img/ceuma.png";
+import Img from "../../../../assets/img/ceuma.png";
 
 import {
   Logo,

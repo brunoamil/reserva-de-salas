@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Input, Message } from "semantic-ui-react";
-import firebase from "../../../../services/firebase";
+import firebase from "../../../services/firebase";
 
 import Select from './components/select';
 

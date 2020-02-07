@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Icon, Button, Modal, Segment } from "semantic-ui-react";
-import firebase from "../../../../services/firebase";
+import firebase from "../../../services/firebase";
 import { useSelector, useDispatch } from "react-redux";
 
-import Loading from "../../../../components/loader";
+import Loading from "../../loader";
 
 import {
   Header,

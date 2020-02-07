@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Form, Input, Button, Message } from 'semantic-ui-react';
 import { CustomModalContent, ContainerModalContent, TitleContainerMC, Container, CustomForm } from './styles';
 
-import firebase from "../../../../services/firebase"
+import firebase from "../../../services/firebase"
 
 const CreateRoomModal = () => {
     const dispatch = useDispatch();

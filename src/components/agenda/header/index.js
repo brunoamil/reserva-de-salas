@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
-import firebase from "../../../../services/firebase";
+import firebase from "../../../services/firebase";
 
-import Img from "../../../../assets/img/ceuma.png";
+import Img from "../../../assets/img/ceuma.png";
 
 import { Button, Modal } from 'semantic-ui-react';
 import {
@@ -28,7 +28,7 @@ import {
 } from "./styles";
 
 
-export const HeaderAgenda = () => {
+const HeaderAgenda = () => {
 
   const dispatch = useDispatch();
 

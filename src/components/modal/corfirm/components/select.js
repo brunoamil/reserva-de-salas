@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import firebase from "../../../../../services/firebase";
+import firebase from "../../../../services/firebase";
 
 
 import { CustomOption } from '../styles';

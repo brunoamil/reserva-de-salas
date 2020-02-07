@@ -3,7 +3,7 @@ import { Table } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 
-import "../../index.css";
+import "../../../pages/agenda/index.css";
 import { ContainerCell, Container } from "./styles";
 
 function Agenda() {
