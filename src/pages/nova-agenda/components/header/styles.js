@@ -94,10 +94,10 @@ export const UserAling = styled.div`
   flex-flow: row nowrap;
   align-items: center;
 
-  background-color: #0d4b81;
-  color: #fff;
+  background-color: #e9e9e9;
+  color: #000;
 
-  padding: 7px;
+  padding: 5px;
   border-radius: 50px 0px 0px 50px;
   margin-right: -5px;
 
@@ -109,7 +109,7 @@ export const UserAling = styled.div`
   }
 
   h2{
-    color: #e6e6e6;
+    color: #2c2c2c;
     margin: 0px;
     font-size: 0.9em;
     font-family: "PT Sans",sans-serif;
@@ -117,7 +117,8 @@ export const UserAling = styled.div`
 
 `
 export const ContainerLogout = styled.div`
-  margin-left: 20px;
+  margin-left: 50px;
+  margin-right: 5px;
 
 `;
 

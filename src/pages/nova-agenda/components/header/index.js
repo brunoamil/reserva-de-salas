@@ -136,7 +136,7 @@ export const HeaderAgenda = () => {
             {useSelector(state => state.user.usuarioLogin) === true ? (
               <>
                 <UserAling>
-                  <Icon name='user circle' size='big'></Icon>
+                  <Icon color='black' name='user circle' size='big'></Icon>
                   <ContainerUser>
                     <h1>{nome}</h1>
                     <h2>NTI</h2>
