@@ -62,7 +62,7 @@ export const ContainerCenterHeader = styled.div`
   align-items: center;
   justify-content: center;
 
-  margin-right: 100px;
+  margin-right: 80px;
 
   h1{
     color: #0d4b81c9;
@@ -117,7 +117,7 @@ export const UserAling = styled.div`
 `
 export const ContainerLogout = styled.div`
   margin-left: 50px;
-  margin-right: 5px;
+  margin-right: 10px;
 
 `;
 
