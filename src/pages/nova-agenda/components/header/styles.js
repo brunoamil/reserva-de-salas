@@ -63,13 +63,12 @@ export const ContainerCenterHeader = styled.div`
   justify-content: center;
 
   margin-right: 100px;
-  margin-top: -30px;
 
   h1{
     color: #0d4b81c9;
 
     font-family: "PT Sans",sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
 
     margin : 0 !important;
