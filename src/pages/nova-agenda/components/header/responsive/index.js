@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import firebase from "../../../../../services/firebase";
+import { Icon } from 'semantic-ui-react'
+
 
 import Img from "../../../../../assets/img/ceuma.png";
 
@@ -19,6 +21,8 @@ import {
   Legenda,
   View,
   ContainerHeader,
+  ContainerUser,
+  ContainerLogout,
   ContainerVoltar,
   ContainerLeftHeader,
   ViewSelect,
@@ -125,20 +129,20 @@ export const HeaderAgendaMobile = () => {
             <UserAling>
               {useSelector(state => state.user.usuarioLogin) === true ? (
                 <>
-                  <h1>Usuário: {nome}</h1>
-                  <ButtonVoltar name='sign-out' onClick={actionLogout}></ButtonVoltar>
+                <Icon color='black' name='user circle' size='big'></Icon>
+                  <ContainerUser>
+                    <h1>{nome}</h1>
+                    <h2>NTI</h2>
+                  </ContainerUser>
+                  <ContainerLogout>
+                    <Icon name='sign-out' size='large' onClick={actionLogout}></Icon>
+                  </ContainerLogout>
                 </>
               ) : ''
               }
             </UserAling>
           </View>
           <ViewSelect>
-            <CircleAling>
-              <Circle></Circle>
-              <Legenda>Indisponível</Legenda>
-              <Circle2></Circle2>
-              <Legenda>Disponível</Legenda>
-            </CircleAling>
             <SelectAling>
               <Select onChange={e => {
                 roomsActions(e.target.value);
