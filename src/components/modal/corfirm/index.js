@@ -13,7 +13,7 @@ import {
   CustomButton,
 } from "./styles";
 
-const ConfirmModalContent = () => {
+const Confirm = () => {
   const dispatch = useDispatch();
 
   const inicialHour = useSelector(state => state.dados.hora);
@@ -133,4 +133,4 @@ const ConfirmModalContent = () => {
   );
 };
 
-export default React.memo(ConfirmModalContent);
+export default React.memo(Confirm);

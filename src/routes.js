@@ -7,8 +7,8 @@ import Status from './pages/status';
 export default function Routes() {
   return (
     <Router>
-      <Route exact path='/' component={Status} />
-      <Route exact path = '/Agenda' component={Agenda}/>
+      {/* <Route exact path='/' component={Status} /> */}
+      <Route exact path = '/' component={Agenda}/>
     </Router>
   )
 }
