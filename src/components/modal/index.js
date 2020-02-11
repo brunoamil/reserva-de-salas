@@ -9,23 +9,26 @@ import {
   IconExit,
   CustomIcon,
 } from "./styles";
+
 import LoginForm from "./Login";
 import RegisterForm from "./Cadastro";
 import CofirmModalContent from './../../pages/nova-agenda/components/corfirmModalContent';
 import InfoModal from './../../pages/nova-agenda/components/InfoModalContent';
 
+import {Creators as ModalActions} from '../../store/ducks/modal';
+
 const ModalUser = () => {
   const dispatch = useDispatch();
 
-  const modalForm = useSelector(state=>state.modal_1)
+  const modalStates = useSelector(state => state.modal_1)
 
-  const loginForm = useSelector(state => state.modal.loginForm);
-  const registerForm = useSelector(state => state.modal.registerForm);
-  const confirmForm = useSelector(state => state.modal.confirmForm);
-  const infoModal = useSelector(state => state.modal.infoModal);
+  // const loginForm = useSelector(state => state.modal.loginForm);
+  // const registerForm = useSelector(state => state.modal.registerForm);
+  // const confirmForm = useSelector(state => state.modal.confirmForm);
+  // const infoModal = useSelector(state => state.modal.infoModal);
 
   const close = () => {
-    dispatch({ type: "SET_MODAL", valueModal: false })
+    dispatch(ModalActions.modal(false))
   }
 
   const ModalTop = () => {
@@ -40,22 +43,22 @@ const ModalUser = () => {
 
   return (
     <>
-      <Global id="topInput" size="tiny" open={useSelector(state => state.modal.modal)} closeOnEscape={false}
+      <Global id="topInput" size="tiny" open={modalStates.modal} closeOnEscape={false}
           closeOnDimmerClick={false}>
         <ContainerHeader>
           <IconExit onClick={close}><CustomIcon size="large" name='times' /></IconExit>
         </ContainerHeader>
         <CustomModalContent>
-          {modalForm.loginForm && <LoginForm ModalTop = {ModalTop} />}
-          {modalForm.registerForm && <RegisterForm ModalTop = {ModalTop} />}
-          {modalForm.confirmForm && <CofirmModalContent ModalTop = {ModalTop} />}
-          {modalForm.infoModal && <InfoModal />}
+          {modalStates.login && <LoginForm ModalTop = {ModalTop} />}
+          {modalStates.register && <RegisterForm ModalTop = {ModalTop} />}
+          {modalStates.confirm && <CofirmModalContent ModalTop = {ModalTop} />}
+          {modalStates.info && <InfoModal />}
         </CustomModalContent>
-        {modalForm.loginForm && (
+        {modalStates.login && (
           <FooterModal>
             <p>
               Ainda não possui conta?{" "}
-              <span onClick={() => dispatch({ type: "SET_MODAL_REGISTER", valueRegister: true })}>Clique Aqui!</span>
+              <span onClick={() => dispatch(ModalActions.register(true))}>Clique Aqui!</span>
             </p>
           </FooterModal>
         )}

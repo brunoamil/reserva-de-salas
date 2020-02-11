@@ -7,6 +7,7 @@ import "../../index.css";
 import { ContainerCell, Container } from "./styles";
 
 import { Creators as LoadActions } from "../../../../store/ducks/load";
+import { Creators as ModalActions } from "../../../../store/ducks/modal";
 
 function Agenda() {
   const dispatch = useDispatch();
@@ -82,6 +83,8 @@ function Agenda() {
     }
   };
 
+  console.log(useSelector(state => state.modal_1))
+
   const renderFinalReserve = (divCell, id, setor) => {
     const spanct = document.createElement("span");
     const titleReserveTermino = document.createElement("h2");
@@ -96,16 +99,17 @@ function Agenda() {
   };
 
   const modalActions = samTag => {
-    dispatch({ type: "SET_MODAL", valueModal: true });
+    dispatch(ModalActions.modal(true));
+    // dispatch(ModalActions.login(true));
 
     if (samTag.length !== 0) {
-      dispatch({ type: "SET_MODAL", valueModal: true });
-      dispatch({ type: "SET_MODAL_INFO", valueInfo: true });
+      // dispatch({ type: "SET_MODAL", valueModal: true });
+      // dispatch(ModalActions.info(true));
     } else {
       if (CheckLogin === false) {
-        dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true });
+        dispatch(ModalActions.login(true));
       } else {
-        dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
+        // dispatch(ModalActions.confirm(true));
       }
     }
   };

@@ -34,8 +34,6 @@ function LoginForm({ ModalTop }) {
     setLogin(false);
   }
 
-
-
   function Logar() {
     if (email === "" || senha === "") {
       setErro(true);
@@ -46,10 +44,13 @@ function LoginForm({ ModalTop }) {
         .auth()
         .signInWithEmailAndPassword(email, senha)
         .then(sucesso => {
-          // history.push("/NovaAgenda");
           setCarregando(false);
-
-          dispatch(usersAction.login(email));
+          
+          // user
+          dispatch(usersAction.email(email));
+          dispatch(usersAction.login(true));
+          
+          //modal
           dispatch(modalActions.login(false));
           dispatch(modalActions.confirm(true));
         })

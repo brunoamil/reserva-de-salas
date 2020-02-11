@@ -6,6 +6,7 @@ import firebase from "../../../../services/firebase";
 import Img from "../../../../assets/img/ceuma.png";
 
 import { Creators as LoadActions } from '../../../../store/ducks/load';
+import { Creators as UsersActions } from '../../../../store/ducks/users';
 
 import {
   Logo,
@@ -48,7 +49,7 @@ export const HeaderAgenda = () => {
   };
 
   //Verifica o email e pega o nome
-  const email = useSelector(state => state.user.usuarioEmail);
+  const email = useSelector(state => state.users.userEmail);
   firebase
     .firestore()
     .collection("usuarios")
@@ -57,12 +58,12 @@ export const HeaderAgenda = () => {
       snapshot.forEach(doc => {
         if (doc.data().email === email) {
           setNome(checkName(doc.data().nome));
-          dispatch({ type: 'USER_NAME', usuarioNome: nome });
+          dispatch(UsersActions.name(nome));
         }
 
         //pegando setor
         const { setor } = doc.data();
-        dispatch({ type: 'USER_SETOR', usuarioSetor: setor })
+        dispatch(UsersActions.sector(setor))
       });
     })
     .catch(err => {
@@ -96,9 +97,9 @@ export const HeaderAgenda = () => {
   const actionLogout = () => {
     actionLoader();
     setTimeout(() => {
-      dispatch({ type: "LOG_OUT" });
+      dispatch(UsersActions.log_out());
       dispatch({ type: "SET_EVENTOS_SALA", event: [] });
-      dispatch({ type: 'USER_NAME', usuarioNome: '' })
+      dispatch(UsersActions.name(''))
       setLoader(false);
     }, 1000);
   };
@@ -132,7 +133,7 @@ export const HeaderAgenda = () => {
               </ContainerLeftHeader>
             </ContainerHeader>
             <UserAling>
-              {useSelector(state => state.user.usuarioLogin) === true ? (
+              {useSelector(state => state.users.userLogin) === true ? (
                 <>
                   <h1>Usuário: {nome}</h1>
                   <ButtonVoltar name='sign-out' size='large' onClick={actionLogout}></ButtonVoltar>
