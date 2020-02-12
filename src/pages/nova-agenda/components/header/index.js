@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import firebase from "../../../../services/firebase";
-import { Icon } from 'semantic-ui-react'
+import { Icon, Responsive, Segment } from 'semantic-ui-react'
 
 import Img from "../../../../assets/img/ceuma.png";
 
@@ -133,33 +133,35 @@ export const HeaderAgenda = () => {
         </ContainerCenterHeader>
 
         <ContainerRightHeader>
-          <ViewSelect>
-              <SelectAling>
-                <Select onChange={e => {
-                  roomsActions(e.target.value);
-                  actionLoader();
-                }}>
-                  {salas.map(sala => (
-                    <option key={sala}>{sala}</option>
-                  ))}
-                </Select>
-              </SelectAling>
-            </ViewSelect>
-            {useSelector(state => state.user.usuarioLogin) === true ? (
-              <>
-                <UserAling>
-                  <Icon color='black' name='user circle' size='big'></Icon>
-                  <ContainerUser>
-                    <h1>{nome}</h1>
-                    <h2>NTI</h2>
-                  </ContainerUser>
-                  <ContainerLogout>
-                    <Icon name='sign-out' size='large' onClick={actionLogout}></Icon>
-                  </ContainerLogout>
-                </UserAling>
-              </>
-            ) : <span></span>
-            }
+          <Responsive as={Segment} {...Responsive.onlyComputer}>
+            <ViewSelect>
+                <SelectAling>
+                  <Select onChange={e => {
+                    roomsActions(e.target.value);
+                    actionLoader();
+                  }}>
+                    {salas.map(sala => (
+                      <option key={sala}>{sala}</option>
+                    ))}
+                  </Select>
+                </SelectAling>
+              </ViewSelect>
+          </Responsive>
+          {useSelector(state => state.user.usuarioLogin) === true ? (
+            <>
+              <UserAling>
+                <Icon color='black' name='user circle' size='big'></Icon>
+                <ContainerUser>
+                  <h1>{nome}</h1>
+                  <h2>NTI</h2>
+                </ContainerUser>
+                <ContainerLogout>
+                  <Icon name='sign-out' size='large' onClick={actionLogout}></Icon>
+                </ContainerLogout>
+              </UserAling>
+            </>
+          ) : <span></span>
+          }
         </ContainerRightHeader>
       </Header>
       {/* <Header>
