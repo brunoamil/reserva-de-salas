@@ -4,6 +4,10 @@ export const Title = Styled.h1`
   font-size: 10em;
   color: #ffffff;
   text-align: center;
+
+  @media(max-width: 763px) {
+    font-size : 5em;
+  }
 `;
 export const FooterStatus = Styled.p`
   color: #cccccc;

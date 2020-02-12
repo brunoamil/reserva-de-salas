@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import firebase from "../../../../../services/firebase";
 import { Icon } from 'semantic-ui-react'
@@ -15,18 +14,12 @@ import {
   Select,
   SelectAling,
   Container,
-  CircleAling,
-  Circle,
-  Circle2,
-  Legenda,
   View,
   ContainerHeader,
   ContainerUser,
   ContainerLogout,
-  ContainerVoltar,
   ContainerLeftHeader,
   ViewSelect,
-  ButtonVoltar
 } from "./styles";
 
 
@@ -126,9 +119,9 @@ export const HeaderAgendaMobile = () => {
                 <Title>Reserva de Salas</Title>
               </ContainerLeftHeader>
             </ContainerHeader>
-            <UserAling>
-              {useSelector(state => state.user.usuarioLogin) === true ? (
-                <>
+            {useSelector(state => state.user.usuarioLogin) === true ? (
+              <>
+              <UserAling>
                 <Icon color='black' name='user circle' size='big'></Icon>
                   <ContainerUser>
                     <h1>{nome}</h1>
@@ -137,10 +130,10 @@ export const HeaderAgendaMobile = () => {
                   <ContainerLogout>
                     <Icon name='sign-out' size='large' onClick={actionLogout}></Icon>
                   </ContainerLogout>
-                </>
-              ) : ''
-              }
-            </UserAling>
+              </UserAling>
+              </>
+            ) : ''
+            }
           </View>
           <ViewSelect>
             <SelectAling>

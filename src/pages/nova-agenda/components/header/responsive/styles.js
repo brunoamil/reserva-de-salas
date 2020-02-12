@@ -1,6 +1,4 @@
 import styled from 'styled-components'
-import {Icon} from 'semantic-ui-react'
-
 
 export const Container = styled.div`
     display: flex;
@@ -93,19 +91,6 @@ export const Button = styled.button`
     font-weight: 500;
     text-align:center;
 `
-export const ButtonVoltar = styled(Icon)`
-  font-size: 1.3em !important;
-
-  margin: 0px 5px;
-
-`
-// export const ContainerAlert = styled.div`
-//     display: flex;
-//     flex-direction:row;
-//     height:10px;
-
-
-// `
 
 export const Title = styled.h1`
     color: #0d4b81;
@@ -120,19 +105,6 @@ export const ViewSelect = styled.div`
     justify-content: flex-end;
     margin : -10px 0px 5px 0px;
 `
-
-export const ContainerUser = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start
-`;
-
-export const ContainerLogout = styled.div`
-  margin-left: 30px;
-  margin-right: 10px;
-
-`;
-
 
 export const SelectAling = styled.div`
     width: auto;
@@ -163,6 +135,18 @@ export const Select = styled.select`
       padding: 0 auto !important;
     }
 `
+
+export const ContainerUser = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start
+`;
+
+export const ContainerLogout = styled.div`
+  margin-left: 30px;
+  margin-right: 10px;
+
+`;
 
 export const Texto = styled.p`
     color: #0d4b81;

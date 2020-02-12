@@ -133,6 +133,18 @@ export const HeaderAgenda = () => {
         </ContainerCenterHeader>
 
         <ContainerRightHeader>
+          <ViewSelect>
+              <SelectAling>
+                <Select onChange={e => {
+                  roomsActions(e.target.value);
+                  actionLoader();
+                }}>
+                  {salas.map(sala => (
+                    <option key={sala}>{sala}</option>
+                  ))}
+                </Select>
+              </SelectAling>
+            </ViewSelect>
             {useSelector(state => state.user.usuarioLogin) === true ? (
               <>
                 <UserAling>
@@ -177,18 +189,6 @@ export const HeaderAgenda = () => {
               }
             </UserAling>
           </View>
-          <ViewSelect>
-            <SelectAling>
-              <Select onChange={e => {
-                roomsActions(e.target.value);
-                actionLoader();
-              }}>
-                {salas.map(sala => (
-                  <option key={sala}>{sala}</option>
-                ))}
-              </Select>
-            </SelectAling>
-          </ViewSelect>
         </Container>
       </Header> */}
     </>

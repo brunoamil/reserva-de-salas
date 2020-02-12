@@ -62,7 +62,11 @@ export const ContainerCenterHeader = styled.div`
   align-items: center;
   justify-content: center;
 
-  margin-right: 80px;
+  /* margin-left: 2em; */
+
+  position: absolute;
+  right: 50%; /* posiciona na metade da tela */
+  left: 54%;
 
   h1{
     color: #0d4b81c9;
@@ -87,6 +91,48 @@ export const ContainerRightHeader = styled.div`
   }
 
 `;
+
+export const ViewSelect = styled.div`
+    display:flex;
+    width:100%;
+    justify-content:flex-end;
+    /* margin : -32px 0px 12px 0px; */
+`
+
+export const SelectAling = styled.div`
+    width: auto;
+    display:flex;
+    flex-flow: row nowrap;
+    justify-content:flex-end;
+    align-items:flex-end;
+    
+    margin-right: 20px;
+
+`
+
+export const Select = styled.select`
+    display: flex;
+    align-items: center !important;
+    justify-content: center;
+    text-align: center !important;
+
+    padding: 0px 5px;
+    
+    border: 1px solid rgba(0, 0, 0, 0.541);
+    height: 30px;
+    margin-top: 5px;
+
+    background-color:white;
+    color:#0d4b81;
+
+    font-size : 1.15em;
+
+    option {
+      white-space : none !important;
+      width : 10px !important;
+      padding: 0 auto !important;
+    }
+`
 
 export const UserAling = styled.div`
   display:flex;
@@ -203,58 +249,6 @@ export const ContainerUser = styled.div`
 //     font-weight: 500;
 //     text-align:center;
 // ` */
-
-// `
-// // export const ContainerAlert = styled.div`
-// //     display: flex;
-// //     flex-direction:row;
-// //     height:10px;
-
-
-// // `
-
-
-// export const ViewSelect = styled.div`
-//     display:flex;
-//     width:100%;
-//     justify-content:flex-end;
-//     margin : -32px 0px 12px 0px;
-// `
-
-// export const SelectAling = styled.div`
-//     width: auto;
-//     display:flex;
-//     flex-flow: row nowrap;
-//     justify-content:flex-end;
-//     align-items:flex-end;
-    
-//     margin-right: 20px;
-
-// `
-
-// export const Select = styled.select`
-//     display: flex;
-//     align-items: center !important;
-//     justify-content: center;
-//     text-align: center !important;
-
-//     padding: 0px 5px;
-    
-//     border: 1px solid rgba(0, 0, 0, 0.541);
-//     height: 30px;
-//     margin-top: 5px;
-
-//     background-color:white;
-//     color:#0d4b81;
-
-//     font-size : 1.15em;
-
-//     option {
-//       white-space : none !important;
-//       width : 10px !important;
-//       padding: 0 auto !important;
-//     }
-// `
 
 // export const Texto = styled.p`
 //     color: #0d4b81;
