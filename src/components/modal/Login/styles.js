@@ -47,12 +47,7 @@ export const LabelReg = styled.h1`
 
 
 // Esqueci minha senha
-export const TitleForgot = styled.a`
-  display: flex;
-  text-align: end;
-  justify-content: flex-start;
-  align-items: flex-start;
-  
+export const TitleForgot = styled.a`  
   cursor: pointer;
   
   margin-top: -5px;
@@ -69,12 +64,7 @@ export const TitleForgot = styled.a`
 `;
 
 export const CustomButton = styled(Button)`
-  width: 100%;
-
   margin: 20px 0 -2px !important;
-  padding: 10px !important;
-
-  font-size: 1.2em !important;
 
   background-color: #0d4b81 !important;
   color: #fff !important;

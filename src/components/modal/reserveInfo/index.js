@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Icon, Message, Button } from "semantic-ui-react";
-import firebase from "../../../../services/firebase";
+import { Icon, Button, Modal, Segment } from "semantic-ui-react";
+import firebase from "../../../services/firebase";
 import { useSelector, useDispatch } from "react-redux";
 
-import Loading from "../../../../components/loader";
+import Loading from "../../loader";
 
 import {
   Header,
-  Container,
-  Section,
-  ContainerInfo,
-  ContainerExit
+  Container
 } from "./styles";
 
 const InfoModal = () => {
@@ -20,10 +17,11 @@ const InfoModal = () => {
   const id = useSelector(state => state.dados.id);
   const loader = useSelector(state => state.load.loadInfo);
   const email = useSelector(state => state.user.usuarioEmail);
+  const logado = useSelector(state => state.user.usuarioLogin)
 
   const [dadosReserva, setDadosReserva] = useState();
-  const [msgErro, setMsgErro] = useState(false);
   const [loaderDel, setLoaderDel] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const checkName = name => {
     if (name) {
@@ -100,11 +98,17 @@ const InfoModal = () => {
           }, 1500);
         })
         .catch(erro => console.log("Erro ao EXCLUIR Reserva!", erro));
-    } else {
-      setMsgErro(true);
     }
   };
 
+  const verificarLogin = () => {
+    if (logado === true) {
+      setOpen(true);
+    }
+    else {
+      dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true });
+    }
+  }
   return (
     <>
       {loader ? (
@@ -112,59 +116,74 @@ const InfoModal = () => {
           <Loading size="medium">Carregando Informações...</Loading>
         </Container>
       ) : (
-        <>
-          <Header>
-            <h2>Informações da Reserva</h2>
-          </Header>
-          <ContainerInfo>
-            <Section>
-              <p>
-                <Icon name="user" size="small" />
-                <strong>Nome: </strong>
-                {dadosReserva.firstName}
-              </p>
-              <p>
-                <Icon name="building" size="small" />
-                <strong>Setor: </strong>
-                {dadosReserva.setor}
-              </p>
-              <p>
-                <Icon name="time" size="small" />
-                <strong>Inicio: </strong>
-                {dadosReserva.inicio}
-              </p>
-              <p>
-                <Icon name="stopwatch" size="small" />
-                <strong>Termino: </strong>
-                {dadosReserva.termino}
-              </p>
-              <p>
-                <Icon name="file" size="small" />
-                <strong>Evento: </strong>
-                {dadosReserva.nomeEvento}
-              </p>
-              
-            </Section>
-
+          <>
             {loaderDel && (
               <Loading size="medium">Deletando Informações...</Loading>
             )}
-              <ContainerExit>
-                <Button negative icon onClick={ActionDelete} size="big">
-                  Excluir reserva
-                </Button>
-              </ContainerExit>
+            <Header>
+              <h2>Informações da Reserva</h2>
+            </Header>
+            <Segment.Group size="big" >
+              <Segment >
+                <Icon name="user" size="large" />
+                <strong>Nome: </strong>
+                {dadosReserva.firstName}
+              </Segment>
+              <Segment>
+                <Icon name="building" size="large" />
+                <strong>Setor: </strong>
+                {dadosReserva.setor}
+              </Segment>
 
-            {msgErro && (
-              <Message
-                header="Essa Reserva não é sua!"
-                color="red"
-                icon="dont"
-              />
-            )}
-          </ContainerInfo>
-        </>
-      )}
+
+              <Segment.Group horizontal >
+                <Segment>
+                  <Icon name="time" size="large" />
+                  <strong>Inicio: </strong>
+                  {dadosReserva.inicio}
+                </Segment>
+                <Segment>
+                  <Icon name="stopwatch" size="large" />
+                  <strong>Termino: </strong>
+                  {dadosReserva.termino}
+                </Segment>
+              </Segment.Group>
+
+
+              <Segment>
+                <Icon name="calendar check" size="large" />
+                <strong>Evento: </strong>
+                {dadosReserva.nomeEvento}
+              </Segment>
+
+              {logado ?
+                <Segment.Group>
+                  <Button fluid negative icon onClick={verificarLogin} size="large">
+                    Excluir reserva
+                      </Button>
+                </Segment.Group>
+                : ""
+              }
+
+            </Segment.Group>
+            <Modal size="tiny" open={open}>
+              <>
+                <Modal.Header>Tem certeza que deseja excluir esta reserva?</Modal.Header>
+                <Modal.Actions>
+                  <Button
+                    content='Cancelar'
+                    onClick={() => { setOpen(false) }}
+                  />
+                  <Button negative
+                    icon='x'
+                    labelPosition='right'
+                    content="Sim"
+                    onClick={ActionDelete} />
+                </Modal.Actions>
+              </>
+            </Modal>
+          </>
+        )}
     </>
   );
 };

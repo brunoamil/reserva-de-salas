@@ -10,14 +10,13 @@ export const ContainerInfo = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-
 `;
 
 export const Header = styled.div`
+  margin-top:2%;
   width : 100%;
   justify-content: center;
   text-align: center;
-
   h2 {
     font-family: "PT Sans",sans-serif;
     color: #000;
@@ -30,11 +29,9 @@ export const Section = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   text-align: start;
-
   margin-top : 10px;
   padding : 5px;
   width : 100%;
-
   p{
     margin : 10px 10px 5px 10px;
     font-family: "Open Sans",sans-serif;
@@ -43,7 +40,6 @@ export const Section = styled.div`
     margin-left: 10px;
     text-align: left;
   }
-
 `;
 
 export const ContainerExit = styled.div`

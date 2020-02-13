@@ -17,7 +17,7 @@ import {
   TitleContainerMC
 } from "./styles";
 
-function LoginForm({ModalTop}) {
+function LoginForm({ ModalTop }) {
   const [login, setLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -30,8 +30,8 @@ function LoginForm({ModalTop}) {
   function TrocarTela() {
     setLogin(false);
   }
-  
-  
+
+
 
   function Logar() {
     if (email === "" || senha === "") {
@@ -46,8 +46,9 @@ function LoginForm({ModalTop}) {
           // history.push("/NovaAgenda");
           setCarregando(false);
 
-          dispatch( {type: 'LOG_IN', usuarioEmail: email} );
-          dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true});
+          dispatch({ type: 'LOG_IN', usuarioEmail: email });
+          dispatch({ type: "SET_MODAL_LOGIN", valueLogin: false });
+          dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
         })
         .catch(erro => {
           setCarregando(false);
@@ -68,21 +69,21 @@ function LoginForm({ModalTop}) {
             <Form size="large" key="tiny" method="POST">
               <CustomForm>
                 <Input
-                  onClick = {ModalTop}
+                  onClick={ModalTop}
                   onChange={e => setEmail(e.target.value)}
                   type="email"
                   placeholder="Email"
-                  icon='mail' 
+                  icon='mail'
                   iconPosition='left'
                 />
               </CustomForm>
               <CustomForm>
                 <Input
-                  onClick = {ModalTop}
+                  onClick={ModalTop}
                   onChange={e => setSenha(e.target.value)}
                   type="password"
                   placeholder="Senha"
-                  icon='lock' 
+                  icon='lock'
                   iconPosition='left'
                 />
               </CustomForm>
@@ -95,22 +96,23 @@ function LoginForm({ModalTop}) {
                 carregando...
               </Loading>
             ) : (
-              <CustomButton
-                onClick={Logar}
-                size="large"
-                content="Login"
-              />
-            )}
+                <CustomButton
+                  fluid
+                  onClick={Logar}
+                  size="big"
+                  content="Login"
+                />
+              )}
             {erro ? (
               <Message header={msgErro} color="red" icon="dont" />
             ) : (
-              <div />
-            )}
+                <div />
+              )}
           </Container>
         </CustomModalContent>
       ) : (
-        <RedefinirSenha ModalTop = {ModalTop} />
-      )}
+          <RedefinirSenha ModalTop={ModalTop} />
+        )}
     </>
   );
 }

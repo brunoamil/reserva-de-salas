@@ -3,15 +3,15 @@ import { Table } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from 'moment'
 
-import "../../index.css";
-import { ContainerCell, Container} from "./styles";
+import "../../../pages/agenda/index.css";
+import { ContainerCell, Container } from "./styles";
 
 function Agenda() {
   var now = moment()
 
   var dia = now.day();
   
-  let number = 0;
+  let idDivCell = 0;
 
   const dispatch = useDispatch();
 
@@ -31,32 +31,49 @@ function Agenda() {
     dia = dia - 1;
   }
 
-  useEffect(() => {
+  useEffect(() => renderCellActions(event));
+
+  const renderCellActions = event => {
     if (event) {
-      event.map(item => {
-        let divCell = document.getElementById(`${item.id}`);
-        // let divCellTermino = document.getElementsByClassName(`${item.termino} ${item.data}`);
-  
-        // console.log(divCellTermino)
+      event.map(info => {
+        let divCell = document.getElementById(`${info.id}`);
+
+        const reserveHour = horas.filter(
+          hour => hour > info.inicio && hour <= info.termino
+        );
+
         if (divCell.childNodes.length === 0) {
-          const spanc = document.createElement('span');
-          const titleReserve = document.createElement('h2');
+          renderFinalReserve(divCell, info.id, info.setor);
+          if (reserveHour.length > 1) {
+            let idCellTermino = parseInt(info.id);
+            reserveHour.pop();
 
-          titleReserve.innerText = `${item.setor}`;
+            reserveHour.map(hour => {
+              let divCellTermino = document.getElementById(
+                String((idCellTermino += 5))
+              );
 
-          spanc.setAttribute('id', `${item.id}`);
-          spanc.setAttribute('class', 'spanCell');
-          titleReserve.setAttribute('id', `${item.id}`);
-
-          spanc.appendChild(titleReserve);
-          divCell.appendChild(spanc);
+              return renderFinalReserve(divCellTermino, info.id, info.setor);
+            });
+          }
         }
-        return ''
-      })
-    } else {
+        return "";
+      });
     }
-  });
+  };
 
+  const renderFinalReserve = (divCell, id, setor) => {
+    const spanct = document.createElement("span");
+    const titleReserveTermino = document.createElement("h2");
+
+    spanct.setAttribute("class", "spanCell");
+    spanct.setAttribute("id", `${id}`);
+    titleReserveTermino.setAttribute("id", `${id}`);
+    titleReserveTermino.innerText = `${setor}`;
+
+    spanct.appendChild(titleReserveTermino);
+    divCell.appendChild(spanct);
+  };
   
   const modalActions = samTag => {
     dispatch({ type: "SET_MODAL", valueModal: true });
@@ -123,9 +140,11 @@ function Agenda() {
                   <strong > {hora} </strong>
                 </Table.HeaderCell>
                 {dias.map((dia, index) => (
-                  <Table.Cell key={index} className={`${hora} ${dia}`}>
+                  <Table.Cell
+                    key={index}
+                  >
                     <ContainerCell
-                      id={`${(number += 1)}`}
+                      id={`${idDivCell += 1}`}
                       onClick={e => {
                         modalActions(e.target.childNodes);
                         reduxTableActions(e.target.getAttribute("id"), hora, dia);

@@ -21,9 +21,9 @@
     height: 90vh;
 }
 .ui.table td{
-    text-align: center;
-    border-left: 1px solid rgb(206, 202, 202);
-    padding: 0 !important;
+  text-align: center;
+  border-left: 1px solid rgb(206, 202, 202);
+  padding: 0 !important;
 }
 .ui.table tr td{
     border-top: 1px solid rgb(206, 202, 202) ;
@@ -46,6 +46,13 @@
     color: white !important;
     padding: 13px 0 10px;
 }
+
+.ui.segment {
+  padding: 0 !important;
+}
+
+
+
 #none{
     border: none !important;
 }

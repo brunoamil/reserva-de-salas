@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import firebase from "../../../../services/firebase";
 import { Icon, Responsive, Segment } from 'semantic-ui-react'
 
-import Img from "../../../../assets/img/ceuma.png";
+import Img from "../../../assets/img/ceuma.png";
 
 import {
   Logo,
@@ -29,7 +29,7 @@ import {
 } from "./styles";
 
 
-export const HeaderAgenda = () => {
+const HeaderAgenda = () => {
 
   const dispatch = useDispatch();
 
@@ -104,8 +104,13 @@ export const HeaderAgenda = () => {
     }, 1000);
   };
 
+  const actionBack = () => {
+    // dispatch({ type: "GET_SALA", sala: 'Auditório' });
+    actionLogout();
+  }
+
   const roomsActions = room => {
-    dispatch({ type: "GET_SALA", sala: room });
+    dispatch({ type: "GET_SALA", room });
     dispatch({ type: "SET_EVENTOS_SALA", event: [] });
   }
 

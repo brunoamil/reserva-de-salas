@@ -99,12 +99,6 @@ export const ZeroHourContent = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export const ContainerButton = styled.div`
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 
 export const CustomOption = styled.option`
   font-size: 16px;
@@ -112,5 +106,7 @@ export const CustomOption = styled.option`
 `;
 
 export const CustomButton = styled(Button)`
+  margin-top: 5% !important;
+  color: white !important;
   background: #0d4b81 !important;
 `;
