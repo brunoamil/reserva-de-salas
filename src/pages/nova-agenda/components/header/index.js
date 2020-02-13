@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import firebase from "../../../../services/firebase";
 
@@ -7,6 +7,7 @@ import Img from "../../../../assets/img/ceuma.png";
 
 import { Creators as LoadActions } from '../../../../store/ducks/load';
 import { Creators as UsersActions } from '../../../../store/ducks/users';
+import { Creators as salasActions} from '../../../../store/ducks/salas'
 
 import {
   Logo,
@@ -22,7 +23,7 @@ import {
   Legenda,
   View,
   ContainerHeader,
-  ContainerVoltar,
+  // ContainerVoltar,
   ContainerLeftHeader,
   ViewSelect,
   ButtonVoltar
@@ -92,21 +93,21 @@ export const HeaderAgenda = () => {
   }, []);
 
   // mandando as salas para o redux
-  dispatch({ type: 'REG_SALAS', arrSalas: salas });
+  dispatch(salasActions.rooms(['']));
 
   const actionLogout = () => {
     actionLoader();
     setTimeout(() => {
-      dispatch(UsersActions.log_out());
-      dispatch({ type: "SET_EVENTOS_SALA", event: [] });
+      dispatch(UsersActions.logout(true));
+      dispatch(salasActions.roomEvents([]));
       dispatch(UsersActions.name(''))
       setLoader(false);
     }, 1000);
   };
 
   const roomsActions = room => {
-    dispatch({ type: "GET_SALA", room });
-    dispatch({ type: "SET_EVENTOS_SALA", event: [] });
+    dispatch(salasActions.currentRoom([]));
+    dispatch(salasActions.roomEvents([]));
   }
 
   const actionLoader = () => (
@@ -120,11 +121,11 @@ export const HeaderAgenda = () => {
           <View>
             <ContainerHeader>
 
-              <ContainerVoltar>
+              {/* <ContainerVoltar>
                 <Link to='/'>
                   <ButtonVoltar name='arrow left' size='large' color='black' ></ButtonVoltar>
                 </Link>
-              </ContainerVoltar>
+              </ContainerVoltar> */}
 
 
               <ContainerLeftHeader>

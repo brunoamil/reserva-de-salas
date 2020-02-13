@@ -22,18 +22,18 @@ export const ContainerHeader = styled.div`
   /* margin: 0px 5px;  */
 `;
 
-export const ContainerVoltar = styled.div`
-  display:flex;
-  flex-flow : row nowrap;
-  align-items : center;
-  text-align : center;
-  margin : 0px 15px 0px 20px;
+// export const ContainerVoltar = styled.div`
+//   display:flex;
+//   flex-flow : row nowrap;
+//   align-items : center;
+//   text-align : center;
+//   margin : 0px 15px 0px 20px;
 
-  @media(min-width: 723px) {
-    margin: 0px 15px 0px 20px;
-  }
+//   @media(min-width: 723px) {
+//     margin: 0px 15px 0px 20px;
+//   }
 
-`;
+// `;
 
 export const ContainerLeftHeader = styled.div`
   display:flex;
