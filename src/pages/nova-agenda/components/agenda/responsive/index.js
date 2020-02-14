@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import moment from 'moment'
 
 import "../../../../agenda/index.css";
@@ -12,7 +12,7 @@ function AgendaMobile() {
   
   const dispatch = useDispatch();
 
-  const CheckLogin = useSelector(state => state.user.usuarioLogin);
+  // const CheckLogin = useSelector(state => state.user.usuarioLogin);
   // const event = useSelector(state => state.salas.roomEvents);
 
   if (dia === 0) {

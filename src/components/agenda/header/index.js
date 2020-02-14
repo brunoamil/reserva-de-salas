@@ -13,9 +13,6 @@ import {
   UserAling,
   Select,
   SelectAling,
-  Container,
-  View,
-  ContainerHeader,
   ContainerVoltar,
   ContainerLeftHeader,
   ContainerCenterHeader,
@@ -23,7 +20,6 @@ import {
   ContainerLogo,
   ContainerUser,
   ContainerLogout,
-  CustomLabel,
   ViewSelect,
   ButtonVoltar
 } from "./styles";
@@ -104,10 +100,10 @@ const HeaderAgenda = () => {
     }, 1000);
   };
 
-  const actionBack = () => {
-    // dispatch({ type: "GET_SALA", sala: 'Auditório' });
-    actionLogout();
-  }
+  // const actionBack = () => {
+  //   // dispatch({ type: "GET_SALA", sala: 'Auditório' });
+  //   actionLogout();
+  // }
 
   const roomsActions = room => {
     dispatch({ type: "GET_SALA", room });
