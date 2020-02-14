@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { Responsive, Segment } from 'semantic-ui-react'
+import { Responsive } from 'semantic-ui-react'
 import firebase from '../../services/firebase';
 
 import HeaderAgenda from "../../components/agenda/header";
@@ -75,13 +75,13 @@ function NovaAgenda() {
       <Modal />
 
       {/* PC E TABLET */}
-      <Responsive as={Segment} minWidth={768}>
+      <Responsive minWidth={768}>
         <HeaderAgenda id="header" />
         { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <Main /> }
       </Responsive>
 
       {/* MOBILE */}
-      <Responsive as={Segment} maxWidth={768}>
+      <Responsive maxWidth={768}>
         <HeaderAgendaMobile id="header" />
         { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <AgendaMobile /> }
       </Responsive>
