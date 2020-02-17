@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Input, Message } from "semantic-ui-react";
 import firebase from "../../../services/firebase";
 
-import Select from './components/select';
+import Select from './Select';
 
 import {
   Container,

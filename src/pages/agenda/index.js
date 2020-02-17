@@ -3,16 +3,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Responsive } from 'semantic-ui-react'
 import firebase from '../../services/firebase';
 
-import HeaderAgenda from "../../components/agenda/header";
+import Header from "./header";
+import Main from "./main";
 import Modal from "../../components/modal";
-import Main from "../../components/agenda/main";
 import Loading from '../../components/loader';
 
 import "./index.css";
 
 //Responsive
-import { HeaderAgendaMobile } from '../nova-agenda/components/header/responsive/';
-import AgendaMobile  from '../nova-agenda/components/agenda/responsive/';
+import { HeaderAgendaMobile } from './responsive/header';
+import AgendaMobile  from './responsive/main';
 
 function NovaAgenda() {
   const dispatch = useDispatch();
@@ -76,7 +76,7 @@ function NovaAgenda() {
 
       {/* PC E TABLET */}
       <Responsive minWidth={768}>
-        <HeaderAgenda id="header" />
+        <Header id="header" />
         { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <Main /> }
       </Responsive>
 

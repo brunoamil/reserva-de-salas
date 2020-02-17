@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import moment from 'moment'
 
-import "../../../../agenda/index.css";
+import "../../index.css";
 import { Container, ContainerDay, ContainerSelect, ContainerContent, ContainerHour, ContainerCell } from "./styles";
 
 function AgendaMobile() {
