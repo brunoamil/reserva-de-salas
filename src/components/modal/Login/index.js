@@ -7,8 +7,8 @@ import "firebase/auth";
 import RedefinirSenha from "../Recuperar-Senha";
 import Loading from '../../loader';
 
-import { Creators as usersAction } from '../../../store/ducks/users' 
-import { Creators as modalActions } from '../../../store/ducks/modal' 
+import { Creators as usersAction } from '../../../store/ducks/users';
+import { Creators as modalActions } from '../../../store/ducks/modal';
 
 import {
   Container,
@@ -48,10 +48,10 @@ function LoginForm({ ModalTop }) {
           
           // user
           dispatch(usersAction.email(email));
-          dispatch(usersAction.login(true));
+          dispatch(usersAction.log_in(true));
           
           //modal
-          dispatch(modalActions.login(false));
+          dispatch(modalActions.login_modal(false));
           dispatch(modalActions.confirm(true));
         })
         .catch(erro => {

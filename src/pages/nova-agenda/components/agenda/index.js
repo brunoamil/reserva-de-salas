@@ -8,12 +8,13 @@ import { ContainerCell, Container } from "./styles";
 
 import { Creators as LoadActions } from "../../../../store/ducks/load";
 import { Creators as ModalActions } from "../../../../store/ducks/modal";
+import { Creators as DateReserveActions } from "../../../../store/ducks/dadosReserva";
 
 function Agenda() {
   const dispatch = useDispatch();
 
-  const CheckLogin = useSelector(state => state.user.usuarioLogin);
-  const event = useSelector(state => state.salas.roomEvents);
+  const CheckLogin = useSelector(state => state.users.userLogin);
+  const event = useSelector(state => state.salas_1.roomEvents);
 
   var now = moment();
   var dia = now.day();
@@ -82,9 +83,7 @@ function Agenda() {
       });
     }
   };
-
-  console.log(useSelector(state => state.modal_1))
-
+  
   const renderFinalReserve = (divCell, id, setor) => {
     const spanct = document.createElement("span");
     const titleReserveTermino = document.createElement("h2");
@@ -100,24 +99,21 @@ function Agenda() {
 
   const modalActions = samTag => {
     dispatch(ModalActions.modal(true));
-    // dispatch(ModalActions.login(true));
-
     if (samTag.length !== 0) {
-      // dispatch({ type: "SET_MODAL", valueModal: true });
-      // dispatch(ModalActions.info(true));
+      dispatch(ModalActions.infoReserve(true));
     } else {
       if (CheckLogin === false) {
-        dispatch(ModalActions.login(true));
+        dispatch(ModalActions.login_modal(true));
       } else {
-        // dispatch(ModalActions.confirm(true));
+        dispatch(ModalActions.confirm(true));
       }
     }
   };
 
-  const reduxTableActions = (idTable, hour, data) => {
-    dispatch({ type: "SET_ID", id: idTable });
-    dispatch({ type: "SET_HORA", hora: hour });
-    dispatch({ type: "SET_DATA", data });
+  const reduxTableActions = (idTable, hour, date) => {
+    dispatch(DateReserveActions.id(idTable));
+    dispatch(DateReserveActions.inicial_hour(hour));
+    dispatch(DateReserveActions.date(date));
     dispatch(LoadActions.info(true));
   };
 

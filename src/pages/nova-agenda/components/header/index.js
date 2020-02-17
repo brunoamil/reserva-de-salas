@@ -7,6 +7,8 @@ import Img from "../../../../assets/img/ceuma.png";
 
 import { Creators as LoadActions } from '../../../../store/ducks/load';
 import { Creators as UsersActions } from '../../../../store/ducks/users';
+import { Creators as RoomsActions } from '../../../../store/ducks/salas';
+// import { Creators as ModalActions } from '../../../../store/ducks/modal';
 
 import {
   Logo,
@@ -92,21 +94,21 @@ export const HeaderAgenda = () => {
   }, []);
 
   // mandando as salas para o redux
-  dispatch({ type: 'REG_SALAS', arrSalas: salas });
+  dispatch(RoomsActions.rooms(salas));
 
   const actionLogout = () => {
     actionLoader();
     setTimeout(() => {
       dispatch(UsersActions.log_out());
-      dispatch({ type: "SET_EVENTOS_SALA", event: [] });
+      dispatch(RoomsActions.roomEvents([]));
       dispatch(UsersActions.name(''))
       setLoader(false);
     }, 1000);
   };
 
   const roomsActions = room => {
-    dispatch({ type: "GET_SALA", room });
-    dispatch({ type: "SET_EVENTOS_SALA", event: [] });
+    dispatch(RoomsActions.currentRoom(room));
+    dispatch(RoomsActions.roomEvents([]));
   }
 
   const actionLoader = () => (

@@ -6,18 +6,12 @@ import modal from './modal';
 import salas from './salas';
 import dadosReserva from './dadosReserva';
 
-import {setModal, setDadosReserva, setSalas, setLoad, usuarioReducer } from '../reducer';
-
 export default combineReducers({
-  users,
-  load_1: load,
-  modal_1: modal,
-  salas_1: salas,
-  dadosReserva,
+  users, //user
+  load_1: load, //load
+  modal_1: modal, //modal
+  salas_1: salas, //salas
+  dadosReserva, // ReserveData
 
-  user: usuarioReducer,
-  modal: setModal,
-  salas: setSalas,
-  dados: setDadosReserva,
-  load: setLoad
+  // Só nos useSelector's
 });

@@ -12,6 +12,7 @@ import { HeaderAgendaMobile } from './components/header/responsive/';
 import AgendaMobile  from './components/agenda/responsive/';
 
 import { Creators as LoaderActions } from '../../store/ducks/load';
+import { Creators as RoomsActions } from '../../store/ducks/salas';
 
 import "./index.css";
 
@@ -19,7 +20,7 @@ function NovaAgenda() {
   const dispatch = useDispatch();
 
   const loader = useSelector(state => state.load_1.loadReserve);
-  const sala = useSelector(state => state.salas.currentRoom);
+  const sala = useSelector(state => state.salas_1.currentRoom);
   
   useEffect(() => {
     const checkName = name => {
@@ -39,7 +40,7 @@ function NovaAgenda() {
       await firebase
       .firestore()
       .collection("salas")
-      .doc(`${sala}` || 'Auditório')
+      .doc(`${sala}`)
       .collection("Eventos")
       .get()
       .then(sucesso => {
@@ -49,10 +50,9 @@ function NovaAgenda() {
           const firstName = checkName(userName);
           if (id && userName) {
             events.push({id, firstName, termino, inicio, setor, data});
-            // console.log(events);
-            dispatch({ type: "SET_EVENTOS_SALA", event: events });
+            dispatch(RoomsActions.roomEvents(events));
           }else {
-            dispatch({ type: "SET_EVENTOS_SALA", event: [] });
+            dispatch(RoomsActions.roomEvents([]));
           };
           
         });

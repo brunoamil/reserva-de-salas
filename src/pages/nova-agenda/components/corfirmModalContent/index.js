@@ -6,7 +6,8 @@ import firebase from "../../../../services/firebase";
 import Select from './components/select';
 import Loading from '../../../../components/loader';
 
-import { Creators as loadAction} from '../../../../store/ducks/load'
+import { Creators as loadActions} from '../../../../store/ducks/load';
+import { Creators as ModalActions} from '../../../../store/ducks/modal';
 
 import {
   Container,
@@ -22,9 +23,10 @@ const ConfirmModalContent = () => {
 
   const reserveData = useSelector(state => state.dadosReserva);
   
-  const userName = useSelector(state => state.user.usuarioNome);
-  const userEmail = useSelector(state => state.user.usuarioEmail);
-  const sala = useSelector(state => state.salas.currentRoom);
+  const userName = useSelector(state => state.users.userName);
+  const userEmail = useSelector(state => state.users.userEmail);
+
+  const sala = useSelector(state => state.salas_1.currentRoom);
 
   const [nomeEvento, setNomeEvento] = useState("");
   const [msgErro, setMsgErro] = useState(false);
@@ -58,7 +60,7 @@ const ConfirmModalContent = () => {
     };
 
     if (!nomeEvento || !reserveData.reserve_final_hour) {
-      console.log(reserveData.reserve_final_hour)
+      console.log(reserveData.reserve_final_hour);
       setMsgErro(true);
       
     } else {
@@ -71,8 +73,8 @@ const ConfirmModalContent = () => {
         .then(() => {
           setLoading(false);
           setTimeout(() => {
-            dispatch({ type: "SET_MODAL", valueModal: false });
-            dispatch(loadAction.reserve(true));
+            dispatch(ModalActions.modal(false));
+            dispatch(loadActions.reserve(true));
           }, 1000);
         })
         .catch(erro => {

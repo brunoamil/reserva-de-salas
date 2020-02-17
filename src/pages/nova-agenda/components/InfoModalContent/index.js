@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import Loading from "../../../../components/loader";
 
 import { Creators as LoadActions } from '../../../../store/ducks/load';
+import { Creators as ModalActions } from '../../../../store/ducks/modal';
+import { Creators as RoomsActions } from '../../../../store/ducks/salas';
 
 import {
   Header,
@@ -15,11 +17,11 @@ import {
 const InfoModal = () => {
   const dispatch = useDispatch();
 
-  const sala = useSelector(state => state.salas.currentRoom);
-  const id = useSelector(state => state.dados.id);
+  const sala = useSelector(state => state.salas_1.currentRoom);
+  const id = useSelector(state => state.dadosReserva.reserve_id);
   const loader = useSelector(state => state.load_1.loadInfo);
-  const email = useSelector(state => state.user.usuarioEmail);
-  const logado = useSelector(state => state.user.usuarioLogin)
+
+  const user = useSelector(state => state.users);
 
   const [dadosReserva, setDadosReserva] = useState();
   const [loaderDel, setLoaderDel] = useState(false);
@@ -82,7 +84,7 @@ const InfoModal = () => {
 
   //Delete reserva
   const ActionDelete = () => {
-    if (email !== "") {
+    if (user.userEmail !== "") {
       setLoaderDel(true);
       setOpen(false);
       firebase
@@ -95,8 +97,8 @@ const InfoModal = () => {
         .then(() => {
           setTimeout(() => {
             setLoaderDel(false);
-            dispatch({ type: "SET_MODAL", valueModal: false });
-            dispatch({ type: "SET_EVENTOS_SALA", event: [] });
+            dispatch(ModalActions.modal(false));
+            dispatch(RoomsActions.roomEvents([]));
             dispatch(LoadActions.reserve(true));
           }, 1500);
         })
@@ -104,14 +106,6 @@ const InfoModal = () => {
     }
   };
 
-  const verificarLogin = () => {
-    if (logado === true) {
-      setOpen(true);
-    }
-    else {
-      dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true });
-    }
-  }
   return (
     <>
       {loader ? (
@@ -159,9 +153,9 @@ const InfoModal = () => {
                 {dadosReserva.nomeEvento}
               </Segment>
 
-              {logado ?
+              {user.userLogin ?
                 <Segment.Group>
-                  <Button fluid negative icon onClick={verificarLogin} size="large">
+                  <Button fluid negative icon size="large" onClick={() => setOpen(true)}>
                     Excluir reserva
                       </Button>
                 </Segment.Group>

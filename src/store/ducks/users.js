@@ -4,8 +4,8 @@ export const { Types, Creators } = createActions({
   name: ['name'],
   sector: ['sector'],
   email: ['email'],
-  login: [],
-  logout: [],
+  log_in: [],
+  log_out: [],
 });
 
 export const INICIAL_STATE = {
@@ -23,9 +23,9 @@ const sector = (state = INICIAL_STATE, { sector }) => (
   {...state, userSector: sector }
 )
 
-const email = (state = INICIAL_STATE, { email }) => ({
-  ...state, userEmail: email
-})
+const email = (state = INICIAL_STATE, { email }) => (
+  {...state, userEmail: email}
+)
 
 const log_in = (state = INICIAL_STATE) => (
   {...state, userLogin: true}
@@ -39,6 +39,6 @@ export default createReducer(INICIAL_STATE, {
   [Types.NAME]: name,
   [Types.SECTOR]: sector,
   [Types.EMAIL]: email,
-  [Types.LOGIN]: log_in,
-  [Types.LOGOUT]: log_out,
+  [Types.LOG_IN]: log_in,
+  [Types.LOG_OUT]: log_out,
 });

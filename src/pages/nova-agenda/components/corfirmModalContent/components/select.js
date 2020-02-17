@@ -2,8 +2,9 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import firebase from "../../../../../services/firebase";
 
-
 import { CustomOption } from '../styles';
+
+import { Creators as ReserveDataActions } from '../../../../../store/ducks/dadosReserva';
 
 const Select = ({ room, date, inicialHour, id }) => {
   const dispatch = useDispatch();
@@ -11,9 +12,8 @@ const Select = ({ room, date, inicialHour, id }) => {
   const [selectHour, setSelectHour] = useState([]);
 
   const actionFinalHour = finalHour => {
-    dispatch({ type: "SET_HORA_FINAL", horaFinal: finalHour });
+    dispatch(ReserveDataActions.final_hour(finalHour));
   };
-
   
   const funcSelect = useCallback((limitHour, inicialHour) => {
     const horas = [
