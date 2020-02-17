@@ -74,6 +74,7 @@ export const HourContent = styled.div`
       font-size: 1.5em;
     }
   }
+<<<<<<< HEAD
   div {
     display: flex;
     flex-direction: row;
@@ -87,6 +88,17 @@ export const HourContent = styled.div`
         @media(min-width: 850px) {
           font-size: 1.5em;
         }
+=======
+  select{
+    border: none;
+    outline : none;
+    background-color: transparent;
+    margin-bottom: 10px;
+    :optional{
+      font-size: 1em;
+      @media(min-width: 850px) {
+        font-size: 1.5em;
+>>>>>>> origin/marcus-nova-agenda
       }
     }
   }

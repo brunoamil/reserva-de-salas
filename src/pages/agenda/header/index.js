@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 // import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import firebase from "../../../services/firebase";
+import { Icon, Responsive, Segment } from 'semantic-ui-react'
 
 import Img from "../../../assets/img/ceuma.png";
 
@@ -17,16 +18,13 @@ import {
   UserAling,
   Select,
   SelectAling,
-  Container,
-  CircleAling,
-  Circle,
-  Circle2,
-  Legenda,
-  View,
-  ContainerHeader,
   ContainerLeftHeader,
+  ContainerCenterHeader,
+  ContainerRightHeader,
+  ContainerLogo,
+  ContainerUser,
+  ContainerLogout,
   ViewSelect,
-  ButtonVoltar
 } from "./styles";
 
 
@@ -105,6 +103,11 @@ const HeaderAgenda = () => {
     }, 1000);
   };
 
+  // const actionBack = () => {
+  //   // dispatch({ type: "GET_SALA", sala: 'Auditório' });
+  //   actionLogout();
+  // }
+
   const roomsActions = room => {
     dispatch(RoomsActions.currentRoom(room));
     dispatch(RoomsActions.roomEvents([]));
@@ -117,15 +120,58 @@ const HeaderAgenda = () => {
   return (
     <>
       <Header>
+        <ContainerLeftHeader>
+          <ContainerLogo>
+            <Logo src={Img}></Logo>
+            <Title>Reserva de Salas</Title>
+          </ContainerLogo>
+        </ContainerLeftHeader>
+
+        <ContainerCenterHeader>
+          <h1>Auditorio</h1>
+        </ContainerCenterHeader>
+
+        <ContainerRightHeader>
+          <Responsive as={Segment} {...Responsive.onlyComputer}>
+            <ViewSelect>
+                <SelectAling>
+                  <Select onChange={e => {
+                    roomsActions(e.target.value);
+                    actionLoader();
+                  }}>
+                    {salas.map(sala => (
+                      <option key={sala}>{sala}</option>
+                    ))}
+                  </Select>
+                </SelectAling>
+              </ViewSelect>
+          </Responsive>
+          {useSelector(state => state.user.usuarioLogin) === true ? (
+            <>
+              <UserAling>
+                <Icon color='black' name='user circle' size='big'></Icon>
+                <ContainerUser>
+                  <h1>{nome}</h1>
+                  <h2>NTI</h2>
+                </ContainerUser>
+                <ContainerLogout>
+                  <Icon name='sign-out' size='large' onClick={actionLogout}></Icon>
+                </ContainerLogout>
+              </UserAling>
+            </>
+          ) : <span></span>
+          }
+        </ContainerRightHeader>
+      </Header>
+      {/* <Header>
         <Container>
           <View>
             <ContainerHeader>
 
               {/* <ContainerVoltar>
                 <Link to='/'>
-                  <ButtonVoltar name='arrow left' size='large' color='black' ></ButtonVoltar>
                 </Link>
-              </ContainerVoltar> */}
+              </ContainerVoltar>
 
 
               <ContainerLeftHeader>
@@ -137,32 +183,13 @@ const HeaderAgenda = () => {
               {useSelector(state => state.user.userLogin) === true ? (
                 <>
                   <h1>Usuário: {nome}</h1>
-                  <ButtonVoltar name='sign-out' size='large' onClick={actionLogout}></ButtonVoltar>
                 </>
               ) : ''
               }
             </UserAling>
           </View>
-          <ViewSelect>
-            <CircleAling>
-              <Circle></Circle>
-              <Legenda>Indisponível</Legenda>
-              <Circle2></Circle2>
-              <Legenda>Disponível</Legenda>
-            </CircleAling>
-            <SelectAling>
-              <Select onChange={e => {
-                roomsActions(e.target.value);
-                actionLoader();
-              }}>
-                {salas.map(sala => (
-                  <option key={sala}>{sala}</option>
-                ))}
-              </Select>
-            </SelectAling>
-          </ViewSelect>
         </Container>
-      </Header>
+      </Header> */}
     </>
   );
 };

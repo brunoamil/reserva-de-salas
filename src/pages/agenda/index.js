@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import { useSelector, useDispatch } from 'react-redux';
+import { Responsive } from 'semantic-ui-react'
 import firebase from '../../services/firebase';
 
 import Header from "./header";
@@ -11,6 +12,10 @@ import { Creators as LoaderActions } from '../../store/ducks/load';
 import { Creators as RoomsActions } from '../../store/ducks/salas';
 
 import "./index.css";
+
+//Responsive
+import { HeaderAgendaMobile } from './responsive/header';
+import AgendaMobile  from './responsive/main';
 
 function NovaAgenda() {
   const dispatch = useDispatch();
@@ -70,9 +75,20 @@ function NovaAgenda() {
   return (
     <>
       <Modal />
-      <Header id="header" />
-      { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <Main /> }
-  </>
+
+      {/* PC E TABLET */}
+      <Responsive minWidth={768}>
+        <Header id="header" />
+        { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <Main /> }
+      </Responsive>
+
+      {/* MOBILE */}
+      <Responsive maxWidth={768}>
+        <HeaderAgendaMobile id="header" />
+        { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <AgendaMobile /> }
+      </Responsive>
+
+    </>
   );
 }
 export default NovaAgenda;

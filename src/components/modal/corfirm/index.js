@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { Input, Message } from "semantic-ui-react";
 import firebase from "../../../services/firebase";
 
-import Select from './components/select';
 import Loading from '../../../components/loader';
 
 import { Creators as loadActions} from '../../../store/ducks/load';
 import { Creators as ModalActions} from '../../../store/ducks/modal';
+import Select from './Select';
 
 import {
   Container,

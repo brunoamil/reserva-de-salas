@@ -1,15 +1,24 @@
-@media only screen and (max-width: 768px) {
-  .ui.dimmer {
-    height: 100vh !important;
+
+@media screen and (min-width: 768px) {
+  /* * {
+    overflow: hidden !important;
+  } */
+
+  .ui.table tr{
+    box-shadow: none !important;
   }
+
+
 }
 
-
+/* #allPage{
+    margin-top: -10px;
+} */
 #table{
-  margin: 0 !important;   
-  border: none;
-  border-radius: 0;
-  height: 90%;
+    margin: 0 !important;   
+    border: none;
+    border-radius: 0;
+    height: 90vh;
 }
 .ui.table td{
   text-align: center;
