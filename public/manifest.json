@@ -1,9 +1,0 @@
-{
-  "name": "Reserva de salas",
-  "short_name": "Reserva de salas",
-  "start_url": "/",
-  "display": "fullscreen",
-  "orientation": "landscape",
-  "background_color": "#96f2d7",
-  "theme_color": "#96f2d7"
-}
