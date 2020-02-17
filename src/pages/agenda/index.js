@@ -2,9 +2,9 @@ import React, {useEffect} from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import firebase from '../../services/firebase';
 
-import Header from "../../components/agenda/header";
+import Header from "./header";
+import Main from "./main";
 import Modal from "../../components/modal";
-import Main from "../../components/agenda/main";
 import Loading from '../../components/loader';
 
 import "./index.css";
