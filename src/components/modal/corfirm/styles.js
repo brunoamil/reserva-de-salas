@@ -26,7 +26,6 @@ export const ContainerMain = styled.div`
   margin: 20px 30px 15px 30px;
   border-radius: 7px;
   font-family: Arial, Helvetica, sans-serif;
-
 `;
 
 export const TextAling = styled.div`
@@ -35,14 +34,11 @@ export const TextAling = styled.div`
     width: 100%;
     align-items: center;
     margin-bottom: 10px;
-
     h1{
       font-family: "PT Sans",sans-serif;
       color: #000;
       align-items: center;
     }
-
-
 `;
 
 export const ContainerTitle = styled.div`
@@ -70,22 +66,17 @@ export const HourContent = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-
   margin-top: 15px;
   margin-bottom: 25px;
-
   strong {
     font-size: 1.3em;
-
     @media(min-width: 850px) {
       font-size: 1.5em;
     }
-
   }
   div {
     display: flex;
     flex-direction: row;
-
     select{
       border: none;
       outline : none;

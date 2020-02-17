@@ -5,6 +5,10 @@ import { useSelector, useDispatch } from "react-redux";
 
 import Loading from "../../loader";
 
+import { Creators as LoadActions } from '../../../store/ducks/load';
+import { Creators as ModalActions } from '../../../store/ducks/modal';
+import { Creators as RoomsActions } from '../../../store/ducks/salas';
+
 import {
   Header,
   Container
@@ -14,10 +18,10 @@ const InfoModal = () => {
   const dispatch = useDispatch();
 
   const sala = useSelector(state => state.salas.currentRoom);
-  const id = useSelector(state => state.dados.id);
+  const id = useSelector(state => state.ReserveData.reserve_id);
   const loader = useSelector(state => state.load.loadInfo);
-  const email = useSelector(state => state.user.usuarioEmail);
-  const logado = useSelector(state => state.user.usuarioLogin)
+
+  const user = useSelector(state => state.user);
 
   const [dadosReserva, setDadosReserva] = useState();
   const [loaderDel, setLoaderDel] = useState(false);
@@ -64,7 +68,7 @@ const InfoModal = () => {
                   nomeEvento,
                   userEmail
                 });
-                dispatch({ type: "SET_LOAD_INFO", set_loader_info: false });
+                dispatch(LoadActions.info(false));
                 // console.log(doc.data());
               }
             }
@@ -80,7 +84,7 @@ const InfoModal = () => {
 
   //Delete reserva
   const ActionDelete = () => {
-    if (email !== "") {
+    if (user.userEmail !== "") {
       setLoaderDel(true);
       setOpen(false);
       firebase
@@ -93,23 +97,15 @@ const InfoModal = () => {
         .then(() => {
           setTimeout(() => {
             setLoaderDel(false);
-            dispatch({ type: "SET_MODAL", valueModal: false });
-            dispatch({ type: "SET_EVENTOS_SALA", event: [] });
-            dispatch({ type: "SET_LOADER", set_loader: true });
+            dispatch(ModalActions.modal(false));
+            dispatch(RoomsActions.roomEvents([]));
+            dispatch(LoadActions.reserve(true));
           }, 1500);
         })
         .catch(erro => console.log("Erro ao EXCLUIR Reserva!", erro));
     }
   };
 
-  const verificarLogin = () => {
-    if (logado === true) {
-      setOpen(true);
-    }
-    else {
-      dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true });
-    }
-  }
   return (
     <>
       {loader ? (
@@ -157,9 +153,9 @@ const InfoModal = () => {
                 {dadosReserva.nomeEvento}
               </Segment>
 
-              {logado ?
+              {user.userLogin ?
                 <Segment.Group>
-                  <Button fluid negative icon onClick={verificarLogin} size="large">
+                  <Button fluid negative icon size="large" onClick={() => setOpen(true)}>
                     Excluir reserva
                       </Button>
                 </Segment.Group>

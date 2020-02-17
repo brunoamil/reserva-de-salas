@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import firebase from "../../../services/firebase";
 
 import Img from "../../../assets/img/ceuma.png";
 
-import { Button, Modal } from 'semantic-ui-react';
+import { Creators as LoadActions } from '../../../store/ducks/load';
+import { Creators as UsersActions } from '../../../store/ducks/users';
+import { Creators as RoomsActions } from '../../../store/ducks/salas';
+// import { Creators as ModalActions } from '../../../../store/ducks/modal';
+
 import {
   Logo,
   Header,
@@ -20,11 +24,9 @@ import {
   Legenda,
   View,
   ContainerHeader,
-  ContainerVoltar,
   ContainerLeftHeader,
   ViewSelect,
-  ButtonVoltar,
-  ContainerAdmin
+  ButtonVoltar
 } from "./styles";
 
 
@@ -35,9 +37,6 @@ const HeaderAgenda = () => {
   const [nome, setNome] = useState();
   const [/*loader*/, setLoader] = useState(false);
   const [salas, setSalas] = useState([]);
-  const [open, setOpen] = useState(false);
-
-  const room = useSelector(state => state.salas.currentRoom)
 
   const checkName = name => {
     if (name) {
@@ -51,7 +50,7 @@ const HeaderAgenda = () => {
   };
 
   //Verifica o email e pega o nome
-  const email = useSelector(state => state.user.usuarioEmail);
+  const email = useSelector(state => state.user.userEmail);
   firebase
     .firestore()
     .collection("usuarios")
@@ -60,12 +59,12 @@ const HeaderAgenda = () => {
       snapshot.forEach(doc => {
         if (doc.data().email === email) {
           setNome(checkName(doc.data().nome));
-          dispatch({ type: 'USER_NAME', usuarioNome: nome });
+          dispatch(UsersActions.name(nome));
         }
 
         //pegando setor
         const { setor } = doc.data();
-        dispatch({ type: 'USER_SETOR', usuarioSetor: setor })
+        dispatch(UsersActions.sector(setor))
       });
     })
     .catch(err => {
@@ -94,102 +93,50 @@ const HeaderAgenda = () => {
   }, []);
 
   // mandando as salas para o redux
-  dispatch({ type: 'REG_SALAS', arrSalas: salas });
+  dispatch(RoomsActions.rooms(salas));
 
   const actionLogout = () => {
     actionLoader();
     setTimeout(() => {
-      dispatch({ type: "LOG_OUT" });
-      dispatch({ type: "SET_EVENTOS_SALA", event: [] });
-      dispatch({ type: 'USER_NAME', usuarioNome: '' })
+      dispatch(UsersActions.log_out());
+      dispatch(RoomsActions.roomEvents([]));
+      dispatch(UsersActions.name(''))
       setLoader(false);
     }, 1000);
   };
 
-  const actionBack = () => {
-    // dispatch({ type: "GET_SALA", sala: 'Auditório' });
-    actionLogout();
-  }
-
   const roomsActions = room => {
-    dispatch({ type: "GET_SALA", room });
-    dispatch({ type: "SET_EVENTOS_SALA", event: [] });
+    dispatch(RoomsActions.currentRoom(room));
+    dispatch(RoomsActions.roomEvents([]));
   }
 
   const actionLoader = () => (
-    dispatch({ type: "SET_LOADER", set_loader: true })
+    dispatch(LoadActions.reserve(true))
   );
-
-  const createRoom = () => {
-    // alert('funcionalidade nao disponivel')
-    dispatch({ type: "SET_MODAL", valueModal: true })
-    dispatch({ type: "SET_MODAL_CREATE_ROOM", createRoomForm: true });
-  }
-
-  const clearReservation = () => {
-    setOpen(false)
-    firebase
-      .firestore()
-      .collection("salas")
-      .doc(room)
-      .collection('Eventos')
-      .get()
-      .then(sucesso => {
-        sucesso.forEach(doc => {
-          firebase.firestore().collection('salas').doc(room).collection('Eventos').doc(doc.data().id).delete().then(sucesso => {
-          })
-        })
-        dispatch({ type: "SET_MODAL", valueModal: false });
-        dispatch({ type: "SET_EVENTOS_SALA", event: [] });
-        dispatch({ type: "SET_LOADER", set_loader: true });
-      })
-  }
-
 
   return (
     <>
-      <Modal closeOnEscape size="tiny" open={open}>
-        <Modal.Header>Deseja excluir todas as reservas desta sala?</Modal.Header>
-        <Modal.Actions>
-          <Button
-            content='Não'
-            onClick={() => { setOpen(false) }}
-          />
-          <Button negative
-            icon='x'
-            labelPosition='right'
-            content="Sim"
-            onClick={clearReservation}
-          />
-        </Modal.Actions>
-      </Modal>
       <Header>
         <Container>
           <View>
             <ContainerHeader>
-              <ContainerVoltar>
+
+              {/* <ContainerVoltar>
                 <Link to='/'>
-                  <ButtonVoltar name='arrow left' size='large' color='black' onClick={actionBack}></ButtonVoltar>
+                  <ButtonVoltar name='arrow left' size='large' color='black' ></ButtonVoltar>
                 </Link>
-              </ContainerVoltar>
+              </ContainerVoltar> */}
+
+
               <ContainerLeftHeader>
                 <Logo src={Img}></Logo>
                 <Title>Reserva de Salas</Title>
               </ContainerLeftHeader>
             </ContainerHeader>
             <UserAling>
-              {useSelector(state => state.user.usuarioLogin) === true ? (
+              {useSelector(state => state.user.userLogin) === true ? (
                 <>
-                  {email === "admin@ceuma.com" ? (
-                    <>
-                      <ContainerAdmin>
-                        <Button size='small' positive onClick={createRoom}>Criar sala</Button>
-                        <Button size='small' negative onClick={() => { setOpen(true) }}>Limpar reservas</Button>
-                      </ContainerAdmin>
-                    </>
-                  ) : ''
-                  }
-                  <h1>{nome}</h1>
+                  <h1>Usuário: {nome}</h1>
                   <ButtonVoltar name='sign-out' size='large' onClick={actionLogout}></ButtonVoltar>
                 </>
               ) : ''
@@ -218,6 +165,6 @@ const HeaderAgenda = () => {
       </Header>
     </>
   );
-}
+};
 
 export default HeaderAgenda;

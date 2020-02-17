@@ -4,6 +4,10 @@ import { Input, Message } from "semantic-ui-react";
 import firebase from "../../../services/firebase";
 
 import Select from './components/select';
+import Loading from '../../../components/loader';
+
+import { Creators as loadActions} from '../../../store/ducks/load';
+import { Creators as ModalActions} from '../../../store/ducks/modal';
 
 import {
   Container,
@@ -16,12 +20,11 @@ import {
 const Confirm = () => {
   const dispatch = useDispatch();
 
-  const inicialHour = useSelector(state => state.dados.hora);
-  const finalHour = useSelector(state => state.dados.horaFinal);
-  const userName = useSelector(state => state.user.usuarioNome);
-  const userEmail = useSelector(state => state.user.usuarioEmail);
-  const id = useSelector(state => state.dados.id);
-  const data = useSelector(state => state.dados.data);
+  const reserveData = useSelector(state => state.ReserveData);
+  
+  const userName = useSelector(state => state.user.userName);
+  const userEmail = useSelector(state => state.user.userEmail);
+
   const sala = useSelector(state => state.salas.currentRoom);
 
   const [nomeEvento, setNomeEvento] = useState("");
@@ -31,49 +34,46 @@ const Confirm = () => {
   const db = firebase.firestore();
 
   const cadastrarEvento = async () => {
-    setLoading(true)
-    let setor = "";
 
-    await db
-      .collection("usuarios")
+    let setor = '';
+    
+    await db.collection("usuarios")
       .get()
-      .then(item =>
-        item.forEach(doc => {
-          if (userEmail === doc.data().email) {
-            setor = doc.data().setor;
-          }
-        })
-      )
-      .catch(err => console.log("Erro ao pegar o setor", err));
+      .then(item => item.forEach(doc => {
+        if (userEmail === doc.data().email) {
+          setor = doc.data().setor;
+        }
+      }))
+      .catch(err => console.log("Erro ao pegar o setor", err))
 
     const dados = {
-      id,
+      id: reserveData.reserve_id,
       setor,
       userName,
       userEmail,
       nomeEvento,
-      inicio: inicialHour,
-      termino: finalHour,
-      data,
-      posReserva: parseInt(id)
+      inicio: reserveData.reserve_inicial_hour,
+      termino: reserveData.reserve_final_hour,
+      data: reserveData.reserve_date,
+      posReserva: parseInt(reserveData.reserve_id)
     };
 
-    if (!nomeEvento || !finalHour) {
-      console.log(finalHour)
+    if (!nomeEvento || !reserveData.reserve_final_hour) {
+      console.log(reserveData.reserve_final_hour);
       setMsgErro(true);
+      
     } else {
       setMsgErro(false);
       db.collection("salas")
         .doc(`${sala}`)
         .collection("Eventos")
-        .doc(id)
+        .doc(reserveData.reserve_id)
         .set(dados)
         .then(() => {
+          setLoading(false);
           setTimeout(() => {
-            setLoading(false)
-            dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: false });
-            dispatch({ type: "SET_MODAL", valueModal: false });
-            dispatch({ type: "SET_LOADER", set_loader: true });
+            dispatch(ModalActions.modal(false));
+            dispatch(loadActions.reserve(true));
           }, 1000);
         })
         .catch(erro => {
@@ -83,22 +83,23 @@ const Confirm = () => {
   };
   return (
     <>
+      {loading && <Loading size="big">Carregando Reservas...</Loading>}
       <Container>
         <ContainerMain>
           <TextAling>
             <h1>Reservar horários</h1>
           </TextAling>
           <HourContent>
-            <strong>De: {inicialHour}</strong>
+            <strong>De: {reserveData.reserve_inicial_hour}</strong>
 
             <div>
               <strong>Até: </strong>
               <Select 
                 db = {db}
                 room = {sala}
-                date = {data}
-                inicialHour = {inicialHour}
-                id = {id}
+                date = {reserveData.reserve_date}
+                inicialHour = {reserveData.reserve_inicial_hour}
+                id={reserveData.reserve_id}
               />
             </div>
           </HourContent>
@@ -131,6 +132,6 @@ const Confirm = () => {
       </Container>
     </>
   );
-};
+}
 
 export default React.memo(Confirm);

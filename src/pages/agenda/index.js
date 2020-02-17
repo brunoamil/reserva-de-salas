@@ -7,12 +7,15 @@ import Main from "./main";
 import Modal from "../../components/modal";
 import Loading from '../../components/loader';
 
+import { Creators as LoaderActions } from '../../store/ducks/load';
+import { Creators as RoomsActions } from '../../store/ducks/salas';
+
 import "./index.css";
 
 function NovaAgenda() {
   const dispatch = useDispatch();
 
-  const loader = useSelector(state => state.load.loader);
+  const loader = useSelector(state => state.load.loadReserve);
   const sala = useSelector(state => state.salas.currentRoom);
   
   useEffect(() => {
@@ -33,7 +36,7 @@ function NovaAgenda() {
       await firebase
       .firestore()
       .collection("salas")
-      .doc(`${sala}` || 'Auditório')
+      .doc(`${sala}`)
       .collection("Eventos")
       .get()
       .then(sucesso => {
@@ -43,10 +46,9 @@ function NovaAgenda() {
           const firstName = checkName(userName);
           if (id && userName) {
             events.push({id, firstName, termino, inicio, setor, data});
-            // console.log(events);
-            dispatch({ type: "SET_EVENTOS_SALA", event: events });
+            dispatch(RoomsActions.roomEvents(events));
           }else {
-            dispatch({ type: "SET_EVENTOS_SALA", event: [] });
+            dispatch(RoomsActions.roomEvents([]));
           };
           
         });
@@ -61,7 +63,7 @@ function NovaAgenda() {
 
   if (loader) {
     setTimeout(() => {
-      dispatch({ type: "SET_LOADER", set_loader: false })
+      dispatch(LoaderActions.reserve(false))
     }, 1000);
   }
  

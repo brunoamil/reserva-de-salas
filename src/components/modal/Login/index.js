@@ -7,6 +7,9 @@ import "firebase/auth";
 import RedefinirSenha from "../Recuperar-Senha";
 import Loading from '../../loader';
 
+import { Creators as usersAction } from '../../../store/ducks/users';
+import { Creators as modalActions } from '../../../store/ducks/modal';
+
 import {
   Container,
   TitleForgot,
@@ -31,8 +34,6 @@ function LoginForm({ ModalTop }) {
     setLogin(false);
   }
 
-
-
   function Logar() {
     if (email === "" || senha === "") {
       setErro(true);
@@ -44,10 +45,14 @@ function LoginForm({ ModalTop }) {
         .signInWithEmailAndPassword(email, senha)
         .then(sucesso => {
           setCarregando(false);
-
-          dispatch({ type: 'LOG_IN', usuarioEmail: email });
-          dispatch({ type: "SET_MODAL_LOGIN", valueLogin: false });
-          dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
+          
+          // user
+          dispatch(usersAction.email(email));
+          dispatch(usersAction.log_in(true));
+          
+          //modal
+          dispatch(modalActions.login_modal(false));
+          dispatch(modalActions.confirm(true));
         })
         .catch(erro => {
           setCarregando(false);
@@ -91,7 +96,9 @@ function LoginForm({ ModalTop }) {
               </TitleForgot>
             </Form>
             {carregando ? (
-              <Loading size="medium">Carregando...</Loading>
+              <Loading size='medium'>
+                carregando...
+              </Loading>
             ) : (
                 <CustomButton
                   fluid

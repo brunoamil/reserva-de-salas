@@ -6,10 +6,14 @@ import moment from "moment";
 import "../../../pages/agenda/index.css";
 import { ContainerCell, Container } from "./styles";
 
+import { Creators as LoadActions } from "../../../store/ducks/load";
+import { Creators as ModalActions } from "../../../store/ducks/modal";
+import { Creators as DateReserveActions } from "../../../store/ducks/dadosReserva";
+
 function Agenda() {
   const dispatch = useDispatch();
 
-  const CheckLogin = useSelector(state => state.user.usuarioLogin);
+  const CheckLogin = useSelector(state => state.user.userLogin);
   const event = useSelector(state => state.salas.roomEvents);
 
   var now = moment();
@@ -79,7 +83,7 @@ function Agenda() {
       });
     }
   };
-
+  
   const renderFinalReserve = (divCell, id, setor) => {
     const spanct = document.createElement("span");
     const titleReserveTermino = document.createElement("h2");
@@ -94,25 +98,23 @@ function Agenda() {
   };
 
   const modalActions = samTag => {
-    dispatch({ type: "SET_MODAL", valueModal: true });
-
+    dispatch(ModalActions.modal(true));
     if (samTag.length !== 0) {
-      dispatch({ type: "SET_MODAL", valueModal: true });
-      dispatch({ type: "SET_MODAL_INFO", valueInfo: true });
+      dispatch(ModalActions.infoReserve(true));
     } else {
       if (CheckLogin === false) {
-        dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true });
+        dispatch(ModalActions.login_modal(true));
       } else {
-        dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
+        dispatch(ModalActions.confirm(true));
       }
     }
   };
 
-  const reduxTableActions = (idTable, hour, data) => {
-    dispatch({ type: "SET_ID", id: idTable });
-    dispatch({ type: "SET_HORA", hora: hour });
-    dispatch({ type: "SET_DATA", data });
-    dispatch({ type: "SET_LOAD_INFO", set_loader_info: true });
+  const reduxTableActions = (idTable, hour, date) => {
+    dispatch(DateReserveActions.id(idTable));
+    dispatch(DateReserveActions.inicial_hour(hour));
+    dispatch(DateReserveActions.date(date));
+    dispatch(LoadActions.info(true));
   };
 
   return (

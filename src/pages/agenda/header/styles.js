@@ -22,18 +22,18 @@ export const ContainerHeader = styled.div`
   /* margin: 0px 5px;  */
 `;
 
-export const ContainerVoltar = styled.div`
-  display:flex;
-  flex-flow : row nowrap;
-  align-items : center;
-  text-align : center;
-  margin : 0px 15px 0px 20px;
+// export const ContainerVoltar = styled.div`
+//   display:flex;
+//   flex-flow : row nowrap;
+//   align-items : center;
+//   text-align : center;
+//   margin : 0px 15px 0px 20px;
 
-  @media(min-width: 723px) {
-    margin: 0px 15px 0px 20px;
-  }
+//   @media(min-width: 723px) {
+//     margin: 0px 15px 0px 20px;
+//   }
 
-`;
+// `;
 
 export const ContainerLeftHeader = styled.div`
   display:flex;
@@ -64,7 +64,7 @@ export const UserAling = styled.div`
     /* justify-content:flex-end; */
     flex-direction: row;
     margin-top: -20px;
-    margin-right: 10px;
+    /* margin-right: 10px; */
     /* margin: 15px 0px 30px 0px; */
 
     h1 {
@@ -79,17 +79,6 @@ export const UserAling = styled.div`
     }
 
 `
-export const ContainerAdmin = styled.div`
-  margin-right : 30px;
-
-  Button{
-    margin: 0px 10px;
-  }
-
-`;
-
-
-
 export const Button = styled.button`
     margin: 0px 5px 5px 5px;
     background-color: #0d4b81;
@@ -105,9 +94,11 @@ export const Button = styled.button`
     text-align:center;
 `
 export const ButtonVoltar = styled(Icon)`
-    margin: 0px 10px;
+    margin: 0px 15px;
 
-  
+    @media(min-width: 768px) {
+        margin: 0 35px 0px 30px;
+    }
 
 `
 // export const ContainerAlert = styled.div`
@@ -137,8 +128,6 @@ export const CircleAling = styled.div`
 
 
 `
-
-
 
 export const Circle = styled.div`
     width:20px;
@@ -192,6 +181,8 @@ export const Select = styled.select`
 
     background-color:white;
     color:#0d4b81;
+
+    font-size : 1.15em;
 
     option {
       white-space : none !important;

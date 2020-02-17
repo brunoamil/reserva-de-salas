@@ -3,8 +3,9 @@ import { createActions, createReducer } from "reduxsauce";
 export const { Types, Creators } = createActions({
   name: ['name'],
   sector: ['sector'],
-  login: ['email'],
-  logout: [],
+  email: ['email'],
+  log_in: [],
+  log_out: [],
 });
 
 export const INICIAL_STATE = {
@@ -15,24 +16,29 @@ export const INICIAL_STATE = {
 };
 
 const name = (state = INICIAL_STATE, { name }) => (
-  {...state, userName: name }
+  {...state, userName: name} 
 )
 
 const sector = (state = INICIAL_STATE, { sector }) => (
   {...state, userSector: sector }
 )
 
-const log_in = (state = INICIAL_STATE, { email }) => (
-  {...state, userLogin: true, userEmail: email }
+const email = (state = INICIAL_STATE, { email }) => (
+  {...state, userEmail: email}
 )
 
-const log_out = (state = INICIAL_STATE, action) => (
+const log_in = (state = INICIAL_STATE) => (
+  {...state, userLogin: true}
+)
+
+const log_out = (state = INICIAL_STATE) => (
   {...state, userLogin: false, userEmail: ''}
 )
 
 export default createReducer(INICIAL_STATE, {
   [Types.NAME]: name,
   [Types.SECTOR]: sector,
-  [Types.LOGIN]: log_in,
-  [Types.LOGOUT]: log_out,
+  [Types.EMAIL]: email,
+  [Types.LOG_IN]: log_in,
+  [Types.LOG_OUT]: log_out,
 });

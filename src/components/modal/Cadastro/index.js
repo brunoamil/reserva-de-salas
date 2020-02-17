@@ -5,6 +5,9 @@ import { useDispatch } from "react-redux";
 
 import Loading from '../../loader';
 
+import {Creators as ModalActions} from '../../../store/ducks/modal';
+import {Creators as UserActions} from '../../../store/ducks/users';
+
 import {
   Container,
   CustomButton,
@@ -24,10 +27,10 @@ function RegisterForm({ ModalTop }) {
   const [senha, setSenha] = useState("");
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState(false);
-  const [msgErro, setMsgErro] = useState("");
+  const [msgErro, setMsgErro] = useState(""); 
 
   function Cadastrar() {
-    if (email === "" || senha === "" || nome === "" || setor === "") {
+    if (email === "" || senha === "" || nome === "") {
       setErro(true);
       setMsgErro("Verifique se todos os campos estão preenchidos!");
     } else {
@@ -50,10 +53,11 @@ function RegisterForm({ ModalTop }) {
             .then()
             .catch();
 
-          dispatch({ type: "LOG_IN", usuarioEmail: email });
-          dispatch({ type: "USER_SETOR", usuarioSetor: setor });
+          dispatch(UserActions.email(email));
+          dispatch(UserActions.log_in(true));
+          dispatch(UserActions.sector(setor));
 
-          dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
+          dispatch(ModalActions.confirm(true));
         })
         .catch(erro => {
           setCarregando(false);
@@ -109,7 +113,7 @@ function RegisterForm({ ModalTop }) {
 
             <CustomForm>
               <Input
-                onClick={ModalTop}
+                onClick = {ModalTop}
                 icon="user"
                 iconPosition="left"
                 onChange={e => {
@@ -122,9 +126,8 @@ function RegisterForm({ ModalTop }) {
 
             <CustomForm>
               <Input
-                onClick={ModalTop}
+                onClick = {ModalTop}
                 icon="building"
-                list="setores"
                 iconPosition="left"
                 onChange={e => {
                   let sector = e.target.value;
@@ -143,7 +146,7 @@ function RegisterForm({ ModalTop }) {
 
             <CustomForm>
               <Input
-                onClick={ModalTop}
+                onClick = {ModalTop}
                 icon="mail"
                 iconPosition="left"
                 onChange={e => setEmail(e.target.value)}
@@ -154,7 +157,7 @@ function RegisterForm({ ModalTop }) {
 
             <CustomForm>
               <Input
-                onClick={ModalTop}
+                onClick = {ModalTop}
                 icon="lock"
                 iconPosition="left"
                 onChange={e => setSenha(e.target.value)}
@@ -176,8 +179,8 @@ function RegisterForm({ ModalTop }) {
           {erro ? (
             <Message header={msgErro} color="red" icon="dont" />
           ) : (
-              <div />
-            )}
+            <div />
+          )}
         </Container>
       </CustomModalContent>
     </>
