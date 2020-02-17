@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import firebase from "../../../../services/firebase";
 
@@ -24,7 +24,6 @@ import {
   Legenda,
   View,
   ContainerHeader,
-  ContainerVoltar,
   ContainerLeftHeader,
   ViewSelect,
   ButtonVoltar
@@ -122,11 +121,11 @@ export const HeaderAgenda = () => {
           <View>
             <ContainerHeader>
 
-              <ContainerVoltar>
+              {/* <ContainerVoltar>
                 <Link to='/'>
                   <ButtonVoltar name='arrow left' size='large' color='black' ></ButtonVoltar>
                 </Link>
-              </ContainerVoltar>
+              </ContainerVoltar> */}
 
 
               <ContainerLeftHeader>
