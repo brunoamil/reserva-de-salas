@@ -43,20 +43,18 @@ const Select = ({ room, date, inicialHour, id }) => {
     const getReserve = async () => {
       let arrReserve = [];
   
-      await firebase
-        .firestore()
-        .collection("salas")
-        .doc(`${room}`)
-        .collection("Eventos")
-        .orderBy("posReserva", "asc")
-        .get()
-        .then(item =>
+      firebase
+        .database()
+        .ref(`salas/${room}/Eventos`)
+        .on('value',item=>{
           item.forEach(doc => {
-            if (date === doc.data().data) {
-              arrReserve.push(doc.data());
+            console.log(doc.val());
+            
+            if (date === doc.val().data) {
+              arrReserve.push(doc.val());
             }
           })
-        ).catch(err => console.log("Erro: ", err));
+        })
     
       let limitHour = arrReserve.filter(
         reserve => parseInt(reserve.id) > parseInt(id)

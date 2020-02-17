@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import firebase from '../../services/firebase';
 
@@ -17,11 +17,11 @@ function NovaAgenda() {
 
   const loader = useSelector(state => state.load.loadReserve);
   const sala = useSelector(state => state.salas.currentRoom);
-  
+
   useEffect(() => {
     const checkName = name => {
       if (name) {
-        if(name.indexOf(" ") > -1) {
+        if (name.indexOf(" ") > -1) {
           let firstName = name.split(" ");
           return firstName[0];
         } else {
@@ -32,30 +32,26 @@ function NovaAgenda() {
 
     const getEventos = async () => {
       let events = [];
-      
+
       await firebase
-      .firestore()
-      .collection("salas")
-      .doc(`${sala}`)
-      .collection("Eventos")
-      .get()
-      .then(sucesso => {
-        sucesso.forEach(doc => {
-          const {id, userName, termino, inicio, setor, data} = doc.data();
-          
-          const firstName = checkName(userName);
-          if (id && userName) {
-            events.push({id, firstName, termino, inicio, setor, data});
-            dispatch(RoomsActions.roomEvents(events));
-          }else {
-            dispatch(RoomsActions.roomEvents([]));
-          };
-          
-        });
-      })
-      .catch(erro => {
-        console.log("Erro ao pegar eventos", erro);
-      });
+        .database()
+        .ref(`salas/${sala}/Eventos`)
+        .on('value', sucesso => {
+          sucesso.forEach(doc => {
+            const { id, userName, termino, inicio, setor, data } = doc.val();            
+
+            const firstName = checkName(userName);
+            if (id && userName) {
+              events.push({ id, firstName, termino, inicio, setor, data });
+              dispatch(RoomsActions.roomEvents(events));
+            } else {
+              dispatch(RoomsActions.roomEvents([]));
+            };
+            console.log(events);
+            
+
+          });
+        })
     }
 
     getEventos();
@@ -66,13 +62,13 @@ function NovaAgenda() {
       dispatch(LoaderActions.reserve(false))
     }, 1000);
   }
- 
+
   return (
     <>
       <Modal />
       <Header id="header" />
-      { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <Main /> }
-  </>
+      {loader ? <Loading size='big'> Carregando Reservas...</Loading> : <Main />}
+    </>
   );
 }
 export default NovaAgenda;

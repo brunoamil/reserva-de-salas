@@ -24,6 +24,7 @@ const Confirm = () => {
   
   const userName = useSelector(state => state.user.userName);
   const userEmail = useSelector(state => state.user.userEmail);
+  var setor = useSelector(state => state.user.userSector)
 
   const sala = useSelector(state => state.salas.currentRoom);
 
@@ -31,13 +32,11 @@ const Confirm = () => {
   const [msgErro, setMsgErro] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const db = firebase.firestore();
+  const db = firebase.database();
 
   const cadastrarEvento = async () => {
-
-    let setor = '';
     
-    await db.collection("usuarios")
+    await firebase.firestore().collection("usuarios")
       .get()
       .then(item => item.forEach(doc => {
         if (userEmail === doc.data().email) {
@@ -64,10 +63,7 @@ const Confirm = () => {
       
     } else {
       setMsgErro(false);
-      db.collection("salas")
-        .doc(`${sala}`)
-        .collection("Eventos")
-        .doc(reserveData.reserve_id)
+      db.ref(`salas/${sala}/Eventos/${reserveData.reserve_id}`)
         .set(dados)
         .then(() => {
           setLoading(false);
