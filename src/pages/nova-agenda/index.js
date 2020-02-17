@@ -19,8 +19,8 @@ import "./index.css";
 function NovaAgenda() {
   const dispatch = useDispatch();
 
-  const loader = useSelector(state => state.load_1.loadReserve);
-  const sala = useSelector(state => state.salas_1.currentRoom);
+  const loader = useSelector(state => state.load.loadReserve);
+  const sala = useSelector(state => state.salas.currentRoom);
   
   useEffect(() => {
     const checkName = name => {

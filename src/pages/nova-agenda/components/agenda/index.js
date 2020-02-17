@@ -13,8 +13,8 @@ import { Creators as DateReserveActions } from "../../../../store/ducks/dadosRes
 function Agenda() {
   const dispatch = useDispatch();
 
-  const CheckLogin = useSelector(state => state.users.userLogin);
-  const event = useSelector(state => state.salas_1.roomEvents);
+  const CheckLogin = useSelector(state => state.user.userLogin);
+  const event = useSelector(state => state.salas.roomEvents);
 
   var now = moment();
   var dia = now.day();

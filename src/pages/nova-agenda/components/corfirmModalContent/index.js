@@ -21,12 +21,12 @@ const ConfirmModalContent = () => {
 
   const dispatch = useDispatch();
 
-  const reserveData = useSelector(state => state.dadosReserva);
+  const reserveData = useSelector(state => state.ReserveData);
   
-  const userName = useSelector(state => state.users.userName);
-  const userEmail = useSelector(state => state.users.userEmail);
+  const userName = useSelector(state => state.user.userName);
+  const userEmail = useSelector(state => state.user.userEmail);
 
-  const sala = useSelector(state => state.salas_1.currentRoom);
+  const sala = useSelector(state => state.salas.currentRoom);
 
   const [nomeEvento, setNomeEvento] = useState("");
   const [msgErro, setMsgErro] = useState(false);

@@ -50,7 +50,7 @@ export const HeaderAgenda = () => {
   };
 
   //Verifica o email e pega o nome
-  const email = useSelector(state => state.users.userEmail);
+  const email = useSelector(state => state.user.userEmail);
   firebase
     .firestore()
     .collection("usuarios")
@@ -134,7 +134,7 @@ export const HeaderAgenda = () => {
               </ContainerLeftHeader>
             </ContainerHeader>
             <UserAling>
-              {useSelector(state => state.users.userLogin) === true ? (
+              {useSelector(state => state.user.userLogin) === true ? (
                 <>
                   <h1>Usuário: {nome}</h1>
                   <ButtonVoltar name='sign-out' size='large' onClick={actionLogout}></ButtonVoltar>

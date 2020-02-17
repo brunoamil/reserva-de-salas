@@ -20,7 +20,7 @@ import {Creators as ModalActions} from '../../store/ducks/modal';
 const ModalUser = () => {
   const dispatch = useDispatch();
 
-  const modalStates = useSelector(state => state.modal_1)
+  const modalStates = useSelector(state => state.modal)
 
   // const loginForm = useSelector(state => state.modal.loginForm);
   // const registerForm = useSelector(state => state.modal.registerForm);

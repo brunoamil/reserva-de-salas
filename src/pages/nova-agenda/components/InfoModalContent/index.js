@@ -17,11 +17,11 @@ import {
 const InfoModal = () => {
   const dispatch = useDispatch();
 
-  const sala = useSelector(state => state.salas_1.currentRoom);
-  const id = useSelector(state => state.dadosReserva.reserve_id);
-  const loader = useSelector(state => state.load_1.loadInfo);
+  const sala = useSelector(state => state.salas.currentRoom);
+  const id = useSelector(state => state.ReserveData.reserve_id);
+  const loader = useSelector(state => state.load.loadInfo);
 
-  const user = useSelector(state => state.users);
+  const user = useSelector(state => state.user);
 
   const [dadosReserva, setDadosReserva] = useState();
   const [loaderDel, setLoaderDel] = useState(false);

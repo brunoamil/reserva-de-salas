@@ -1,17 +1,17 @@
 import { combineReducers } from 'redux';
 
-import users from './users';
+import user from './users';
 import load from './load';
 import modal from './modal';
 import salas from './salas';
-import dadosReserva from './dadosReserva';
+import ReserveData from './dadosReserva';
 
 export default combineReducers({
-  users, //user
-  load_1: load, //load
-  modal_1: modal, //modal
-  salas_1: salas, //salas
-  dadosReserva, // ReserveData
+  user, //user
+  load: load, //load
+  modal: modal, //modal
+  salas: salas, //salas
+  ReserveData, // ReserveData
 
   // Só nos useSelector's
 });
