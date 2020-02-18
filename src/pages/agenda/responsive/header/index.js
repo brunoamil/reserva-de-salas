@@ -67,8 +67,8 @@ export const HeaderAgendaMobile = () => {
   useEffect(() => {
     const arrSalas = [];
 
-    const getSalas = async () => {
-      await firebase
+    const getSalas = () => {
+       firebase
         .firestore()
         .collection("salas")
         .get()

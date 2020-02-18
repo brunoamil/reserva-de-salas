@@ -146,7 +146,7 @@ const HeaderAgenda = () => {
                 </SelectAling>
               </ViewSelect>
           </Responsive>
-          {useSelector(state => state.user.usuarioLogin) === true ? (
+          {useSelector(state => state.user.userLogin) === true ? (
             <>
               <UserAling>
                 <Icon color='black' name='user circle' size='big'></Icon>
