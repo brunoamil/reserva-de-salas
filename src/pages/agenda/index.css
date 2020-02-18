@@ -4,7 +4,6 @@
   }
 }
 
-
 #table{
   margin: 0 !important;   
   border: none;
@@ -37,12 +36,6 @@
     color: white !important;
     padding: 13px 0 10px;
 }
-
-.ui.segment {
-  padding: 0 !important;
-}
-
-
 
 #none{
     border: none !important;
