@@ -38,7 +38,7 @@ function NovaAgenda() {
     const getEventos = async () => {
       let events = [];
 
-      await firebase
+      await firebase 
         .database()
         .ref(`salas/${sala}/Eventos`)
         .on('value', sucesso => {
@@ -52,9 +52,6 @@ function NovaAgenda() {
             } else {
               dispatch(RoomsActions.roomEvents([]));
             };
-            console.log(events);
-            
-
           });
         })
     }
