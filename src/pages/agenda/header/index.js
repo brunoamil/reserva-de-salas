@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
-// import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import firebase from "../../../services/firebase";
-import { Icon, Responsive, Segment } from 'semantic-ui-react'
+import { Icon, Responsive } from 'semantic-ui-react'
 
 import Img from "../../../assets/img/ceuma.png";
 
 import { Creators as LoadActions } from '../../../store/ducks/load';
 import { Creators as UsersActions } from '../../../store/ducks/users';
 import { Creators as RoomsActions } from '../../../store/ducks/salas';
-// import { Creators as ModalActions } from '../../../../store/ducks/modal';
 
 import {
   Logo,
@@ -103,11 +101,6 @@ const HeaderAgenda = () => {
     }, 1000);
   };
 
-  // const actionBack = () => {
-  //   // dispatch({ type: "GET_SALA", sala: 'Auditório' });
-  //   actionLogout();
-  // }
-
   const roomsActions = room => {
     dispatch(RoomsActions.currentRoom(room));
     dispatch(RoomsActions.roomEvents([]));
@@ -132,7 +125,7 @@ const HeaderAgenda = () => {
         </ContainerCenterHeader>
 
         <ContainerRightHeader>
-          <Responsive as={Segment} {...Responsive.onlyComputer}>
+          <Responsive {...Responsive.onlyComputer}>
             <ViewSelect>
                 <SelectAling>
                   <Select onChange={e => {
@@ -163,33 +156,7 @@ const HeaderAgenda = () => {
           }
         </ContainerRightHeader>
       </Header>
-      {/* <Header>
-        <Container>
-          <View>
-            <ContainerHeader>
-
-              {/* <ContainerVoltar>
-                <Link to='/'>
-                </Link>
-              </ContainerVoltar>
-
-
-              <ContainerLeftHeader>
-                <Logo src={Img}></Logo>
-                <Title>Reserva de Salas</Title>
-              </ContainerLeftHeader>
-            </ContainerHeader>
-            <UserAling>
-              {useSelector(state => state.user.userLogin) === true ? (
-                <>
-                  <h1>Usuário: {nome}</h1>
-                </>
-              ) : ''
-              }
-            </UserAling>
-          </View>
-        </Container>
-      </Header> */}
+    
     </>
   );
 };

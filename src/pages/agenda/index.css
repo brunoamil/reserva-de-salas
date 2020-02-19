@@ -7,13 +7,8 @@
   .ui.table tr{
     box-shadow: none !important;
   }
-
-
 }
 
-/* #allPage{
-    margin-top: -10px;
-} */
 #table{
     margin: 0 !important;   
     border: none;
@@ -27,6 +22,10 @@
 }
 .ui.table tr td{
     border-top: 1px solid rgb(206, 202, 202) ;
+}
+
+.ui.segment {
+  border: 0 !important;
 }
 
 .ui.table th{
@@ -46,12 +45,6 @@
     color: white !important;
     padding: 13px 0 10px;
 }
-
-.ui.segment {
-  padding: 0 !important;
-}
-
-
 
 #none{
     border: none !important;

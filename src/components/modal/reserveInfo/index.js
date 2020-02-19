@@ -41,14 +41,11 @@ const InfoModal = () => {
   useEffect(() => {
     const getEventos = async () => {
       await firebase
-        .firestore()
-        .collection("salas")
-        .doc(`${sala}`)
-        .collection("Eventos")
-        .get()
-        .then(sucesso => {
+        .database()
+        .ref(`salas/${sala}/Eventos`)
+        .on('value', sucesso => {
           sucesso.forEach(doc => {
-            if (id === doc.data().id) {
+            if (id === doc.val().id) {
               if (!dadosReserva) {
                 const {
                   userName,
@@ -57,7 +54,7 @@ const InfoModal = () => {
                   termino,
                   nomeEvento,
                   userEmail
-                } = doc.data();
+                } = doc.val();
 
                 const firstName = checkName(userName);
                 setDadosReserva({
@@ -74,9 +71,6 @@ const InfoModal = () => {
             }
           });
         })
-        .catch(erro => {
-          console.log("Erro ao pegar eventos", erro);
-        });
     };
 
     getEventos();
@@ -88,12 +82,9 @@ const InfoModal = () => {
       setLoaderDel(true);
       setOpen(false);
       firebase
-        .firestore()
-        .collection("salas")
-        .doc(`${sala}`)
-        .collection("Eventos")
-        .doc(`${id}`)
-        .delete()
+        .database()
+        .ref(`salas/${sala}/Eventos/${id}`)
+        .remove()
         .then(() => {
           setTimeout(() => {
             setLoaderDel(false);
