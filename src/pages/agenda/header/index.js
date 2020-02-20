@@ -32,7 +32,8 @@ const HeaderAgenda = () => {
 
   const [nome, setNome] = useState();
   const [/*loader*/, setLoader] = useState(false);
-  const [salas, setSalas] = useState([]);
+  
+  const salas = useSelector(state => state.salas.rooms);
 
   const checkName = name => {
     if (name) {
@@ -66,30 +67,6 @@ const HeaderAgenda = () => {
     .catch(err => {
       console.log("Erro ao obter o nome do usuario! ", err);
     });
-
-  useEffect(() => {
-    const arrSalas = [];
-
-    const getSalas = async () => {
-      await firebase
-        .firestore()
-        .collection("salas")
-        .get()
-        .then(sucesso => {
-          sucesso.forEach(doc => {
-            arrSalas.push(doc.data().nome);
-          });
-        })
-        .catch(erro => {
-          console.log("Erro ao pegar salas", erro);
-        });
-      setSalas(arrSalas);
-    };
-    getSalas();
-  }, []);
-
-  // mandando as salas para o redux
-  dispatch(RoomsActions.rooms(salas));
 
   const actionLogout = () => {
     actionLoader();
@@ -132,9 +109,9 @@ const HeaderAgenda = () => {
                     roomsActions(e.target.value);
                     actionLoader();
                   }}>
-                    {salas.map(sala => (
+                    {setTimeout(() => (salas.map(sala => (
                       <option key={sala}>{sala}</option>
-                    ))}
+                    ))), 5000)}
                   </Select>
                 </SelectAling>
               </ViewSelect>

@@ -14,6 +14,8 @@ export const INICIAL_STATE = {
   roomEvents: []
 };
 
+console.log(INICIAL_STATE.rooms)
+
 const set_rooms = (state = INICIAL_STATE, { arr_rooms }) => (
   {...state, rooms: arr_rooms}
 );
