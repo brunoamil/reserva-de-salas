@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import firebase from '../../services/firebase';
 import moment from "moment";
+// import { useHistory } from "react-router-dom";
 
 import Header from "./header";
 import Main from "./main";
@@ -29,12 +30,17 @@ function NovaAgenda() {
           actionLogout()
           window.alert("Sessão esgotada!")
           clearInterval(session)
-          // window.location('/')
+          // windowRedirect()
         }
         initialTimer += 1
       }, 1000)
     
   })
+
+  // function windowRedirect() {
+  //   let history = useHistory();
+  //   history.push("/")
+  // }
 
   const actionLogout = () => {
     setTimeout(() => {
