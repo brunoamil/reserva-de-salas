@@ -20,17 +20,19 @@ function Agenda() {
   var dia = now.day();
   let idDivCell = 0;
 
-  if (dia === 0) now.add(1, "days");
-
-  if (dia === 6) {
-    now = now.add(2, "days");
-    dia = 0;
+  function dayAdjust() {    
+    if (dia === 0) now.add(1, "days");
+  
+    if (dia === 6) {
+      now = now.add(2, "days");
+      dia = 0;
+    }
+    while (dia > 1) {
+      now = now.subtract(1, "days");
+      dia = dia - 1;
+    }
   }
-  while (dia > 1) {
-    now = now.subtract(1, "days");
-    dia = dia - 1;
-  }
-
+  dayAdjust()
   const dias = [
     `SEG ${now.format("D/M")}`,
     `TER ${now.add(1, "days").format("D/M")}`,
@@ -38,6 +40,11 @@ function Agenda() {
     `QUI ${now.add(1, "days").format("D/M")}`,
     `SEX ${now.add(1, "days").format("D/M")}`
   ];
+
+  now = moment();
+  dia = now.day();
+  dayAdjust()
+
   const data = [
     `${now.format("D/M")}`,
     `${now.add(1, "days").format("D/M")}`,
@@ -45,6 +52,7 @@ function Agenda() {
     `${now.add(1, "days").format("D/M")}`,
     `${now.add(1, "days").format("D/M")}`
   ]
+  
 
   const horas = [
     "08:00",

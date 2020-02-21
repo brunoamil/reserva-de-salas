@@ -6,6 +6,7 @@ export const { Types, Creators } = createActions({
   event: ["event"],
   id: ["id"],
   date: ["date"],
+  busy: ["sector", "event"]
 });
 
 export const INICIAL_STATE = {
@@ -13,7 +14,8 @@ export const INICIAL_STATE = {
   reserve_final_hour: "",
   reserve_event: "",
   reserve_id: "",
-  reserve_date: ""
+  reserve_date: "",
+  reserve_busy_data: {}
 };
 
 const event = (state = INICIAL_STATE, { event }) => ({
@@ -38,10 +40,19 @@ const date = (state = INICIAL_STATE, { date }) => ({
   reserve_date: date
 });
 
+const busy = (state = INICIAL_STATE, { sector, event }) => ({
+  ...state,
+  reserve_busy_data: {
+    sector,
+    event
+  }
+})
+
 export default createReducer(INICIAL_STATE, {
   [Types.EVENT]: event,
   [Types.ID]: id,
   [Types.INICIAL_HOUR]: inicial_hour,
   [Types.FINAL_HOUR]: final_hour,
-  [Types.DATE]: date
+  [Types.DATE]: date,
+  [Types.BUSY]: busy
 });

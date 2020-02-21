@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import firebase from '../../services/firebase';
-import moment from "moment";
+// import moment from "moment";
 // import { useHistory } from "react-router-dom";
 
 import Header from "./header";
@@ -9,7 +9,7 @@ import Main from "./main";
 import Modal from "../../components/modal";
 import Loading from '../../components/loader';
 
-import { Creators as UsersActions } from '../../store/ducks/users';
+// import { Creators as UsersActions } from '../../store/ducks/users';
 import { Creators as LoaderActions } from '../../store/ducks/load';
 import { Creators as RoomsActions } from '../../store/ducks/salas';
 
@@ -20,35 +20,36 @@ function NovaAgenda() {
   // Contador da sessão
 
   // var count = 1
-  useEffect(() => {
-    var sessionInit = moment()
-    var initialTimer = parseInt(sessionInit.second())
-
-    var sessionFinal = initialTimer + 10
-      var session = setInterval(function () {
-        if (initialTimer === sessionFinal) {
-          actionLogout()
-          window.alert("Sessão esgotada!")
-          clearInterval(session)
-          // windowRedirect()
-        }
-        initialTimer += 1
-      }, 1000)
     
-  })
+  // useEffect(() => {
+  //   var sessionInit = moment()
+  //   var initialTimer = parseInt(sessionInit.second())
+
+  //   var sessionFinal = initialTimer + 240
+  //     var session = setInterval(function () {
+  //       if (initialTimer === sessionFinal) {
+  //         actionLogout()
+  //         window.alert("Sessão esgotada!")
+  //         clearInterval(session)
+  //         // windowRedirect()
+  //       }
+  //       initialTimer += 1
+  //     }, 1000)
+    
+  // })
 
   // function windowRedirect() {
   //   let history = useHistory();
   //   history.push("/")
   // }
 
-  const actionLogout = () => {
-    setTimeout(() => {
-      dispatch(UsersActions.log_out());
-      dispatch(RoomsActions.roomEvents([]));
-      dispatch(UsersActions.name(''))
-    }, 1000);
-  };
+  // const actionLogout = () => {
+  //   setTimeout(() => {
+  //     dispatch(UsersActions.log_out());
+  //     dispatch(RoomsActions.roomEvents([]));
+  //     dispatch(UsersActions.name(''))
+  //   }, 1000);
+  // };
 
 
   const dispatch = useDispatch();
