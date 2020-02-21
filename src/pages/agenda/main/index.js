@@ -38,6 +38,13 @@ function Agenda() {
     `QUI ${now.add(1, "days").format("D/M")}`,
     `SEX ${now.add(1, "days").format("D/M")}`
   ];
+  const data = [
+    `${now.format("D/M")}`,
+    `${now.add(1, "days").format("D/M")}`,
+    `${now.add(1, "days").format("D/M")}`,
+    `${now.add(1, "days").format("D/M")}`,
+    `${now.add(1, "days").format("D/M")}`
+  ]
 
   const horas = [
     "08:00",
@@ -137,7 +144,7 @@ function Agenda() {
                 <Table.HeaderCell width="1">
                   <strong> {hora} </strong>
                 </Table.HeaderCell>
-                {dias.map((dia, index) => (
+                {data.map((dia, index) => (
                   <Table.Cell
                     key={index}
                   >
