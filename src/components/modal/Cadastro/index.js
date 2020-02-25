@@ -54,6 +54,7 @@ function RegisterForm({ ModalTop }) {
             .catch();
 
           dispatch(UserActions.email(email));
+          dispatch(UserActions.getRequestDataUser(email));
           dispatch(UserActions.log_in(true));
           dispatch(UserActions.sector(setor));
 

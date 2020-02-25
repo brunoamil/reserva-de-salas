@@ -1,8 +1,10 @@
 import { createActions, createReducer } from "reduxsauce";
 
 export const { Types, Creators } = createActions({
-  name: ['name'],
-  sector: ['sector'],
+  getRequestDataUser: ['email'],
+  getSuccessName: ['name'],
+  getSuccessSector: ['sector'],
+  getFailureDataUser: [],
   email: ['email'],
   log_in: [],
   log_out: [],
@@ -13,14 +15,23 @@ export const INICIAL_STATE = {
   userSector: '',
   userEmail : '',
   userLogin : false,
+  loading: false,
+  error: false,
 };
 
+const request =  (state = INICIAL_STATE, { email }) => (
+  {...state, loading: true}
+)
+const failure =  (state = INICIAL_STATE, action=null) => (
+  {...state, loading: false, error: true}
+)
+
 const name = (state = INICIAL_STATE, { name }) => (
-  {...state, userName: name} 
+  {...state, userName: name, loading: false} 
 )
 
 const sector = (state = INICIAL_STATE, { sector }) => (
-  {...state, userSector: sector }
+  {...state, userSector: sector, loading: false }
 )
 
 const email = (state = INICIAL_STATE, { email }) => (
@@ -36,9 +47,11 @@ const log_out = (state = INICIAL_STATE) => (
 )
 
 export default createReducer(INICIAL_STATE, {
-  [Types.NAME]: name,
-  [Types.SECTOR]: sector,
   [Types.EMAIL]: email,
   [Types.LOG_IN]: log_in,
   [Types.LOG_OUT]: log_out,
+  [Types.GET_REQUEST_DATA_USER]: request,
+  [Types.GET_SUCCESS_NAME]: name,
+  [Types.GET_SUCCESS_SECTOR]: sector,
+  [Types.GET_FAILURE_DATA_USER]: failure
 });

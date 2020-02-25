@@ -48,8 +48,6 @@ const Select = ({ room, date, inicialHour, id }) => {
         .ref(`salas/${room}/Eventos`)
         .on('value',item=>{
           item.forEach(doc => {
-            console.log(doc.val());
-            
             if (date === doc.val().data) {
               arrReserve.push(doc.val());
             }

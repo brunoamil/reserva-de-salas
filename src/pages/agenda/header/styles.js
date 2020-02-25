@@ -1,8 +1,8 @@
-import styled from 'styled-components'
-import {Icon} from 'semantic-ui-react'
+import styled from 'styled-components';
+import {Icon} from 'semantic-ui-react';
 
 
-export const Header = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -15,7 +15,7 @@ export const Header = styled.div`
 
 export const ContainerLeftHeader = styled.div`
   display: flex;
-  
+  margin: calc(100% - 96%);
 `;
 
 export const ContainerVoltar = styled.div`
@@ -60,6 +60,7 @@ export const Title = styled.h1`
 export const ContainerCenterHeader = styled.div`
   display: flex;
   flex-flow: row nowrap;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 
@@ -113,7 +114,7 @@ export const SelectAling = styled.div`
 
 `
 
-export const Select = styled.select`
+export const CustomSelect = styled.select`
     display: flex;
     align-items: center !important;
     justify-content: center;
