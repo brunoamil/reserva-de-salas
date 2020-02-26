@@ -1,10 +1,10 @@
 import { createActions, createReducer } from "reduxsauce";
 
 export const { Types, Creators } = createActions({
-  getRequestDataUser: ['email'],
+  getRequestDataUser: [],
   getSuccessName: ['name'],
   getSuccessSector: ['sector'],
-  getFailureDataUser: [],
+  getFailureDataUser: ['error'],
   email: ['email'],
   log_in: [],
   log_out: [],
@@ -16,14 +16,14 @@ export const INICIAL_STATE = {
   userEmail : '',
   userLogin : false,
   loading: false,
-  error: false,
+  error: '',
 };
 
-const request =  (state = INICIAL_STATE, { email }) => (
+const request =  (state = INICIAL_STATE, action=null) => (
   {...state, loading: true}
 )
-const failure =  (state = INICIAL_STATE, action=null) => (
-  {...state, loading: false, error: true}
+const failure =  (state = INICIAL_STATE, { error }) => (
+  {...state, loading: false, error: error}
 )
 
 const name = (state = INICIAL_STATE, { name }) => (

@@ -15,13 +15,14 @@ const User = () => {
   const dispatch = useDispatch();
 
   const user = useSelector(state => state.user);
+  console.log(user)
 
   const actionLogout = () => {
     actionLoader();
     setTimeout(() => {
       dispatch(UsersActions.log_out());
       dispatch(RoomActions.roomEvents([]));
-      dispatch(UsersActions.name(''))
+      dispatch(UsersActions.getSuccessName(''))
     }, 1000);
   };
 

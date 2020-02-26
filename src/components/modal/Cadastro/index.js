@@ -54,9 +54,11 @@ function RegisterForm({ ModalTop }) {
             .catch();
 
           dispatch(UserActions.email(email));
-          dispatch(UserActions.getRequestDataUser(email));
+          // dispatch(UserActions.getRequestDataUser());
+
           dispatch(UserActions.log_in(true));
-          dispatch(UserActions.sector(setor));
+          dispatch(UserActions.getSuccessSector(setor));
+          dispatch(UserActions.getSuccessName(nome));
 
           dispatch(ModalActions.confirm(true));
         })

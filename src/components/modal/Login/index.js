@@ -49,7 +49,7 @@ function LoginForm({ ModalTop }) {
           // user
           dispatch(usersAction.email(email));
           dispatch(usersAction.log_in(true));
-          dispatch(usersAction.getRequestDataUser(email));
+          dispatch(usersAction.getRequestDataUser());
           
           //modal
           dispatch(modalActions.login_modal(false));

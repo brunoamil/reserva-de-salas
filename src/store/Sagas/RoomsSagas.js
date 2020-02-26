@@ -1,8 +1,8 @@
 import { call, put } from 'redux-saga/effects';
 
-import api from '../services/api';
+import api from '../../services/api';
 
-import { Creators as RoomActions } from '../store/ducks/salas';
+import { Creators as RoomActions } from '../ducks/salas';
 
 export default function* roomSaga() {
   try {

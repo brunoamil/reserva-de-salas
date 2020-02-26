@@ -45,7 +45,7 @@ const Header = () => {
             <Responsive {...Responsive.onlyComputer}>
               <Select />
             </Responsive>
-            {userLogin && <User />}
+            {userLogin ? <User /> : <span />}
           </ContainerRightHeader>
         </Container>
       </LoadContext.Provider>

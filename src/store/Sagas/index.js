@@ -1,8 +1,8 @@
-import { takeLatest, all } from 'redux-saga/effects';
+import { takeEvery, takeLatest, all } from 'redux-saga/effects';
 
 /* ------------- Types ------------- */
-import { RoomTypes } from '../store/ducks/salas';
-import { Types } from '../store/ducks/users';
+import { RoomTypes } from '../ducks/salas';
+import { Types } from '../ducks/users';
 
 /* ------------- Sagas ------------- */
 import roomSaga from './RoomsSagas';
@@ -13,7 +13,7 @@ function* watchGetRoomsRequest() {
 }
 
 function* watchGetDataUserRequest() {
-  yield takeLatest(Types.GET_REQUEST_DATA_USER, userSaga);
+  yield takeEvery(Types.GET_REQUEST_DATA_USER, userSaga);
 }
 
 export default function* root() {

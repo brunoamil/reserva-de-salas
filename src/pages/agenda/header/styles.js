@@ -65,10 +65,11 @@ export const ContainerCenterHeader = styled.div`
   justify-content: center;
 
   /* margin-left: 2em; */
+  width: 10%;
 
   position: absolute;
   right: 50%; /* posiciona na metade da tela */
-  left: 54%;
+  left: 50%;
 
   h1{
     color: #0d4b81c9;
