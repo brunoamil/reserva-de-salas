@@ -5,11 +5,10 @@ import { Responsive } from 'semantic-ui-react';
 import { Creators as LoadActions } from '../../../store/ducks/load';
 import LoadContext from '../../../utils/LoadContext';
 
-import Img from "../../../assets/img/ceuma.png";
-
-import Select from './Select';
+import Select from '../../../components/Select';
+import User from '../../../components/User';
+import LogoCeuma from '../../../components/Logo';
 import Room from './Room';
-import User from './User';
 
 import {
   Logo,
@@ -18,6 +17,12 @@ import {
   ContainerLeftHeader,
   ContainerRightHeader,
   ContainerLogo,
+  UserAling,
+  ContainerUser,
+  ContainerLogout,
+  ViewSelect,
+  CustomSelect,
+  SelectAling
 } from "./styles";
 
 
@@ -36,16 +41,24 @@ const Header = () => {
         <Container>
           <ContainerLeftHeader>
             <ContainerLogo>
-              <Logo src={Img}></Logo>
-              <Title>Reserva de Salas</Title>
+              <LogoCeuma Title={Title} Logo={Logo} />
             </ContainerLogo>
           </ContainerLeftHeader>
           <Room />
           <ContainerRightHeader>
             <Responsive {...Responsive.onlyComputer}>
-              <Select />
+              <Select 
+                ViewSelect={ViewSelect}
+                CustomSelect={CustomSelect}
+                SelectAling={SelectAling}
+              />
             </Responsive>
-            {userLogin ? <User /> : <span />}
+            {userLogin ?
+             <User 
+               UserAling={UserAling}
+               ContainerUser={ContainerUser}
+               ContainerLogout={ContainerLogout}
+             /> : <span />}
           </ContainerRightHeader>
         </Container>
       </LoadContext.Provider>

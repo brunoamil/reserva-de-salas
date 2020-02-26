@@ -2,44 +2,8 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   height: 85vh;
-
+  margin-top: 5px;
 `;
-
-
-export const ContainerDay = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-
-`;
-
-export const ContainerSelect = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  width: 100%;
-  padding: 10px 0px;
-
-  background-color: #0d4b81;
-  select{
-    width: 100%;
-
-    border: none;
-    outline: none;
-    background-color: #0d4b81;
-  
-    :optional{
-      border: none;
-      color: #fff;
-  
-    }
-  }
-  
-`;
-
 
 export const ContainerContent = styled.div`
   display: flex;
@@ -54,7 +18,7 @@ export const ContainerContent = styled.div`
     width: 100%;
     height: 10vh;
 
-    margin: 2px 0px;
+    margin: 4px 0px;
 
 
   }

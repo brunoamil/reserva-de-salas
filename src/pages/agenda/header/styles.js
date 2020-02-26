@@ -15,7 +15,7 @@ export const Container = styled.div`
 
 export const ContainerLeftHeader = styled.div`
   display: flex;
-  margin: calc(100% - 96%);
+  margin: calc(100% - 95%);
 `;
 
 export const ContainerVoltar = styled.div`

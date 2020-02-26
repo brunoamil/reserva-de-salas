@@ -1,13 +1,11 @@
 import React, { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ViewSelect, CustomSelect, SelectAling } from '../styles';
+import RoomActions  from '../../store/ducks/salas';
 
-import RoomActions  from '../../../../store/ducks/salas';
+import LoadContext from '../../utils/LoadContext';
 
-import LoadContext from '../../../../utils/LoadContext';
-
-const Select = () => {
+const Select = ({ ViewSelect, CustomSelect, SelectAling }) => {
   const { actionLoader } = useContext(LoadContext);
   const dispatch = useDispatch();
   

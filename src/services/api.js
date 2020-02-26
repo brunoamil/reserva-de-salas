@@ -16,7 +16,7 @@ export default {
           })
         })
 
-      console.log(rooms)
+      // console.log(rooms)
       return rooms;
       
     } catch (error) {
@@ -25,7 +25,6 @@ export default {
   },
   fetchDataUser: async email => {
     try {
-      // console.log(email);
       const res = {
         name: '',
         sector: ''
@@ -39,7 +38,7 @@ export default {
         snapshot.forEach(doc => {
           if (doc.data().email === email) {
             res.name = checkName(doc.data().nome);
-            res.sector = doc.data().setor
+            res.sector = doc.data().setor;
           }
         });
       })

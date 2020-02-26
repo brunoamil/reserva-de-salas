@@ -3,14 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Icon } from 'semantic-ui-react';
 
-import { Creators as UsersActions } from '../../../../store/ducks/users';
-import { Creators as RoomActions }  from '../../../../store/ducks/salas';
+import { Creators as UsersActions } from '../../store/ducks/users';
+import { Creators as RoomActions }  from '../../store/ducks/salas';
 
-import { UserAling, ContainerUser, ContainerLogout } from '../styles';
+import LoadContext from '../../utils/LoadContext';
 
-import LoadContext from '../../../../utils/LoadContext';
-
-const User = () => {
+const User = ({ UserAling, ContainerUser, ContainerLogout }) => {
   const { actionLoader } = useContext(LoadContext)
   const dispatch = useDispatch();
 

@@ -14,7 +14,7 @@ import { Creators as RoomsActions } from '../../store/ducks/salas';
 import "./index.css";
 
 //Responsive
-import { HeaderAgendaMobile } from './responsive/header';
+import HeaderMobile from './responsive/header';
 import AgendaMobile  from './responsive/main';
 
 function NovaAgenda() {
@@ -77,7 +77,7 @@ function NovaAgenda() {
 
       {/* MOBILE */}
       <Responsive maxWidth={768}>
-        <HeaderAgendaMobile id="header" />
+        <HeaderMobile id="header" />
         { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <AgendaMobile /> }
       </Responsive>
 
