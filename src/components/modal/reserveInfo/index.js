@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Icon, Button, Modal, Segment } from "semantic-ui-react";
+import { Icon, Button, Modal } from "semantic-ui-react";
 import firebase from "../../../services/firebase";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -11,7 +11,10 @@ import { Creators as RoomsActions } from '../../../store/ducks/salas';
 
 import {
   Header,
-  Container
+  Container,
+  ContainerInfo,
+  ContainerDados,
+  ContainerHorario,
 } from "./styles";
 
 const InfoModal = () => {
@@ -111,49 +114,46 @@ const InfoModal = () => {
             <Header>
               <h2>Informações da Reserva</h2>
             </Header>
-            <Segment.Group size="big" >
-              <Segment >
-                <Icon name="user" size="large" />
-                <strong>Nome: </strong>
-                {dadosReserva.firstName}
-              </Segment>
-              <Segment>
-                <Icon name="building" size="large" />
-                <strong>Setor: </strong>
-                {dadosReserva.setor}
-              </Segment>
 
-
-              <Segment.Group horizontal >
-                <Segment>
-                  <Icon name="time" size="large" />
-                  <strong>Inicio: </strong>
-                  {dadosReserva.inicio}
-                </Segment>
-                <Segment>
-                  <Icon name="stopwatch" size="large" />
-                  <strong>Termino: </strong>
-                  {dadosReserva.termino}
-                </Segment>
-              </Segment.Group>
-
-
-              <Segment>
-                <Icon name="calendar check" size="large" />
-                <strong>Evento: </strong>
-                {dadosReserva.nomeEvento}
-              </Segment>
-
+            <ContainerInfo>
+              <ContainerDados>
+                <Icon name="user" size="big" />
+                <strong><h1>Nome: </h1></strong>
+                <h1>{dadosReserva.firstName}</h1>
+              </ContainerDados>
+              <ContainerDados>
+                <Icon name="building" size="big" />
+                <strong><h1>Setor: </h1></strong>
+                <h1>{dadosReserva.setor}</h1>
+              </ContainerDados>
+              <ContainerDados>
+                <ContainerHorario>
+                  <Icon name="time" size="big" />
+                  <strong><h1>Inicio: </h1></strong>
+                  <h1>{dadosReserva.inicio}</h1>
+                </ContainerHorario>
+                <ContainerHorario>
+                  <Icon name="stopwatch" size="big" />
+                  <strong><h1>Termino: </h1></strong>
+                  <h1>{dadosReserva.termino}</h1>
+                </ContainerHorario>
+              </ContainerDados>
+              <ContainerDados>
+                <Icon name="calendar check" size="big" />
+                <strong><h1>Evento: </h1></strong>
+                <h1>{dadosReserva.nomeEvento}</h1>
+              </ContainerDados>           
               {user.userLogin ?
-                <Segment.Group>
+                <ContainerDados>
                   <Button fluid negative icon size="large" onClick={() => setOpen(true)}>
                     Excluir reserva
                       </Button>
-                </Segment.Group>
+                </ContainerDados>
                 : ""
               }
+          </ContainerInfo>
 
-            </Segment.Group>
+
             <Modal size="tiny" open={open}>
               <>
                 <Modal.Header>Tem certeza que deseja excluir esta reserva?</Modal.Header>
