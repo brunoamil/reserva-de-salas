@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import firebase from '../../services/firebase';
-// import moment from "moment";
-// import { useHistory } from "react-router-dom";
+import { TransitionablePortal, Segment, Header } from 'semantic-ui-react';
+import { useHistory } from "react-router-dom";
 
-import Header from "./header";
+import HeaderAgenda from "./header";
 import Main from "./main";
 import Modal from "../../components/modal";
 import Loading from '../../components/loader';
 
-// import { Creators as UsersActions } from '../../store/ducks/users';
+import { Creators as UsersActions } from '../../store/ducks/users';
 import { Creators as LoaderActions } from '../../store/ducks/load';
 import { Creators as RoomsActions } from '../../store/ducks/salas';
 
@@ -17,42 +17,43 @@ import "./index.css";
 
 function NovaAgenda() {
 
+  const [openPortal, setOpenPortal] = useState(false)
+
+  const History = useHistory();
+  const dispatch = useDispatch();
+
+  const actionLogout = useCallback(() => {
+    setTimeout(() => {
+      dispatch(UsersActions.log_out());
+      dispatch(RoomsActions.roomEvents([]));
+      dispatch(UsersActions.name(''))
+    }, 1000);
+  }, [dispatch])
+
+  
   // Contador da sessão
 
-  // var count = 1
-    
-  // useEffect(() => {
-  //   var sessionInit = moment()
-  //   var initialTimer = parseInt(sessionInit.second())
+  useEffect(() => {
+    var count = 240
 
-  //   var sessionFinal = initialTimer + 240
-  //     var session = setInterval(function () {
-  //       if (initialTimer === sessionFinal) {
-  //         actionLogout()
-  //         window.alert("Sessão esgotada!")
-  //         clearInterval(session)
-  //         // windowRedirect()
-  //       }
-  //       initialTimer += 1
-  //     }, 1000)
-    
-  // })
+    var session = setInterval(function () {
+      if (count === 15) {
+        setOpenPortal(true)
+      }
+      if (count === 0) {
+        clearInterval(session)
+        actionLogout()
+        windowRedirect()
 
-  // function windowRedirect() {
-  //   let history = useHistory();
-  //   history.push("/")
-  // }
+        function windowRedirect() {
+          History.push("/")
+        }
+      }
+      count -= 1
 
-  // const actionLogout = () => {
-  //   setTimeout(() => {
-  //     dispatch(UsersActions.log_out());
-  //     dispatch(RoomsActions.roomEvents([]));
-  //     dispatch(UsersActions.name(''))
-  //   }, 1000);
-  // };
+    }, 1000)
+  }, [History, actionLogout])
 
-
-  const dispatch = useDispatch();
 
   const loader = useSelector(state => state.load.loadReserve);
   const sala = useSelector(state => state.salas.currentRoom);
@@ -104,8 +105,21 @@ function NovaAgenda() {
 
   return (
     <>
+      <TransitionablePortal open={openPortal}>
+        <Segment
+          style={{
+            left: '40%',
+            position: 'fixed',
+            top: '20%',
+            zIndex: 1000,
+          }}>
+          <Header>Sua sessão vai expirar!</Header>
+          <p>Em 15 segundos você será redirecionado a tela inicial.</p>
+        </Segment>
+      </TransitionablePortal>
+
       <Modal />
-      <Header id="header" />
+      <HeaderAgenda></HeaderAgenda>
       {loader ? <Loading size='big'> Carregando Reservas...</Loading> : <Main />}
     </>
   );
