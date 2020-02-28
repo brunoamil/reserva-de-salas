@@ -1,23 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from 'semantic-ui-react'
-import { Bloco, FooterStatus, Title } from './styles';
+import { Container, ContainerIcon, Ban, ContainerButton, Footer, Title } from './styles';
 import Detalhes from './detalhes'
 
 
 const Ocupado = props => {
   return (
     <>
-    <Bloco>
-      <Title>Ocupado!</Title>
-      <Detalhes></Detalhes>
-      <Link to = '/NovaAgenda'>
-        <Button size='massive'>
-          Reservar
-      </Button>
-      </Link>
-      <FooterStatus>Versão 1.0</FooterStatus>
-    </Bloco>
+    <Container>
+      <ContainerIcon>
+        <Ban name='ban'size='massive'/>
+      </ContainerIcon>
+      <Title>Este horário está reservado</Title>
+      <ContainerButton>
+        <Link to = '/NovaAgenda'>
+          <Button size='massive'>
+            Horários
+          </Button>
+        </Link>
+      </ContainerButton>
+      <Footer>
+        <Detalhes />
+      </Footer>
+    </Container>
     </>
   );
 };

@@ -60,9 +60,9 @@ function Inicial() {
   return (
     <>
       {status === 'disponivel' ?
-        <Disponivel></Disponivel>
-        :
         <Ocupado></Ocupado>
+        :
+        <Disponivel></Disponivel>
       }
     </>
   )

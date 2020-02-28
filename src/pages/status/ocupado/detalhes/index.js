@@ -1,22 +1,16 @@
 import React from 'react';
-import { Segment, Header } from 'semantic-ui-react';
 import { useSelector } from "react-redux";
 
-import './index.css'
+import {ContainerTitle} from './styles'
 
 function Detalhes() {
     const { sector, event } = useSelector(state => state.ReserveData.reserve_busy_data)
     return (
         <>
-            <Segment.Group size='big'>
-                <Segment textAlign='center'>
-                    <Header as='h2'>
-                        <Header.Content>Informações da reserva</Header.Content>
-                    </Header>
-                </Segment>
-                <Segment textAlign='center'>{sector}</Segment>
-                <Segment textAlign='center'>{event}</Segment>
-            </Segment.Group>
+          <ContainerTitle>
+            <h1>Setor : {sector}</h1>
+            <h1>Nome do Evento : {event}</h1>
+          </ContainerTitle>
         </>
     )
 }
