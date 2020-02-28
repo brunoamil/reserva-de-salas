@@ -12,7 +12,7 @@ export const Container = styled.div`
     width: 85%;
     height: 20%;
     text-align: center;
-    font-size: 2em;
+    font-size: 1.5em;
     font-weight: bold;
     font-family: 'Arial';
   }

@@ -1,6 +1,6 @@
 import firebase from '../services/firebase';
 
-import checkName from '../utils/checkName';
+import checks from '../utils/checks';
 
 export default {
   fetchRooms: () => {
@@ -37,7 +37,7 @@ export default {
       .then(snapshot => {
         snapshot.forEach(doc => {
           if (doc.data().email === email) {
-            res.name = checkName(doc.data().nome);
+            res.name = checks.checkName(doc.data().nome);
             res.sector = doc.data().setor;
           }
         });

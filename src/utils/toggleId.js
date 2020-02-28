@@ -1,8 +1,8 @@
-import checkDay from './checkName';
+import checks from './checks';
 
 const toggleCellId = day => {
-  console.log(checkDay(day))
-  switch(checkDay(day)) {
+  console.log(checks.splitDate(day)[0])
+  switch(checks.splitDate(day)[0]) {
     case 'SEG':
       return -4;
     case 'TER':

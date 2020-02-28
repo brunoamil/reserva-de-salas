@@ -1,6 +1,7 @@
 import moment from 'moment';
 
-let now = moment()
+export let now = moment()
+
 let dia = now.day();
 
 if (dia === 0) {
@@ -15,12 +16,20 @@ while (dia > 1) {
   dia = dia - 1;
 }
 
-export const dias = [
+export const daysOfWeek = [
   `SEG ${now.format("D/M")}`,
   `TER ${now.add(1,'days').format("D/M")}`,
   `QUA ${now.add(1,'days').format("D/M")}`,
   `QUI ${now.add(1,'days').format("D/M")}`,
   `SEX ${now.add(1,'days').format("D/M")}`
+];
+
+export const days = [
+  Number(now.format("D")),
+  Number(now.add(1,'days').format("D")),
+  Number(now.add(1,'days').format("D")),
+  Number(now.add(1,'days').format("D")),
+  Number(now.add(1,'days').format("D"))
 ];
 
 export const horas = [
