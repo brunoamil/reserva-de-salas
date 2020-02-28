@@ -1,25 +1,38 @@
-import Styled from "styled-components";
+import styled from "styled-components";
+import { Icon } from "semantic-ui-react"
 
-export const Title = Styled.h1`
-  font-size: 10em;
+export const Container = styled.div`
+  height: 100vh;
+  width: 100%;
+  
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+
+  background-color: green;
+`;
+export const ContainerIcon = styled.div`
+  margin-bottom: 5px;
+`;
+export const Icone = styled(Icon)`
+  color: #fff;
+
+  font-size: 15em !important;
+  margin: 0;
+
+`;
+
+export const ContainerButton = styled.div`
+  padding: 2em;
+`;
+
+export const Title = styled.h1`
+  font-size: 3em;
   color: #ffffff;
   text-align: center;
 
   @media(max-width: 763px) {
-    font-size : 5em;
+    font-size : 1.7em;
   }
-`;
-export const FooterStatus = Styled.p`
-  color: #cccccc;
-  position: absolute;
-  bottom: 0;
-`
-
-export const Bloco = Styled.div`
-  background-color: green;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  height: 100vh;
 `;

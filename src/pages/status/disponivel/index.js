@@ -1,21 +1,22 @@
 import React from "react";
-import { Bloco, FooterStatus, Title } from './styles';
+import { Container, ContainerIcon, Icone, ContainerButton, Footer, Title } from "./styles";
 import { Link } from "react-router-dom";
-import { Button } from 'semantic-ui-react'
-
+import { Button } from "semantic-ui-react";
 
 const Disponivel = props => {
   return (
     <>
-    <Bloco>
-      <Title>Disponivel!</Title>
-      <Link to = '/NovaAgenda'>
-        <Button size='massive'>
-          Reservar
-      </Button>
-      </Link>
-      <FooterStatus>Versão 1.0</FooterStatus>
-    </Bloco>
+      <Container>
+        <ContainerIcon>
+          <Icone name="calendar check outline" size="massive" />
+        </ContainerIcon>
+        <Title>Este horário está disponível</Title>
+        <ContainerButton>
+          <Link to="/NovaAgenda">
+            <Button size="massive">Reservar</Button>
+          </Link>
+        </ContainerButton>
+      </Container>
     </>
   );
 };
