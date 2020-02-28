@@ -36,3 +36,18 @@ export const Title = styled.h1`
     font-size : 1.7em;
   }
 `;
+
+export const Footer = styled.div`
+  display: flex;
+  justify-content: center;
+
+  position: absolute;
+  bottom: 0;
+  top: auto;
+
+  padding: 15px;
+  width: 100%;
+
+  color: #fff;
+
+`;
