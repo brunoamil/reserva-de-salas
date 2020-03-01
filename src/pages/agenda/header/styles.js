@@ -38,7 +38,6 @@ export const ContainerLogo = styled.div`
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  margin-left: 50px;
 
   height: 100%;
 

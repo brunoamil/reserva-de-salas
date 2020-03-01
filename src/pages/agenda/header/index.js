@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import firebase from "../../../services/firebase";
 import { Icon, Responsive } from 'semantic-ui-react'
+import { Link } from 'react-router-dom';
 
 import Img from "../../../assets/img/ceuma.png";
 
@@ -17,6 +18,8 @@ import {
   Select,
   SelectAling,
   ContainerLeftHeader,
+  ContainerVoltar,
+  ButtonVoltar,
   ContainerCenterHeader,
   ContainerRightHeader,
   ContainerLogo,
@@ -114,6 +117,11 @@ const HeaderAgenda = () => {
     <>
       <Header>
         <ContainerLeftHeader>
+          <ContainerVoltar>
+            <Link to='/'>
+              <ButtonVoltar name='arrow left' size='large' color='black' ></ButtonVoltar>
+            </Link>
+          </ContainerVoltar>
           <ContainerLogo>
             <Logo src={Img}></Logo>
             <Title>Reserva de Salas</Title>
