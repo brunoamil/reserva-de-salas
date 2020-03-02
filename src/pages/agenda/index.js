@@ -38,26 +38,26 @@ function NovaAgenda() {
   
   // Contador da sessão
 
-  useEffect(() => {
-    var count = 240
+  // useEffect(() => {
+  //   var count = 240
 
-    var session = setInterval(function () {
-      if (count === 15) {
-        setOpenPortal(true)
-      }
-      if (count === 0) {
-        clearInterval(session)
-        actionLogout()
-        windowRedirect()
+  //   var session = setInterval(function () {
+  //     if (count === 15) {
+  //       setOpenPortal(true)
+  //     }
+  //     if (count === 0) {
+  //       clearInterval(session)
+  //       actionLogout()
+  //       windowRedirect()
 
-        function windowRedirect() {
-          History.push("/")
-        }
-      }
-      count -= 1
+  //       function windowRedirect() {
+  //         History.push("/")
+  //       }
+  //     }
+  //     count -= 1
 
-    }, 1000)
-  }, [History, actionLogout])
+  //   }, 1000)
+  // }, [History, actionLogout])
 
 
   const loader = useSelector(state => state.load.loadReserve);

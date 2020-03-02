@@ -27,7 +27,8 @@ const Select = ({ room, date, inicialHour, id }) => {
       "15:00",
       "16:00",
       "17:00",
-      "18:00"
+      "18:00",
+      "19:00"
     ];
 
     if (!limitHour) {

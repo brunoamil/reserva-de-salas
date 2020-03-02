@@ -29,7 +29,7 @@ export const ContainerDados = styled.div`
 
 export const ContainerHorario = styled.div`
   display: flex;
-  margin-right: 7em;
+  margin-right: 4em;
 `;
 
 export const Header = styled.div`

@@ -78,7 +78,6 @@ export const HourContent = styled.div`
     border: none;
     outline : none;
     background-color: transparent;
-    margin-bottom: 10px;
     :optional{
       font-size: 1em;
       @media(min-width: 850px) {
