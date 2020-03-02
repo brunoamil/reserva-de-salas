@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-// import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import firebase from "../../../services/firebase";
+import { Icon, Responsive } from 'semantic-ui-react'
+import { Link } from 'react-router-dom';
 
 import Img from "../../../assets/img/ceuma.png";
 
 import { Creators as LoadActions } from '../../../store/ducks/load';
 import { Creators as UsersActions } from '../../../store/ducks/users';
 import { Creators as RoomsActions } from '../../../store/ducks/salas';
-// import { Creators as ModalActions } from '../../../../store/ducks/modal';
 
 import {
   Logo,
@@ -17,16 +17,15 @@ import {
   UserAling,
   Select,
   SelectAling,
-  Container,
-  CircleAling,
-  Circle,
-  Circle2,
-  Legenda,
-  View,
-  ContainerHeader,
   ContainerLeftHeader,
+  ContainerVoltar,
+  ButtonVoltar,
+  ContainerCenterHeader,
+  ContainerRightHeader,
+  ContainerLogo,
+  ContainerUser,
+  ContainerLogout,
   ViewSelect,
-  ButtonVoltar
 } from "./styles";
 
 
@@ -117,52 +116,55 @@ const HeaderAgenda = () => {
   return (
     <>
       <Header>
-        <Container>
-          <View>
-            <ContainerHeader>
+        <ContainerLeftHeader>
+          <ContainerVoltar>
+            <Link to='/'>
+              <ButtonVoltar name='arrow left' size='large' color='black' ></ButtonVoltar>
+            </Link>
+          </ContainerVoltar>
+          <ContainerLogo>
+            <Logo src={Img}></Logo>
+            <Title>Reserva de Salas</Title>
+          </ContainerLogo>
+        </ContainerLeftHeader>
 
-              {/* <ContainerVoltar>
-                <Link to='/'>
-                  <ButtonVoltar name='arrow left' size='large' color='black' ></ButtonVoltar>
-                </Link>
-              </ContainerVoltar> */}
+        <ContainerCenterHeader>
+          <h1>Auditorio</h1>
+        </ContainerCenterHeader>
 
-
-              <ContainerLeftHeader>
-                <Logo src={Img}></Logo>
-                <Title>Reserva de Salas</Title>
-              </ContainerLeftHeader>
-            </ContainerHeader>
-            <UserAling>
-              {useSelector(state => state.user.userLogin) === true ? (
-                <>
-                  <h1>Usuário: {nome}</h1>
-                  <ButtonVoltar name='sign-out' size='large' onClick={actionLogout}></ButtonVoltar>
-                </>
-              ) : ''
-              }
-            </UserAling>
-          </View>
-          <ViewSelect>
-            <CircleAling>
-              <Circle></Circle>
-              <Legenda>Indisponível</Legenda>
-              <Circle2></Circle2>
-              <Legenda>Disponível</Legenda>
-            </CircleAling>
-            <SelectAling>
-              <Select onChange={e => {
-                roomsActions(e.target.value);
-                actionLoader();
-              }}>
-                {salas.map(sala => (
-                  <option key={sala}>{sala}</option>
-                ))}
-              </Select>
-            </SelectAling>
-          </ViewSelect>
-        </Container>
+        <ContainerRightHeader>
+          <Responsive {...Responsive.onlyComputer}>
+            <ViewSelect>
+                <SelectAling>
+                  <Select onChange={e => {
+                    roomsActions(e.target.value);
+                    actionLoader();
+                  }}>
+                    {salas.map(sala => (
+                      <option key={sala}>{sala}</option>
+                    ))}
+                  </Select>
+                </SelectAling>
+              </ViewSelect>
+          </Responsive>
+          {useSelector(state => state.user.userLogin) === true ? (
+            <>
+              <UserAling>
+                <Icon color='black' name='user circle' size='big'></Icon>
+                <ContainerUser>
+                  <h1>{nome}</h1>
+                  <h2>NTI</h2>
+                </ContainerUser>
+                <ContainerLogout>
+                  <Icon name='sign-out' size='large' onClick={actionLogout}></Icon>
+                </ContainerLogout>
+              </UserAling>
+            </>
+          ) : <span></span>
+          }
+        </ContainerRightHeader>
       </Header>
+    
     </>
   );
 };

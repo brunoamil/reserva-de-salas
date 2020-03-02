@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useSelector, useDispatch } from 'react-redux';
+import { Responsive } from 'semantic-ui-react'
 import firebase from '../../services/firebase';
 import { TransitionablePortal, Segment, Header } from 'semantic-ui-react';
 import { useHistory } from "react-router-dom";
@@ -14,6 +15,10 @@ import { Creators as LoaderActions } from '../../store/ducks/load';
 import { Creators as RoomsActions } from '../../store/ducks/salas';
 
 import "./index.css";
+
+//Responsive
+import { HeaderAgendaMobile } from './responsive/header';
+import AgendaMobile  from './responsive/main';
 
 function NovaAgenda() {
 
@@ -72,7 +77,7 @@ function NovaAgenda() {
 
     const getEventos = async () => {
 
-      await firebase
+      await firebase 
         .database()
         .ref(`salas/${sala}/Eventos`)
         .on('value', sucesso => {
@@ -87,9 +92,6 @@ function NovaAgenda() {
             } else {
               dispatch(RoomsActions.roomEvents([]));
             };
-            // console.log(events);
-
-
           });
         })
     }
@@ -119,8 +121,19 @@ function NovaAgenda() {
       </TransitionablePortal>
 
       <Modal />
-      <HeaderAgenda></HeaderAgenda>
-      {loader ? <Loading size='big'> Carregando Reservas...</Loading> : <Main />}
+
+      {/* PC E TABLET */}
+      <Responsive minWidth={768}>
+        <HeaderAgenda id="header" />
+        { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <Main /> }
+      </Responsive>
+
+      {/* MOBILE */}
+      <Responsive maxWidth={768}>
+        <HeaderAgendaMobile id="header" />
+        { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <AgendaMobile /> }
+      </Responsive>
+
     </>
   );
 }

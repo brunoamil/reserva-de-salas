@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,27 +17,6 @@
 
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
-  <script>
-
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", function () {
-        navigator.serviceWorker
-          .register("worker.js")
-          .then(
-            function (registration) {
-            },
-            function (err) {
-              console.log("Worker registration failed", err);
-            }
-          )
-          .catch(function (err) {
-            console.log(err);
-          });
-      });
-    } else {
-      console.log("Service Worker is not supported by browser.");
-    }
-  </script>
 </body>
 
 </html>

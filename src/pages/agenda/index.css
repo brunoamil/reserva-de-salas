@@ -5,10 +5,10 @@
 }
 
 #table{
-  margin: 0 !important;   
-  border: none;
-  border-radius: 0;
-  height: 90%;
+    margin: 0 !important;   
+    border: none;
+    border-radius: 0;
+    height: 90vh;
 }
 .ui.table td{
   text-align: center;
@@ -17,6 +17,10 @@
 }
 .ui.table tr td{
     border-top: 1px solid rgb(206, 202, 202) ;
+}
+
+.ui.segment {
+  border: 0 !important;
 }
 
 .ui.table th{

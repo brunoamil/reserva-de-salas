@@ -1,7 +1,11 @@
 let CACHE_NAME = 'Reserva de salas';
 let urlsToCache = [
   '/',
-  '/completed'
+  '/completed',
+  '/static/js/bundle.js',
+  '/static/js/main.chunk.js',
+  '/static/js/1.chunk.js',
+  '/static/js/0.chunk.js',
 ];
 
 // Install a service worker

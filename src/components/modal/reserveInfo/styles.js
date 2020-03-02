@@ -12,6 +12,26 @@ export const ContainerInfo = styled.div`
   width: 100%;
 `;
 
+export const ContainerDados = styled.div`
+  width: 100%;
+  padding: 1em 1em;
+
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  h1{
+    margin-top: 0;
+    margin-left: 5px;
+    font-size: 1.28571429rem;
+  }
+`;
+
+export const ContainerHorario = styled.div`
+  display: flex;
+  margin-right: 7em;
+`;
+
 export const Header = styled.div`
   margin-top:2%;
   width : 100%;
