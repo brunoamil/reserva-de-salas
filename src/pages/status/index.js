@@ -29,26 +29,30 @@ function Inicial() {
 
     firebase
       .database()
-      .ref(`salas/Auditório/Eventos`)
+      .ref(`salas/Sala 1/Eventos`)
       .on('value', sucesso => {
         setStatus('disponivel')
+        // console.log();
         
         sucesso.forEach(doc => {
+          // setStatus('disponivel')
           var data = doc.val().data
-
+          
           if ((`${nowDay}/${nowMonth + 1}`) === data) {
             var hora = doc.val().inicio
             var horaFinal = doc.val().termino
             setSetor(doc.val().setor)
             setEvento(doc.val().nomeEvento)
-
+            
             if ((parseInt(nowHour) >= parseInt(hora)) && ((parseInt(nowHour) < parseInt(horaFinal)))) {
               setStatus('ocupado')
+              // console.log(status);
+              
+            }
+            else{
+              setStatus('disponivel')
             }
 
-          }
-          else{
-            setStatus('disponivel')
           }
         });
       })
