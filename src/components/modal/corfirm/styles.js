@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Icon, Button } from "semantic-ui-react";
+import { Button, Placeholder, Form, Label } from "semantic-ui-react";
 
 export const Container = styled.div``;
 
@@ -33,7 +33,7 @@ export const TextAling = styled.div`
     justify-content:center;
     width: 100%;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     h1{
       font-family: "PT Sans",sans-serif;
       color: #000;
@@ -46,62 +46,45 @@ export const ContainerTitle = styled.div`
   flex-direction: row;
 `;
 
-export const DescContent = styled.div`
-  float: right;
-  margin-left: -15px;
-  form {
-    label {
-      font-size: 1.2em;
-      margin-bottom: 4px;
-    }
-    input {
-      width: 100%;
-      outline: 0 !important;
-    }
-  }
+export const LabelConfirm = styled(Label)`
+  background-color: transparent !important;
+  padding:0px !important;
+  font-size: 1.2em !important;
 `;
 
-export const HourContent = styled.div`
+export const FormFieldHora = styled(Form.Field)`
+  margin-top: 10px;
+`;
+
+export const DataDiv = styled(Placeholder.Line)`
+  text-align: center;
+  font-size: 1.3em;
+  margin-top: 5px;
+  border: 1px solid rgba(34,36,38,.15);
+  border-radius: 4px;
+  padding: 1px;
+`
+
+export const HourContent = styled(Placeholder.Line)`
+  font-size:1.3em;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: center;
-  margin-top: 15px;
-  margin-bottom: 25px;
-  strong {
-    font-size: 1.3em;
-    @media(min-width: 850px) {
-      font-size: 1.5em;
-    }
-  }
+  align-items: left !important;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(34,36,38,.15);
+  border-radius: 4px;
+  padding: 1px;
+
   select{
     border: none;
     outline : none;
     background-color: transparent;
     :optional{
       font-size: 1em;
-      @media(min-width: 850px) {
-        font-size: 1.5em;
-      }
     }
   }
-`;
-
-export const CustomIcon = styled(Icon)`
-  margin: 0 !important;
-`;
-
-export const PointHourContent = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0px 3px 0px -7px;
-`;
-
-export const ZeroHourContent = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const CustomOption = styled.option`

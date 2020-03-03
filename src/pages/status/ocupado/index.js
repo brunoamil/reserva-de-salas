@@ -12,11 +12,11 @@ const Ocupado = props => {
       <ContainerIcon>
         <Ban name='ban'size='massive'/>
       </ContainerIcon>
-      <Title>Este horário está reservado</Title>
+      <Title>Esta sala está reservada</Title>
       <ContainerButton>
         <Link to = '/NovaAgenda'>
           <Button size='massive'>
-            Horários
+            Ver Horários Disponíveis
           </Button>
         </Link>
       </ContainerButton>
