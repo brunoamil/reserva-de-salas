@@ -8,7 +8,7 @@ const Disponivel = props => {
     <>
       <Container>
         <ContainerIcon>
-          <Icone name="calendar check outline" size="massive" />
+          <Icone name="check" size="massive" />
         </ContainerIcon>
         <Title>Este horário está disponível</Title>
         <ContainerButton>
