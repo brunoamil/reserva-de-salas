@@ -13,8 +13,7 @@ function Session() {
     const dispatch = useDispatch()
     const History = useHistory();
 
-    const [openPortal, setOpenPortal] = useState(false)
-    const [count, setCount] = useState(20)
+    const [count, setCount] = useState(240)
 
     const actionLogout = useCallback(() => {
         setTimeout(() => {
@@ -27,9 +26,6 @@ function Session() {
     // Contador da sessão
     useEffect(() => {
         var session = setInterval(function () {
-            if (count === 15) {
-                setOpenPortal(true)
-            }
             if (count === 0) {
                 clearInterval(session)
                 actionLogout()
@@ -39,7 +35,7 @@ function Session() {
                     History.push("/")
                 }
             }
-            console.log(count);
+            // console.log(count);
             setCount(count - 1)
         }, 1000)
         return () => {
