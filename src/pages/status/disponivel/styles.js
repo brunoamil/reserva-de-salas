@@ -48,6 +48,6 @@ export const Footer = styled.div`
   padding: 15px;
   width: 100%;
 
-  color: #fff;
+  color : rgba(255, 255, 255,0.7);
 
 `;

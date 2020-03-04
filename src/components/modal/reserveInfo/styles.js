@@ -21,7 +21,7 @@ export const ContainerDados = styled.div`
   align-items: center;
 
   h1{
-    margin-top: 0;
+    margin: 0px;
     margin-left: 5px;
     font-size: 1.28571429rem;
   }

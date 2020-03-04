@@ -185,13 +185,6 @@ const InfoModal = () => {
               </ContainerHorario>
             </ContainerDados>
             <ContainerDados>
-              <Icon name="calendar check" size="big" />
-              <strong>
-                <h1>Evento: </h1>
-              </strong>
-              <h1>{dadosReserva.nomeEvento}</h1>
-            </ContainerDados>
-            <ContainerDados>
               <Button fluid negative icon size="large" onClick={CheckLogin}>
                 Excluir reserva
               </Button>
