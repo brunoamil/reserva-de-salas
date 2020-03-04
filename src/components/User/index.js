@@ -6,15 +6,14 @@ import { Icon } from 'semantic-ui-react';
 import { Creators as UsersActions } from '../../store/ducks/users';
 import { Creators as RoomActions }  from '../../store/ducks/salas';
 
-import LoadContext from '../../utils/LoadContext';
+import LoadContext from '../../contexts/LoadContext';
 
 const User = ({ UserAling, ContainerUser, ContainerLogout }) => {
   const { actionLoader } = useContext(LoadContext)
   const dispatch = useDispatch();
 
   const user = useSelector(state => state.user);
-  console.log(user)
-
+  
   const actionLogout = () => {
     actionLoader();
     setTimeout(() => {

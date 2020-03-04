@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export let now = moment()
+let now = moment()
 
 let dia = now.day();
 
@@ -22,14 +22,6 @@ export const daysOfWeek = [
   `QUA ${now.add(1,'days').format("D/M")}`,
   `QUI ${now.add(1,'days').format("D/M")}`,
   `SEX ${now.add(1,'days').format("D/M")}`
-];
-
-export const days = [
-  Number(now.format("D")),
-  Number(now.add(1,'days').format("D")),
-  Number(now.add(1,'days').format("D")),
-  Number(now.add(1,'days').format("D")),
-  Number(now.add(1,'days').format("D"))
 ];
 
 export const horas = [

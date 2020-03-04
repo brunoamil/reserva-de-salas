@@ -24,7 +24,7 @@ const Confirm = () => {
   
   const userName = useSelector(state => state.user.userName);
   const userEmail = useSelector(state => state.user.userEmail);
-  var setor = useSelector(state => state.user.userSector)
+  const setor = useSelector(state => state.user.userSector);
 
   const sala = useSelector(state => state.salas.currentRoom);
 
@@ -36,14 +36,14 @@ const Confirm = () => {
 
   const cadastrarEvento = async () => {
     
-    await firebase.firestore().collection("usuarios")
-      .get()
-      .then(item => item.forEach(doc => {
-        if (userEmail === doc.data().email) {
-          setor = doc.data().setor;
-        }
-      }))
-      .catch(err => console.log("Erro ao pegar o setor", err))
+    // await firebase.firestore().collection("usuarios")
+    //   .get()
+    //   .then(item => item.forEach(doc => {
+    //     if (userEmail === doc.data().email) {
+    //       setor = doc.data().setor;
+    //     }
+    //   }))
+    //   .catch(err => console.log("Erro ao pegar o setor", err))
 
     const dados = {
       id: reserveData.reserve_id,
@@ -63,7 +63,7 @@ const Confirm = () => {
       
     } else {
       setMsgErro(false);
-      db.ref(`salas/${sala}/Eventos/${reserveData.reserve_id}`)
+      db.ref(`salas/${sala}/Eventos/${reserveData.reserve_day_of_week}/${reserveData.reserve_id}`)
         .set(dados)
         .then(() => {
           setLoading(false);
@@ -96,6 +96,7 @@ const Confirm = () => {
                 date = {reserveData.reserve_date}
                 inicialHour = {reserveData.reserve_inicial_hour}
                 id={reserveData.reserve_id}
+                dayOfWeek={reserveData.reserve_day_of_week}
               />
             </div>
           </HourContent>

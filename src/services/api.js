@@ -12,7 +12,7 @@ export default {
         .ref('salas')
         .on('value', res => {
           res.forEach(doc => {
-            rooms.push(doc.key)
+            if(rooms.indexOf(doc.key) === -1) rooms.push(doc.key)
           })
         })
 

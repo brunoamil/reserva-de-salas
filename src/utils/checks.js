@@ -16,11 +16,5 @@ export default {
         return newdate;
       }
     }
-  },
-  splitNumberDate: date => {
-    if (date.indexOf("/") > -1) {
-      let ndate = date.split("/");
-      return Number(ndate[0]);
-    }
   }
 };

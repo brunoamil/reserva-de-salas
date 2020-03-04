@@ -1,0 +1,26 @@
+[2020-02-28 08:41:11.208] [sharedprocess] [info] main {"machineId":"e052b730729db29fc246e65838a43ebc1453ab720f278318554f2c37e3db8eab","windowId":2}
+[2020-02-28 08:41:38.008] [sharedprocess] [info] Installing extension: esbenp.prettier-vscode
+[2020-02-28 08:41:38.868] [sharedprocess] [info] Downloaded extension: esbenp.prettier-vscode /tmp/08e6ca6b-912e-4715-9fb6-8df384b71ef6
+[2020-02-28 08:41:39.126] [sharedprocess] [info] Extracted extension to /root/.vscode/extensions/.esbenp.prettier-vscode-3.20.0: esbenp.prettier-vscode
+[2020-02-28 08:41:39.127] [sharedprocess] [info] Renamed to /root/.vscode/extensions/esbenp.prettier-vscode-3.20.0
+[2020-02-28 08:41:39.128] [sharedprocess] [info] Installation completed. esbenp.prettier-vscode
+[2020-02-28 08:41:39.164] [sharedprocess] [info] Extensions installed successfully: esbenp.prettier-vscode
+[2020-02-28 08:41:46.699] [sharedprocess] [info] Installing extension: jpoissonnier.vscode-styled-components
+[2020-02-28 08:41:47.318] [sharedprocess] [info] Downloaded extension: jpoissonnier.vscode-styled-components /tmp/ef028667-2e7d-4ad0-b214-227773e65643
+[2020-02-28 08:41:47.689] [sharedprocess] [info] Extracted extension to /root/.vscode/extensions/.jpoissonnier.vscode-styled-components-0.0.28: jpoissonnier.vscode-styled-components
+[2020-02-28 08:41:47.689] [sharedprocess] [info] Renamed to /root/.vscode/extensions/jpoissonnier.vscode-styled-components-0.0.28
+[2020-02-28 08:41:47.690] [sharedprocess] [info] Installation completed. jpoissonnier.vscode-styled-components
+[2020-02-28 08:41:47.732] [sharedprocess] [info] Extensions installed successfully: jpoissonnier.vscode-styled-components
+[2020-02-28 08:41:51.189] [sharedprocess] [info] Starting to clean up unused language packs.
+[2020-02-28 08:41:59.608] [sharedprocess] [info] Installing extension: editorconfig.editorconfig
+[2020-02-28 08:42:00.218] [sharedprocess] [info] Downloaded extension: editorconfig.editorconfig /tmp/e55a7ee6-0381-4cdd-9527-efc206c47c0d
+[2020-02-28 08:42:00.291] [sharedprocess] [info] Extracted extension to /root/.vscode/extensions/.editorconfig.editorconfig-0.14.4: editorconfig.editorconfig
+[2020-02-28 08:42:00.291] [sharedprocess] [info] Renamed to /root/.vscode/extensions/editorconfig.editorconfig-0.14.4
+[2020-02-28 08:42:00.292] [sharedprocess] [info] Installation completed. editorconfig.editorconfig
+[2020-02-28 08:42:00.369] [sharedprocess] [info] Extensions installed successfully: editorconfig.editorconfig
+[2020-02-28 08:42:36.964] [sharedprocess] [info] Installing extension: pkief.material-icon-theme
+[2020-02-28 08:42:37.455] [sharedprocess] [info] Downloaded extension: pkief.material-icon-theme /tmp/a0e92ec9-e11a-448e-9167-38cfb76139ff
+[2020-02-28 08:42:39.137] [sharedprocess] [info] Extracted extension to /root/.vscode/extensions/.pkief.material-icon-theme-3.9.3: pkief.material-icon-theme
+[2020-02-28 08:42:39.138] [sharedprocess] [info] Renamed to /root/.vscode/extensions/pkief.material-icon-theme-3.9.3
+[2020-02-28 08:42:39.139] [sharedprocess] [info] Installation completed. pkief.material-icon-theme
+[2020-02-28 08:42:39.191] [sharedprocess] [info] Extensions installed successfully: pkief.material-icon-theme

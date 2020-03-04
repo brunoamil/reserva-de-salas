@@ -1,7 +1,6 @@
 import checks from './checks';
 
 const toggleCellId = day => {
-  console.log(checks.splitDate(day)[0])
   switch(checks.splitDate(day)[0]) {
     case 'SEG':
       return -4;

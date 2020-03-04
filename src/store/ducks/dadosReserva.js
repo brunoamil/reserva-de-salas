@@ -7,6 +7,7 @@ export const { Types, Creators } = createActions({
   final_hour: ["final_hour"],
   event: ["event"],
   date: ["date"],
+  dayOfWeek: ["date"],
   id: ["id"],
   idMobile: ["id_mobile"],
   dateMobile: ["date_mobile"],
@@ -18,8 +19,9 @@ export const INICIAL_STATE = {
   reserve_event: "",
   reserve_id: "",
   reserve_date: "",
+  reserve_day_of_week: "",
   reserve_id_mobile: -4,
-  reserve_date_mobile: now.date()
+  reserve_date_mobile: now.format('D/M'),
 };
 
 const event = (state = INICIAL_STATE, { event }) => ({
@@ -44,6 +46,11 @@ const date = (state = INICIAL_STATE, { date }) => ({
   reserve_date: date
 });
 
+const day = (state = INICIAL_STATE, { date }) => ({
+  ...state,
+  reserve_day_of_week: date
+});
+
 const id_mobile = (state = INICIAL_STATE, { id_mobile }) => ({
   ...state, 
   reserve_id_mobile: id_mobile
@@ -62,5 +69,6 @@ export default createReducer(INICIAL_STATE, {
   [Types.INICIAL_HOUR]: inicial_hour,
   [Types.FINAL_HOUR]: final_hour,
   [Types.DATE]: date,
+  [Types.DAY_OF_WEEK]: day,
   [Types.DATE_MOBILE]: date_mobile
 });

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Responsive } from 'semantic-ui-react';
 
 import { Creators as LoadActions } from '../../../store/ducks/load';
-import LoadContext from '../../../utils/LoadContext';
+import LoadContext from '../../../contexts/LoadContext';
 
 import Select from '../../../components/Select';
 import User from '../../../components/User';

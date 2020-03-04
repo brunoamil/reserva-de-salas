@@ -19,6 +19,7 @@ const InfoModal = () => {
 
   const sala = useSelector(state => state.salas.currentRoom);
   const id = useSelector(state => state.ReserveData.reserve_id);
+  const dayOfWeek = useSelector(state => state.ReserveData.reserve_day_of_week);
   const loader = useSelector(state => state.load.loadInfo);
 
   const user = useSelector(state => state.user);
@@ -42,7 +43,7 @@ const InfoModal = () => {
     const getEventos = async () => {
       await firebase
         .database()
-        .ref(`salas/${sala}/Eventos`)
+        .ref(`salas/${sala}/Eventos/${dayOfWeek}`)
         .on('value', sucesso => {
           sucesso.forEach(doc => {
             if (id === doc.val().id) {
@@ -66,7 +67,6 @@ const InfoModal = () => {
                   userEmail
                 });
                 dispatch(LoadActions.info(false));
-                // console.log(doc.data());
               }
             }
           });
@@ -83,7 +83,7 @@ const InfoModal = () => {
       setOpen(false);
       firebase
         .database()
-        .ref(`salas/${sala}/Eventos/${id}`)
+        .ref(`salas/${sala}/Eventos/${dayOfWeek}/${id}`)
         .remove()
         .then(() => {
           setTimeout(() => {
@@ -123,7 +123,6 @@ const InfoModal = () => {
                 {dadosReserva.setor}
               </Segment>
 
-
               <Segment.Group horizontal >
                 <Segment>
                   <Icon name="time" size="large" />
@@ -136,7 +135,6 @@ const InfoModal = () => {
                   {dadosReserva.termino}
                 </Segment>
               </Segment.Group>
-
 
               <Segment>
                 <Icon name="calendar check" size="large" />

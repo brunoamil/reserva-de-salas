@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import RoomActions  from '../../store/ducks/salas';
 
-import LoadContext from '../../utils/LoadContext';
+import LoadContext from '../../contexts/LoadContext';
 
 const Select = ({ ViewSelect, CustomSelect, SelectAling }) => {
   const { actionLoader } = useContext(LoadContext);
@@ -26,8 +26,8 @@ const Select = ({ ViewSelect, CustomSelect, SelectAling }) => {
             roomsActions(e.target.value);
             actionLoader();
           }}>
-            {(salas.map(sala => (
-              <option key={sala}>{sala}</option>
+            {(salas.map((sala, index) => (
+              <option key={index}>{sala}</option>
             )))}
           </CustomSelect>
         </SelectAling>
