@@ -8,12 +8,11 @@ import Loading from '../../../components/loader';
 
 import { Creators as loadActions } from '../../../store/ducks/load';
 import { Creators as ModalActions } from '../../../store/ducks/modal';
-import Select from './Select';
+import SelectHora from './Select';
 
 import {
   Container,
   ContainerMain,
-  HourContent,
   TextAling,
   CustomButton,
   DataDiv,
@@ -85,7 +84,7 @@ const Confirm = () => {
       default:
         console.log('erro');
     }
-    return (()=>{''})
+    return (() => { '' })
   }, [reservaData, data])
 
   const cadastrarEvento = async () => {
@@ -148,18 +147,13 @@ const Confirm = () => {
 
           <FormFieldHora>
             <LabelConfirm >Horário</LabelConfirm>
-            <HourContent>
-              <div>
-                De: {reserveData.reserve_inicial_hour} às
-                  <Select
-                  db={db}
-                  room={sala}
-                  date={reserveData.reserve_date}
-                  inicialHour={reserveData.reserve_inicial_hour}
-                  id={reserveData.reserve_id}
-                />
-              </div>
-            </HourContent>
+              <SelectHora
+                db={db}
+                room={sala}
+                date={reserveData.reserve_date}
+                inicialHour={reserveData.reserve_inicial_hour}
+                id={reserveData.reserve_id}
+              />
           </FormFieldHora>
           <CustomButton
             onClick={() => cadastrarEvento()}
@@ -171,7 +165,7 @@ const Confirm = () => {
           </CustomButton>
           {msgErro && (
             <Message
-              header="Selecione o termino da reserva!"
+              header="Escolha o horário da sua reserva!"
               color="red"
               icon="dont"
             />

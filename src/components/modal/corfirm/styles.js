@@ -57,39 +57,20 @@ export const FormFieldHora = styled(Form.Field)`
 `;
 
 export const DataDiv = styled(Placeholder.Line)`
-  text-align: center;
+  text-align: left;
   font-size: 1.3em;
   margin-top: 5px;
   border: 1px solid rgba(34,36,38,.15);
   border-radius: 4px;
-  padding: 1px;
+  padding: .78571429em 2.1em .78571429em 1em;
+  line-height: 1 !important;
+  
 `
 
-export const HourContent = styled(Placeholder.Line)`
-  font-size:1.3em;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: left !important;
+export const CustomSelect = styled(Form.Field)`
+  font-size: 1.3em;
   margin-top: 5px;
-  margin-bottom: 10px;
-  border: 1px solid rgba(34,36,38,.15);
-  border-radius: 4px;
-  padding: 1px;
-
-  select{
-    border: none;
-    outline : none;
-    background-color: transparent;
-    :optional{
-      font-size: 1em;
-    }
-  }
-`;
-
-export const CustomOption = styled.option`
-  font-size: 1.5em;
-  color: #eee !important;
+  /* align-items: left !important; */
 `;
 
 export const CustomButton = styled(Button)`
