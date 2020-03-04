@@ -91,6 +91,7 @@ const InfoModal = () => {
     if (email === "" || senha === "") {
       setErro(true);
       setMsgErro("Informe email e/ou senha!");
+      setCarregando(false);
     } else {
       firebase
         .auth()
@@ -106,6 +107,7 @@ const InfoModal = () => {
         .catch(erro => {
           setErro(true);
           setMsgErro("Usuário ou senha inválidos!");
+          setCarregando(false);
         });
     }
   }
