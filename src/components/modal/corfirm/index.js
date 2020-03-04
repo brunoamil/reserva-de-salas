@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Message, Form } from "semantic-ui-react";
 import firebase from "../../../services/firebase";
+import moment from "moment";
 
 import Loading from '../../../components/loader';
 
@@ -33,8 +34,59 @@ const Confirm = () => {
 
   const [msgErro, setMsgErro] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [data, setData] = useState()
 
   const db = firebase.database();
+
+  const reservaData = reserveData.reserve_date;
+  useEffect(() => {
+
+    let splitData = reservaData.split('/')
+    var now = moment();
+    var ano = now.year();
+
+    switch (splitData[1]) {
+      case '1':
+        setData(`${splitData[0]}, janeiro de ${ano} `)
+        break;
+      case '2':
+        setData(`${splitData[0]}, fevereiro de ${ano} `)
+        break;
+      case '3':
+        setData(`${splitData[0]}, março de ${ano} `)
+        break;
+      case '4':
+        setData(`${splitData[0]}, abril de ${ano} `)
+        break;
+      case '5':
+        setData(`${splitData[0]}, maio de ${ano} `)
+        break;
+      case '6':
+        setData(`${splitData[0]}, junho de ${ano} `)
+        break;
+      case '7':
+        setData(`${splitData[0]}, julho de ${ano} `)
+        break;
+      case '8':
+        setData(`${splitData[0]}, agosto de ${ano} `)
+        break;
+      case '9':
+        setData(`${splitData[0]}, setembro de ${ano} `)
+        break;
+      case '10':
+        setData(`${splitData[0]}, outubro de ${ano} `)
+        break;
+      case '11':
+        setData(`${splitData[0]}, novembro de ${ano} `)
+        break;
+      case '12':
+        setData(`${splitData[0]}, dezembro de ${ano} `)
+        break;
+      default:
+        console.log('erro');
+    }
+    return (()=>{''})
+  }, [reservaData, data])
 
   const cadastrarEvento = async () => {
 
@@ -89,8 +141,8 @@ const Confirm = () => {
 
           <Form.Field>
             <LabelConfirm >Data</LabelConfirm>
-            <DataDiv textAlign='center'>
-              Ter 1 fevereiro, 2020
+            <DataDiv>
+              {data}
             </DataDiv>
           </Form.Field>
 
