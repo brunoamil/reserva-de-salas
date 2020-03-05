@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { Table } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -9,13 +9,14 @@ import checks from '../../../utils/checks';
 import {horas, daysOfWeek} from '../../../utils/TimeConfig';
 
 import { Creators as LoadActions } from "../../../store/ducks/load";
-import { Creators as ModalActions } from "../../../store/ducks/modal";
 import { Creators as DateReserveActions } from "../../../store/ducks/dadosReserva";
+
+import ModalContext from '../../../contexts/ModalContext';
 
 function Agenda() {
   const dispatch = useDispatch();
+  const { modalActions } = useContext(ModalContext);
 
-  const CheckLogin = useSelector(state => state.user.userLogin);
   const event = useSelector(state => state.salas.roomEvents);
 
   let idDivCell = 0;
@@ -65,6 +66,14 @@ function Agenda() {
   };
   
   useEffect(() => renderCellActions(event));
+
+  const reduxTableActions = (idTable, hour, date) => {
+    dispatch(DateReserveActions.id(idTable));
+    dispatch(DateReserveActions.inicial_hour(hour));
+    dispatch(DateReserveActions.date(checks.splitDate(date)[1]));
+    dispatch(DateReserveActions.dayOfWeek(checks.splitDate(date)[0]))
+    dispatch(LoadActions.info(true));
+  };
   
   return (
     <>

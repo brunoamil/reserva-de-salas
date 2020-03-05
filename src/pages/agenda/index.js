@@ -10,13 +10,13 @@ import Loading from '../../components/loader';
 
 import { Creators as LoaderActions } from '../../store/ducks/load';
 import { Creators as RoomsActions } from '../../store/ducks/salas';
+import { Creators as ModalActions } from '../../store/ducks/modal';
 
 import "./index.css";
 
 import checks from '../../utils/checks';
 
 import ModalContext from '../../contexts/ModalContext';
-import ActionsTable from '../../contexts/ActionsTableContext';
 
 //Responsive
 import HeaderMobile from './responsive/header';
@@ -27,6 +27,7 @@ function NovaAgenda() {
 
   const loader = useSelector(state => state.load.loadReserve);
   const sala = useSelector(state => state.salas.currentRoom);
+  const CheckLogin = useSelector(state => state.user.userLogin);
 
   useEffect(() => {
     const getEventos = async () => {
@@ -66,14 +67,6 @@ function NovaAgenda() {
     }, 1000);
   }
 
-  const reduxTableActions = (idTable, hour, date) => {
-    dispatch(DateReserveActions.id(idTable));
-    dispatch(DateReserveActions.inicial_hour(hour));
-    dispatch(DateReserveActions.date(checks.splitDate(date)[1]));
-    dispatch(DateReserveActions.dayOfWeek(checks.splitDate(date)[0]))
-    dispatch(LoadActions.info(true));
-  };
-
   const modalActions = samElement => {
     dispatch(ModalActions.modal(true));
     if (samElement.length !== 0) {
@@ -89,20 +82,20 @@ function NovaAgenda() {
 
   return (
     <>
-      <Modal />
+      <ModalContext.Provider value={{modalActions}}>
+        <Modal />
+        {/* PC E TABLET */}
+        <Responsive minWidth={768}>
+          <Header id="header" />
+          { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <Main /> }
+        </Responsive>
 
-      {/* PC E TABLET */}
-      <Responsive minWidth={768}>
-        <Header id="header" />
-        { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <Main /> }
-      </Responsive>
-
-      {/* MOBILE */}
-      <Responsive maxWidth={768}>
-        <HeaderMobile id="header" />
-        { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <AgendaMobile /> }
-      </Responsive>
-
+        {/* MOBILE */}
+        <Responsive maxWidth={768}>
+          <HeaderMobile id="header" />
+          { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <AgendaMobile /> }
+        </Responsive>
+      </ModalContext.Provider>
     </>
   );
 }
