@@ -16,7 +16,7 @@ import CofirmModalContent from './corfirm';
 import InfoModal from './reserveInfo';
 import CreateRoomForm from "./createRoom";
 
-import {Creators as ModalActions} from '../../store/ducks/modal';
+import { Creators as ModalActions } from '../../store/ducks/modal';
 
 const ModalUser = () => {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const ModalUser = () => {
   const ModalTop = () => {
     const width = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
     const height = (window.innerHeight > 0) ? window.innerHeight : window.screen.height;
-    if(width <= 1280 && height<= 700) {
+    if (width <= 1280 && height <= 700) {
       const topInput = document.getElementById('topInput');
       topInput.style.setProperty('transition', 'all 0.2s ease');
       topInput.style.setProperty('margin-top', '-5em');
@@ -40,22 +40,24 @@ const ModalUser = () => {
   return (
     <>
       <Global id="topInput" size="tiny" open={modalStates.modal} closeOnEscape={false}
-          closeOnDimmerClick={false}>
+        closeOnDimmerClick={false}>
         <ContainerHeader>
           <IconExit onClick={close}><CustomIcon size="large" name='times' /></IconExit>
         </ContainerHeader>
         <CustomModalContent>
-          {modalStates.login && <LoginForm ModalTop = {ModalTop} />}
-          {modalStates.register && <RegisterForm ModalTop = {ModalTop} />}
-          {modalStates.confirm && <CofirmModalContent ModalTop = {ModalTop} />}
+          {modalStates.login && <LoginForm ModalTop={ModalTop} />}
+          {modalStates.register && <RegisterForm ModalTop={ModalTop} />}
+          {modalStates.confirm && <CofirmModalContent ModalTop={ModalTop} />}
           {modalStates.info && <InfoModal />}
           {modalStates.room && <CreateRoomForm />}
         </CustomModalContent>
         {modalStates.login && (
           <FooterModal>
             <p>
-              Ainda não possui conta?{" "}
-              <span onClick={() => dispatch(ModalActions.register(true))}>Clique Aqui!</span>
+              <span onClick={() => dispatch(ModalActions.register(true))}>
+                Ainda não possui conta?{" "}
+                Clique Aqui!
+              </span>
             </p>
           </FooterModal>
         )}

@@ -12,7 +12,7 @@ const Ocupado = props => {
       <ContainerIcon>
         <Ban name='ban'size='massive'/>
       </ContainerIcon>
-      <Title>Esta sala está reservada</Title>
+      <Title>Sala ocupada!</Title>
       <ContainerButton>
         <Link to = '/NovaAgenda'>
           <Button size='massive'>

@@ -10,7 +10,7 @@ const Disponivel = props => {
         <ContainerIcon>
           <Icone name="check" size="massive" />
         </ContainerIcon>
-        <Title>Este horário está disponível</Title>
+        <Title>Sala disponível!</Title>
         <ContainerButton>
           <Link to="/NovaAgenda">
             <Button size="massive">Reservar</Button>
