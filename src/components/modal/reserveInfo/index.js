@@ -102,7 +102,14 @@ const InfoModal = () => {
           dispatch(usersAction.log_in(true));
           setCarregando(false);
 
-          ActionDelete();
+          if (email === dadosReserva.userEmail) {
+            ActionDelete();
+          }
+          else {
+            setOpen(false)
+            setErro(true)
+            setMsgErro("Você nao pode excluir uma reserva que não é sua!");
+          }
         })
         .catch(erro => {
           setErro(true);
@@ -145,133 +152,135 @@ const InfoModal = () => {
           <Loading size="medium">Carregando Informações...</Loading>
         </Container>
       ) : (
-        <>
-          {loaderDel && (
-            <Loading size="medium">Deletando Informações...</Loading>
-          )}
-          <Header>
-            <h2>Informações da Reserva</h2>
-          </Header>
+          <>
+            {loaderDel && (
+              <Loading size="medium">Deletando Informações...</Loading>
+            )}
+            <Header>
+              <h2>Informações da Reserva</h2>
+            </Header>
 
-          <ContainerInfo>
-            <ContainerDados>
-              <Icon name="user" size="big" />
-              <strong>
-                <h1>Nome: </h1>
-              </strong>
-              <h1>{dadosReserva.firstName}</h1>
-            </ContainerDados>
-            <ContainerDados>
-              <Icon name="building" size="big" />
-              <strong>
-                <h1>Setor: </h1>
-              </strong>
-              <h1>{dadosReserva.setor}</h1>
-            </ContainerDados>
-            <ContainerDados>
-              <ContainerHorario>
-                <Icon name="time" size="big" />
+            <ContainerInfo>
+              <ContainerDados>
+                <Icon name="user" size="big" />
                 <strong>
-                  <h1>Inicio: </h1>
+                  <h1>Nome: </h1>
                 </strong>
-                <h1>{dadosReserva.inicio}</h1>
-              </ContainerHorario>
-              <ContainerHorario>
-                <Icon name="stopwatch" size="big" />
+                <h1>{dadosReserva.firstName}</h1>
+              </ContainerDados>
+              <ContainerDados>
+                <Icon name="building" size="big" />
                 <strong>
-                  <h1>Termino: </h1>
+                  <h1>Setor: </h1>
                 </strong>
-                <h1>{dadosReserva.termino}</h1>
-              </ContainerHorario>
-            </ContainerDados>
-            <ContainerDados>
-              <Button fluid negative icon size="large" onClick={CheckLogin}>
-                Excluir reserva
+                <h1>{dadosReserva.setor}</h1>
+              </ContainerDados>
+              <ContainerDados>
+                <ContainerHorario>
+                  <Icon name="time" size="big" />
+                  <strong>
+                    <h1>Inicio: </h1>
+                  </strong>
+                  <h1>{dadosReserva.inicio}</h1>
+                </ContainerHorario>
+                <ContainerHorario>
+                  <Icon name="stopwatch" size="big" />
+                  <strong>
+                    <h1>Termino: </h1>
+                  </strong>
+                  <h1>{dadosReserva.termino}</h1>
+                </ContainerHorario>
+              </ContainerDados>
+              <ContainerDados>
+                <Button fluid negative icon size="large" onClick={CheckLogin}>
+                  Excluir reserva
               </Button>
-            </ContainerDados>
-          </ContainerInfo>
+              </ContainerDados>
+              {erro ? (
+                <Message header={msgErro} color="red" icon="dont" />
+              ) : ''}
+            </ContainerInfo>
 
-          <Modal size="tiny" open={open}>
-            <>
-              {login ? (
-                <>
-                  <Modal.Header>Confirmar Login</Modal.Header>
-                  <Modal.Content>
-                    <Form>
-                      <Form.Field>
-                        <Input
-                          size="big"
-                          loading={carregando}
-                          onChange={e => setEmail(e.target.value)}
-                          type="email"
-                          placeholder="Email"
-                          icon="mail"
-                          iconPosition="left"
-                        />
-                      </Form.Field>
+            <Modal size="tiny" open={open}>
+              <>
+                {login ? (
+                  <>
+                    <Modal.Header>Confirmar Login</Modal.Header>
+                    <Modal.Content>
+                      <Form>
+                        <Form.Field>
+                          <Input
+                            size="big"
+                            loading={carregando}
+                            onChange={e => setEmail(e.target.value)}
+                            type="email"
+                            placeholder="Email"
+                            icon="mail"
+                            iconPosition="left"
+                          />
+                        </Form.Field>
 
-                      <Form.Field>
-                        <Input
-                          size="big"
-                          loading={carregando}
-                          onChange={e => setSenha(e.target.value)}
-                          type="password"
-                          placeholder="Senha"
-                          icon="lock"
-                          iconPosition="left"
+                        <Form.Field>
+                          <Input
+                            size="big"
+                            loading={carregando}
+                            onChange={e => setSenha(e.target.value)}
+                            type="password"
+                            placeholder="Senha"
+                            icon="lock"
+                            iconPosition="left"
+                          />
+                        </Form.Field>
+                      </Form>
+                      {erro ? (
+                        <Message header={msgErro} color="red" icon="dont" />
+                      ) : ''}
+                    </Modal.Content>
+                    <Modal.Actions>
+                      <Button
+                        disabled={carregando}
+                        content="Cancelar"
+                        onClick={() => {
+                          setOpen(false);
+                        }}
+                      />
+                      <Button
+                        disabled={carregando}
+                        color="facebook"
+                        icon="check"
+                        labelPosition="right"
+                        content="Logar"
+                        onClick={Logar}
+                      />
+                    </Modal.Actions>
+                  </>
+                ) : (
+                    <>
+                      <Modal.Header>
+                        Tem certeza que deseja excluir esta reserva?
+                          </Modal.Header>
+                      <Modal.Actions>
+                        <Button
+                          content="Cancelar"
+                          onClick={() => {
+                            setOpen(false);
+                          }}
                         />
-                      </Form.Field>
-                    </Form>
-                    {erro ? (
-                      <Message header={msgErro} color="red" icon="dont" />
-                    ) : (
-                      <div />
-                    )}
-                  </Modal.Content>
-                  <Modal.Actions>
-                    <Button
-                      disabled={carregando}
-                      content="Cancelar"
-                      onClick={() => {
-                        setOpen(false);
-                      }}
-                    />
-                    <Button
-                      disabled={carregando}
-                      color="facebook"
-                      icon="check"
-                      labelPosition="right"
-                      content="Logar"
-                      onClick={Logar}
-                    />
-                  </Modal.Actions>
-                </>
-              ) : (
-                <>
-                  <Modal.Header>
-                    Tem certeza que deseja excluir esta reserva?
-                  </Modal.Header>
-                  <Modal.Actions>
-                    <Button
-                      content="Cancelar"
-                      onClick={() => {
-                        setOpen(false);
-                      }}
-                    />
-                    <Button
-                      negative
-                      icon="x"
-                      labelPosition="right"
-                      content="Sim"
-                      onClick={ActionDelete}
-                    />
-                  </Modal.Actions>
-                </>
-              )}
-            </>
-          </Modal>
-        </>
-      )}
+                        <Button
+                          negative
+                          icon="x"
+                          labelPosition="right"
+                          content="Sim"
+                          onClick={ActionDelete}
+                        />
+                      </Modal.Actions>
+                      }
+                    </>
+                  )}
+              </>
+            </Modal>
+          </>
+        )}
     </>
   );
 };

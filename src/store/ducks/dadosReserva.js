@@ -6,7 +6,7 @@ export const { Types, Creators } = createActions({
   event: ["event"],
   id: ["id"],
   date: ["date"],
-  busy: ["sector", "event"]
+  busy: ["sector", "inicial_hour", "final_hour"]
 });
 
 export const INICIAL_STATE = {
@@ -40,11 +40,12 @@ const date = (state = INICIAL_STATE, { date }) => ({
   reserve_date: date
 });
 
-const busy = (state = INICIAL_STATE, { sector, event }) => ({
+const busy = (state = INICIAL_STATE, { sector, inicial_hour, final_hour }) => ({
   ...state,
   reserve_busy_data: {
     sector,
-    event
+    inicial_hour, 
+    final_hour
   }
 })
 

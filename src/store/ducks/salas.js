@@ -10,7 +10,7 @@ export const { Types, Creators } = createActions({
 //criando os reducer handlers
 export const INICIAL_STATE = {
   rooms: [],
-  currentRoom: "Auditório",
+  currentRoom: "Sala 1",
   roomEvents: []
 };
 

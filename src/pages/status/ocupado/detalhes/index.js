@@ -4,12 +4,12 @@ import { useSelector } from "react-redux";
 import {ContainerTitle} from './styles'
 
 function Detalhes() {
-    const { sector, event } = useSelector(state => state.ReserveData.reserve_busy_data)
+    const { sector, inicial_hour, final_hour } = useSelector(state => state.ReserveData.reserve_busy_data)
     return (
         <>
           <ContainerTitle>
             <h1>Setor : {sector}</h1>
-            <h1>Nome do Evento : {event}</h1>
+            <h1>De {inicial_hour} ás {final_hour}</h1>
           </ContainerTitle>
         </>
     )

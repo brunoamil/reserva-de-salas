@@ -13,7 +13,8 @@ function Inicial() {
 
   const [status, setStatus] = useState('disponivel')
   const [setor, setSetor] = useState('')
-  const [evento, setEvento] = useState('')
+  const [inicio, setInicio] = useState('')
+  const [termino, setTermino] = useState('')
 
   var hoje = moment()
   var nowDay = hoje.date()
@@ -42,7 +43,8 @@ function Inicial() {
             var hora = doc.val().inicio
             var horaFinal = doc.val().termino
             setSetor(doc.val().setor)
-            setEvento(doc.val().nomeEvento)
+            setInicio(doc.val().inicio)
+            setTermino(doc.val().termino)
             
             if ((parseInt(nowHour) >= parseInt(hora)) && ((parseInt(nowHour) < parseInt(horaFinal)))) {
               setStatus('ocupado')
@@ -58,7 +60,7 @@ function Inicial() {
       })
   })
 
-  dispatch(RoomActions.busy(setor, evento))
+  dispatch(RoomActions.busy(setor, inicio, termino))
   // console.log(useSelector(state=> state.ReserveData))
 
   return (
