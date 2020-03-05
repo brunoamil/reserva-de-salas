@@ -153,7 +153,7 @@ const HeaderAgenda = () => {
                 <Icon color='black' name='user circle' size='big'></Icon>
                 <ContainerUser>
                   <h1>{nome}</h1>
-                  <h2>NTI</h2>
+                  {/* <h2>NTI</h2> */}
                 </ContainerUser>
                 <ContainerLogout>
                   <Icon name='sign-out' size='large' onClick={actionLogout}></Icon>
