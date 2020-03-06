@@ -49,5 +49,6 @@ export const Footer = styled.div`
   width: 100%;
 
   color : #ccc;
+  font-size: 1.1em;
 
 `;
