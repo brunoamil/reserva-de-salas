@@ -41,6 +41,7 @@ export const Version = styled.div`
   padding: 10px;
   color : #ccc;
   font-size: 1.1em;
+  margin-top: 3.1%;
 `;
 
 export const Footer = styled.footer`
