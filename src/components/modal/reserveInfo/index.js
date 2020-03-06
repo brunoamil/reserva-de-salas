@@ -119,9 +119,17 @@ const InfoModal = () => {
     }
   }
   function CheckLogin() {
-    setOpen(true);
+    setOpen(true);    
     if (user.userEmail !== "") {
       setLogin(false);
+      if (user.userEmail === dadosReserva.userEmail) {
+        ActionDelete();
+      }
+      else {        
+        setOpen(false)
+        setErro(true)
+        setMsgErro("Você nao pode excluir uma reserva que não é sua!")
+      }
     } else {
       setLogin(true);
     }
@@ -191,14 +199,16 @@ const InfoModal = () => {
                   <h1>{dadosReserva.termino}</h1>
                 </ContainerHorario>
               </ContainerDados>
+              {erro ? (
+                <ContainerDados>
+                  <Message header={msgErro} color="red" icon="dont" />
+                </ContainerDados>
+              ) : ''}
               <ContainerDados>
                 <Button fluid negative icon size="large" onClick={CheckLogin}>
                   Excluir reserva
               </Button>
               </ContainerDados>
-              {erro ? (
-                <Message header={msgErro} color="red" icon="dont" />
-              ) : ''}
             </ContainerInfo>
 
             <Modal size="tiny" open={open}>

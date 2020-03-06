@@ -13,9 +13,7 @@ const SelectHora = ({ room, date, inicialHour, id }) => {
   const [selectHour, setSelectHour] = useState([]);
   const [horasDisp, setHorasDisp] = useState([]);
 
-  const actionFinalHour = (e, {value})  => {
-    console.log(value);
-    
+  const actionFinalHour = (e, {value})  => {    
     dispatch(ReserveDataActions.final_hour(value));
   };
 

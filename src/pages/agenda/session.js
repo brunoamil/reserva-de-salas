@@ -19,7 +19,7 @@ function Session() {
         setTimeout(() => {
             dispatch(UsersActions.log_out());
             dispatch(RoomsActions.roomEvents([]));
-            dispatch(RoomsActions.currentRoom('Auditório'));
+            dispatch(RoomsActions.currentRoom('Sala 1'));
             dispatch(UsersActions.name(''))
         }, 1000);
     }, [dispatch])

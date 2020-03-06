@@ -4,8 +4,6 @@ import { Message, Form } from "semantic-ui-react";
 import firebase from "../../../services/firebase";
 import moment from "moment";
 
-import Loading from '../../../components/loader';
-
 import { Creators as loadActions } from '../../../store/ducks/load';
 import { Creators as ModalActions } from '../../../store/ducks/modal';
 import SelectHora from './Select';
@@ -88,6 +86,7 @@ const Confirm = () => {
   }, [reservaData, data])
 
   const cadastrarEvento = async () => {
+    setLoading(true)
 
     await firebase.firestore().collection("usuarios")
       .get()
@@ -118,9 +117,9 @@ const Confirm = () => {
       db.ref(`salas/${sala}/Eventos/${reserveData.reserve_id}`)
         .set(dados)
         .then(() => {
-          setLoading(false);
           setTimeout(() => {
             dispatch(ModalActions.modal(false));
+            setLoading(false);
             dispatch(loadActions.reserve(true));
           }, 1000);
         })
@@ -131,13 +130,14 @@ const Confirm = () => {
   };
   return (
     <>
-      {loading && <Loading size="big">Carregando Reservas...</Loading>}
+      {/* {loading && <Loading size="big">Carregando Reservas...</Loading>} */}
       <Container>
         <ContainerMain>
           <TextAling>
             <h1>Reservar horários</h1>
           </TextAling>
 
+          <Form loading = {loading}>
           <Form.Field>
             <LabelConfirm >Data</LabelConfirm>
             <DataDiv>
@@ -155,11 +155,13 @@ const Confirm = () => {
                 id={reserveData.reserve_id}
               />
           </FormFieldHora>
+          </Form>
           <CustomButton
             onClick={() => cadastrarEvento()}
             size="big"
             id="button"
             fluid
+            disabled = {loading}
           >
             Confirmar Reserva
           </CustomButton>
