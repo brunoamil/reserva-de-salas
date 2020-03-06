@@ -41,7 +41,7 @@ const InfoModal = () => {
     if (name) {
       if (name.indexOf(" ") > -1) {
         let firstName = name.split(" ");
-        return firstName[0];
+        return firstName[0];  
       } else {
         return name;
       }

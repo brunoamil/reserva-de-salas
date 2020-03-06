@@ -36,6 +36,7 @@ const HeaderAgenda = () => {
   const [nome, setNome] = useState();
   const [/*loader*/, setLoader] = useState(false);
   const [salas, setSalas] = useState([]);
+  const sector = useSelector(state => state.user.userSector);
 
   const checkName = name => {
     if (name) {
@@ -153,7 +154,7 @@ const HeaderAgenda = () => {
                 <Icon color='black' name='user circle' size='big'></Icon>
                 <ContainerUser>
                   <h1>{nome}</h1>
-                  <h2>NTI</h2>
+                  <h2>{sector}</h2>
                 </ContainerUser>
                 <ContainerLogout>
                   <Icon name='sign-out' size='large' onClick={actionLogout}></Icon>
