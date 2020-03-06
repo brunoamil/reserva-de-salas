@@ -20,7 +20,7 @@ const Ocupado = props => {
           </Button>
         </Link>
       </ContainerButton>
-      <Version>Versão 1.1.1</Version>
+      <Version>Versão 1.2</Version>
       <Footer>
         <Detalhes />
       </Footer>

@@ -16,7 +16,7 @@ const Disponivel = props => {
             <Button size="massive">Reservar</Button>
           </Link>
         </ContainerButton>
-        <Footer>Versão 1.1.1</Footer>
+        <Footer>Versão 1.2</Footer>
       </Container>
     </>
   );
