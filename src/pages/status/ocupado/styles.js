@@ -36,6 +36,13 @@ export const Title = styled.h1`
     font-size : 1.7em;
   }
 `;
+
+export const Version = styled.div`
+  padding: 10px;
+  color : #ccc;
+  font-size: 1.1em;
+`;
+
 export const Footer = styled.footer`
   position: absolute;
   bottom: 0;
@@ -44,4 +51,4 @@ export const Footer = styled.footer`
   background-color: #fff;
   padding: 15px;
   width: 100%;
-`
+`;
