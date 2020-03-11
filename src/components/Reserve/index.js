@@ -10,12 +10,12 @@ const Reserve = ({ id, sector }) => {
   if (reserves.length !== 0) {
     return (
       <Container id={id} >
-        <h1>{sector}</h1>
+        <h1>{'NTI'}</h1>
   
         <Responsive {...Responsive.onlyMobile}>
           <div>
             <span>
-              <Icon style={{ marginLeft: "15px" }} name="lock" size="big" inverted />
+              {/* <Icon style={{ marginLeft: "15px" }} name="lock" size="big" inverted /> */}
             </span>
           </div>
         </Responsive>

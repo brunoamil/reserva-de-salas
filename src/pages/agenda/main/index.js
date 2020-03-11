@@ -27,10 +27,10 @@ function Agenda() {
       event.map(info => {
         let divCell = document.getElementById(`${info.id}`);
         
-        const reserveHour = horas.filter(
-          hour => hour > info.inicio && hour <= info.termino
+        const reserveHour = horas.filter( hour => 
+          hour > info.inicio && hour <= info.termino
         );
-
+        
         if (divCell.childNodes.length === 0) {
           renderFinalReserve(divCell, info.id, info.setor);
 
@@ -41,10 +41,10 @@ function Agenda() {
             reserveHour.map(hour => {
               let divCellTermino = document.getElementById(
                 String((idCellTermino += 5))
-                );
+              );
                 
-                return renderFinalReserve(divCellTermino, info.id, info.setor);
-              });
+              return renderFinalReserve(divCellTermino, info.id, info.setor);
+            });
           }
         }
         return "";
