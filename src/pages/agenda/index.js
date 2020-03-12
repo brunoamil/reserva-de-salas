@@ -98,7 +98,7 @@ function NovaAgenda() {
           { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <AgendaMobile /> }
         </Responsive>
       </ModalContext.Provider>
-      <Session/>
+      {/* <Session/> */}
     </>
   );
 }

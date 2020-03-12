@@ -16,7 +16,8 @@ const SelectDay = () => {
 
   const actionId = day => {
     dispatch(ReserveActions.idMobile(toggleId(day)));
-    dispatch(ReserveActions.dateMobile(checks.splitDate(day)[1]));
+    dispatch(ReserveActions.dateMobile(checks.splitDate(day)[1]))
+    dispatch(ReserveActions.dayOfWeek(checks.splitDate(day)[0]));
     actionLoader();
   }
 

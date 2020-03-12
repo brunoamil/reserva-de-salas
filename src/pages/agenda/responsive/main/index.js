@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import "../../index.css";
 import {
@@ -10,20 +10,20 @@ import {
 } from "./styles";
 
 import { horas } from '../../../../utils/TimeConfig';
-// import checks from '../../../../utils/checks';
+import checks from '../../../../utils/checks';
 
 import ModalContext from '../../../../contexts/ModalContext';
 
-// import Reserve from  '../../../../components/Reserve';
+import {Creators as DateReserveActions} from '../../../../store/ducks/dadosReserva';
+import {Creators as LoadActions} from '../../../../store/ducks/load';
 
 function AgendaMobile() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const {modalActions} = useContext(ModalContext);
 
-  // const CheckLogin = useSelector(state => state.user.userLogin);
   const events = useSelector(state => state.salas.roomEvents);
   let idMobile = useSelector(state => state.ReserveData.reserve_id_mobile);
-  // let dateMobile = useSelector(state => state.ReserveData.reserve_date_mobile);
+  let dateMobile = useSelector(state => state.ReserveData.reserve_date_mobile);
 
   const renderReserve = () => {
     events.map(info => {
@@ -63,6 +63,13 @@ function AgendaMobile() {
     divCell.appendChild(spanct);
   };
 
+  const reduxTableActions = (idTable, hour, date) => {
+    dispatch(DateReserveActions.id(idTable));
+    dispatch(DateReserveActions.inicial_hour(hour));
+    dispatch(DateReserveActions.date(date));
+    dispatch(LoadActions.info(true));
+  };
+
   useEffect(() => renderReserve(events))
 
   return (
@@ -72,7 +79,13 @@ function AgendaMobile() {
           {horas.map((hour, index) => (
             <span key={index}>
               <ContainerHour>{hour}</ContainerHour>
-              <ContainerCell id={idMobile += 5} onclick={e => modalActions(e.target.childNodes)}>
+              <ContainerCell id={idMobile += 5} onClick={e => {
+                modalActions(e.target.childNodes)
+                reduxTableActions(
+                  e.target.getAttribute("id"),
+                  hour,
+                  dateMobile
+                )}}>
               </ContainerCell>
             </span>
           ))}

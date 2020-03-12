@@ -13,8 +13,6 @@ const User = ({ UserAling, ContainerUser, ContainerLogout }) => {
   const dispatch = useDispatch();
 
   const user = useSelector(state => state.user);
-  console.log(user);
-  
   
   const actionLogout = () => {
     actionLoader();
