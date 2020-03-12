@@ -124,11 +124,14 @@ function RegisterForm({ ModalTop }) {
                   setNome(name);
                 }}
                 placeholder="Nome"
+                maxLength='16'
+
               />
             </CustomForm>
 
             <CustomForm>
               <Input
+                list="setores"
                 onClick = {ModalTop}
                 icon="building"
                 iconPosition="left"
@@ -137,6 +140,8 @@ function RegisterForm({ ModalTop }) {
                   setSetor(sector.toUpperCase());
                 }}
                 placeholder="Setor"
+                maxLength='10'
+
               />
               <datalist id="setores">
                 <option value="NTI" />
@@ -144,6 +149,8 @@ function RegisterForm({ ModalTop }) {
                 <option value="MANTENEDORA" />
                 <option value="CSC" />
                 <option value="INFRA" />
+                <option value="DAC" />
+                <option value="DIT" />
               </datalist>
             </CustomForm>
 
@@ -155,6 +162,7 @@ function RegisterForm({ ModalTop }) {
                 onChange={e => setEmail(e.target.value)}
                 type="email"
                 placeholder="Email"
+                maxLength='30'
               />
             </CustomForm>
 
@@ -166,6 +174,7 @@ function RegisterForm({ ModalTop }) {
                 onChange={e => setSenha(e.target.value)}
                 type="password"
                 placeholder="Senha"
+                maxLength='15'
               />
             </CustomForm>
           </Form>

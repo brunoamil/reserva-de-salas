@@ -160,7 +160,9 @@ export const ContainerDay = styled.div`
   align-items: center;
   justify-content: center;
 
-  width: 100%;
+  width: 100%;  
+
+  margin-bottom: 10px;
 
 `;
 

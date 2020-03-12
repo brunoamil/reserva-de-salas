@@ -18,7 +18,7 @@ export const ContainerContent = styled.div`
     width: 100%;
     height: 10vh;
 
-    margin: 4px 0px;
+    margin-bottom: 8px;
 
 
   }
