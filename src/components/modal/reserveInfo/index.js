@@ -169,134 +169,134 @@ const InfoModal = () => {
               <h2>Informações da Reserva</h2>
             </Header>
 
-            <Segment.Group>
-              <ContainerInfo>
-                <ContainerDados>
-                  <Icon name="user" size="big" />
+
+            <ContainerInfo>
+              <ContainerDados>
+                <Icon name="user" size="big" />
+                <strong>
+                  <h1>Nome: </h1>
+                </strong>
+                <h1>{dadosReserva.firstName}</h1>
+              </ContainerDados>
+              <ContainerDados>
+                <Icon name="building" size="big" />
+                <strong>
+                  <h1>Setor: </h1>
+                </strong>
+                <h1>{dadosReserva.setor}</h1>
+              </ContainerDados>
+              <ContainerDados>
+                <ContainerHorario>
+                  <Icon name="time" size="big" />
                   <strong>
-                    <h1>Nome: </h1>
+                    <h1>Inicio: </h1>
                   </strong>
-                  <h1>{dadosReserva.firstName}</h1>
-                </ContainerDados>
-                <ContainerDados>
-                  <Icon name="building" size="big" />
+                  <h1>{dadosReserva.inicio}</h1>
+                </ContainerHorario>
+                <ContainerHorario>
+                  <Icon name="stopwatch" size="big" />
                   <strong>
-                    <h1>Setor: </h1>
+                    <h1>Termino: </h1>
                   </strong>
-                  <h1>{dadosReserva.setor}</h1>
-                </ContainerDados>
+                  <h1>{dadosReserva.termino}</h1>
+                </ContainerHorario>
+              </ContainerDados>
+              {erro ? (
                 <ContainerDados>
-                  <ContainerHorario>
-                    <Icon name="time" size="big" />
-                    <strong>
-                      <h1>Inicio: </h1>
-                    </strong>
-                    <h1>{dadosReserva.inicio}</h1>
-                  </ContainerHorario>
-                  <ContainerHorario>
-                    <Icon name="stopwatch" size="big" />
-                    <strong>
-                      <h1>Termino: </h1>
-                    </strong>
-                    <h1>{dadosReserva.termino}</h1>
-                  </ContainerHorario>
+                  <Message header={msgErro} color="red" icon="dont" />
                 </ContainerDados>
-                {erro ? (
-                  <ContainerDados>
-                    <Message header={msgErro} color="red" icon="dont" />
-                  </ContainerDados>
-                ) : ''}
-                <ContainerDados>
-                  <Button fluid negative icon size="large" onClick={CheckLogin}>
-                    Excluir reserva
+              ) : ''}
+              <ContainerDados>
+                <Button fluid negative icon size="large" onClick={CheckLogin}>
+                  Excluir reserva
               </Button>
-                </ContainerDados>
-              </ContainerInfo>
+              </ContainerDados>
+            </ContainerInfo>
 
-              <Modal size="tiny" open={open}>
-                <>
-                  {login ? (
+            <Modal size="tiny" open={open}>
+              <>
+                {login ? (
+                  <>
+                    <Modal.Header>Confirmar Login</Modal.Header>
+                    <Modal.Content>
+                      <Form>
+                        <Form.Field>
+                          <Input
+                            size="big"
+                            loading={carregando}
+                            onChange={e => setEmail(e.target.value)}
+                            type="email"
+                            placeholder="Email"
+                            icon="mail"
+                            iconPosition="left"
+                          />
+                        </Form.Field>
+
+                        <Form.Field>
+                          <Input
+                            size="big"
+                            loading={carregando}
+                            onChange={e => setSenha(e.target.value)}
+                            type="password"
+                            placeholder="Senha"
+                            icon="lock"
+                            iconPosition="left"
+                          />
+                        </Form.Field>
+                      </Form>
+                      {erro ? (
+                        <Message header={msgErro} color="red" icon="dont" />
+                      ) : ''}
+                    </Modal.Content>
+                    <Modal.Actions>
+                      <Button
+                        disabled={carregando}
+                        content="Cancelar"
+                        onClick={() => {
+                          setOpen(false);
+                        }}
+                      />
+                      <Button
+                        disabled={carregando}
+                        color="facebook"
+                        icon="check"
+                        labelPosition="right"
+                        content="Logar"
+                        onClick={Logar}
+                      />
+                    </Modal.Actions>
+                  </>
+                ) : (
                     <>
-                      <Modal.Header>Confirmar Login</Modal.Header>
-                      <Modal.Content>
-                        <Form>
-                          <Form.Field>
-                            <Input
-                              size="big"
-                              loading={carregando}
-                              onChange={e => setEmail(e.target.value)}
-                              type="email"
-                              placeholder="Email"
-                              icon="mail"
-                              iconPosition="left"
-                            />
-                          </Form.Field>
-
-                          <Form.Field>
-                            <Input
-                              size="big"
-                              loading={carregando}
-                              onChange={e => setSenha(e.target.value)}
-                              type="password"
-                              placeholder="Senha"
-                              icon="lock"
-                              iconPosition="left"
-                            />
-                          </Form.Field>
-                        </Form>
-                        {erro ? (
-                          <Message header={msgErro} color="red" icon="dont" />
-                        ) : ''}
-                      </Modal.Content>
+                      <Modal.Header>
+                        Tem certeza que deseja excluir esta reserva?
+                          </Modal.Header>
                       <Modal.Actions>
                         <Button
-                          disabled={carregando}
                           content="Cancelar"
                           onClick={() => {
                             setOpen(false);
                           }}
                         />
                         <Button
-                          disabled={carregando}
-                          color="facebook"
-                          icon="check"
+                          negative
+                          icon="x"
                           labelPosition="right"
-                          content="Logar"
-                          onClick={Logar}
+                          content="Sim"
+                          onClick={ActionDelete}
                         />
                       </Modal.Actions>
+                      }
                     </>
-                  ) : (
-                      <>
-                        <Modal.Header>
-                          Tem certeza que deseja excluir esta reserva?
-                          </Modal.Header>
-                        <Modal.Actions>
-                          <Button
-                            content="Cancelar"
-                            onClick={() => {
-                              setOpen(false);
-                            }}
-                          />
-                          <Button
-                            negative
-                            icon="x"
-                            labelPosition="right"
-                            content="Sim"
-                            onClick={ActionDelete}
-                          />
-                        </Modal.Actions>
-                        }
-                    </>
-                    )}
-                </>
-              </Modal>
-            </Segment.Group>
+                  )}
+              </>
+            </Modal>
+
           </>
         )
 
       }
-  </>
+    </>
   )
 }
 export default InfoModal;
