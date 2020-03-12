@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Icon, Button, Modal, Input, Form, Message } from "semantic-ui-react";
+import { Icon, Button, Modal, Input, Form, Message, Segment } from "semantic-ui-react";
 import firebase from "../../../services/firebase";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -23,6 +23,7 @@ const InfoModal = () => {
 
   const sala = useSelector(state => state.salas.currentRoom);
   const id = useSelector(state => state.ReserveData.reserve_id);
+  const dayOfWeek = useSelector(state => state.ReserveData.reserve_day_of_week);
   const loader = useSelector(state => state.load.loadInfo);
 
   const user = useSelector(state => state.user);
@@ -52,8 +53,8 @@ const InfoModal = () => {
     const getEventos = async () => {
       await firebase
         .database()
-        .ref(`salas/${sala}/Eventos`)
-        .on("value", sucesso => {
+        .ref(`salas/${sala}/Eventos/${dayOfWeek}`)
+        .on('value', sucesso => {
           sucesso.forEach(doc => {
             if (id === doc.val().id) {
               if (!dadosReserva) {
@@ -76,7 +77,6 @@ const InfoModal = () => {
                   userEmail
                 });
                 dispatch(LoadActions.info(false));
-                // console.log(doc.data());
               }
             }
           });
@@ -99,6 +99,7 @@ const InfoModal = () => {
         .then(sucesso => {
           // user
           dispatch(usersAction.email(email));
+          dispatch(usersAction.getRequestDataUser());
           dispatch(usersAction.log_in(true));
           setCarregando(false);
 
@@ -119,13 +120,13 @@ const InfoModal = () => {
     }
   }
   function CheckLogin() {
-    setOpen(true);    
+    setOpen(true);
     if (user.userEmail !== "") {
       setLogin(false);
       if (user.userEmail === dadosReserva.userEmail) {
         ActionDelete();
       }
-      else {        
+      else {
         setOpen(false)
         setErro(true)
         setMsgErro("Você nao pode excluir uma reserva que não é sua!")
@@ -168,131 +169,134 @@ const InfoModal = () => {
               <h2>Informações da Reserva</h2>
             </Header>
 
-            <ContainerInfo>
-              <ContainerDados>
-                <Icon name="user" size="big" />
-                <strong>
-                  <h1>Nome: </h1>
-                </strong>
-                <h1>{dadosReserva.firstName}</h1>
-              </ContainerDados>
-              <ContainerDados>
-                <Icon name="building" size="big" />
-                <strong>
-                  <h1>Setor: </h1>
-                </strong>
-                <h1>{dadosReserva.setor}</h1>
-              </ContainerDados>
-              <ContainerDados>
-                <ContainerHorario>
-                  <Icon name="time" size="big" />
-                  <strong>
-                    <h1>Inicio: </h1>
-                  </strong>
-                  <h1>{dadosReserva.inicio}</h1>
-                </ContainerHorario>
-                <ContainerHorario>
-                  <Icon name="stopwatch" size="big" />
-                  <strong>
-                    <h1>Termino: </h1>
-                  </strong>
-                  <h1>{dadosReserva.termino}</h1>
-                </ContainerHorario>
-              </ContainerDados>
-              {erro ? (
+            <Segment.Group>
+              <ContainerInfo>
                 <ContainerDados>
-                  <Message header={msgErro} color="red" icon="dont" />
+                  <Icon name="user" size="big" />
+                  <strong>
+                    <h1>Nome: </h1>
+                  </strong>
+                  <h1>{dadosReserva.firstName}</h1>
                 </ContainerDados>
-              ) : ''}
-              <ContainerDados>
-                <Button fluid negative icon size="large" onClick={CheckLogin}>
-                  Excluir reserva
+                <ContainerDados>
+                  <Icon name="building" size="big" />
+                  <strong>
+                    <h1>Setor: </h1>
+                  </strong>
+                  <h1>{dadosReserva.setor}</h1>
+                </ContainerDados>
+                <ContainerDados>
+                  <ContainerHorario>
+                    <Icon name="time" size="big" />
+                    <strong>
+                      <h1>Inicio: </h1>
+                    </strong>
+                    <h1>{dadosReserva.inicio}</h1>
+                  </ContainerHorario>
+                  <ContainerHorario>
+                    <Icon name="stopwatch" size="big" />
+                    <strong>
+                      <h1>Termino: </h1>
+                    </strong>
+                    <h1>{dadosReserva.termino}</h1>
+                  </ContainerHorario>
+                </ContainerDados>
+                {erro ? (
+                  <ContainerDados>
+                    <Message header={msgErro} color="red" icon="dont" />
+                  </ContainerDados>
+                ) : ''}
+                <ContainerDados>
+                  <Button fluid negative icon size="large" onClick={CheckLogin}>
+                    Excluir reserva
               </Button>
-              </ContainerDados>
-            </ContainerInfo>
+                </ContainerDados>
+              </ContainerInfo>
 
-            <Modal size="tiny" open={open}>
-              <>
-                {login ? (
-                  <>
-                    <Modal.Header>Confirmar Login</Modal.Header>
-                    <Modal.Content>
-                      <Form>
-                        <Form.Field>
-                          <Input
-                            size="big"
-                            loading={carregando}
-                            onChange={e => setEmail(e.target.value)}
-                            type="email"
-                            placeholder="Email"
-                            icon="mail"
-                            iconPosition="left"
-                          />
-                        </Form.Field>
-
-                        <Form.Field>
-                          <Input
-                            size="big"
-                            loading={carregando}
-                            onChange={e => setSenha(e.target.value)}
-                            type="password"
-                            placeholder="Senha"
-                            icon="lock"
-                            iconPosition="left"
-                          />
-                        </Form.Field>
-                      </Form>
-                      {erro ? (
-                        <Message header={msgErro} color="red" icon="dont" />
-                      ) : ''}
-                    </Modal.Content>
-                    <Modal.Actions>
-                      <Button
-                        disabled={carregando}
-                        content="Cancelar"
-                        onClick={() => {
-                          setOpen(false);
-                        }}
-                      />
-                      <Button
-                        disabled={carregando}
-                        color="facebook"
-                        icon="check"
-                        labelPosition="right"
-                        content="Logar"
-                        onClick={Logar}
-                      />
-                    </Modal.Actions>
-                  </>
-                ) : (
+              <Modal size="tiny" open={open}>
+                <>
+                  {login ? (
                     <>
-                      <Modal.Header>
-                        Tem certeza que deseja excluir esta reserva?
-                          </Modal.Header>
+                      <Modal.Header>Confirmar Login</Modal.Header>
+                      <Modal.Content>
+                        <Form>
+                          <Form.Field>
+                            <Input
+                              size="big"
+                              loading={carregando}
+                              onChange={e => setEmail(e.target.value)}
+                              type="email"
+                              placeholder="Email"
+                              icon="mail"
+                              iconPosition="left"
+                            />
+                          </Form.Field>
+
+                          <Form.Field>
+                            <Input
+                              size="big"
+                              loading={carregando}
+                              onChange={e => setSenha(e.target.value)}
+                              type="password"
+                              placeholder="Senha"
+                              icon="lock"
+                              iconPosition="left"
+                            />
+                          </Form.Field>
+                        </Form>
+                        {erro ? (
+                          <Message header={msgErro} color="red" icon="dont" />
+                        ) : ''}
+                      </Modal.Content>
                       <Modal.Actions>
                         <Button
+                          disabled={carregando}
                           content="Cancelar"
                           onClick={() => {
                             setOpen(false);
                           }}
                         />
                         <Button
-                          negative
-                          icon="x"
+                          disabled={carregando}
+                          color="facebook"
+                          icon="check"
                           labelPosition="right"
-                          content="Sim"
-                          onClick={ActionDelete}
+                          content="Logar"
+                          onClick={Logar}
                         />
                       </Modal.Actions>
-                      }
                     </>
-                  )}
-              </>
-            </Modal>
+                  ) : (
+                      <>
+                        <Modal.Header>
+                          Tem certeza que deseja excluir esta reserva?
+                          </Modal.Header>
+                        <Modal.Actions>
+                          <Button
+                            content="Cancelar"
+                            onClick={() => {
+                              setOpen(false);
+                            }}
+                          />
+                          <Button
+                            negative
+                            icon="x"
+                            labelPosition="right"
+                            content="Sim"
+                            onClick={ActionDelete}
+                          />
+                        </Modal.Actions>
+                        }
+                    </>
+                    )}
+                </>
+              </Modal>
+            </Segment.Group>
           </>
-        )}
-    </>
-  );
-};
+        )
 
+      }
+  </>
+  )
+}
 export default InfoModal;

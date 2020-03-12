@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import user from './users';
 import load from './load';
 import modal from './modal';
-import salas from './salas';
+import { salas } from './salas';
 import ReserveData from './dadosReserva';
 
 export default combineReducers({
@@ -12,6 +12,4 @@ export default combineReducers({
   modal: modal, //modal
   salas: salas, //salas
   ReserveData, // ReserveData
-
-  // Só nos useSelector's
 });

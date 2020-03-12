@@ -17,8 +17,6 @@ export const View = styled.div`
     display:flex;
     align-items:center;
     justify-content: space-between;
-   
-  
 
 `
 export const ContainerHeader = styled.div`
@@ -114,7 +112,7 @@ export const SelectAling = styled.div`
 
 `
 
-export const Select = styled.select`
+export const CustomSelect = styled.select`
     display: flex;
     align-items: center !important;
     justify-content: center;
@@ -155,4 +153,38 @@ export const Texto = styled.p`
     font-weight: 700;
     margin:0px 5px;
 
-`
+`;
+
+export const ContainerDay = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+`;
+
+export const ContainerSelect = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  width: 100%;
+  padding: 10px 0px;
+
+  background-color: #0d4b81;
+  select{
+    width: 100%;
+
+    border: none;
+    outline: none;
+    background-color: #0d4b81;
+  
+    :optional{
+      border: none;
+      color: #fff;
+  
+    }
+  }
+  
+`;

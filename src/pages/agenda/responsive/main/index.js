@@ -1,129 +1,84 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import moment from 'moment'
+import React, { useEffect, useContext } from "react";
+import { useSelector } from "react-redux";
 
 import "../../index.css";
-import { Container, ContainerDay, ContainerSelect, ContainerContent, ContainerHour, ContainerCell } from "./styles";
+import {
+  Container,
+  ContainerContent,
+  ContainerHour,
+  ContainerCell
+} from "./styles";
+
+import { horas } from '../../../../utils/TimeConfig';
+// import checks from '../../../../utils/checks';
+
+import ModalContext from '../../../../contexts/ModalContext';
+
+// import Reserve from  '../../../../components/Reserve';
 
 function AgendaMobile() {
-  var now = moment()
+  // const dispatch = useDispatch();
+  const {modalActions} = useContext(ModalContext);
 
-  var dia = now.day();
-  
-  const dispatch = useDispatch();
+  // const CheckLogin = useSelector(state => state.user.userLogin);
+  const events = useSelector(state => state.salas.roomEvents);
+  let idMobile = useSelector(state => state.ReserveData.reserve_id_mobile);
+  // let dateMobile = useSelector(state => state.ReserveData.reserve_date_mobile);
 
-  // const CheckLogin = useSelector(state => state.user.usuarioLogin);
-  // const event = useSelector(state => state.salas.roomEvents);
-
-  if (dia === 0) {
-    now.add(1,'days')
+  const renderReserve = () => {
+    events.map(info => {
+      let divCell = document.getElementById(`${info.id}`);
+      if (divCell) {
+        const reserveHour = horas.filter(
+          hour => hour > info.inicio && hour <= info.termino
+        );
+        renderFinalReserve(divCell, info.id, info.setor);
+        if (reserveHour.length > 1) {
+          let idCellTermino = parseInt(info.id);
+          reserveHour.pop();
+          
+          reserveHour.map(hour => {
+            let divCellTermino = document.getElementById(
+              String((idCellTermino += 5))
+            );
+              
+            return renderFinalReserve(divCellTermino, info.id, info.setor);
+          });
+        }
+      }
+      return ''
+    })
   }
-  if (dia === 6) {
-    now = now.add(2, 'days');
-    dia = 0
-  }
-  while (dia > 1) {
-    now = now.subtract(1, 'days');
-    dia = dia - 1;
-  }
-
-  // useEffect(() => {
-  //   if (event) {
-  //     event.map(item => {
-  //       let divCell = document.getElementById(`${item.id}`);
-  //       // let divCellTermino = document.getElementsByClassName(`${item.termino} ${item.data}`);
   
-  //       // console.log(divCellTermino)
-  //       if (divCell.childNodes.length === 0) {
-  //         const spanc = document.createElement('span');
-  //         const titleReserve = document.createElement('h2');
-
-  //         titleReserve.innerText = `${item.setor}`;
-
-  //         spanc.setAttribute('id', `${item.id}`);
-  //         spanc.setAttribute('class', 'spanCell');
-  //         titleReserve.setAttribute('id', `${item.id}`);
-
-  //         spanc.appendChild(titleReserve);
-  //         divCell.appendChild(spanc);
-  //       }
-  //       return ''
-  //     })
-  //   } else {
-  //   }
-  // });
-
-  
-  const modalActions = samTag => {
-    dispatch({ type: "SET_MODAL", valueModal: true });
-
-    // if (samTag.length !== 0) {
-    //   dispatch({ type: "SET_MODAL", valueModal: true });
-    //   dispatch({ type: "SET_MODAL_INFO", valueInfo: true });
-    // } else {
-    //   if (CheckLogin === false) {
-    //     dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true });
-    //   } else {
-    //     dispatch({ type: "SET_MODAL_CONFIRM", valueConfirm: true });
-    //   }
-    // }
-    dispatch({ type: "SET_MODAL_LOGIN", valueLogin: true });
-
+  const renderFinalReserve = (divCell, id, setor) => {
+    const spanct = document.createElement("span");
+    const titleReserveTermino = document.createElement("h2");
+    
+    spanct.setAttribute("class", "spanCell");
+    spanct.setAttribute("id", `${id}`);
+    titleReserveTermino.setAttribute("id", `${id}`);
+    titleReserveTermino.innerText = `${setor}`;
+    
+    spanct.appendChild(titleReserveTermino);
+    divCell.appendChild(spanct);
   };
 
-  // const reduxTableActions = (idTable, hour, data) => {
-  //   dispatch({ type: "SET_ID", id: idTable });
-  //   dispatch({ type: "SET_HORA", hora: hour });
-  //   dispatch({ type: "SET_DATA", data });
-  //   dispatch({ type: "SET_LOAD_INFO", set_loader_info: true });
-  // }
-
-  const dias = [
-    `SEG ${now.format("D/M")}`,
-    `TER ${now.add(1,'days').format("D/M")}`,
-    `QUA ${now.add(1,'days').format("D/M")}`,
-    `QUI ${now.add(1,'days').format("D/M")}`,
-    `SEX ${now.add(1,'days').format("D/M")}`
-  ];
-  const horas = [
-    "08:00",
-    "09:00",
-    "10:00",
-    "11:00",
-    "12:00",
-    "13:00",
-    "14:00",
-    "15:00",
-    "16:00",
-    "17:00",
-    "18:00"
-  ];
+  useEffect(() => renderReserve(events))
 
   return (
     <>
       <Container>
-        <ContainerDay>
-          <ContainerSelect>
-            <select>
-              { dias.map((day, index) => (
-                <option key={ index }>
-                  { day }
-                </option>
-              )) }
-            </select>
-          </ContainerSelect>
-        </ContainerDay>
         <ContainerContent>
-          { horas.map( (hour, index) => (
-            <span key={ index }>
-              <ContainerHour>{ hour }</ContainerHour>
-              <ContainerCell onClick={(e) => modalActions("12")}></ContainerCell>
+          {horas.map((hour, index) => (
+            <span key={index}>
+              <ContainerHour>{hour}</ContainerHour>
+              <ContainerCell id={idMobile += 5} onclick={e => modalActions(e.target.childNodes)}>
+              </ContainerCell>
             </span>
-          ) ) }
-
+          ))}
         </ContainerContent>
       </Container>
     </>
   );
 }
-export default AgendaMobile;
+export default React.memo(AgendaMobile);

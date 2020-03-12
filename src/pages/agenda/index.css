@@ -4,6 +4,12 @@
   }
 } */
 
+@media screen and (max-width: 768px) {
+  #root {
+    background-color: #ececec;
+  }
+}
+
 #table{
     margin: 0 !important;   
     border: none;
@@ -56,7 +62,7 @@
 .spanCell {
   width:  100%;
   height: 100%;
-  border-bottom: 10px rgb(165, 42, 42) solid;
+  border-bottom: 10px #a52a2a solid;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,4 +72,11 @@
   color: #000;
   font-size: 16px;
   font-weight: bold;   
+}
+@media screen and (max-width: 768px) {
+  .spanCell h2 {
+    color: #000;
+    font-size: 20px;
+    font-weight: bold;   
+  }
 }

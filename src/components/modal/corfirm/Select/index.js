@@ -7,7 +7,7 @@ import { CustomSelect } from '../styles';
 
 import { Creators as ReserveDataActions } from '../../../../store/ducks/dadosReserva';
 
-const SelectHora = ({ room, date, inicialHour, id }) => {
+const SelectHora = ({ room, date, inicialHour, id, dayOfWeek }) => {
   const dispatch = useDispatch();
 
   const [selectHour, setSelectHour] = useState([]);
@@ -49,13 +49,14 @@ const SelectHora = ({ room, date, inicialHour, id }) => {
 
       firebase
         .database()
-        .ref(`salas/${room}/Eventos`)
-        .on('value', item => {
+        .ref(`salas/${room}/Eventos/${dayOfWeek}`)
+        .orderByValue()
+        .on('value',item => {
           item.forEach(doc => {
-            // console.log(doc.val());
+            const reserve = doc.val();
 
-            if (date === doc.val().data) {
-              arrReserve.push(doc.val());
+            if (date === reserve.data) {
+              arrReserve.push(reserve);
             }
           })
         })
@@ -68,7 +69,7 @@ const SelectHora = ({ room, date, inicialHour, id }) => {
     }
 
     getReserve();
-  }, [id, date, inicialHour, room, funcSelect]);
+  }, [id, date, inicialHour, room, funcSelect, dayOfWeek]);
 
   useEffect(() => {
     var arrDisp = []
