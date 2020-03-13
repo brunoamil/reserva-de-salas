@@ -13,9 +13,7 @@ import { Creators as RoomsActions } from "../../../store/ducks/salas";
 import {
   Header,
   Container,
-  ContainerInfo,
-  ContainerDados,
-  ContainerHorario
+  ContainerSegment
 } from "./styles";
 
 const InfoModal = () => {
@@ -169,49 +167,40 @@ const InfoModal = () => {
               <h2>Informações da Reserva</h2>
             </Header>
 
-            <Segment.Group>
-              <ContainerInfo>
-                <ContainerDados>
-                  <Icon name="user" size="big" />
-                  <strong>
-                    <h1>Nome: </h1>
-                  </strong>
-                  <h1>{dadosReserva.firstName}</h1>
-                </ContainerDados>
-                <ContainerDados>
-                  <Icon name="building" size="big" />
-                  <strong>
-                    <h1>Setor: </h1>
-                  </strong>
-                  <h1>{dadosReserva.setor}</h1>
-                </ContainerDados>
-                <ContainerDados>
-                  <ContainerHorario>
-                    <Icon name="time" size="big" />
-                    <strong>
-                      <h1>Inicio: </h1>
-                    </strong>
-                    <h1>{dadosReserva.inicio}</h1>
-                  </ContainerHorario>
-                  <ContainerHorario>
-                    <Icon name="stopwatch" size="big" />
-                    <strong>
-                      <h1>Termino: </h1>
-                    </strong>
-                    <h1>{dadosReserva.termino}</h1>
-                  </ContainerHorario>
-                </ContainerDados>
-                {erro ? (
-                  <ContainerDados>
-                    <Message header={msgErro} color="red" icon="dont" />
-                  </ContainerDados>
-                ) : ''}
-                <ContainerDados>
-                  <Button fluid negative icon size="large" onClick={CheckLogin}>
-                    Excluir reserva
-              </Button>
-                </ContainerDados>
-              </ContainerInfo>
+            <ContainerSegment size="big">
+              <Segment>
+                <Icon name="user" size="large" />
+                <strong>Nome: </strong>
+                {dadosReserva.firstName}
+              </Segment>
+              <Segment>
+                <Icon name="building" size="large" />
+                <strong>Setor: </strong>
+                {dadosReserva.setor}
+              </Segment>
+              <ContainerSegment horizontal >
+                <Segment>
+                  <Icon name="time" size="large" />
+                  <strong>Inicio: </strong>
+                  {dadosReserva.inicio}
+                </Segment>
+                <Segment>
+                  <Icon name="stopwatch" size="large" />
+                  <strong>Termino: </strong>
+                  {dadosReserva.termino}
+                </Segment>
+              </ContainerSegment>
+              {erro ? (
+                <Segment>
+                  <Message header={msgErro} color="red" icon="dont" />
+                </Segment>
+              ) : ''}
+              <Segment>
+                <Button fluid negative icon size="large" onClick={CheckLogin}>
+                  Excluir reserva
+                </Button>
+              </Segment>
+
 
               <Modal size="tiny" open={open}>
                 <>
@@ -291,12 +280,12 @@ const InfoModal = () => {
                     )}
                 </>
               </Modal>
-            </Segment.Group>
+            </ContainerSegment>
           </>
         )
 
       }
-  </>
+    </>
   )
 }
 export default InfoModal;
