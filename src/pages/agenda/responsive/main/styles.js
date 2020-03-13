@@ -9,7 +9,7 @@ export const ContainerContent = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #ececec;
-
+  overflow-x: hidden;
   span{
     display: flex;
     flex-direction: row;

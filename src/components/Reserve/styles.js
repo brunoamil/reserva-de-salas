@@ -4,11 +4,7 @@ import { Segment } from 'semantic-ui-react';
 export const Container = styled(Segment)`
   @media (max-width: 768px) {
     width: 100%;
-    height: 100%;
-
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
+    height: 100%; 
     h1 {
       /* width: 85%; */
       /* height: 20%; */
