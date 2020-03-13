@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import "../../index.css";
@@ -9,8 +9,9 @@ import {
   ContainerCell
 } from "./styles";
 
+import Reserve from '../../../../components/Reserve';
+
 import { horas } from '../../../../utils/TimeConfig';
-import checks from '../../../../utils/checks';
 
 import ModalContext from '../../../../contexts/ModalContext';
 
@@ -25,44 +26,6 @@ function AgendaMobile() {
   let idMobile = useSelector(state => state.ReserveData.reserve_id_mobile);
   let dateMobile = useSelector(state => state.ReserveData.reserve_date_mobile);
 
-  const renderReserve = () => {
-    events.map(info => {
-      let divCell = document.getElementById(`${info.id}`);
-      if (divCell) {
-        const reserveHour = horas.filter(
-          hour => hour > info.inicio && hour <= info.termino
-        );
-        renderFinalReserve(divCell, info.id, info.setor);
-        if (reserveHour.length > 1) {
-          let idCellTermino = parseInt(info.id);
-          reserveHour.pop();
-          
-          reserveHour.map(hour => {
-            let divCellTermino = document.getElementById(
-              String((idCellTermino += 5))
-            );
-              
-            return renderFinalReserve(divCellTermino, info.id, info.setor);
-          });
-        }
-      }
-      return ''
-    })
-  }
-  
-  const renderFinalReserve = (divCell, id, setor) => {
-    const spanct = document.createElement("span");
-    const titleReserveTermino = document.createElement("h2");
-    
-    spanct.setAttribute("class", "spanCell");
-    spanct.setAttribute("id", `${id}`);
-    titleReserveTermino.setAttribute("id", `${id}`);
-    titleReserveTermino.innerText = `${setor}`;
-    
-    spanct.appendChild(titleReserveTermino);
-    divCell.appendChild(spanct);
-  };
-
   const reduxTableActions = (idTable, hour, date) => {
     dispatch(DateReserveActions.id(idTable));
     dispatch(DateReserveActions.inicial_hour(hour));
@@ -70,7 +33,35 @@ function AgendaMobile() {
     dispatch(LoadActions.info(true));
   };
 
-  useEffect(() => renderReserve(events))
+  const verifyReserve = () => {
+    return events.map(r => {
+      
+      //verifica se a reserva possui mais de uma hora!
+      const reserveHour = horas.filter(
+        hour => hour >= r.inicio && hour < r.termino
+      );
+
+      if (reserveHour.length > 0) {
+        return FinalReserve(r, reserveHour);
+      } else {
+        if (Number(r.id) === idMobile) {  
+          return <Reserve key={r.id} id={r.id} sector={r.setor} />
+        }
+      }
+      return ''
+    })
+  }
+
+  const FinalReserve = (reserve, reservesFinalHours) => {
+    let id = Number(reserve.id);
+    return reservesFinalHours.map((hour, index) => {
+      if (index !== 0) id += 5;
+      if (id === idMobile) {
+        return <Reserve key={id} id={String(id)} sector={reserve.setor} />
+      }
+      return ''
+    })
+  }
 
   return (
     <>
@@ -80,13 +71,15 @@ function AgendaMobile() {
             <span key={index}>
               <ContainerHour>{hour}</ContainerHour>
               <ContainerCell id={idMobile += 5} onClick={e => {
-                modalActions(e.target.childNodes)
+                modalActions(e.target.childNodes);
                 reduxTableActions(
                   e.target.getAttribute("id"),
                   hour,
                   dateMobile
-                )}}>
-              </ContainerCell>
+                )}
+              }>
+                {verifyReserve()}
+              </ContainerCell> 
             </span>
           ))}
         </ContainerContent>

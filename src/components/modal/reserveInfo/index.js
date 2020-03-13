@@ -84,6 +84,8 @@ const InfoModal = () => {
     };
 
     getEventos();
+
+    return () => {' '}
   });
 
   function Logar() {
@@ -141,7 +143,7 @@ const InfoModal = () => {
     setOpen(false);
     firebase
       .database()
-      .ref(`salas/${sala}/Eventos/${id}`)
+      .ref(`salas/${sala}/Eventos/${dayOfWeek}/${id}`)
       .remove()
       .then(() => {
         setTimeout(() => {

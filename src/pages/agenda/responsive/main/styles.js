@@ -47,6 +47,7 @@ export const ContainerCell = styled.div`
   height: 100%;
   border-radius: 2px 0px 0px 2px;
   
-
+  margin-right: 10px;
+  
   background-color : #fff;
 `;

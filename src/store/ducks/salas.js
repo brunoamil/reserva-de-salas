@@ -14,7 +14,7 @@ export default Creators;
 
 //criando os reducer handlers
 export const INICIAL_STATE = {
-  currentRoom: "Sala 1",
+  currentRoom: "Auditório",
   roomEvents: [],
   rooms: [],
   loading: false,
