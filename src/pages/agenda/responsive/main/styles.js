@@ -9,7 +9,7 @@ export const ContainerContent = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #ececec;
-
+  overflow-x: hidden;
   span{
     display: flex;
     flex-direction: row;
@@ -57,7 +57,8 @@ export const ContainerCell = styled.div`
   height: 100%;
   border-radius: 2px 0px 0px 2px;
   
-
+  margin-right: 10px;
+  
   background-color : #fff;
 
   @media (min-width: 425px) {

@@ -21,7 +21,7 @@ export const INICIAL_STATE = {
   reserve_id: "",
   reserve_date: "",
   reserve_busy_data: {},
-  reserve_day_of_week: "",
+  reserve_day_of_week: "SEG",
   reserve_id_mobile: -4,
   reserve_date_mobile: now.format('D/M'),
 };
