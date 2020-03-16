@@ -152,14 +152,14 @@ function Agenda() {
                     key={index}
                   >
                     <ContainerCell
-                      id={`${idDivCell += 1}`}
+                      id={idDivCell += 1}
                       onClick={e => {
-                        modalActions(e.target.childNodes);
                         reduxTableActions(
                           e.target.getAttribute("id"),
                           hora,
                           dia
                         );
+                        modalActions(e.target.childNodes);
                     }}></ContainerCell>
                   </Table.Cell>
                 ))}
