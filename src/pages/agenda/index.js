@@ -7,7 +7,7 @@ import Header from "./header";
 import Main from "./main";
 import Modal from "../../components/modal";
 import Loading from '../../components/loader';
-import Session from './session';
+// import Session from './session';
 
 import { Creators as LoaderActions } from '../../store/ducks/load';
 import { Creators as RoomsActions } from '../../store/ducks/salas';
@@ -98,7 +98,7 @@ function NovaAgenda() {
           { loader ? <Loading size = 'big'> Carregando Reservas...</Loading> : <AgendaMobile /> }
         </Responsive>
       </ModalContext.Provider>
-      <Session/>
+      {/* <Session/> */}
     </>
   );
 }

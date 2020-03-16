@@ -1,36 +1,21 @@
 import styled from 'styled-components';
+import { Segment } from 'semantic-ui-react'; 
 
-export const Container = styled.div`
+export const Container = styled(Segment)`
   @media (max-width: 768px) {
     width: 100%;
-    height: 100%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 100%; 
     h1 {
-      width: 85%;
-      height: 20%;
+      /* width: 85%; */
+      /* height: 20%; */
       text-align: center;
-      font-size: 1.5em;
+      font-size: 1.3em;
       font-weight: bold;
-      font-family: 'Arial';
-    }
-  
-    div {
-      display: flex;
-      justify-content: flex-end;
-  
-      width: 15%;
-  
-      span {
-      background: #a52a2a !important;
-      width: 5em;
+      font-family: sans-serif;
       margin: 0 !important;
-  
-      border-radius: 100px 0px 0px 0px;
-      background: #fff;
-      }
+      position: absolute;
+      top: 35%;
+      left: 40%;
     }
   }
   

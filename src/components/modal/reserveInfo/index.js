@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Icon, Button, Modal, Input, Form, Message, Segment } from "semantic-ui-react";
+import { Icon, Button, Modal, Input, Form, Message } from "semantic-ui-react";
 import firebase from "../../../services/firebase";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -13,9 +13,9 @@ import { Creators as RoomsActions } from "../../../store/ducks/salas";
 import {
   Header,
   Container,
-  ContainerInfo,
+  ContainerHorario,
   ContainerDados,
-  ContainerHorario
+  ContainerInfo
 } from "./styles";
 
 const InfoModal = () => {
@@ -84,6 +84,8 @@ const InfoModal = () => {
     };
 
     getEventos();
+
+    return () => { ' ' }
   });
 
   function Logar() {
@@ -141,7 +143,7 @@ const InfoModal = () => {
     setOpen(false);
     firebase
       .database()
-      .ref(`salas/${sala}/Eventos/${id}`)
+      .ref(`salas/${sala}/Eventos/${dayOfWeek}/${id}`)
       .remove()
       .then(() => {
         setTimeout(() => {
@@ -291,7 +293,6 @@ const InfoModal = () => {
                   )}
               </>
             </Modal>
-
           </>
         )
 

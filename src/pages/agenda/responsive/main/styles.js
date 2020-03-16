@@ -9,7 +9,7 @@ export const ContainerContent = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #ececec;
-
+  overflow-x: hidden;
   span{
     display: flex;
     flex-direction: row;
@@ -20,6 +20,11 @@ export const ContainerContent = styled.div`
 
     margin-bottom: 8px;
 
+    @media (min-width: 425px) {
+      height: 90px;
+      margin: 5px 0px;
+
+    }
 
   }
 `;
@@ -40,6 +45,11 @@ export const ContainerHour = styled.div`
 
   background-color: #0d4b81;
   color: #fff;
+
+  @media (min-width: 425px) {
+    width: 10%;
+    height: 55px;
+  }
 `;
 
 export const ContainerCell = styled.div`
@@ -47,6 +57,11 @@ export const ContainerCell = styled.div`
   height: 100%;
   border-radius: 2px 0px 0px 2px;
   
-
+  margin-right: 10px;
+  
   background-color : #fff;
+
+  @media (min-width: 425px) {
+    width: 94%;
+  }
 `;

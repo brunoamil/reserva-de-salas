@@ -1,14 +1,14 @@
 import firebase from 'firebase';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCQTrCnwDW6juFJg2CsJWwFYkIN7_vSoCY",
-  authDomain: "reserva-de-salas-6bda1.firebaseapp.com",
-  databaseURL: "https://reserva-de-salas-6bda1.firebaseio.com",
-  projectId: "reserva-de-salas-6bda1",
-  storageBucket: "reserva-de-salas-6bda1.appspot.com",
-  messagingSenderId: "106544317372",
-  appId: "1:106544317372:web:64864f8f4bcc1f345d21b9",
-  measurementId: "G-H0XY5BCG96"
+  apiKey: "AIzaSyDuLdpXB1vBepiwaDr5zJPurQPEXOWcr9k",
+  authDomain: "reserva-de-salas-5ae69.firebaseapp.com",
+  databaseURL: "https://reserva-de-salas-5ae69.firebaseio.com",
+  projectId: "reserva-de-salas-5ae69",
+  storageBucket: "reserva-de-salas-5ae69.appspot.com",
+  messagingSenderId: "124636464406",
+  appId: "1:124636464406:web:5e2fae213c07c9567dbc37",
+  measurementId: "G-RSNJFGNZVQ"
 };
 // Initialize Firebase
 export default firebase.initializeApp(firebaseConfig)
