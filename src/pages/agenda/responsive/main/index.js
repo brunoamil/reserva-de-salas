@@ -57,7 +57,7 @@ function AgendaMobile() {
     return reservesFinalHours.map((hour, index) => {
       if (index !== 0) id += 5;
       if (id === idMobile) {
-        return <Reserve key={id} id={String(id)} sector={reserve.setor} />
+        return <Reserve key={id} id={reserve.id} sector={reserve.setor} />
       }
       return ''
     })
@@ -71,12 +71,13 @@ function AgendaMobile() {
             <span key={index}>
               <ContainerHour>{hour}</ContainerHour>
               <ContainerCell id={idMobile += 5} onClick={e => {
-                modalActions(e.target.childNodes);
                 reduxTableActions(
                   e.target.getAttribute("id"),
                   hour,
                   dateMobile
-                )}
+                )
+              modalActions(e.target.getAttribute("id"));
+              }
               }>
                 {verifyReserve()}
               </ContainerCell> 

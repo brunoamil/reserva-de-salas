@@ -159,7 +159,7 @@ function Agenda() {
                           hora,
                           dia
                         );
-                        modalActions(e.target.childNodes);
+                        modalActions(e.target.getAttribute("id"));
                     }}></ContainerCell>
                   </Table.Cell>
                 ))}
