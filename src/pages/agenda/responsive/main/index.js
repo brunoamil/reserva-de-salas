@@ -71,12 +71,13 @@ function AgendaMobile() {
             <span key={index}>
               <ContainerHour>{hour}</ContainerHour>
               <ContainerCell id={idMobile += 5} onClick={e => {
-                modalActions(e.target.childNodes);
                 reduxTableActions(
                   e.target.getAttribute("id"),
                   hour,
                   dateMobile
-                )}
+                )
+              modalActions(e.target.getAttribute("id"));
+              }
               }>
                 {verifyReserve()}
               </ContainerCell> 
