@@ -57,7 +57,7 @@ function AgendaMobile() {
     return reservesFinalHours.map((hour, index) => {
       if (index !== 0) id += 5;
       if (id === idMobile) {
-        return <Reserve key={id} id={String(id)} sector={reserve.setor} />
+        return <Reserve key={id} id={reserve.id} sector={reserve.setor} />
       }
       return ''
     })

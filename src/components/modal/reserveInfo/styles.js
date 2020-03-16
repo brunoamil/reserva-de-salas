@@ -15,6 +15,7 @@ export const ContainerInfo = styled.div`
 export const ContainerDados = styled.div`
   width: 100%;
   padding: 1em 1em;
+  margin-top: -10px;
 
   display: flex;
   flex-flow: row nowrap;
@@ -29,7 +30,24 @@ export const ContainerDados = styled.div`
 
 export const ContainerHorario = styled.div`
   display: flex;
-  margin-right: 4em;
+  /* margin-right: 7em; */
+  width: 80%;
+  
+  span {
+    display: flex;
+  }
+
+  @media (max-width: 768px){
+    flex-direction: column;
+
+    span {
+      margin-bottom: 20px;
+    }
+  }
+
+  @media (min-width: 768px){
+    justify-content: space-between;
+  }
 `;
 
 export const Header = styled.div`

@@ -189,18 +189,22 @@ const InfoModal = () => {
                 </ContainerDados>
                 <ContainerDados>
                   <ContainerHorario>
-                    <Icon name="time" size="big" />
-                    <strong>
-                      <h1>Inicio: </h1>
-                    </strong>
-                    <h1>{dadosReserva.inicio}</h1>
-                  </ContainerHorario>
-                  <ContainerHorario>
-                    <Icon name="stopwatch" size="big" />
-                    <strong>
-                      <h1>Termino: </h1>
-                    </strong>
-                    <h1>{dadosReserva.termino}</h1>
+                    <span>
+                      <Icon name="time" size="big" />
+                      <strong>
+                        <h1>Inicio: </h1>
+                      </strong>
+                      <h1>{dadosReserva.inicio}</h1>
+                    </span>
+                  {/* </ContainerHorario>
+                  <ContainerHorario> */}
+                    <span>
+                      <Icon name="stopwatch" size="big" />
+                      <strong>
+                        <h1>Termino: </h1>
+                      </strong>
+                      <h1>{dadosReserva.termino}</h1>
+                    </span>
                   </ContainerHorario>
                 </ContainerDados>
                 {erro ? (
@@ -211,7 +215,7 @@ const InfoModal = () => {
                 <ContainerDados>
                   <Button fluid negative icon size="large" onClick={CheckLogin}>
                     Excluir reserva
-              </Button>
+                  </Button>
                 </ContainerDados>
               </ContainerInfo>
 
