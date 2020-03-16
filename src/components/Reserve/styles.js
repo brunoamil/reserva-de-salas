@@ -5,6 +5,8 @@ export const Container = styled(Segment)`
   @media (max-width: 768px) {
     width: 100%;
     height: 100%; 
+    box-shadow: none !important;
+
     h1 {
       /* width: 85%; */
       /* height: 20%; */
