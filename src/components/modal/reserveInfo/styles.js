@@ -18,6 +18,13 @@ export const ContainerSegment =  styled(Segment.Group)`
   }
 `;
 
+export const CustomSegment = styled(Segment)`
+  @media(max-width: 425px){
+    padding: 1em 0.7em !important;
+  }
+
+`;
+
 export const Header = styled.div`
   margin-top:2%;
   width : 100%;

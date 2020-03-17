@@ -13,7 +13,8 @@ import { Creators as RoomsActions } from "../../../store/ducks/salas";
 import {
   Header,
   Container,
-  ContainerSegment
+  ContainerSegment,
+  CustomSegment
 } from "./styles";
 
 const InfoModal = () => {
@@ -170,35 +171,35 @@ const InfoModal = () => {
             </Header>
 
             <ContainerSegment size='big'>
-              <Segment>
+              <CustomSegment>
                 <Icon name="user" size="large" />
                 <span>
                   <strong>Nome: </strong>
                   {dadosReserva.firstName}
                 </span>
-              </Segment>
-              <Segment>
+              </CustomSegment>
+              <CustomSegment>
                 <Icon name="building" size="large" />
                 <span>
                   <strong>Setor: </strong>
                   {dadosReserva.setor}
                 </span>
-              </Segment>
+              </CustomSegment>
               <ContainerSegment horizontal >
-                <Segment>
+                <CustomSegment>
                   <Icon name="time" size="large" />
                   <span>
                     <strong>Inicio: </strong>
                     {dadosReserva.inicio}
                   </span>
-                </Segment>
-                <Segment>
+                </CustomSegment>
+                <CustomSegment>
                   <Icon name="stopwatch" size="large" />
                   <span>
                     <strong>Termino: </strong>
                     {dadosReserva.termino}
                   </span>
-                </Segment>
+                </CustomSegment>
               </ContainerSegment>
               {erro ? (
                 <Segment>
