@@ -1,16 +1,20 @@
-import React, { useEffect} from "react";
+import React, { useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { Responsive } from 'semantic-ui-react'
+
 import firebase from '../../services/firebase';
 
 import Header from "./header";
 import Main from "./main";
 import Modal from "../../components/modal";
 import Loading from '../../components/loader';
-// import Session from './session';
+//Responsive
+import { Responsive } from 'semantic-ui-react';
+import HeaderMobile from './responsive/header';
+import AgendaMobile  from './responsive/main';
 
 import { Creators as LoaderActions } from '../../store/ducks/load';
 import { Creators as RoomsActions } from '../../store/ducks/salas';
+import { Creators as ReserveActions } from '../../store/ducks/reserves';
 import { Creators as ModalActions } from '../../store/ducks/modal';
 
 import "./index.css";
@@ -19,9 +23,7 @@ import checks from '../../utils/checks';
 
 import ModalContext from '../../contexts/ModalContext';
 
-//Responsive
-import HeaderMobile from './responsive/header';
-import AgendaMobile  from './responsive/main';
+import api from '../../services/api'; 
 
 function NovaAgenda() {
 
@@ -31,37 +33,47 @@ function NovaAgenda() {
   const sala = useSelector(state => state.salas.currentRoom);
   const CheckLogin = useSelector(state => state.user.userLogin);
 
-  useEffect(() => {
-    const getEventos = async () => {
+  // useEffect(()=>{   api.fetchReserves(sala)  })
 
-      await firebase 
-        .database()
-        .ref(`salas/${sala}/Eventos`)
-        .on('value', sucesso => {
-          let events = [];
-          sucesso.forEach(doc => {
-            const reserves = doc.val()
+  const requestReserve = useCallback(() => {
+    dispatch(ReserveActions.getReservesRequest())
+  }, [dispatch])
+
+  useEffect(() => requestReserve(), [requestReserve])
+
+
+
+  // useEffect(() => {
+  //   const getEventos = () => {
+
+  //     firebase 
+  //       .database()
+  //       .ref(`salas/${sala}/Eventos`)
+  //       .on('value', sucesso => {
+  //         let events = [];
+  //         sucesso.forEach(doc => {
+  //           const reserves = doc.val()
             
-            for (let value in reserves) {
-              if(reserves.hasOwnProperty(value)) {
+  //           for (let value in reserves) {
+  //             if(reserves.hasOwnProperty(value)) {
                 
-                const { id, userName, termino, inicio, setor, data } = reserves[value];            
+  //               const { id, userName, termino, inicio, setor, data } = reserves[value];            
                 
-                const firstName = checks.checkName(userName);
-                if (id && userName) {
-                  events.push({ id, firstName, termino, inicio, setor, data });
-                  dispatch(RoomsActions.roomEvents(events));
-                } else {
-                  dispatch(RoomsActions.roomEvents([]));
-                };
-              }
-            }
-          });
-        })
-    }
+  //               const firstName = checks.checkName(userName);
+  //               if (id && userName) {
+  //                 events.push({ id, firstName, termino, inicio, setor, data });
+  //                 dispatch(RoomsActions.roomEvents(events));
+  //               } else {
+  //                 dispatch(RoomsActions.roomEvents([]));
+  //               };
+  //             }
+  //           }
+  //         });
+  //       })
+  //   }
 
-    getEventos();
-  });
+  //   getEventos();
+  // });
 
   if (loader) {
     setTimeout(() => {

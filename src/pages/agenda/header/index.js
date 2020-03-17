@@ -35,10 +35,9 @@ import {
 import { Creators as UsersActions } from '../../../store/ducks/users';
 import { Creators as RoomsActions } from '../../../store/ducks/salas';
 
-
 const Header = () => {
   const dispatch = useDispatch();
-
+  
   const userLogin = useSelector(state => state.user.userLogin);
 
   const actionLoader = () => (

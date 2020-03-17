@@ -1,23 +1,34 @@
-import React, { useContext } from 'react';
+import React, { useContext, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import RoomActions  from '../../store/ducks/salas';
+import ReserveActions  from '../../store/ducks/reserves';
 
 import LoadContext from '../../contexts/LoadContext';
 
 const Select = ({ ViewSelect, CustomSelect, SelectAling }) => {
   const { actionLoader } = useContext(LoadContext);
   const dispatch = useDispatch();
-  
-  const salas = useSelector(state => state.salas.rooms);
 
-  if (salas.length === 0 ) dispatch(RoomActions.getRoomsRequest())
+  const salas = useSelector(state => state.salas.rooms);
   
+  const requestRooms = useCallback(() => {
+    dispatch(RoomActions.getRoomsRequest())
+  }, [dispatch])
+  
+  useEffect(() => requestRooms(), [requestRooms])
+
   const roomsActions = room => {
     dispatch(RoomActions.currentRoom(room));
-    dispatch(RoomActions.roomEvents([]));
+    dispatch(ReserveActions.getReservesRequest())
   }
 
+  const renderOptionsRooms = () => {
+    return salas.map(room => 
+      <option value={room} key={room}>{room}</option>  
+    )
+  }
+    
   return (
     <>
       <ViewSelect>
@@ -26,9 +37,7 @@ const Select = ({ ViewSelect, CustomSelect, SelectAling }) => {
             roomsActions(e.target.value);
             actionLoader();
           }}>
-            {(salas.map((sala, index) => (
-              <option key={index}>{sala}</option>
-            )))}
+            {renderOptionsRooms()}
           </CustomSelect>
         </SelectAling>
       </ViewSelect>

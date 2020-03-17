@@ -3,20 +3,20 @@ import firebase from '../services/firebase';
 import checks from '../utils/checks';
 
 export default {
-  fetchRooms: () => {
+  fetchRooms: async () => {
     try {
       const rooms = [];
     
-      firebase
-        .database()
-        .ref('salas')
-        .on('value', res => {
-          res.forEach(doc => {
-            if(rooms.indexOf(doc.key) === -1) rooms.push(doc.key)
-          })
-        })
-
-      // console.log(rooms)
+      await firebase
+      .firestore()
+      .collection("salas")
+      .get()
+      .then(doc => {
+        doc.forEach(room => {
+          rooms.push(room.data().nome)
+        });
+      })
+      
       return rooms;
       
     } catch (error) {
@@ -51,5 +51,41 @@ export default {
     } catch (error) {
       console.log(error)
     }
-  } 
+  },
+  fetchReserves: async room => {
+      const dataReserves = [];
+      
+      await firebase 
+      .database()
+      .ref(`salas/${room}/Eventos`)
+      .on('value', sucesso => {
+        let events = [];
+        
+        sucesso.forEach(doc => {
+          const reserves = doc.val()
+                    
+          for (let value in reserves) {
+            if(reserves.hasOwnProperty(value)) {
+              const { id, userName, termino, inicio, setor, data } = reserves[value];            
+              
+              const firstName = checks.checkName(userName);
+              if (id && userName) {
+                events.push({ id, firstName, termino, inicio, setor, data });
+                console.log("primeiro");
+              }
+            }
+          }
+        });
+        console.log("segundo");
+        dataReserves.push(...events)
+        // dataReserves.push(events)
+        console.log(dataReserves);
+        
+      })
+      // .then(()=>{
+        
+        // })|
+      // return events;
+      console.log(dataReserves);
+  }
 };

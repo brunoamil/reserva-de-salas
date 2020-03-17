@@ -11,6 +11,7 @@ import {daysOfWeek} from '../../../utils/TimeConfig';
 
 import { Creators as LoadActions } from "../../../store/ducks/load";
 import { Creators as DateReserveActions } from "../../../store/ducks/dadosReserva";
+// import ReserveActions from '../../../store/ducks/reserves';
 
 import ModalContext from '../../../contexts/ModalContext';
 
@@ -18,7 +19,8 @@ function Agenda() {
   const dispatch = useDispatch();
   const { modalActions } = useContext(ModalContext);
 
-  const event = useSelector(state => state.salas.roomEvents);
+  const event = useSelector(state => state.reserves.reserves);
+  // console.log(event)
 
   let idDivCell = 0;
 

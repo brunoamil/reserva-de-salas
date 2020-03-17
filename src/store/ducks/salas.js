@@ -6,7 +6,6 @@ export const { Types, Creators } = createActions({
   getRoomsSuccess: ["arr_rooms"],
   getRoomsFailure: [],
   currentRoom: ["room"],
-  roomEvents: ["events"]
 });
 
 export const RoomTypes = Types;
@@ -15,7 +14,6 @@ export default Creators;
 //criando os reducer handlers
 export const INICIAL_STATE = {
   currentRoom: "Auditório",
-  roomEvents: [],
   rooms: [],
   loading: false,
   error: false,
@@ -38,16 +36,10 @@ const set_current_room = (state = INICIAL_STATE, { room }) => ({
   currentRoom: room
 });
 
-const set_room_events = (state = INICIAL_STATE, { events }) => ({
-  ...state,
-  roomEvents: events
-});
-
 //criando os reducers
 export const salas = createReducer(INICIAL_STATE, {
   [Types.GET_ROOMS_REQUEST]: request,
   [Types.GET_ROOMS_SUCCESS]: success,
   [Types.GET_ROOMS_FAILURE]: failure,
   [Types.CURRENT_ROOM]: set_current_room,
-  [Types.ROOM_EVENTS]: set_room_events,
 });
