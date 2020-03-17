@@ -10,7 +10,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  background-color: brown;
+  background-color: rgb(202, 37, 37);
 `;
 export const ContainerIcon = styled.div`
   margin-bottom: 5px;

@@ -35,8 +35,8 @@ function NovaAgenda() {
 
   // useEffect(()=>{   api.fetchReserves(sala)  })
 
+  dispatch(ReserveActions.getReservesRequest())
   const requestReserve = useCallback(() => {
-    dispatch(ReserveActions.getReservesRequest())
   }, [dispatch])
 
   useEffect(() => requestReserve(), [requestReserve])

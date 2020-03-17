@@ -82,10 +82,7 @@ export default {
         console.log(dataReserves);
         
       })
-      // .then(()=>{
-        
-        // })|
-      // return events;
-      console.log(dataReserves);
+      
+
   }
 };

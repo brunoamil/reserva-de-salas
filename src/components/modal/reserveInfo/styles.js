@@ -1,53 +1,13 @@
 import styled from 'styled-components';
+import { Segment } from 'semantic-ui-react'
 
 export const Container = styled.div`
   height: 18em;
 `;
 
-export const ContainerInfo = styled.div`
-  display:flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-`;
-
-export const ContainerDados = styled.div`
-  width: 100%;
-  padding: 1em 1em;
-  margin-top: -10px;
-
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-
-  h1{
-    margin: 0px;
-    margin-left: 5px;
-    font-size: 1.28571429rem;
-  }
-`;
-
-export const ContainerHorario = styled.div`
-  display: flex;
-  /* margin-right: 7em; */
-  width: 80%;
-  
-  span {
-    display: flex;
-  }
-
-  @media (max-width: 768px){
-    flex-direction: column;
-
-    span {
-      margin-bottom: 20px;
-    }
-  }
-
-  @media (min-width: 768px){
-    justify-content: space-between;
-  }
+export const ContainerSegment =  styled(Segment.Group)`
+  border: none !important;
+  box-shadow: none !important;
 `;
 
 export const Header = styled.div`

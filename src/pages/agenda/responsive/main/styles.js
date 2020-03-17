@@ -20,6 +20,11 @@ export const ContainerContent = styled.div`
 
     margin: 4px 0px;
 
+    @media (min-width: 425px) {
+      height: 90px;
+      margin: 5px 0px;
+
+    }
 
   }
 `;
@@ -40,6 +45,11 @@ export const ContainerHour = styled.div`
 
   background-color: #0d4b81;
   color: #fff;
+
+  @media (min-width: 425px) {
+    width: 10%;
+    height: 55px;
+  }
 `;
 
 export const ContainerCell = styled.div`
@@ -50,4 +60,8 @@ export const ContainerCell = styled.div`
   margin-right: 10px;
   
   background-color : #fff;
+
+  @media (min-width: 425px) {
+    width: 94%;
+  }
 `;

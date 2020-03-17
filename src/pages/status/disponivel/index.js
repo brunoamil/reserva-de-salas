@@ -24,7 +24,7 @@ const Disponivel = props => {
         <Title>Sala disponível!</Title>
         <ContainerButton>
           <Link to="/NovaAgenda">
-            <Button size="massive" onClick={requestRooms()} >Reservar</Button>
+            <Button size="massive" onClick={requestRooms} >Reservar</Button>
           </Link>
         </ContainerButton>
         <Footer>Versão 1.2</Footer>
