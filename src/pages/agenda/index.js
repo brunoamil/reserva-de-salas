@@ -69,9 +69,10 @@ function NovaAgenda() {
     }, 1000);
   }
 
-  const modalActions = samElement => {
+  const modalActions = id => {
+    const idElement = document.getElementById(id); 
     dispatch(ModalActions.modal(true));
-    if (samElement.length !== 0) {
+    if (idElement.innerHTML !== "") {
       dispatch(ModalActions.infoReserve(true));
     } else {
       if (CheckLogin === false) {

@@ -169,27 +169,35 @@ const InfoModal = () => {
               <h2>Informações da Reserva</h2>
             </Header>
 
-            <ContainerSegment size="big">
+            <ContainerSegment size='big'>
               <Segment>
                 <Icon name="user" size="large" />
-                <strong>Nome: </strong>
-                {dadosReserva.firstName}
+                <span>
+                  <strong>Nome: </strong>
+                  {dadosReserva.firstName}
+                </span>
               </Segment>
               <Segment>
                 <Icon name="building" size="large" />
-                <strong>Setor: </strong>
-                {dadosReserva.setor}
+                <span>
+                  <strong>Setor: </strong>
+                  {dadosReserva.setor}
+                </span>
               </Segment>
               <ContainerSegment horizontal >
                 <Segment>
                   <Icon name="time" size="large" />
-                  <strong>Inicio: </strong>
-                  {dadosReserva.inicio}
+                  <span>
+                    <strong>Inicio: </strong>
+                    {dadosReserva.inicio}
+                  </span>
                 </Segment>
                 <Segment>
                   <Icon name="stopwatch" size="large" />
-                  <strong>Termino: </strong>
-                  {dadosReserva.termino}
+                  <span>
+                    <strong>Termino: </strong>
+                    {dadosReserva.termino}
+                  </span>
                 </Segment>
               </ContainerSegment>
               {erro ? (

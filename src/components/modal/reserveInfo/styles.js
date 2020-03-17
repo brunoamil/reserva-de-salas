@@ -8,6 +8,14 @@ export const Container = styled.div`
 export const ContainerSegment =  styled(Segment.Group)`
   border: none !important;
   box-shadow: none !important;
+  
+  span{
+    margin: 0px;
+    font-size : 1.28571429rem;
+    @media(max-width: 425px){
+      font-size: 1rem;
+    }
+  }
 `;
 
 export const Header = styled.div`
