@@ -8,7 +8,7 @@ export default function* reserveSaga() {
   try {
     const room = yield select(state => state.salas.currentRoom);
     const response = yield call(api.fetchReserves, room);
-
+    
     yield put(ReservesActions.getReservesSuccess(response));
   } catch (error) {
     yield put(ReservesActions.getReservesFailure(error));

@@ -20,7 +20,6 @@ function Agenda() {
   const { modalActions } = useContext(ModalContext);
 
   const event = useSelector(state => state.reserves.reserves);
-  // console.log(event)
 
   let idDivCell = 0;
 

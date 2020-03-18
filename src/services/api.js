@@ -53,9 +53,9 @@ export default {
     }
   },
   fetchReserves: async room => {
-      const dataReserves = [];
-      
-      await firebase 
+    const dataReserves = [];
+    const request = new Promise(function (resolve) {
+      firebase 
       .database()
       .ref(`salas/${room}/Eventos`)
       .on('value', sucesso => {
@@ -71,18 +71,16 @@ export default {
               const firstName = checks.checkName(userName);
               if (id && userName) {
                 events.push({ id, firstName, termino, inicio, setor, data });
-                console.log("primeiro");
               }
             }
           }
         });
-        console.log("segundo");
         dataReserves.push(...events)
-        // dataReserves.push(events)
-        console.log(dataReserves);
-        
+        resolve()   
       })
-      
+    })
 
+    await Promise.all([request]);
+    return dataReserves;
   }
 };

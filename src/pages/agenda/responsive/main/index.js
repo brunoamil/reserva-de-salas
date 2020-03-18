@@ -22,7 +22,7 @@ function AgendaMobile() {
   const dispatch = useDispatch();
   const {modalActions} = useContext(ModalContext);
 
-  const events = useSelector(state => state.salas.roomEvents);
+  const events = useSelector(state => state.reserves.reserves);
   let idMobile = useSelector(state => state.ReserveData.reserve_id_mobile);
   let dateMobile = useSelector(state => state.ReserveData.reserve_date_mobile);
 
