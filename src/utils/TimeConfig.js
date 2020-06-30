@@ -1,6 +1,8 @@
 import moment from 'moment';
+import 'moment/locale/pt-br';
 
-let now = moment()
+//Desktop
+let now = moment();
 
 let dia = now.day();
 
@@ -22,6 +24,31 @@ export const daysOfWeek = [
   `QUA ${now.add(1,'days').format("D/M")}`,
   `QUI ${now.add(1,'days').format("D/M")}`,
   `SEX ${now.add(1,'days').format("D/M")}`
+];
+
+//Mobile
+let nowMobile = moment();
+
+let diaMobile = nowMobile.day();
+
+if (diaMobile === 0) {
+  nowMobile.add(1,'days')
+}
+if (diaMobile === 6) {
+  nowMobile = nowMobile.add(2, 'days');
+  diaMobile = 0
+}
+while (diaMobile > 1) {
+  nowMobile = nowMobile.subtract(1, 'days');
+  diaMobile = diaMobile - 1;
+}
+
+export const daysOfWeekMobile = [
+  `SEG ${nowMobile.format("D/MMM").toUpperCase()}`,
+  `TER ${nowMobile.add(1,'days').format("D/MMM").toUpperCase()}`,
+  `QUA ${nowMobile.add(1,'days').format("D/MMM").toUpperCase()}`,
+  `QUI ${nowMobile.add(1,'days').format("D/MMM").toUpperCase()}`,
+  `SEX ${nowMobile.add(1,'days').format("D/MMM").toUpperCase()}`
 ];
 
 export const horas = [
